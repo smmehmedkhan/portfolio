@@ -3,7 +3,6 @@
 
 @layer base, layout, components, utilities, overrides;
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -125,7 +124,11 @@
 }
 
 @layer layout {
-  nav, header, main, footer, section {
+  nav,
+  header,
+  main,
+  footer,
+  section {
     @apply w-full mx-auto flex items-center justify-center;
   }
 
@@ -137,11 +140,14 @@
     @apply min-h-[280] flex-col;
   }
 
-  header, section, main {
+  header,
+  section,
+  main {
     @apply max-w-[1536];
   }
 
-  main, section {
+  main,
+  section {
     @apply flex-col;
   }
 
