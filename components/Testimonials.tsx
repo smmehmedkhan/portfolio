@@ -14,7 +14,7 @@ export default function Testimonials() {
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt,
               officia vitae voluptatem quo aliquam labore mollitia cum, nam
               quisquam nulla provident eum architecto aut voluptates iure
-              dolores. Vitae, at reiciendis.
+              dolores.
             </span>
             <span className="text-2xl font-black text-red-600 mx-1.5">"</span>
           </p>
