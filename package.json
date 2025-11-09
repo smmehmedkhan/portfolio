@@ -3,12 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.11.0",
+    "pnpm": ">=10.20.0"
+  },
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "format": "biome format --write",
     "lint": "biome check",
     "type-check": "tsc --noEmit",
     "test": "echo 'No tests yet' && exit 0",
     "prepare": "husky",
+    "docker:build": "docker build -t portfolio:latest .",
+    "docker:run": "docker run -p 3000:3000 portfolio:latest",
+    "docker:push": "docker push smmehmedkhan/portfolio:latest",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
