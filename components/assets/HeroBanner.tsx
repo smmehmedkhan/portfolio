@@ -1,12 +1,33 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { Button } from "./ui/button";
+import Image from 'next/image'
+import { Button } from '../ui/button'
 
+/**
+ * Hero banner component displaying the main introduction section
+ *
+ * @description Main landing section featuring personal introduction,
+ * professional title, description, and call-to-action button with avatar image
+ *
+ * @returns JSX element containing the hero section
+ *
+ * @example
+ * ```tsx
+ * <HeroBanner />
+ * ```
+ */
 export default function HeroBanner() {
+  /**
+   * Handles navigation to contact page
+   * @description Redirects user to the contact page when CTA button is clicked
+   */
+  function handleClick(): void {
+    window.location.href = '/contact'
+  }
+
   return (
     <header className="h-[calc(100dvh-60px)]">
-      <div className="flex flex-col max-w-[768]">
+      <div className="flex flex-col w-full">
         <h2 className="text-2xl font-bold text-gray-500 mb-2">
           Hi👋, I'm Mehmed.
         </h2>
@@ -25,14 +46,11 @@ export default function HeroBanner() {
           variant="secondary"
           size="lg"
           className="w-fit bg-red-500 hover:bg-red-600 cursor-pointer shadow-2xl shadow-red-500 hover:-translate-y-1 transition-all duration-300"
-          onClick={() => {
-            window.location.href = "/contact";
-          }}
-        >
+          onClick={handleClick}>
           Contact Me
         </Button>
       </div>
-      <div className="flex flex-col w-full max-w-[480] items-center justify-center">
+      <div className="flex flex-col w-full items-center justify-center">
         <Image
           src="/images/user-avatar.webp"
           alt="User avatar"
@@ -42,5 +60,5 @@ export default function HeroBanner() {
         />
       </div>
     </header>
-  );
+  )
 }

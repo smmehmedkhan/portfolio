@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function ProjectSection() {
   return (
@@ -77,5 +77,5 @@ export default function ProjectSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

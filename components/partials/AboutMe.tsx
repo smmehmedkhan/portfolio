@@ -1,5 +1,17 @@
-import Image from "next/image";
-
+import Image from 'next/image'
+/**
+ * AboutMe component displaying short summary of about page
+ *
+ * @description About me component dispay a short summary of about page,
+ * with additional images and a CTA button to navigate about page.
+ *
+ * @returns JSX element with about section and a CTA button
+ *
+ * @example
+ * ```tsx
+ * <AboutMe />
+ * ```
+ */
 export default function AboutMe() {
   return (
     <section>
@@ -34,5 +46,5 @@ export default function AboutMe() {
         </div>
       </div>
     </section>
-  );
+  )
 }

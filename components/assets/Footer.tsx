@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import Link from 'next/link'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 
 export default function Footer() {
   return (
@@ -52,13 +52,11 @@ export default function Footer() {
 
           <form
             action="#"
-            className="w-full flex flex-col items-center gap-5 px-5"
-          >
+            className="w-full flex flex-col items-center gap-5 px-5">
             <Input type="email" />
             <Button
               variant="secondary"
-              className="w-fit bg-red-500 hover:bg-red-600 cursor-pointer transition-all duration-300"
-            >
+              className="w-fit bg-red-500 hover:bg-red-600 cursor-pointer transition-all duration-300">
               Subscribe
             </Button>
           </form>
@@ -67,5 +65,5 @@ export default function Footer() {
       <hr className="w-full" />
       <div className="w-full py-2 text-center">Copyright</div>
     </footer>
-  );
+  )
 }
