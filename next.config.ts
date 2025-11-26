@@ -1,13 +1,7 @@
-import { createRequire } from 'node:module'
 import type { NextConfig } from 'next'
-
-const require = createRequire(import.meta.url)
 
 const nextConfig: NextConfig = {
   // Enhanced caching strategies
-  cacheHandler: require.resolve(
-    'next/dist/server/lib/incremental-cache/file-system-cache.js'
-  ),
   cacheMaxMemorySize: 0,
 
   // Improved static generation
