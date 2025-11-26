@@ -1,4 +1,7 @@
+import { createRequire } from 'node:module'
 import type { NextConfig } from 'next'
+
+const require = createRequire(import.meta.url)
 
 const nextConfig: NextConfig = {
   // Enhanced caching strategies
