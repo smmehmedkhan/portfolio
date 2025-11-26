@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22",
-    "pnpm": ">=10"
+    "node": ">=22.21.1",
+    "pnpm": ">=10.23.0"
   },
-  "packageManager": "pnpm@latest",
+  "packageManager": "pnpm@10.23.0",
   "scripts": {
     "format": "biome format --write",
     "lint": "biome check",
