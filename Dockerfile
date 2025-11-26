@@ -1,6 +1,6 @@
-FROM node:24.11.0-alpine AS base
+FROM node:22.21.1-alpine3.21 AS base
 RUN corepack enable pnpm
-RUN corepack prepare pnpm@10.20.0 --activate
+RUN corepack prepare pnpm@latest --activate
 
 FROM base AS deps
 WORKDIR /app
