@@ -1,8 +1,12 @@
+import * as motion from 'motion/react-client'
 import Image from 'next/image'
 
 export default function Testimonials() {
   return (
-    <section>
+    <motion.section
+      initial={{ opacity: 0, transform: 'translateX(-100%)' }}
+      whileInView={{ opacity: 1, transform: 'translateX(0)' }}
+      transition={{ type: 'spring', duration: 1.5 }}>
       <h1 className="text-2xl font-bold text-center text-violet-500 my-16">
         What my clients say?
       </h1>
@@ -93,6 +97,6 @@ export default function Testimonials() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

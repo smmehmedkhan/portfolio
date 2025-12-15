@@ -1,17 +1,33 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Domine, Noto_Sans } from 'next/font/google'
 import './globals.css'
+import Footer from '@/components/assets/Footer'
+import LightRaysWrapper from '@/components/assets/LightRaysWrpper'
 import Navbar from '@/components/assets/Navbar'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const notoSans = Noto_Sans({
+  variable: '--font-noto-sans',
+  subsets: [
+    'cyrillic',
+    'cyrillic-ext',
+    'devanagari',
+    'greek',
+    'greek-ext',
+    'latin',
+    'latin-ext',
+    'vietnamese',
+  ],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const domine = Domine({
+  variable: '--font-domine',
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -26,15 +42,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${notoSans.variable} ${domine.variable} antialiased`}>
+        {/* <LightRaysWrapper /> */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
           <Navbar />
-          {children}
+          <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
