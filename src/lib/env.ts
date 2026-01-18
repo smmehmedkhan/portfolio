@@ -81,7 +81,7 @@ function getEnv(): Env {
     if (process.env.NODE_ENV === 'development') {
       console.warn(
         '⚠️  Environment variable validation warnings:',
-        result.error.errors.map(err => `${err.path.join('.')}: ${err.message}`)
+        result.error.issues.map(err => `${err.path.join('.')}: ${err.message}`)
       )
     }
     // Return defaults on validation failure

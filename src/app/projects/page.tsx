@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Badge } from '@/components/ui/badge'
+import SiteHeadings from '@/components/ui/SiteHeadings'
 import { CONFIG } from '@/constants/config'
+import { projects } from '@/data/projects'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -25,18 +30,12 @@ export const metadata: Metadata = {
   },
 }
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
-import PrimaryHeading from '@/components/ui/SiteHeadings'
-import { projects } from '@/data/projects'
-
 export default function ProjectPage() {
   return (
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col gap-12">
         <div className="text-center">
-          <PrimaryHeading>My Projects</PrimaryHeading>
+          <SiteHeadings>My Projects</SiteHeadings>
           <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
             Explore a collection of projects I've built using modern web
             technologies. Each project demonstrates different aspects of

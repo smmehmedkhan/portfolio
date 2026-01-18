@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import SiteHeadings from '@/components/ui/SiteHeadings'
 
 // const MotionImage = motion.create(Image)

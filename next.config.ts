@@ -31,7 +31,6 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 
   // Security headers
-  // biome-ignore lint/suspicious/useAwait: Next.js headers() can be sync or async
   headers() {
     return [
       {

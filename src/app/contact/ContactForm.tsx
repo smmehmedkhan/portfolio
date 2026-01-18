@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import SecondaryHeading from '@/components/ui/SecondaryHeading'
+import SiteHeadings from '@/components/ui/SiteHeadings'
 import { CONFIG } from '@/constants/config'
 
 const contactSchema = z.object({
@@ -46,7 +46,7 @@ export default function ContactForm() {
   return (
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col items-center gap-12 max-w-3xl mx-auto">
-        <SecondaryHeading>Get In Touch</SecondaryHeading>
+        <SiteHeadings>Get In Touch</SiteHeadings>
 
         <div className="w-full grid md:grid-cols-2 gap-12">
           <div className="flex flex-col gap-6">
