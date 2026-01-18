@@ -1,0 +1,218 @@
+export const skills = {
+  languages: [
+    {
+      id: 1,
+      title: 'C',
+      src: '/icons/c-lang.svg',
+      link: 'https://www.c-language.org/',
+    },
+    {
+      id: 2,
+      title: 'C++',
+      src: '/images/cpp.png',
+      link: 'https://isocpp.org/',
+    },
+    {
+      id: 3,
+      title: 'JavaScript',
+      src: '/images/javascript.png',
+      link: 'https://javascript.info/',
+    },
+    {
+      id: 4,
+      title: 'TypeScript',
+      src: '/icons/typescript.svg',
+      link: 'https://www.typescriptlang.org/',
+    },
+  ],
+  frontend: [
+    {
+      id: 5,
+      title: 'HTML',
+      src: '/icons/html.svg',
+      link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+    },
+    {
+      id: 6,
+      title: 'CSS',
+      src: '/icons/css.svg',
+      link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+    },
+    {
+      id: 7,
+      title: 'Bootstrap',
+      src: '/icons/bootstrap.svg',
+      link: 'https://getbootstrap.com/',
+    },
+    {
+      id: 8,
+      title: 'Tailwind CSS',
+      src: '/icons/tailwind-css.svg',
+      link: 'https://tailwindcss.com/',
+    },
+    {
+      id: 9,
+      title: 'React.js',
+      src: '/icons/react.svg',
+      link: 'https://react.dev/',
+    },
+    {
+      id: 10,
+      title: 'Shadcn UI',
+      src: '/images/shadcn-ui.png',
+      link: 'https://ui.shadcn.com/',
+    },
+    {
+      id: 11,
+      title: 'Material UI',
+      src: '/icons/material-ui.svg',
+      link: 'https://mui.com/material-ui/',
+    },
+    {
+      id: 12,
+      title: 'Chakra UI',
+      src: '/icons/chakra-ui.svg',
+      link: 'https://chakra-ui.com/',
+    },
+  ],
+  backend: [
+    {
+      id: 13,
+      title: 'Node.js',
+      src: '/icons/node-js.svg',
+      link: 'https://nodejs.org/en',
+    },
+    {
+      id: 14,
+      title: 'Express.js',
+      src: '/icons/express-js.svg',
+      link: 'https://expressjs.com/',
+    },
+    {
+      id: 15,
+      title: 'Hono.js',
+      src: '/icons/hono-js.svg',
+      link: 'https://hono.dev/',
+    },
+    {
+      id: 16,
+      title: 'Fastify.js',
+      src: '/icons/fastify-js.svg',
+      link: 'https://fastify.dev/',
+    },
+    {
+      id: 34,
+      title: 'Postman',
+      src: '/icons/postman.svg',
+      link: 'https://www.postman.com/',
+    },
+  ],
+  database: [
+    {
+      id: 17,
+      title: 'MongoDB',
+      src: '/icons/mongo-db.svg',
+      link: 'https://www.mongodb.com/',
+    },
+    {
+      id: 18,
+      title: 'Mongoose',
+      src: '/icons/mongoose-js.svg',
+      link: 'https://mongoosejs.com/',
+    },
+    {
+      id: 19,
+      title: 'PostgreSQL',
+      src: '/icons/postgresql.svg',
+      link: 'https://www.postgresql.org/',
+    },
+    {
+      id: 20,
+      title: 'Prisma',
+      src: '/icons/prisma.svg',
+      link: 'https://www.prisma.io/',
+    },
+    {
+      id: 21,
+      title: 'Firebase',
+      src: '/icons/firebase.svg',
+      link: 'https://firebase.google.com/',
+    },
+  ],
+  advanced: [
+    {
+      id: 22,
+      title: 'Next.js',
+      src: '/icons/next-js.svg',
+      link: 'https://nextjs.org/',
+    },
+    {
+      id: 23,
+      title: 'Tanstack',
+      src: '/images/tanstack.png',
+      link: 'https://tanstack.com/',
+    },
+    {
+      id: 24,
+      title: 'Redis',
+      src: '/icons/redis.svg',
+      link: 'https://redis.io/',
+    },
+    {
+      id: 25,
+      title: 'Motion',
+      src: '/images/motion.png',
+      link: 'https://motion.dev/',
+    },
+    {
+      id: 26,
+      title: 'GSAP',
+      src: '/icons/gsap.svg',
+      link: 'https://gsap.com/',
+    },
+  ],
+  tools: [
+    {
+      id: 27,
+      title: 'Git',
+      src: '/icons/git.svg',
+      link: 'https://git-scm.com/',
+    },
+    {
+      id: 28,
+      title: 'GitHub',
+      src: '/icons/github.svg',
+      link: 'https://github.com/',
+    },
+    {
+      id: 29,
+      title: 'Docker',
+      src: '/icons/docker.svg',
+      link: 'https://www.docker.com/',
+    },
+    {
+      id: 30,
+      title: 'Kafka',
+      src: '/icons/apachekafka.svg',
+      link: 'https://kafka.apache.org/',
+    },
+    {
+      id: 31,
+      title: 'Kubernetes',
+      src: '/icons/kubernetes.svg',
+      link: 'https://kubernetes.io/',
+    },
+    {
+      id: 32,
+      title: 'Jest.js',
+      src: '/icons/jest-js.svg',
+      link: 'https://jestjs.io/',
+    },
+    {
+      id: 33,
+      title: 'Vitest',
+      src: '/icons/vitest.svg',
+      link: 'https://vitest.dev/',
+    },
+  ],
+}

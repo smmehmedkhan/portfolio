@@ -1,0 +1,29 @@
+@layer base {
+  *, *::before, *::after {
+    @apply box-border m-0 p-0;
+  }
+
+  html {
+    @apply w-full;
+  }
+
+  body {
+    @apply w-full bg-background text-md text-foreground font-sans antialiased overflow-x-hidden relative;
+  }
+
+  img, picture, video, canvas {
+    @apply max-w-full block; /* responsive media */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  strong, b {
+    @apply font-semibold text-accent-foreground;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-primary/60;
+  }
+}

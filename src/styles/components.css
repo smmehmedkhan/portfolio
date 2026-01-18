@@ -1,0 +1,102 @@
+@layer components {
+  /* ========== Navigation bar ========== */
+  .navigation {
+    @apply w-full  text-nm mx-auto h-15 bg-background/25 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm;
+  }
+
+  .nav-links {
+    @apply px-2 py-1 rounded-sm hover:bg-accent/25 hover:text-accent-foreground transition-colors duration-240;
+  }
+
+  /* ========== Hero banner ========== */
+  .hero-banner {
+    @apply h-[calc(100dvh-60px)] overflow-hidden;
+
+    & .hero-intros {
+      @apply size-full;
+
+      & .headings, .description, .buttons {
+        @apply w-full h-fit  box-border;
+      }
+    }
+
+    & .hero-images {
+      @apply w-full min-h-fit relative overflow-hidden flex flex-col items-center justify-end;
+
+      & .hero-image {
+        @apply h-150 w-auto absolute;
+      }
+
+      & .hero-canvas {
+        @apply w-full scale-110 translate-y-3 -z-10;
+      }
+    }
+  }
+
+  .hero-caret {
+    @apply inline-block w-[0.6ch] h-9 ml-2 bg-amber-500;
+  }
+
+  .main-heading {
+    @apply scroll-m-20 text-3xl font-special font-black tracking-wide text-balance uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700;
+  }
+
+  .sub-heading {
+    @apply scroll-m-20 text-muted-foreground text-xl font-semibold tracking-tight;
+  }
+
+  /* ========== About section ========== */
+  .about {
+    @apply w-full bg-secondary text-secondary-foreground;
+
+    & .about-outer {
+      @apply mb-20;
+
+      & .about-inner {
+      @apply max-w-full flex items-center mb-20;
+
+        & .about-media {
+          @apply max-w-1/2;
+        }
+
+        & .about-contents {
+          @apply max-w-1/2 gap-5 items-start;
+        }
+      }}
+
+  }
+
+  /* ========== Showcase section ========== */
+  .showcase {
+    @apply w-full mx-auto py-10 gap-20;
+  }
+
+  .project {
+    @apply w-full min-h-150 gap-20;
+  }
+
+  .card-container {
+    @apply w-125 h-[450] overflow-hidden relative;
+  }
+
+  .card {
+    @apply w-80 h-96 rounded-3xl bg-primary shadow-2xl origin-[10%_60%];
+  }
+
+  .info {
+    @apply w-full flex flex-col gap-4;
+  }
+
+  /* ========== Skills section ========== */
+  .skills {
+    @apply gap-10 p-5 bg-secondary;
+  }
+
+  .skills-list {
+    @apply w-full flex-wrap gap-5;
+  }
+
+  .skill-item {
+    @apply w-16 h-16 p-2 border-primary border-2 rounded-2xl flex place-content-center bg-primary/25 backdrop-blur-md hover:bg-accent/25 hover:border-accent transition-colors duration-300 ease-in-out;
+  }
+}

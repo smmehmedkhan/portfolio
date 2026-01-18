@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './utilities.css';
+@import './overrides.css';
+
+@layer base, layout, components, utilities, overrides;
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-public-sans);
+  --font-serif: var(--font-noto-serif);
+  --font-special: var(--font-balthazar);
+  --text-xs: clamp(0.625rem, 0.5rem + 0.5vw, 0.75rem);      /* 10px -> 12px */
+  --text-sm: clamp(0.75rem, 0.625rem + 0.5vw, 0.875rem);    /* 12px -> 14px */
+  --text-nm: clamp(0.875rem, 0.75rem + 0.5vw, 1rem);        /* 14px -> 16px */
+  --text-md: clamp(1rem, 0.875rem + 0.75vw, 1.25rem);       /* 16px -> 20px */
+  --text-lg: clamp(1.25rem, 1rem + 1vw, 1.5rem);            /* 20px -> 24px */
+  --text-xl: clamp(1.5rem, 1.25rem + 1.5vw, 2rem);          /* 24px -> 32px */
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 2.5rem);            /* 32px -> 48px */
+  --text-3xl: clamp(2.5rem, 2rem + 3vw, 3rem);              /* 40px -> 48px */
+  --text-4xl: clamp(3rem, 2.5rem + 3.5vw, 4rem);            /* 48px -> 64px */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navbar-ring: var(--navbar-ring);
+  --color-navbar-border: var(--navbar-border);
+  --color-navbar-accent: var(--navbar-accent);
+  --color-navbar-accent-foreground: var(--navbar-accent-foreground);
+  --color-navbar-primary: var(--navbar-primary);
+  --color-navbar-primary-foreground: var(--navbar-primary-foreground);
+  --color-navbar: var(--navbar);
+  --color-navbar-foreground: var(--navbar-foreground);
+  --color-golden-3: var(--golden-3);
+  --color-golden-2: var(--golden-2);
+  --color-golden-1: var(--golden-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --container-desktop: 96rem;
+  --container-laptop: 80rem;
+  --container-tablet: 64rem;
+  --container-mobile: 48rem;
+  --container-small: 30rem;
+  --container-extra-small: 20rem;
+}
+
+:root {
+  --primary: oklch(69.6% 0.17 162.48deg);
+  --secondary: oklch(90.5% 0.093 164.15deg);
+  --accent: oklch(76.9% 0.188 70.08deg);
+  --background: oklch(98.5% 0 0deg);
+  --foreground: oklch(14.5% 0 0deg);
+  --card: oklch(92.2% 0 0deg);
+  --popover: oklch(97% 0 0deg);
+  --muted: oklch(55.1% 0.027 264.364deg);
+  --border: oklch(92.2% 0 0deg);
+  --input: oklch(92.2% 0 0deg);
+  --ring: oklch(70.8% 0 0deg);
+  --destructive: oklch(57.7% 0.245 27.325deg);
+  --primary-foreground: oklch(97.9% 0.021 166.113deg);
+  --secondary-foreground: oklch(44.8% 0.119 151.328deg);
+  --accent-foreground: oklch(55.5% 0.163 48.998deg);
+  --card-foreground: oklch(43.2% 0.095 166.913deg);
+  --popover-foreground: oklch(69.6% 0.17 162.48deg);
+  --muted-foreground: oklch(55.1% 0.027 264.364deg);
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: oklch(14% 0.00 0deg);
+  --foreground: oklch(98.5% 0 0deg);
+  --card: oklch(26.9% 0 0deg);
+  --popover: oklch(69.6% 0.17 162.48deg / 50%);
+  --muted: oklch(55.1% 0.027 264.364deg);
+  --border: oklch(100% 0 0deg / 10%);
+  --input: oklch(100% 0 0deg / 15%);
+  --ring: oklch(55.6% 0 0deg);
+  --destructive: oklch(70.4% 0.191 22.216deg);
+  --accent-foreground: oklch(96.2% 0.059 95.617deg);
+  --card-foreground: oklch(90.5% 0.093 164.15deg);
+  --popover-foreground: oklch(84.5% 0.143 164.978deg);
+}
