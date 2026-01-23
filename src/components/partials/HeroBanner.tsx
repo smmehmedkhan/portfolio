@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import HeroTitle from '@/components/ui/hero-title'
-import { heroIntro } from '@/data/heroIntro'
+import { heroIntro } from '@/data/HeroIntro'
 
 const MotionImage = motion.create(Image)
 

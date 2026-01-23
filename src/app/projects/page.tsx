@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
-import SiteHeadings from '@/components/ui/TypographyHeading'
+import { Heading } from '@/components/ui/heading'
 import { CONFIG } from '@/constants/config'
 import { projects } from '@/data/projects'
 
@@ -35,7 +35,7 @@ export default function ProjectPage() {
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col gap-12">
         <div className="text-center">
-          <SiteHeadings>My Projects</SiteHeadings>
+          <Heading variant="primary-heading">My Projects</Heading>
           <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
             Explore a collection of projects I've built using modern web
             technologies. Each project demonstrates different aspects of
