@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
 
   // Image optimization
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 31536000,
   },

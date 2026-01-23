@@ -101,7 +101,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange>
             <Navbar />
-            <main className="site-main">{children}</main>
+            {children}
             <Footer />
           </ThemeProvider>
         </ErrorBoundary>
