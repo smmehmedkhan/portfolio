@@ -12,6 +12,15 @@
     @apply inline-flex items-center;
   }
 
+  /* Sizing utilities */
+  .size-12 {
+    @apply w-12 h-12;
+  }
+
+  .size-4 {
+    @apply w-4 h-4;
+  }
+
   /* Accessibility helpers */
   .visually-hidden {
     @apply sr-only;
@@ -28,6 +37,11 @@
     white-space: nowrap;
   }
 
+  /* Navigation utilities */
+  .nav-links {
+    @apply hover:text-accent-foreground transition-colors duration-200;
+  }
+
   /* Text utilities */
   .hero-text {
     @apply inline-block font-black;
@@ -35,22 +49,8 @@
 
   /* Special effects */
   .splash {
-    @apply bg-secondary absolute inset-0;
+    @apply bg-card absolute inset-0;
 
     clip-path: path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z");
-  }
-
-  /* ========== Heading Typograpy ========== */
-  .site-headings {
-    /* @apply w-fit px-16 py-2 border-2 my-16  rounded-lg tracking-wide text-center text-2xl font-bold; */
-    @apply w-full tracking-wide text-center text-2xl font-bold my-20;
-  }
-
-  .primary-headings{
-    @apply border-primary text-primary;
-  }
-
-  .secondary-headings{
-    @apply border-accent text-accent;
   }
 }

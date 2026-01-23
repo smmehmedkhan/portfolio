@@ -11,14 +11,12 @@ import { skills } from '@/data/skillsList'
 
 export default function TechStack() {
   return (
-    <section className="skills flex-box">
-      <div className="container flex-box">
-        <SiteHeadings className="secondary-headings">
-          My skill sets
-        </SiteHeadings>
-        <div className="grid-box mb-20">
+    <section className="flex-box skills py-24">
+      <div className="container flex-box gap-10">
+        <SiteHeadings>My skill sets</SiteHeadings>
+        <div className="grid-box">
           {/* Languages */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Languages</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.languages.map(lang => (
@@ -34,7 +32,7 @@ export default function TechStack() {
           </div>
 
           {/* Frontend */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Frontend</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.frontend.map(lang => (
@@ -50,7 +48,7 @@ export default function TechStack() {
           </div>
 
           {/* Backend */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Backend</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.backend.map(lang => (
@@ -66,7 +64,7 @@ export default function TechStack() {
           </div>
 
           {/* Database */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Database</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.database.map(lang => (
@@ -82,7 +80,7 @@ export default function TechStack() {
           </div>
 
           {/* Advanced */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Advanced</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.advanced.map(lang => (
@@ -98,7 +96,7 @@ export default function TechStack() {
           </div>
 
           {/* Tools */}
-          <div className="wrapper gap-10">
+          <div className="wrapper">
             <GroupTitle>Tools</GroupTitle>
             <ul className="flex-center skills-list">
               {skills.tools.map(lang => (
@@ -120,7 +118,9 @@ export default function TechStack() {
 
 function GroupTitle({ children }: { children: ReactNode }) {
   return (
-    <h3 className="text-xl text-secondary-foreground font-bold">{children}</h3>
+    <h3 className="text-2xl text-muted-foreground font-semibold my-5">
+      {children}
+    </h3>
   )
 }
 

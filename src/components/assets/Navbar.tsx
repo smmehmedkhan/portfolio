@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="navigation flex-center"
+      className="site-nav flex-center"
       initial={{ opacity: 1, y: 0 }}
       animate={{
         opacity: scrollDirection === 'down' ? 1 : 0,
@@ -42,8 +42,8 @@ export default function Navbar() {
       transition={{ type: 'tween', duration: 0.6 }}>
       <div className="container flex-inline nav-box">
         {/* left: Site's pages */}
-        <ul className="flex-inline">
-          <li className="mr-5">
+        <ul className="flex-inline gap-5">
+          <li>
             <Logo />
           </li>
           <li>

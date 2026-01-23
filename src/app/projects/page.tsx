@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
-import SiteHeadings from '@/components/ui/SiteHeadings'
+import SiteHeadings from '@/components/ui/TypographyHeading'
 import { CONFIG } from '@/constants/config'
 import { projects } from '@/data/projects'
 

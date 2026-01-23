@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import type { JSX } from 'react'
 import About from '@/components/partials/About'
+import FAQ from '@/components/partials/FAQ'
+import GetInTouch from '@/components/partials/GetInTouch'
 import HeroBanner from '@/components/partials/HeroBanner'
 import Showcase from '@/components/partials/Showcase'
 import TechStack from '@/components/partials/TechStack'
@@ -33,12 +35,14 @@ export const metadata: Metadata = {
 
 export default function Home(): JSX.Element {
   return (
-    <>
+    <main className="flex-box site-main">
       <HeroBanner />
       <About />
-      <Showcase />
       <TechStack />
+      <Showcase />
       <Testimonials />
-    </>
+      <FAQ />
+      <GetInTouch />
+    </main>
   )
 }

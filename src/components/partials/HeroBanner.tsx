@@ -4,10 +4,9 @@ import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import TypographyHeroTitle from '@/components/ui/TypographyHeroTitle'
-import TypographyMainHeading from '@/components/ui/TypographyMainHeading'
-import TypographySubHeading from '@/components/ui/TypographySubHeading'
-import { heroIntro } from '@/data/HeroIntro'
+import { Heading } from '@/components/ui/heading'
+import HeroTitle from '@/components/ui/hero-title'
+import { heroIntro } from '@/data/heroIntro'
 
 const MotionImage = motion.create(Image)
 
@@ -17,41 +16,54 @@ export default function HeroBanner() {
   return (
     <header className="container hero-banner flex-center">
       {/* left: Hero intros */}
-      <motion.div
-        className="hero-intros flex-box"
-        initial={{ opacity: 0, transform: 'translateX(-100%)' }}
-        whileInView={{
-          opacity: 1,
-          transform: 'translateX(0%)',
-          transition: { duration: 0.8, ease: 'easeOut' },
-        }}>
+      <div className="hero-intros flex-box gap-7.5">
         {/* Headings */}
         <div className="headings">
-          <TypographySubHeading>{greeting}</TypographySubHeading>
-          <TypographyMainHeading>
-            I'm a <TypographyHeroTitle titles={titles} />
-          </TypographyMainHeading>
+          <motion.div
+            initial={{ opacity: 0, transform: 'translateY(-100%)' }}
+            whileInView={{ opacity: 1, transform: 'translateY(0)' }}
+            transition={{ delay: 0.2, duration: 0.6 }}>
+            <Heading variant={'sub-heading'} size={'lg'} animated={true}>
+              {greeting}
+            </Heading>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, transform: 'translateY(-100%)' }}
+            whileInView={{ opacity: 1, transform: 'translateY(0)' }}
+            transition={{ delay: 0.4, duration: 0.6 }}>
+            <Heading variant={'main-heading'} size={'3xl'} animated={true}>
+              I'm a <HeroTitle titles={titles} />
+            </Heading>
+          </motion.div>
         </div>
 
         {/* Description */}
-        <div className="description my-7.5">
-          <p>
-            <span className="font-bold mr-2">❛</span>
+        <motion.div
+          className="description"
+          initial={{ opacity: 0, transform: 'translateY(-100%)' }}
+          whileInView={{ opacity: 1, transform: 'translateY(0)' }}
+          transition={{ delay: 0.6, duration: 0.6 }}>
+          <motion.p>
+            <span className="font-bold mr-2 text-muted-foreground">❛</span>
             {description}
-            <span className="font-bold ml-2">❜</span>
-          </p>
-        </div>
+            <span className="font-bold ml-2 text-muted-foreground">❜</span>
+          </motion.p>
+        </motion.div>
 
         {/* Call to Action Buttons */}
-        <div className="buttons flex-inline gap-5">
+        <motion.div
+          className="buttons flex-inline gap-5"
+          initial={{ opacity: 0, transform: 'translateY(-100%)' }}
+          whileInView={{ opacity: 1, transform: 'translateY(0)' }}
+          transition={{ delay: 0.8, duration: 0.6 }}>
           <Button className="w-fit">
             <Link href="/contact">Contact Me</Link>
           </Button>
           <Button className="w-fit" variant="secondary">
             <Link href="/#">Resume</Link>
           </Button>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* right: Hero images */}
       <motion.div

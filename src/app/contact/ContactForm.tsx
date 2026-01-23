@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import SiteHeadings from '@/components/ui/SiteHeadings'
+import SiteHeadings from '@/components/ui/TypographyPrimaryHeading'
 import { CONFIG } from '@/constants/config'
 
 const contactSchema = z.object({

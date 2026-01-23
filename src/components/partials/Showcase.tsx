@@ -2,8 +2,9 @@ import type { Variants } from 'motion/react'
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
-import SiteHeadings from '@/components/ui/SiteHeadings'
+import { Heading } from '@/components/ui/heading'
 import { projects } from '@/data/projects'
+import { siteHeadings } from '@/data/siteHeadings'
 import type { CardProps, InfoProps, ProjectProps, ProjectTypes } from '@/types'
 
 const cardVariants: Variants = {
@@ -82,7 +83,9 @@ function Project({ project, index }: ProjectProps) {
 export default function Showcase() {
   return (
     <section className="container showcase flex-box">
-      <SiteHeadings className="primary-headings">Top Projects</SiteHeadings>
+      <Heading variant={'primary-heading'} size={'3xl'}>
+        {siteHeadings.project.title}
+      </Heading>
 
       {projects.map((project: ProjectTypes, index) => (
         <Project key={project.id} project={project} index={index} />

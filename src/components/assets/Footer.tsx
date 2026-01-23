@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '../ui/button'
@@ -41,8 +40,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t">
-      <div className="w-full max-w-[1536px] px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-5 py-12 md:py-20 mx-auto">
+    <footer className="">
+      {/* Top: Container */}
+      <div className="container grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-10 py-10 lg:py-25">
+        {/* Addresses */}
         <address className="flex flex-col justify-center not-italic">
           Lives in{' '}
           <a
@@ -57,28 +58,8 @@ export default function Footer() {
           <br />
           Get in touch via email or social media.
         </address>
-        <ul className="flex flex-col items-start md:items-center justify-center gap-4">
-          <li>
-            <Link href="/about" className="nav-links">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/projects" className="nav-links">
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="nav-links">
-              Contact
-            </Link>
-          </li>
-        </ul>
-        <div className="flex flex-col justify-center">
-          <Link href="/" className="inline-block">
-            <h1 className="text-xl font-black">Mehmed Khan</h1>
-          </Link>
-        </div>
+
+        {/* Subscribtion Form */}
         <div className="flex flex-col items-start md:items-center justify-center gap-6 md:gap-8">
           <div className="w-full text-center">
             <h3 className="text-xl font-bold text-violet-500">
@@ -122,7 +103,10 @@ export default function Footer() {
           </form>
         </div>
       </div>
+
       <hr className="w-full" />
+
+      {/* Bottom: Copyright */}
       <div className="w-full py-2 text-center">Copyright</div>
     </footer>
   )

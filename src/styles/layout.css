@@ -12,4 +12,8 @@
   .grid-box {
     @apply w-full h-full grid place-items-center grid-cols-3 grid-rows-2 gap-16;
   }
+
+  .site-main {
+    @apply w-full pb-20 gap-20;
+  }
 }
