@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import SiteHeadings from '@/components/ui/SiteHeadings'
+import { Heading } from '@/components/ui/heading'
 import { CONFIG } from '@/constants/config'
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function AboutPage() {
   return (
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col items-center gap-12">
-        <SiteHeadings>About Me</SiteHeadings>
+        <Heading variant="primary-heading">About Me</Heading>
 
         <div className="flex flex-col md:flex-row items-center gap-12 max-w-4xl">
           <div className="shrink-0">

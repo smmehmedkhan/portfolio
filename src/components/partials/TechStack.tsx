@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import SiteHeadings from '@/components/ui/SiteHeadings'
+import { Heading } from '@/components/ui/heading'
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +13,7 @@ export default function TechStack() {
   return (
     <section className="flex-box skills py-24">
       <div className="container flex-box gap-10">
-        <SiteHeadings>My skill sets</SiteHeadings>
+        <Heading variant="primary-heading">My skill sets</Heading>
         <div className="grid-box">
           {/* Languages */}
           <div className="wrapper">
