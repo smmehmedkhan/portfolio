@@ -109,8 +109,8 @@ export default function RootLayout({
               <Footer />
             </div>
           </ThemeProvider>
-          <Analytics />
         </ErrorBoundary>
+        <Analytics />
       </body>
     </html>
   )
