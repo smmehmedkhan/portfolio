@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=24.13.0",
-    "pnpm": ">=10.28.2"
+    "node": ">=24.x"
   },
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "format": "biome format --write . && stylelint --fix '**/styles/*.{css,scss}'",
     "lint": "biome check . && stylelint '**/styles/*.{css,scss}'",
