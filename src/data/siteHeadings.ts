@@ -1,5 +1,6 @@
 export interface SiteHeading {
   id: number
+  slot: string
   title: string
   description: string
 }
@@ -7,52 +8,41 @@ export interface SiteHeading {
 export const siteHeadings: Record<string, SiteHeading> = {
   about: {
     id: 1,
-    title: 'What about me?',
+    slot: 'About Me',
+    title: 'Who am I behind the code?',
     description:
       'I craft engaging digital experiences with modern web technologies.',
   },
   skills: {
     id: 2,
-    title: 'My Skills',
+    slot: 'Skills',
+    title: 'What technologies do I master?',
     description: 'A showcase of my technical proficiencies and expertise.',
   },
   project: {
     id: 3,
-    title: 'My Projects',
-    description: 'A collection of my personal and professional projects.',
+    slot: 'Projects',
+    title: 'What have I built recently?',
+    description:
+      'Explore real-world applications and innovative solutions that showcase my problem-solving abilities and technical craftsmanship.',
   },
   testimonials: {
     id: 4,
-    title: 'Testimonials from Clients',
+    slot: 'Testimonials',
+    title: 'What professionals say about me?',
     description: 'Hear from those I have worked with about their experiences.',
   },
   faq: {
     id: 5,
-    title: 'Frequently Asked Questions',
-    description: 'Common questions about my work and services.',
+    slot: 'FAQ',
+    title: 'What do you want to know?',
+    description: 'Quick answers to questions you might have about my work.',
   },
   getInTouch: {
     id: 6,
-    title: 'Get In Touch',
+    slot: 'Get In Touch',
+    title: 'How can I help you?',
     description:
       'Have a project in mind or want to discuss potential opportunities? Feel free to reach out!',
-  },
-  resume: {
-    id: 7,
-    title: 'Resume',
-    description:
-      'Take a look at my resume to learn more about my experience and skills.',
-  },
-  blog: {
-    id: 8,
-    title: 'Blog',
-    description:
-      'Read my latest articles and thoughts on web development and technology.',
-  },
-  contact: {
-    id: 9,
-    title: 'Contact',
-    description:
-      'Interested in working together? Contact me for collaborations or inquiries.',
   },
 }

@@ -3,7 +3,6 @@
  * Centralized definitions for all predefined animations
  * Extensible for custom animation configurations
  */
-
 import type { TargetAndTransition, VariantLabels } from 'motion/react'
 
 /**

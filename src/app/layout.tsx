@@ -1,8 +1,9 @@
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
-import Footer from '@/components/assets/Footer'
-import Navbar from '@/components/assets/Navbar'
+import Footer from '@/components/partials/Footer'
+import GetInTouch from '@/components/partials/GetInTouch'
+import Navbar from '@/components/partials/Navbar'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { CONFIG } from '@/constants/config'
@@ -102,7 +103,10 @@ export default function RootLayout({
             disableTransitionOnChange>
             <Navbar />
             {children}
-            <Footer />
+            <div className="w-full h-dvh flex-box">
+              <GetInTouch />
+              <Footer />
+            </div>
           </ThemeProvider>
         </ErrorBoundary>
       </body>

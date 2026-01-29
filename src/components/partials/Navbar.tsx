@@ -5,8 +5,7 @@ import * as motion from 'motion/react-client'
 import Link from 'next/link'
 import { useState } from 'react'
 import Logo from '@/components/assets/Logo'
-import { Button } from '@/components/ui/button'
-import { ModeToggle } from '@/components/ui/modeToggle'
+import ThemeToggler from '@/components/ui/theme-toggler'
 
 /**
  * Navigation bar component
@@ -33,42 +32,43 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="site-nav flex-center"
+      className="flex-center"
       initial={{ opacity: 1, y: 0 }}
       animate={{
         opacity: scrollDirection === 'down' ? 1 : 0,
         y: scrollDirection === 'down' ? 0 : -100,
       }}
       transition={{ type: 'tween', duration: 0.6 }}>
-      <div className="container flex-inline nav-box">
+      <div className="container flex-inline navigation">
         {/* left: Site's pages */}
-        <ul className="flex-inline gap-5">
-          <li>
-            <Logo />
-          </li>
-          <li>
-            <Link href="/about" className="nav-links">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/projects" className="nav-links">
-              Projects
-            </Link>
-          </li>
-        </ul>
+        <div className="flex-inline gap-5">
+          {/* Left: Logo */}
+          <Logo />
+
+          {/* Right: Navigation links */}
+          <ul className="flex-inline">
+            <li>
+              <Link href="/about" className="nav-links nav-link-dark">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/projects" className="nav-links nav-link-dark">
+                Projects
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="nav-links nav-link-dark">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
 
         {/* right: Additionals */}
-        <ul className="flex-inline gap-5">
-          <li>
-            <ModeToggle />
-          </li>
-          <li>
-            <Button variant="outline" asChild>
-              <Link href="/contact">Contact Me</Link>
-            </Button>
-          </li>
-        </ul>
+        <div>
+          <ThemeToggler />
+        </div>
       </div>
     </motion.nav>
   )

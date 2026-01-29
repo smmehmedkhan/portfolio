@@ -1,19 +1,23 @@
+import { BadgeCheck } from 'lucide-react'
 import ReviewCarousel from '@/components/assets/ReviewCarousel'
-import { Heading } from '@/components/ui/heading'
 import { siteHeadings } from '@/data/siteHeadings'
 import { testimonials } from '@/data/testimonials'
+import SiteHeading from '../assets/SiteHeading'
 
 export default function Testimonials() {
-  return (
-    <section className="flex-box w-full py-20 gap-20">
-      {/* Section Heading */}
-      <Heading variant={'primary-heading'} size={'3xl'}>
-        {siteHeadings.testimonials.title}
-      </Heading>
+  const { id, slot, title, description } = siteHeadings.testimonials
 
-      <div className="container flex-center">
-        <ReviewCarousel data={testimonials} />
-      </div>
+  return (
+    <section className="testimonials flex-box">
+      <SiteHeading
+        icon={<BadgeCheck className="size-5" />}
+        id={id}
+        slot={slot}
+        title={title}
+        description={description}
+      />
+
+      <ReviewCarousel data={testimonials} />
     </section>
   )
 }

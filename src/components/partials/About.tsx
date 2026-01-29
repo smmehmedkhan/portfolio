@@ -1,11 +1,11 @@
+import { MessageSquareText } from 'lucide-react'
 import Link from 'next/link'
 import AboutTypographys from '@/components/assets/AboutTypographys'
 import ImageCarousel from '@/components/assets/ImageCarousel'
+import SiteHeading from '@/components/assets/SiteHeading'
+import { Button } from '@/components/ui/button'
 import { aboutImages, aboutTypographys } from '@/data/about'
 import { siteHeadings } from '@/data/siteHeadings'
-import { Button } from '../ui/button'
-import { Heading } from '../ui/heading'
-import { Paragraph } from '../ui/paragraph'
 
 /**
  * AboutMe component displaying short summary of about page
@@ -21,22 +21,19 @@ import { Paragraph } from '../ui/paragraph'
  * ```
  */
 export default function About() {
+  const { id, slot, title, description } = siteHeadings.about
+
   return (
     <section className="container about flex-box">
-      {/* Top: See more button */}
-      <div
-        className="wrapper"
-        data-slot={siteHeadings.about.id}
-        data-id={siteHeadings.about.id}>
-        <Heading variant={'primary-heading'} size={'2xl'} animated={true}>
-          {siteHeadings.about.title}
-        </Heading>
-        <Paragraph variant="lead" animated={true}>
-          {siteHeadings.about.description}
-        </Paragraph>
-      </div>
+      <SiteHeading
+        id={id}
+        slot={slot}
+        title={title}
+        description={description}
+        icon={<MessageSquareText className="size-5" />}
+      />
 
-      {/* Middle: Flexbox Layout */}
+      {/* About content layout */}
       <div className="about-layout">
         <div className="w-full">
           <ImageCarousel data={aboutImages} />
@@ -44,14 +41,12 @@ export default function About() {
 
         <div className="w-full">
           <AboutTypographys data={aboutTypographys} />
-        </div>
-      </div>
 
-      {/* Bottom: See more button */}
-      <div className="w-full flex-center">
-        <Button variant="outline" asChild>
-          <Link href="/about">Read More</Link>
-        </Button>
+          {/* Bottom: See more button */}
+          <Button variant="outline" asChild>
+            <Link href="/about">Read More</Link>
+          </Button>
+        </div>
       </div>
     </section>
   )

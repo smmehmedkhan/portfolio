@@ -12,39 +12,32 @@ const envSchema = z.object({
 
   // Public site configuration (all optional with validation)
   NEXT_PUBLIC_SITE_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),
   NEXT_PUBLIC_EMAIL: z
-    .string()
     .email()
     .optional()
     .transform(val => val || undefined),
   NEXT_PUBLIC_GITHUB_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),
   NEXT_PUBLIC_LINKEDIN_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),
   NEXT_PUBLIC_TWITTER_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),
   NEXT_PUBLIC_PORTFOLIO_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),
 
   // API configuration
   NEXT_PUBLIC_API_URL: z
-    .string()
     .url()
     .optional()
     .transform(val => val || undefined),

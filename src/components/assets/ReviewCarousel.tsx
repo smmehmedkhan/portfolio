@@ -27,7 +27,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
 
   return (
     <Carousel
-      className="w-full max-w-laptop"
+      className="w-full"
       plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}>
@@ -35,7 +35,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
         {data.map(testimonial => (
           <CarouselItem key={testimonial.id} className="lg:basis-1/2">
             <div className="p-1">
-              <Card>
+              <Card className="bg-card border-border">
                 <CardHeader className="flex-center">
                   <StarRating rating={testimonial.rating} size={25} />
                 </CardHeader>

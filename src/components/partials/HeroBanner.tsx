@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import HeroTitle from '@/components/ui/hero-title'
 import { heroIntro } from '@/data/HeroIntro'
+import { Paragraph } from '../ui/paragraph'
 
 const MotionImage = motion.create(Image)
 
@@ -44,9 +45,13 @@ export default function HeroBanner() {
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.6, duration: 0.6 }}>
           <motion.p>
-            <span className="font-bold mr-2 text-muted-foreground">❛</span>
+            <Paragraph variant="lead" className="mr-2">
+              ❛
+            </Paragraph>
             {description}
-            <span className="font-bold ml-2 text-muted-foreground">❜</span>
+            <Paragraph variant="lead" className="ml-2">
+              ❜
+            </Paragraph>
           </motion.p>
         </motion.div>
 

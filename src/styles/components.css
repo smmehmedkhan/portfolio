@@ -1,11 +1,11 @@
 @layer components {
   /* ========== Navigation bar ========== */
   .navigation {
-    @apply w-full  text-nm mx-auto h-15 bg-background/25 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm;
+    @apply justify-between;
   }
 
   .nav-links {
-    @apply px-2 py-1 rounded-sm hover:bg-accent/25 hover:text-accent-foreground transition-colors duration-240;
+    @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent dark:hover:bg-accent/30 dark:hover:border-accent transition-colors duration-300;
   }
 
   /* ========== Hero banner ========== */
@@ -39,11 +39,20 @@
 
   /* ========== About section ========== */
   .about {
-    @apply py-10 gap-20;
+    @apply py-10 gap-30;
 
     & .about-layout {
       @apply w-full flex items-center justify-center flex-col gap-10 md:flex-row md:gap-20;
     }
+  }
+
+  /* ========== Skills section ========== */
+  .skills {
+    @apply  py-24 gap-20;
+  }
+
+  .skills-list {
+    @apply w-full flex-wrap gap-5;
   }
 
   /* ========== Showcase section ========== */
@@ -60,23 +69,20 @@
   }
 
   .card {
-    @apply w-80 h-96 rounded-3xl bg-primary shadow-2xl origin-[10%_60%];
+    @apply w-80 h-96 rounded-3xl bg-secondary shadow-2xl origin-[10%_60%];
   }
 
   .info {
     @apply w-full flex flex-col gap-4;
   }
 
-  /* ========== Skills section ========== */
-  .skills {
-    @apply py-20 gap-20;
+  /* ========== Testimonials section ========== */
+  .testimonials {
+    @apply w-full py-24 gap-20;
   }
 
-  .skills-list {
-    @apply w-full flex-wrap gap-5;
-  }
-
-  .skill-item {
-    @apply w-16 h-16 p-2 border-primary border-2 rounded-2xl flex place-content-center bg-primary/25 backdrop-blur-md hover:bg-accent/25 hover:border-accent transition-colors duration-300 ease-in-out;
+  /* ========== Get in touch section ========== */
+  .get-in-touch {
+    @apply w-full h-1/2 bg-primary relative overflow-hidden;
   }
 }

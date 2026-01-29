@@ -1,9 +1,5 @@
 @layer overrides {
-	.btn--compact {
-		@apply px-3 py-1.5 text-sm;
-	}
-
-  .nav-box {
-    @apply justify-between;
+  .nav-link-dark {
+    @apply dark:hover:text-accent;
   }
 }
