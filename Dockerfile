@@ -1,5 +1,5 @@
 # Use specific Node.js version matching package.json engines
-FROM node:22.22.0-alpine3.22 AS base
+FROM node:24.13.0-alpine3.22 AS base
 
 # Install security updates and required packages
 RUN apk update && apk upgrade && apk add --no-cache libc6-compat dumb-init
