@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
 import Footer from '@/components/partials/Footer'
@@ -108,6 +109,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </ThemeProvider>
+          <Analytics />
         </ErrorBoundary>
       </body>
     </html>
