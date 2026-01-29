@@ -27,7 +27,7 @@ function generateVercelConfig(): VercelConfig {
 
     functions: {
       'src/app/**/*.{js,ts,jsx,tsx}': {
-        runtime: '@vercel/node@24',
+        runtime: '@vercel/node@22',
       },
     },
 
