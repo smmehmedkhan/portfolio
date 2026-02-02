@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: CONFIG.SITE.URL,
     images: [
       {
-        url: '/images/mehmed-khan.png',
+        url: '/images/Mehmed_Khan.webp',
         width: 1200,
         height: 630,
         alt: CONFIG.SITE.AUTHOR,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: CONFIG.SITE.TITLE,
     description: CONFIG.SITE.DESCRIPTION,
-    images: ['/images/mehmed-khan.png'],
+    images: ['/images/Mehmed_Khan.webp'],
   },
 }
 

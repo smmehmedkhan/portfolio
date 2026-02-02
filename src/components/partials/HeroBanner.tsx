@@ -15,16 +15,20 @@ export default function HeroBanner() {
   const { greeting, titles, description } = heroIntro
 
   return (
-    <header className="container hero-banner flex-center">
+    <header className="hero-banner flex-center">
       {/* left: Hero intros */}
-      <div className="hero-intros flex-box gap-7.5">
+      <div className="hero-intros flex-box">
         {/* Headings */}
         <div className="headings">
           <motion.div
             initial={{ opacity: 0, transform: 'translateY(-100%)' }}
             whileInView={{ opacity: 1, transform: 'translateY(0)' }}
             transition={{ delay: 0.2, duration: 0.6 }}>
-            <Heading variant={'sub-heading'} size={'lg'} animated={true}>
+            <Heading
+              className="xs:text-lg sm:text-xl 2xl:text-xl"
+              variant={'sub-heading'}
+              size={'xl'}
+              animated={true}>
               {greeting}
             </Heading>
           </motion.div>
@@ -32,15 +36,22 @@ export default function HeroBanner() {
             initial={{ opacity: 0, transform: 'translateY(-100%)' }}
             whileInView={{ opacity: 1, transform: 'translateY(0)' }}
             transition={{ delay: 0.4, duration: 0.6 }}>
-            <Heading variant={'main-heading'} size={'3xl'} animated={true}>
-              I'm a <HeroTitle titles={titles} />
+            <Heading
+              className="xs:h-18 sm:h-27 md:h-12 xl:h-24 2xl:h-12 xs:text-xl sm:text-2xl lg:text-3xl xl:text-2xl 2xl:text-3xl"
+              variant={'main-heading'}
+              size="3xl"
+              animated={true}>
+              <span className="xs:block sm:block md:inline lg:block xl:block 2xl:inline">
+                I'm a
+              </span>{' '}
+              <HeroTitle titles={titles} />
             </Heading>
           </motion.div>
         </div>
 
         {/* Description */}
         <motion.div
-          className="description"
+          className="size-full"
           initial={{ opacity: 0, transform: 'translateY(-100%)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.6, duration: 0.6 }}>
@@ -57,69 +68,70 @@ export default function HeroBanner() {
 
         {/* Call to Action Buttons */}
         <motion.div
-          className="buttons flex-inline gap-5"
+          className="buttons"
           initial={{ opacity: 0, transform: 'translateY(-100%)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.8, duration: 0.6 }}>
-          <Button className="w-fit">
+          <Button className="w-full sm:w-fit">
             <Link href="/contact">Contact Me</Link>
           </Button>
-          <Button className="w-fit" variant="secondary">
+          <Button className="w-full sm:w-fit" variant="secondary">
             <Link href="/#">Resume</Link>
           </Button>
         </motion.div>
       </div>
 
       {/* right: Hero images */}
-      <motion.div
-        className="hero-images"
-        initial={{ opacity: 0, transform: 'translateY(50%)' }}
-        whileInView={{
-          opacity: 1,
-          transform: 'translateY(0)',
-          transition: { duration: 0.8, ease: 'easeIn' },
-        }}>
-        {/* Hero Image */}
-        <MotionImage
-          className="hero-image"
-          src="/images/Mehmed_Khan.webp"
-          alt="Mehmed Khan - Full Stack Developer"
-          width={1024}
-          height={1365}
-          priority
-          initial={{ opacity: 0 }}
+      <div className="wrapper">
+        <motion.div
+          className="hero-images"
+          initial={{ opacity: 0, transform: 'translateY(50%)' }}
           whileInView={{
             opacity: 1,
-            transition: { delay: 1.2, duration: 0.8, ease: 'easeIn' },
-          }}
-        />
+            transform: 'translateY(0)',
+            transition: { duration: 0.8, ease: 'easeIn' },
+          }}>
+          {/* Hero Image */}
+          <MotionImage
+            className="hero-image"
+            src="/images/Mehmed_Khan.webp"
+            alt="Mehmed Khan - Full Stack Developer"
+            width={1024}
+            height={1365}
+            priority
+            initial={{ opacity: 0 }}
+            whileInView={{
+              opacity: 1,
+              transition: { delay: 1.2, duration: 0.8, ease: 'easeIn' },
+            }}
+          />
 
-        {/* Hero Canvas */}
-        <motion.svg
-          className="hero-canvas"
-          viewBox="0 0 675 675"
-          width="675"
-          height="675"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          version="1.1">
-          <title>Chewing gum shape</title>
-          <defs>
-            <linearGradient
-              id="gumGradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%">
-              <stop offset="0%" stopColor="#fd9a00" />
-              <stop offset="50%" stopColor="#7ccf00" />
-              <stop offset="100%" stopColor="#00bc7d" />
-            </linearGradient>
-          </defs>
-          <g transform="translate(337.5 337.5)">
-            <path
-              d="M89.9 -161.6
+          {/* Hero Canvas */}
+          <motion.svg
+            className="hero-canvas"
+            viewBox="0 0 675 675"
+            width="675"
+            height="675"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            version="1.1">
+            <title>Chewing gum shape</title>
+            <defs>
+              <linearGradient
+                id="gumGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%">
+                <stop offset="0%" stopColor="#fd9a00" />
+                <stop offset="50%" stopColor="#7ccf00" />
+                <stop offset="100%" stopColor="#00bc7d" />
+              </linearGradient>
+            </defs>
+            <g transform="translate(337.5 337.5)">
+              <path
+                d="M89.9 -161.6
               C117.8 -103.5 142.6 -78.9 191.4 -36.7
               C240.3 5.6 313.2 65.5 326.5 131.2C339.7 196.9 293.3 268.3 228.9 293.4
               C164.6 318.5 82.3 297.3 -0.2 297.5
@@ -129,11 +141,12 @@ export default function HeroBanner() {
               C-305.5 -140.5 -211.5 -151.1 -144.9 -196.7
               C-78.4 -242.2 -39.2 -322.6 -4.1 -317
               C31 -311.3 62 -219.7 89.9 -161.6"
-              fill="url(#gumGradient)"
-            />
-          </g>
-        </motion.svg>
-      </motion.div>
+                fill="url(#gumGradient)"
+              />
+            </g>
+          </motion.svg>
+        </motion.div>
+      </div>
     </header>
   )
 }

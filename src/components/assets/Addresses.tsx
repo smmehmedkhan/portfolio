@@ -13,7 +13,7 @@ export default function Addresses() {
         <Paragraph className="flex-inline gap-1" size="nm">
           <span>Based in</span>
           <Link
-            className="hover:text-foreground dark:hover:text-accent hover:underline underline-offset-2 transition-colors duration-300 ease-in"
+            className="hover:text-accent hover:underline underline-offset-4 transition-all duration-200 ease-in"
             href="https://maps.app.goo.gl/b4ZUW2if3LEAmmZo9"
             target="_blank"
             rel="noopener noreferrer">
@@ -34,7 +34,7 @@ export default function Addresses() {
 
       <div className="w-full flex-inline items-center">
         <Button
-          className="text-muted-foreground hover:text-foreground dark:hover:text-accent"
+          className="text-muted-foreground hover:text-accent"
           variant="link"
           asChild>
           <Link className="flex-inline gap-1" href="/contact">
@@ -43,7 +43,7 @@ export default function Addresses() {
           </Link>
         </Button>
         <Button
-          className="text-muted-foreground hover:text-foreground dark:hover:text-accent"
+          className="text-muted-foreground hover:text-accent"
           variant="link"
           asChild>
           <Link
@@ -56,7 +56,7 @@ export default function Addresses() {
           </Link>
         </Button>
         <Button
-          className="text-muted-foreground hover:text-foreground dark:hover:text-accent"
+          className="text-muted-foreground hover:text-accent"
           variant="link"
           asChild>
           <Link

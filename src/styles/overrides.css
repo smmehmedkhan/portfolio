@@ -1,5 +1,5 @@
 @layer overrides {
   .nav-link-dark {
-    @apply dark:hover:text-accent;
+    @apply dark:hover:bg-accent/30 dark:hover:text-accent;
   }
 }

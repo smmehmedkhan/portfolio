@@ -35,15 +35,15 @@ export default function About() {
 
       {/* About content layout */}
       <div className="about-layout">
-        <div className="w-full">
+        <div className="w-full lg:w-1/2">
           <ImageCarousel data={aboutImages} />
         </div>
 
-        <div className="w-full">
+        <div className="w-full lg:w-1/2 space-y-6">
           <AboutTypographys data={aboutTypographys} />
 
           {/* Bottom: See more button */}
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="w-full sm:w-auto">
             <Link href="/about">Read More</Link>
           </Button>
         </div>

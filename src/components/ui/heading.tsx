@@ -35,7 +35,7 @@ const headingVariants = cva('scroll-m-20 text-balance', {
   },
   defaultVariants: {
     variant: 'primary-heading',
-    size: 'lg',
+    size: '2xl',
   },
 })
 

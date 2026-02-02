@@ -6,7 +6,7 @@ import Resources from '@/components/assets/Resources'
 export default function Footer() {
   return (
     <footer className="wrapper">
-      <div className="container flex-inline py-25 gap-5">
+      <div className="container flex flex-col md:flex-row justify-between items-start py-12 md:py-16 lg:py-25 gap-8 md:gap-5">
         <Addresses />
         <Newsletters />
         <Resources />

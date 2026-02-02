@@ -1,16 +1,10 @@
 @layer layout {
-  /* Core layout containers */
   .container {
-    @apply w-full max-w-desktop mx-auto;
+    @apply w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl 2xl:max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 px-8 mx-auto;
   }
 
   .wrapper {
     @apply w-full h-full flex flex-col items-center justify-center;
-  }
-
-  /* Grid utilities */
-  .grid-box {
-    @apply w-full h-full grid place-items-center grid-cols-3 grid-rows-2 gap-16;
   }
 
   nav {
@@ -18,7 +12,7 @@
   }
 
   main {
-    @apply pb-20 gap-20;
+    @apply xs:pb-10 sm:pb-12 md:pb-16 pb-20 xs:gap-10 sm:gap-12 md:gap-16 gap-20;
   }
 
   footer {

@@ -34,11 +34,11 @@ type ParagraphVariant = 'main' | 'lead' | 'large' | 'small' | 'muted' | 'code'
 const paragraphVariants = cva('scroll-m-20 text-balance', {
   variants: {
     variant: {
-      main: 'text-nm font-normal tracking-normal',
-      lead: ' text-md font-semibold tracking-normal text-muted-foreground',
-      large: 'text-lg font-medium tracking-wide font-bold',
-      small: 'text-sm font-light tracking-tight',
-      muted: 'text-sm text-muted-foreground',
+      main: 'font-normal tracking-normal',
+      lead: ' text-md 2xl:text-lg font-semibold tracking-normal text-muted-foreground',
+      large: 'text-lg 2xl:text-xl font-medium tracking-wide font-bold',
+      small: 'xs:text-xs text-sm font-light tracking-tight',
+      muted: 'xs:text-xs text-sm text-muted-foreground',
       code: 'relative rounded bg-accent/30 px-[0.3rem] py-[0.2rem] font-mono text-sm text-accent-foreground',
     },
     size: {

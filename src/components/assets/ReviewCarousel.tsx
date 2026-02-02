@@ -2,7 +2,6 @@
 
 import Autoplay from 'embla-carousel-autoplay'
 import { useRef } from 'react'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   Card,
@@ -19,6 +18,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { Paragraph } from '@/components/ui/paragraph'
 import StarRating from '@/components/ui/StarRating'
 import type { Testimonial } from '@/data/testimonials'
 
@@ -34,23 +34,25 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
       <CarouselContent>
         {data.map(testimonial => (
           <CarouselItem key={testimonial.id} className="lg:basis-1/2">
-            <div className="p-1">
+            <div className="p-4">
               <Card className="bg-card border-border">
                 <CardHeader className="flex-center">
                   <StarRating rating={testimonial.rating} size={25} />
                 </CardHeader>
-                <CardContent>
-                  <p className="text-center">"{testimonial.feedback}"</p>
+                <CardContent className="text-center">
+                  <Paragraph variant="small" size="nm">
+                    "{testimonial.feedback}"
+                  </Paragraph>
                 </CardContent>
                 <CardFooter className="w-full flex gap-2.5">
                   <Avatar className="size-10">
                     <AvatarImage src={testimonial.image} />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
-                  <div className="flex flex-col gap-1">
+                  <CardContent className="flex flex-col gap-1">
                     <CardTitle>{testimonial.name}</CardTitle>
                     <CardDescription>{testimonial.position}</CardDescription>
-                  </div>
+                  </CardContent>
                 </CardFooter>
               </Card>
             </div>

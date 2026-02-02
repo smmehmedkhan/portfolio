@@ -8,7 +8,7 @@ export default function Testimonials() {
   const { id, slot, title, description } = siteHeadings.testimonials
 
   return (
-    <section className="testimonials flex-box">
+    <section className="container testimonials flex-box">
       <SiteHeading
         icon={<BadgeCheck className="size-5" />}
         id={id}

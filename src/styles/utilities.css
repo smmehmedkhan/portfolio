@@ -37,6 +37,10 @@
     white-space: nowrap;
   }
 
+  .hero-caret {
+    @apply inline-block w-[0.6ch] xs:h-8 sm:h-10 md:h-12 lg:h-14 ml-2 bg-amber-500;
+  }
+
   /* Navigation utilities */
   .nav-links {
     @apply hover:text-accent-foreground transition-colors duration-200;

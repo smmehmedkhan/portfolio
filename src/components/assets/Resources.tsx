@@ -10,22 +10,22 @@ export default function Resources() {
 
       <ul className="flex-box gap-2">
         <li>
-          <Link href="/about" className="hover:text-accent">
+          <Link href="/about" className="nav-links nav-link-dark">
             About
           </Link>
         </li>
         <li>
-          <Link href="/contact" className="hover:text-accent">
+          <Link href="/contact" className="nav-links nav-link-dark">
             Contact
           </Link>
         </li>
         <li>
-          <Link href="/projects" className="hover:text-accent">
+          <Link href="/projects" className="nav-links nav-link-dark">
             Projects
           </Link>
         </li>
         <li>
-          <Link href="/privacy" className="hover:text-accent">
+          <Link href="/" className="nav-links nav-link-dark">
             Privacy
           </Link>
         </li>

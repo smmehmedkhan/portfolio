@@ -5,71 +5,75 @@
   }
 
   .nav-links {
-    @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent dark:hover:bg-accent/30 dark:hover:border-accent transition-colors duration-300;
+    @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300;
   }
 
   /* ========== Hero banner ========== */
   .hero-banner {
-    @apply h-[calc(100dvh-60px)] overflow-hidden;
+    @apply w-full min-h-[calc(100dvh-60px)] flex-col-reverse lg:flex-row gap-20 xs:gap-5 sm:gap-7.5 md:gap-10 overflow-hidden;
 
     & .hero-intros {
+      @apply size-full xs:gap-4 sm:gap-5 md:gap-7.5 gap-10;
+
+      & .headings {
+        @apply w-full flex flex-col gap-2 xs:gap-1 sm:gap-1.5 overflow-hidden;
+      }
+
+      & .buttons {
+        @apply size-full flex xs:flex-col sm:flex-col md:flex-row xs:gap-3 sm:gap-4 md:gap-4 gap-5;
+      }
+    }
+
+    & .wrapper {
       @apply size-full;
 
-      & .headings, .description, .buttons {
-        @apply w-full h-fit box-border overflow-hidden;
+      & .hero-images {
+        @apply w-full min-h-fit relative overflow-hidden flex flex-col items-center justify-end xs:size-76 sm:size-138 md:size-120 lg:size-full;
+
+        & .hero-image {
+          @apply w-auto h-110 xs:h-60 sm:h-110 md:h-90 xl:h-112 2xl:h-140 absolute;
+        }
+
+        & .hero-canvas {
+          @apply xs:size-76 sm:size-138 md:size-120 lg:size-full mx-auto xs:translate-y-4 sm:translate-y-8 md:translate-y-12 translate-y-3 -z-10;
+        }
       }
     }
-
-    & .hero-images {
-      @apply w-full min-h-fit relative overflow-hidden flex flex-col items-center justify-end;
-
-      & .hero-image {
-        @apply h-150 w-auto absolute;
-      }
-
-      & .hero-canvas {
-        @apply w-full scale-110 translate-y-3 -z-10;
-      }
-    }
-  }
-
-  .hero-caret {
-    @apply inline-block w-[0.6ch] h-9 ml-2 bg-amber-500;
   }
 
   /* ========== About section ========== */
   .about {
-    @apply py-10 gap-30;
+    @apply py-10 gap-12 md:gap-20 lg:gap-30;
 
     & .about-layout {
-      @apply w-full flex items-center justify-center flex-col gap-10 md:flex-row md:gap-20;
+      @apply w-full flex items-center justify-center flex-col gap-8 md:gap-12 lg:flex-row lg:gap-20;
     }
   }
 
   /* ========== Skills section ========== */
   .skills {
-    @apply  py-24 gap-20;
+    @apply py-12 md:py-18 lg:py-24 gap-12 md:gap-16 lg:gap-20;
   }
 
   .skills-list {
-    @apply w-full flex-wrap gap-5;
+    @apply w-full flex-wrap gap-3 sm:gap-4 lg:gap-5;
   }
 
   /* ========== Showcase section ========== */
   .showcase {
-    @apply w-full mx-auto py-20 gap-20;
+    @apply w-full mx-auto py-12 md:py-16 lg:py-20 gap-12 md:gap-16 lg:gap-20;
   }
 
   .project {
-    @apply w-full min-h-150 gap-20;
+    @apply min-h-fit lg:min-h-150 gap-8 lg:gap-20;
   }
 
   .card-container {
-    @apply w-125 h-[450] overflow-hidden relative;
+    @apply w-80 sm:w-96 lg:w-125 h-80 sm:h-96 lg:h-112.5 overflow-hidden relative;
   }
 
   .card {
-    @apply w-80 h-96 rounded-3xl bg-secondary shadow-2xl origin-[10%_60%];
+    @apply w-64 sm:w-80 lg:w-80 h-80 sm:h-96 lg:h-96 rounded-3xl bg-secondary shadow-2xl origin-[10%_60%];
   }
 
   .info {
@@ -78,7 +82,7 @@
 
   /* ========== Testimonials section ========== */
   .testimonials {
-    @apply w-full py-24 gap-20;
+    @apply w-full py-12 md:py-18 lg:py-24 gap-12 md:gap-16 lg:gap-20;
   }
 
   /* ========== Get in touch section ========== */

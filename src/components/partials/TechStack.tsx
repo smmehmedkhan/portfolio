@@ -26,9 +26,9 @@ export default function TechStack() {
       />
 
       {/* Bottom: Skills layout */}
-      <div className="grid-box">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 w-full">
         {/* Languages */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Languages
           </Heading>
@@ -46,7 +46,7 @@ export default function TechStack() {
         </div>
 
         {/* Frontend */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Frontend
           </Heading>
@@ -64,7 +64,7 @@ export default function TechStack() {
         </div>
 
         {/* Backend */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Backend
           </Heading>
@@ -82,7 +82,7 @@ export default function TechStack() {
         </div>
 
         {/* Database */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Database
           </Heading>
@@ -100,7 +100,7 @@ export default function TechStack() {
         </div>
 
         {/* Advanced */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Advanced
           </Heading>
@@ -118,7 +118,7 @@ export default function TechStack() {
         </div>
 
         {/* Tools */}
-        <div className="wrapper gap-7.5">
+        <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
             Tools
           </Heading>
@@ -151,14 +151,14 @@ function ItemCard({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="outline" className="size-14 p-2 rounded-xl">
+        <Button variant="outline" className="size-12 sm:size-14 p-2 rounded-xl">
           <Link href={siteLink} target="_blank" rel="noopener noreferrer">
             <Image
               src={imageSource}
               alt={title}
               width={48}
               height={48}
-              className="size-12 object-contain"
+              className="size-8 sm:size-10 lg:size-12 object-contain"
             />
           </Link>
         </Button>

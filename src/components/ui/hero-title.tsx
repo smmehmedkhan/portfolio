@@ -71,7 +71,7 @@ export default function HeroTitle({
       </motion.span>
       <motion.span
         aria-hidden
-        className="flex-center w-full min-h-fit"
+        className="flex-center size-fit"
         animate={{ opacity: [0, 1, 0] }}
         transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1 }}>
         <span className="hero-caret" />

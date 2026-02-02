@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description: CONFIG.SITE.DESCRIPTION,
     images: [
       {
-        url: '/images/mehmed-khan.png',
+        url: '/images/Mehmed_Khan.webp',
         width: 1200,
         height: 630,
         alt: CONFIG.SITE.AUTHOR,
