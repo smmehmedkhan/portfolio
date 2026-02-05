@@ -152,7 +152,7 @@ export function getAnimationPreset(
   const preset = animationPresets[name]
   if (!preset) {
     console.warn(
-      `Animation preset "${String(name).replace(/[\r\n]/g, '')}" already exists and cannot be overridden.`
+      `Animation preset "${String(name).replace(/[\r\n]/g, '')}" not found. Falling back to default "fade" preset.`
     )
     return animationPresets.fade
   }

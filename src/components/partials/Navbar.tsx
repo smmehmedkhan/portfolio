@@ -49,8 +49,8 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <ul className="nav-links">
-          {navLinks.map(({ id, href, label }, index) => (
-            <li key={id} tabIndex={index}>
+          {navLinks.map(({ id, href, label }) => (
+            <li key={id}>
               <Link href={href} className="nav-link nav-link-dark">
                 {label}
               </Link>

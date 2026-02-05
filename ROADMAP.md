@@ -4,7 +4,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 
 ## Overview
 
-**Total Duration**: 2 weeks
+**Total Duration**: 12 weeks
 **Target Breakpoints**: 2k, 1536px, 1280px, 1024px, 768px, 640px, 480px, 320px
 **Goal**: World-class, responsive portfolio with exceptional user experience
 
