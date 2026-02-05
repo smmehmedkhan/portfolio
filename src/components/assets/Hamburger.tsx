@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/data/nav-links'
+import ThemeToggler from '../ui/theme-toggler'
+import Logo from './Logo'
 
 export default function Hamburger() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -18,7 +20,7 @@ export default function Hamburger() {
   }, [pathname])
 
   return (
-    <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+    <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen} modal>
       <Dialog.Trigger className="w-max flex md:hidden" asChild>
         <Button variant="ghost" onClick={() => setMobileMenuOpen(true)}>
           <Menu className="size-6" size={20} />
@@ -27,19 +29,24 @@ export default function Hamburger() {
 
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay" />
-        <Dialog.Content className="hamburger w-70 sm:w-96 md:w-120 h-svh">
+        <Dialog.Content className="hamburger">
           <Dialog.Title className="sr-only">Navigation Menu</Dialog.Title>
           <motion.div
-            className="hamburger-content"
+            className="w-full h-dvh flex flex-col hamburger-content gap-10"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             transition={{ type: 'tween', duration: 0.6 }}>
             {/* Dialog Close Button */}
             <Dialog.Close className="hamburger-header" asChild>
-              <Button variant="ghost" onClick={() => setMobileMenuOpen(false)}>
+              <Button
+                className="size-fit"
+                variant="ghost"
+                onClick={() => setMobileMenuOpen(false)}>
                 <X className="size-6" size={20} />
               </Button>
             </Dialog.Close>
+
+            <Logo />
 
             {/* Mobile Navigation Links */}
             <menu className="hamburger-links">
@@ -50,12 +57,17 @@ export default function Hamburger() {
                   className="not-last:border-b border-border">
                   <Link
                     href={href}
-                    className="w-full font-medium text-center py-3 hover:bg-accent transition-colors">
+                    className="hamburger-link text-center dark:hover:text-accent dark:hover:bg-accent/30 border border-transparent dark:hover:border-accent">
                     {label}
                   </Link>
                 </li>
               ))}
             </menu>
+
+            {/* Theme toggler */}
+            <div className="w-full flex justify-center">
+              <ThemeToggler />
+            </div>
           </motion.div>
         </Dialog.Content>
       </Dialog.Portal>
