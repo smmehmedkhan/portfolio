@@ -2,10 +2,39 @@
   /* ========== Navigation bar ========== */
   .navigation {
     @apply justify-between;
+
+    .nav-links {
+      @apply hidden w-full ml-5 md:flex items-center;
+
+      .nav-link {
+        @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300;
+      }
+    }
   }
 
-  .nav-links {
-    @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300;
+  /* ========== Hamburger menu ========== */
+  .dialog-overlay {
+    @apply fixed inset-0 bg-black/75 backdrop-blur-xs z-50;
+  }
+
+  .hamburger {
+    @apply focus:outline-none fixed top-0 right-0 z-50;
+  }
+
+  .hamburger-header {
+    @apply w-full flex justify-end items-center pb-4 border-b border-border;
+  }
+
+  .hamburger-content {
+    @apply w-full h-dvh flex flex-col bg-card border-l border-border;
+  }
+
+  .hamburger-links {
+    @apply flex flex-col pt-6;
+
+    .hamburger-link {
+      @apply block w-full px-6 py-4 text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-b-0;
+    }
   }
 
   /* ========== Hero banner ========== */

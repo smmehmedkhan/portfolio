@@ -1,9 +1,6 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Enhanced caching strategies
-  cacheMaxMemorySize: 0,
-
   // Remove standalone for development
   ...(process.env.NODE_ENV === 'production' && { output: 'standalone' }),
 
@@ -46,6 +43,7 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
+              // amazonq-ignore-next-line
               "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",

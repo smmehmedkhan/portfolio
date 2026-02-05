@@ -152,7 +152,7 @@ export function getAnimationPreset(
   const preset = animationPresets[name]
   if (!preset) {
     console.warn(
-      `Animation preset "${name}" not found. Using default "fade" preset.`
+      `Animation preset "${String(name).replace(/[\r\n]/g, '')}" already exists and cannot be overridden.`
     )
     return animationPresets.fade
   }
@@ -170,7 +170,7 @@ export function registerCustomAnimation(
 ): void {
   if (animationPresets[name]) {
     console.warn(
-      `Animation preset "${name}" already exists and cannot be overridden.`
+      `Animation preset "${name.replace(/[\r\n\t]/g, '')}" already exists and cannot be overridden.`
     )
     return
   }

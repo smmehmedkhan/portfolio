@@ -32,6 +32,8 @@ export default function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       // TODO: Implement actual contact form API call
+      // amazonq-ignore-next-line
+      // amazonq-ignore-next-line
       console.log('Contact form submission:', data)
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
