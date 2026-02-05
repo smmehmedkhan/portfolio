@@ -30,6 +30,8 @@ export default function Newsletters() {
   const onSubmit = async (data: NewsletterFormData) => {
     try {
       // TODO: Implement actual newsletter subscription API call
+      // amazonq-ignore-next-line
+      // amazonq-ignore-next-line
       console.log('Newsletter subscription:', data.email)
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))

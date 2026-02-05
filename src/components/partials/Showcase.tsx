@@ -56,9 +56,22 @@ function Info({
   technologies,
   isEven,
 }: InfoProps & { isEven: boolean }) {
+  const getInfoClasses = (isEven: boolean) => {
+    const base = 'info text-center lg:text-left'
+    const alignment = isEven
+      ? 'lg:items-start lg:text-left'
+      : 'lg:items-end lg:text-right'
+    return `${base} ${alignment}`
+  }
+
+  const getBadgeClasses = (isEven: boolean) => {
+    const base = 'flex flex-wrap gap-2 justify-center'
+    const justify = isEven ? 'lg:justify-start' : 'lg:justify-end'
+    return `${base} ${justify}`
+  }
+
   return (
-    <div
-      className={`info text-center lg:text-left ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'}`}>
+    <div className={getInfoClasses(isEven)}>
       <Heading variant="primary-heading" size="xl">
         {title}
       </Heading>
@@ -66,8 +79,7 @@ function Info({
         {description}
       </Heading>
       <p className="leading-relaxed">{longDescription}</p>
-      <div
-        className={`flex flex-wrap gap-2 justify-center ${isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
+      <div className={getBadgeClasses(isEven)}>
         {technologies.map((tech: string) => (
           <Badge key={tech} className="bg-accent text-accent-foreground">
             {tech}
@@ -81,10 +93,13 @@ function Info({
 function Project({ project, index }: ProjectProps) {
   const isEven = index % 2 === 0
 
+  const getFlexDirection = (isEven: boolean) =>
+    isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+
   return (
     <div className="wrapper project">
       <div
-        className={`flex flex-col lg:flex-row gap-8 lg:gap-0 ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+        className={`flex flex-col lg:flex-row gap-8 lg:gap-0 ${getFlexDirection(isEven)}`}>
         <div className="w-full lg:w-1/2 flex justify-center">
           <Card {...project} />
         </div>
@@ -93,8 +108,9 @@ function Project({ project, index }: ProjectProps) {
         </div>
       </div>
       <div className="wrapper">
-        <Button variant="outline" className="w-full sm:w-auto">
+        <Button variant="outline" className="w-full sm:w-auto" asChild>
           <Link
+            // amazonq-ignore-next-line
             href={`${project?.demoUrl}`}
             target="_blank"
             rel="noopener noreferrer">

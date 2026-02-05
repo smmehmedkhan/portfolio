@@ -1,6 +1,6 @@
 @layer layout {
   .container {
-    @apply w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl 2xl:max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 px-8 mx-auto;
+    @apply w-full max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-0 mx-auto;
   }
 
   .wrapper {
@@ -8,7 +8,7 @@
   }
 
   nav {
-    @apply w-full h-15 bg-background text-nm border-b border-border sticky top-0 z-50;
+    @apply w-full xs:h-10 sm:h-11 md:h-12 lg:h-15 bg-background text-nm border-b border-border sticky top-0 z-50;
   }
 
   main {

@@ -4,8 +4,10 @@ import { useMotionValueEvent, useScroll } from 'motion/react'
 import * as motion from 'motion/react-client'
 import Link from 'next/link'
 import { useState } from 'react'
+import Hamburger from '@/components/assets/Hamburger'
 import Logo from '@/components/assets/Logo'
 import ThemeToggler from '@/components/ui/theme-toggler'
+import { navLinks } from '@/data/nav-links'
 
 /**
  * Navigation bar component
@@ -24,11 +26,13 @@ export default function Navbar() {
   const { scrollY } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('down')
 
-  useMotionValueEvent(scrollY, 'change', current => {
+  const handleScrollChange = (current: number) => {
     const previous = scrollY.getPrevious() ?? current
     const diff = current - previous
     if (diff !== 0) setScrollDirection(diff > 0 ? 'up' : 'down')
-  })
+  }
+
+  useMotionValueEvent(scrollY, 'change', handleScrollChange)
 
   return (
     <motion.nav
@@ -40,35 +44,28 @@ export default function Navbar() {
       }}
       transition={{ type: 'tween', duration: 0.6 }}>
       <div className="container flex-inline navigation">
-        {/* left: Site's pages */}
-        <div className="flex-inline gap-5">
-          {/* Left: Logo */}
-          <Logo />
+        {/* Left: Logo */}
+        <Logo />
 
-          {/* Right: Navigation links */}
-          <ul className="flex-inline">
-            <li>
-              <Link href="/about" className="nav-links nav-link-dark">
-                About
+        {/* Desktop Navigation */}
+        <ul className="nav-links">
+          {navLinks.map(({ id, href, label }) => (
+            <li key={id}>
+              <Link href={href} className="nav-link nav-link-dark">
+                {label}
               </Link>
             </li>
-            <li>
-              <Link href="/projects" className="nav-links nav-link-dark">
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="nav-links nav-link-dark">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
 
-        {/* right: Additionals */}
-        <div>
+        {/* Right: Theme Toggle + Mobile Menu */}
+
+        <div className="hidden md:flex w-max items-center">
           <ThemeToggler />
         </div>
+
+        {/* Mobile Menu Button */}
+        <Hamburger />
       </div>
     </motion.nav>
   )

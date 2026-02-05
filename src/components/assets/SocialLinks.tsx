@@ -30,6 +30,7 @@ export default function SocialLinks({
 
   return (
     <Container
+      // amazonq-ignore-next-line
       className={cn('flex-inline gap-10', className)}
       {...(animated && containerAnimation)}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (

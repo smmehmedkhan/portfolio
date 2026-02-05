@@ -95,7 +95,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${publicSans.variable} ${notoSerif.variable} ${balthazar.variable} antialiased`}>
+        className={`${publicSans.variable} ${notoSerif.variable} ${balthazar.variable} antialiased`}
+        suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider
             attribute="class"
