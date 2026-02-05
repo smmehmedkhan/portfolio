@@ -18,22 +18,22 @@
   }
 
   .hamburger {
-    @apply focus:outline-none fixed top-0 right-0 z-50;
-  }
+    @apply w-70 sm:w-96 md:w-120 focus:outline-none fixed top-0 right-0 z-50;
 
-  .hamburger-header {
-    @apply w-full flex justify-end items-center pb-4 border-b border-border;
-  }
+    .hamburger-content {
+      @apply bg-card border-l border-border;
 
-  .hamburger-content {
-    @apply w-full h-dvh flex flex-col bg-card border-l border-border;
-  }
+      .hamburger-header {
+        @apply w-full flex items-center justify-end;
+      }
 
-  .hamburger-links {
-    @apply flex flex-col pt-6;
+      .hamburger-links {
+        @apply flex flex-col pt-6;
 
-    .hamburger-link {
-      @apply block w-full px-6 py-4 text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-b-0;
+        .hamburger-link {
+          @apply block w-full py-4 text-md font-medium hover:bg-accent hover:text-accent-foreground transition-colors;
+        }
+      }
     }
   }
 
