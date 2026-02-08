@@ -25,22 +25,26 @@ A modern, responsive portfolio website built with Next.js 16, React 19, TypeScri
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd portfolio
 ```
 
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
-3. Set up environment variables:
+1. Set up environment variables:
+
 ```bash
 cp .env.example .env.local
 ```
 
 Edit `.env.local` and add your configuration:
+
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_EMAIL=your-email@example.com
@@ -51,7 +55,8 @@ NEXT_PUBLIC_PORTFOLIO_URL=https://yourportfolio.com
 NEXT_PUBLIC_GA_ID=your-google-analytics-id
 ```
 
-4. Run the development server:
+1. Run the development server:
+
 ```bash
 pnpm dev
 ```
@@ -74,7 +79,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 ## 🏗️ Project Structure
 
-```
+```text
 portfolio/
 ├── app/                    # Next.js App Router pages
 │   ├── about/             # About page
@@ -118,6 +123,7 @@ The project uses a layered CSS approach with Tailwind CSS:
 ### State Management
 
 Currently using React Context for theme management. For more complex state needs, consider adding:
+
 - Zustand (lightweight state management)
 - Jotai (atomic state management)
 
@@ -136,6 +142,7 @@ Testing infrastructure is in progress. When implemented, it will include:
 - **E2E Tests**: Playwright for critical user journeys
 
 To run tests (once implemented):
+
 ```bash
 pnpm test
 ```
@@ -162,9 +169,11 @@ pnpm docker:run
 All environment variables are validated using Zod. See `lib/env.ts` for the schema.
 
 Required variables:
+
 - None (all are optional with defaults)
 
 Optional variables:
+
 - `NEXT_PUBLIC_SITE_URL` - Your site URL
 - `NEXT_PUBLIC_EMAIL` - Your contact email
 - `NEXT_PUBLIC_GITHUB_URL` - Your GitHub profile URL
@@ -184,6 +193,7 @@ Optional variables:
 ### Pre-commit Hooks
 
 Husky + lint-staged ensure code quality before commits:
+
 - Auto-format code with Biome
 - Run lint checks
 - Fix auto-fixable issues
@@ -232,6 +242,7 @@ pnpm docker:push
 ### Other Platforms
 
 The project uses Next.js standalone output, making it compatible with:
+
 - AWS Lambda
 - Google Cloud Run
 - Azure Functions
@@ -275,7 +286,7 @@ This project is licensed under the MIT License.
 
 ## 👤 Author
 
-**Mehmed Khan**
+Mehmed Khan
 
 - Portfolio: [mehmedkhan.dev](https://mehmedkhan.dev)
 - GitHub: [@smmehmedkhan](https://github.com/smmehmedkhan)

@@ -3,10 +3,10 @@
   .navigation {
     @apply justify-between;
 
-    .nav-links {
-      @apply hidden w-full ml-5 md:flex items-center;
+    & .nav-links {
+      @apply hidden md:flex w-full ml-5 items-center;
 
-      .nav-link {
+      & li .nav-link {
         @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300;
       }
     }
@@ -20,17 +20,17 @@
   .hamburger {
     @apply w-70 sm:w-96 md:w-120 focus:outline-none fixed top-0 right-0 z-50;
 
-    .hamburger-content {
+    & .hamburger-content {
       @apply bg-card border-l border-border;
 
-      .hamburger-header {
+      & .hamburger-header {
         @apply w-full flex items-center justify-end;
       }
 
-      .hamburger-links {
+      & .hamburger-links {
         @apply flex flex-col pt-6;
 
-        .hamburger-link {
+        & li .hamburger-link {
           @apply block w-full py-4 text-md font-medium hover:bg-accent hover:text-accent-foreground transition-colors;
         }
       }

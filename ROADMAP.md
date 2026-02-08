@@ -11,9 +11,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 0: Mobile Navigation & Responsive Foundation (Week 1)
+
 **Goal**: Implement mobile-first responsive navigation and establish responsive design system
 
 ### 0.1 Mobile Navigation Implementation
+
 - **Specific**: Create hamburger menu for screens >=768px with smooth animations
 - **Measurable**: Mobile menu toggles, closes on route change, accessible keyboard navigation
 - **Achievable**: Use Radix UI Dialog + Motion animations
@@ -21,6 +23,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 0.2 Responsive Design System Setup
+
 - **Specific**: Define breakpoint utilities and responsive design tokens
 - **Measurable**: Consistent spacing, typography, and layout across all breakpoints
 - **Achievable**: Extend Tailwind config with custom breakpoints
@@ -30,9 +33,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 1: Complete Responsive Implementation (Week 2-3)
+
 **Goal**: Ensure pixel-perfect responsiveness across all target screen sizes
 
 ### 1.1 Core Layout Responsiveness
+
 - **Specific**: Make Navbar, Footer, and layout components responsive for 2k, 1536px, 1280px, 1024px, 768px, 640px, 480px, 320px
 - **Measurable**: All layouts tested and functional at each breakpoint
 - **Achievable**: Use CSS Grid and Flexbox with Tailwind responsive utilities
@@ -40,6 +45,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 1.2 Home Page Responsiveness
+
 - **Specific**: Optimize Hero, About, TechStack, Showcase, Testimonials, FAQ sections
 - **Measurable**: All sections properly scaled, readable, and interactive at all breakpoints
 - **Achievable**: Progressive enhancement approach
@@ -47,6 +53,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 1.3 Secondary Pages Responsiveness
+
 - **Specific**: Ensure About, Projects, and Contact pages are fully responsive
 - **Measurable**: Forms, project grids, and content layouts work seamlessly
 - **Achievable**: Apply consistent responsive patterns
@@ -54,6 +61,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 1.4 Component Library Responsiveness
+
 - **Specific**: Update all UI components for responsive behavior
 - **Measurable**: Buttons, cards, inputs, modals adapt to screen sizes
 - **Achievable**: Extend existing component variants
@@ -63,9 +71,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 2: Content & Data Enhancement (Week 4-5)
+
 **Goal**: Replace all placeholder content with real, professional data
 
 ### 2.1 Real Project Data Implementation
+
 - **Specific**: Update `src/data/projects.ts` with 6-8 actual projects including live URLs, GitHub repos, detailed descriptions
 - **Measurable**: All projects have real screenshots, tech stacks, and working links
 - **Achievable**: Use existing project portfolio
@@ -73,6 +83,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 2.2 Professional Content Updates
+
 - **Specific**: Update testimonials, FAQ, and about sections with real content
 - **Measurable**: 5+ real testimonials, 8+ relevant FAQs, complete professional bio
 - **Achievable**: Gather from past clients/colleagues
@@ -80,6 +91,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 2.3 Professional Assets & Media
+
 - **Specific**: Add professional headshots, project screenshots, resume PDF, optimized images
 - **Measurable**: All images optimized (<100KB), proper alt texts, responsive images
 - **Achievable**: Use Next.js Image optimization
@@ -87,6 +99,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 2.4 Content Management System
+
 - **Specific**: Organize all content in structured data files with TypeScript types
 - **Measurable**: Type-safe content, easy updates, consistent formatting
 - **Achievable**: Extend existing data structure
@@ -96,9 +109,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 3: Core Functionality Implementation (Week 6-7)
+
 **Goal**: Implement essential interactive features and backend integration
 
 ### 3.1 Contact Form Backend
+
 - **Specific**: Create API endpoint `/api/contact` with email service integration (Resend/SendGrid)
 - **Measurable**: Form submissions send emails, validation, rate limiting, success/error states
 - **Achievable**: Use Next.js API routes + external email service
@@ -106,6 +121,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 3.2 Project Enhancement Features
+
 - **Specific**: Add project filtering by technology, search functionality, project detail pages
 - **Measurable**: Filter by tech stack, search by keywords, individual `/projects/[slug]` routes
 - **Achievable**: Client-side filtering + dynamic routes
@@ -113,6 +129,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 3.3 Resume/CV Integration
+
 - **Specific**: Add downloadable resume PDF and online resume page `/resume`
 - **Measurable**: PDF download button, formatted online resume, print-friendly styles
 - **Achievable**: Static PDF + dynamic page with print CSS
@@ -120,6 +137,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 3.4 Interactive Features
+
 - **Specific**: Add loading states, skeleton screens, form validation, error boundaries
 - **Measurable**: Smooth UX transitions, proper error handling, accessible feedback
 - **Achievable**: Use React Suspense and error boundaries
@@ -129,9 +147,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 4: Testing & Quality Assurance (Week 8)
+
 **Goal**: Achieve comprehensive test coverage and ensure reliability
 
 ### 4.1 Component Testing Suite
+
 - **Specific**: Write unit tests for all UI components, utilities, and hooks
 - **Measurable**: 80%+ code coverage, all critical components tested
 - **Achievable**: Use existing Vitest + React Testing Library setup
@@ -139,6 +159,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 4.2 Integration & E2E Testing
+
 - **Specific**: Comprehensive Playwright tests for user journeys and API endpoints
 - **Measurable**: All pages, form submission, navigation, responsive behavior tested
 - **Achievable**: Extend existing Playwright setup
@@ -146,6 +167,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 4.3 Responsive Testing & Cross-browser
+
 - **Specific**: Test all breakpoints across Chrome, Firefox, Safari, mobile browsers
 - **Measurable**: Consistent behavior across all target devices and browsers
 - **Achievable**: Use Playwright's device emulation
@@ -155,9 +177,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 5: Performance & Advanced Features (Week 9-10)
+
 **Goal**: Optimize performance and add professional enhancements
 
 ### 5.1 Performance Optimization
+
 - **Specific**: Achieve Lighthouse score >90 in all categories across all pages
 - **Measurable**: Core Web Vitals in green, images optimized, bundle size <500KB
 - **Achievable**: Use Next.js optimization features, code splitting, lazy loading
@@ -165,6 +189,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 5.2 Advanced UI/UX Features
+
 - **Specific**: Add smooth page transitions, micro-interactions, advanced animations
 - **Measurable**: Polished animations, hover effects, loading transitions
 - **Achievable**: Use Motion library and CSS animations
@@ -172,6 +197,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 5.3 Blog System (Optional)
+
 - **Specific**: Add blog section with MDX support for technical articles
 - **Measurable**: 3+ sample blog posts, syntax highlighting, responsive blog layout
 - **Achievable**: Use Next.js MDX integration
@@ -179,6 +205,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 4 days
 
 ### 5.4 Accessibility & SEO Enhancement
+
 - **Specific**: WCAG AA compliance, structured data, comprehensive meta tags
 - **Measurable**: Lighthouse accessibility score >95, rich snippets in search
 - **Achievable**: Use semantic HTML and SEO best practices
@@ -188,9 +215,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 6: Production Deployment & Monitoring (Week 11)
+
 **Goal**: Deploy production-ready application with comprehensive monitoring
 
 ### 6.1 Production Environment Setup
+
 - **Specific**: Deploy to Vercel with custom domain, SSL, environment variables
 - **Measurable**: Live site with <2s load time, 99.9% uptime, secure HTTPS
 - **Achievable**: Use Vercel's platform with custom domain
@@ -198,6 +227,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 6.2 Analytics & Monitoring Integration
+
 - **Specific**: Set up Google Analytics, Vercel Analytics, error tracking (Sentry)
 - **Measurable**: Real-time user analytics, error alerts, performance dashboards
 - **Achievable**: Integrate analytics services
@@ -205,6 +235,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 6.3 SEO & Search Console Setup
+
 - **Specific**: Submit sitemap, set up Google Search Console, implement structured data
 - **Measurable**: Site indexed, search appearance optimized, rich snippets active
 - **Achievable**: Use Next.js SEO features and Google tools
@@ -212,6 +243,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 1 day
 
 ### 6.4 Performance Monitoring & Optimization
+
 - **Specific**: Set up continuous performance monitoring and optimization alerts
 - **Measurable**: Real-time performance metrics, automated optimization suggestions
 - **Achievable**: Use Vercel's built-in monitoring
@@ -221,9 +253,11 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ---
 
 ## Phase 7: Documentation & Maintenance (Week 12)
+
 **Goal**: Complete documentation and establish maintenance procedures
 
 ### 7.1 Comprehensive Documentation
+
 - **Specific**: Update README, create deployment guide, component documentation
 - **Measurable**: Complete setup instructions, API documentation, component storybook
 - **Achievable**: Document existing implementation
@@ -231,6 +265,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 3 days
 
 ### 7.2 Maintenance & Update Procedures
+
 - **Specific**: Create update checklist, dependency management, backup procedures
 - **Measurable**: Automated dependency updates, regular backup schedule
 - **Achievable**: Use GitHub Actions and automated tools
@@ -238,6 +273,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 - **Time-bound**: 2 days
 
 ### 7.3 Portfolio Optimization & Launch
+
 - **Specific**: Final content review, performance audit, launch preparation
 - **Measurable**: All content finalized, performance optimized, ready for promotion
 - **Achievable**: Final testing and optimization
@@ -249,12 +285,14 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ## Success Metrics & KPIs
 
 ### Technical Metrics
+
 - **Responsive Design**: Perfect functionality across all 8 target breakpoints
 - **Performance**: Lighthouse score >90 all categories, <2s load time
 - **Testing**: >80% code coverage, all E2E tests passing
 - **Accessibility**: WCAG AA compliance, Lighthouse accessibility >95
 
 ### Business Metrics
+
 - **Functionality**: All features working without bugs, form submissions successful
 - **Content**: 100% real content, no placeholders remaining
 - **SEO**: Google indexing, structured data implementation
@@ -265,6 +303,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ## Risk Mitigation Strategies
 
 | Risk | Mitigation Strategy |
+
 |------|-------------------|
 | Responsive Issues | Progressive testing at each breakpoint during development |
 | Content Delays | Prepare high-quality placeholder content as fallback |
@@ -278,6 +317,7 @@ A comprehensive SMART development plan to transform the portfolio from a well-bu
 ## Timeline Summary
 
 | Phase | Duration | Focus Area |
+
 |-------|----------|------------|
 | **Phase 0** | Week 1 | Mobile Navigation & Responsive Foundation |
 | **Phase 1** | Week 2-3 | Complete Responsive Implementation |

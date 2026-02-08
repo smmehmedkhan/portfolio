@@ -43,30 +43,30 @@ export default function Navbar() {
         y: scrollDirection === 'down' ? 0 : -100,
       }}
       transition={{ type: 'tween', duration: 0.6 }}>
-      <div className="container flex-inline navigation">
+      <motion.div className="container flex-inline navigation">
         {/* Left: Logo */}
         <Logo />
 
         {/* Desktop Navigation */}
-        <ul className="nav-links">
+        <motion.ul className="nav-links">
           {navLinks.map(({ id, href, label }) => (
-            <li key={id}>
+            <motion.li key={id}>
               <Link href={href} className="nav-link nav-link-dark">
                 {label}
               </Link>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
         {/* Right: Theme Toggle + Mobile Menu */}
 
-        <div className="hidden md:flex w-max items-center">
+        <motion.div className="hidden md:flex w-max items-center">
           <ThemeToggler />
-        </div>
+        </motion.div>
 
         {/* Mobile Menu Button */}
         <Hamburger />
-      </div>
+      </motion.div>
     </motion.nav>
   )
 }
