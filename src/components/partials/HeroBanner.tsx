@@ -17,7 +17,7 @@ export default function HeroBanner() {
   return (
     <header className="hero-banner flex-center">
       {/* left: Hero intros */}
-      <div className="hero-intros flex-box">
+      <div className="hero-intros flex-box xs:p-5">
         {/* Headings */}
         <div className="headings">
           <motion.div

@@ -4,10 +4,10 @@ import * as motion from 'motion/react-client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Logo from '@/components/assets/Logo'
 import { Button } from '@/components/ui/button'
+import ThemeSwitcher from '@/components/ui/theme-switcher'
 import { navLinks } from '@/data/nav-links'
-import ThemeToggler from '../ui/theme-toggler'
-import Logo from './Logo'
 
 export default function Hamburger() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -32,7 +32,7 @@ export default function Hamburger() {
         <Dialog.Content className="hamburger">
           <Dialog.Title className="sr-only">Navigation Menu</Dialog.Title>
           <motion.div
-            className="w-full h-dvh flex flex-col hamburger-content gap-10"
+            className="hamburger-content w-full min-h-dvh p-2 flex flex-col gap-10"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             transition={{ type: 'tween', duration: 0.6 }}>
@@ -64,10 +64,8 @@ export default function Hamburger() {
               ))}
             </menu>
 
-            {/* Theme toggler */}
-            <div className="w-full flex justify-center">
-              <ThemeToggler />
-            </div>
+            {/* Theme switcher */}
+            <ThemeSwitcher />
           </motion.div>
         </Dialog.Content>
       </Dialog.Portal>
