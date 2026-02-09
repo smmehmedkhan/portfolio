@@ -13,27 +13,27 @@
   }
 
   /* ========== Hamburger menu ========== */
-  .dialog-overlay {
-    @apply fixed inset-0 bg-black/75 backdrop-blur-xs z-50;
-  }
+  .drawer-content {
+    @apply bg-card border-l border-border;
 
-  .hamburger {
-    @apply w-70 sm:w-96 md:w-120 focus:outline-none fixed top-0 right-0 z-50;
+    & .drawer-header {
+      @apply w-full p-0;
+    }
 
-    & .hamburger-content {
-      @apply bg-card border-l border-border;
+    & .links-menu {
+      @apply w-full px-2.5 flex flex-col items-center;
 
-      & .hamburger-header {
-        @apply w-full flex items-center justify-end;
-      }
+      & .link-item {
+        @apply w-full border-b border-border;
 
-      & .hamburger-links {
-        @apply flex flex-col pt-6;
-
-        & li .hamburger-link {
-          @apply block w-full py-4 text-md font-medium hover:bg-accent hover:text-accent-foreground transition-colors;
+        & .link {
+          @apply block w-full py-2 text-center text-md font-medium hover:bg-accent hover:text-accent-foreground dark:hover:text-accent dark:hover:bg-accent/30 border border-transparent rounded-md dark:hover:border-accent transition-colors duration-300;
         }
       }
+    }
+
+    & .drawer-footer {
+      @apply w-full p-0 mb-10;
     }
   }
 
