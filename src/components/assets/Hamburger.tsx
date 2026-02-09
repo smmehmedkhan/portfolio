@@ -56,8 +56,8 @@ export default function Hamburger() {
 
         {/* Mobile Navigation Links */}
         <menu className="links-menu">
-          {navLinks.map(({ id, href, label }, index) => (
-            <li key={id} tabIndex={index} className="link-item">
+          {navLinks.map(({ id, href, label }) => (
+            <li key={id} className="link-item">
               <Link href={href} className="link">
                 {label}
               </Link>
