@@ -30,7 +30,6 @@ export default function SocialLinks({
 
   return (
     <Container
-      // amazonq-ignore-next-line
       className={cn('flex-inline gap-10', className)}
       {...(animated && containerAnimation)}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (
@@ -43,7 +42,11 @@ export default function SocialLinks({
               'size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
-            <Link href={href} aria-label={name}>
+            <Link
+              href={href}
+              aria-label={name}
+              target="_blank"
+              rel="noopener noreferrer">
               <Icon className={cn('size-10', iconClassName)} />
             </Link>
           </Button>

@@ -80,6 +80,7 @@ function getEnv(): Env {
         )
       )
     }
+
     // Return defaults on validation failure
     return {
       NODE_ENV:
