@@ -26,7 +26,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'discord',
     name: 'Discord',
-    href: '#',
+    href: env.NEXT_PUBLIC_DISCORD_URL || '#',
     icon: FaDiscord,
   },
   {
@@ -38,13 +38,13 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'facebook',
     name: 'Facebook',
-    href: '#',
+    href: env.NEXT_PUBLIC_FACEBOOK_URL || '#',
     icon: FaFacebook,
   },
   {
     id: 'instagram',
     name: 'Instagram',
-    href: '#',
+    href: env.NEXT_PUBLIC_INSTAGRAM_URL || '#',
     icon: FaInstagram,
   },
   {
