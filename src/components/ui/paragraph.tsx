@@ -1,6 +1,11 @@
 'use client'
 
 import { cva, type VariantProps } from 'class-variance-authority'
+import type {
+  TargetAndTransition,
+  Transition,
+  VariantLabels,
+} from 'motion/react'
 import * as motion from 'motion/react-client'
 import React from 'react'
 import { cn } from '@/lib/utils'
@@ -34,8 +39,8 @@ type ParagraphVariant = 'main' | 'lead' | 'large' | 'small' | 'muted' | 'code'
 const paragraphVariants = cva('scroll-m-20 text-balance', {
   variants: {
     variant: {
-      main: 'font-normal tracking-normal',
-      lead: ' text-md 2xl:text-lg font-semibold tracking-normal text-muted-foreground',
+      main: 'font-normal tracking-normal xs:text-nm',
+      lead: 'text-md 2xl:text-lg font-semibold xs:tracking-tight racking-normal text-muted-foreground',
       large: 'text-lg 2xl:text-xl font-medium tracking-wide font-bold',
       small: 'xs:text-xs text-sm font-light tracking-tight',
       muted: 'xs:text-xs text-sm text-muted-foreground',
@@ -160,7 +165,7 @@ interface ParagraphProps
    * @example
    * <Paragraph animated initial={{ opacity: 0, scale: 0.8 }}>Custom start</Paragraph>
    */
-  initial?: Record<string, string | number>
+  initial?: TargetAndTransition | VariantLabels
 
   /**
    * Animation state when element enters viewport (Framer Motion)
@@ -174,7 +179,7 @@ interface ParagraphProps
    * @example
    * <Paragraph animated whileInView={{ opacity: 1, scale: 1 }}>Custom end</Paragraph>
    */
-  whileInView?: Record<string, string | number>
+  whileInView?: TargetAndTransition | VariantLabels
 
   /**
    * Continuous animation state (Framer Motion)
@@ -184,7 +189,7 @@ interface ParagraphProps
    * Only applies when animated={true}
    * Useful for hover states or continuous animations
    */
-  animate?: Record<string, string | number>
+  animate?: TargetAndTransition | VariantLabels
 
   /**
    * Animation transition configuration (Framer Motion)
@@ -194,7 +199,7 @@ interface ParagraphProps
    * Only applies when animated={true}
    * Extends Framer Motion's transition options
    */
-  transition?: Record<string, string | number | boolean>
+  transition?: Transition
 }
 
 /**

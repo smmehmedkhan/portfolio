@@ -1,11 +1,11 @@
-export interface SiteHeading {
+export interface SectionInroType {
   id: number
   slot: string
   title: string
   description: string
 }
 
-export const siteHeadings: Record<string, SiteHeading> = {
+export const sectionInros: Record<string, SectionInroType> = {
   about: {
     id: 1,
     slot: 'About Me',

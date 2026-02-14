@@ -55,15 +55,15 @@ export default function HeroBanner() {
           initial={{ opacity: 0, transform: 'translateY(-100%)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.6, duration: 0.6 }}>
-          <motion.p>
-            <Paragraph variant="lead" className="mr-2">
+          <Paragraph>
+            <Paragraph variant="lead" className="mr-2" as="span">
               ❛
             </Paragraph>
             {description}
-            <Paragraph variant="lead" className="ml-2">
+            <Paragraph variant="lead" className="ml-2" as="span">
               ❜
             </Paragraph>
-          </motion.p>
+          </Paragraph>
         </motion.div>
 
         {/* Call to Action Buttons */}

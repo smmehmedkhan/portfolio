@@ -2,10 +2,10 @@ import { MessageSquareText } from 'lucide-react'
 import Link from 'next/link'
 import AboutTypographys from '@/components/assets/AboutTypographys'
 import ImageCarousel from '@/components/assets/ImageCarousel'
-import SiteHeading from '@/components/assets/SiteHeading'
+import SectionInro from '@/components/assets/SectionInro'
 import { Button } from '@/components/ui/button'
 import { aboutImages, aboutTypographys } from '@/data/about'
-import { siteHeadings } from '@/data/siteHeadings'
+import { sectionInros } from '@/data/sectionInros'
 
 /**
  * AboutMe component displaying short summary of about page
@@ -21,29 +21,24 @@ import { siteHeadings } from '@/data/siteHeadings'
  * ```
  */
 export default function About() {
-  const { id, slot, title, description } = siteHeadings.about
-
   return (
     <section className="container about flex-box">
-      <SiteHeading
-        id={id}
-        slot={slot}
-        title={title}
-        description={description}
-        icon={<MessageSquareText className="size-5" />}
+      <SectionInro
+        data={sectionInros.about}
+        icon={<MessageSquareText className="xs:size-3 sm:size-4 md:size-5" />}
       />
 
       {/* About content layout */}
       <div className="about-layout">
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 p-10 lg:p-0 space-y-6">
           <ImageCarousel data={aboutImages} />
         </div>
 
-        <div className="w-full lg:w-1/2 space-y-6">
+        <div className="w-full lg:w-1/2 px-5 lg:px-0 space-y-6 ">
           <AboutTypographys data={aboutTypographys} />
 
           {/* Bottom: See more button */}
-          <Button variant="outline" asChild className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto" variant="outline" asChild>
             <Link href="/about">Read More</Link>
           </Button>
         </div>

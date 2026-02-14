@@ -8,20 +8,17 @@ import {
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { faqData } from '@/data/faq'
-import { siteHeadings } from '@/data/siteHeadings'
-import SiteHeading from '../assets/SiteHeading'
+import { sectionInros } from '@/data/sectionInros'
+import SectionInro from '../assets/SectionInro'
 
 export default function FAQ() {
-  const { id, slot, title, description } = siteHeadings.faq
-
   return (
     <section className="container flex-box py-24 gap-30">
-      <SiteHeading
-        icon={<MessageCircleQuestionMark className="size-5" />}
-        id={id}
-        slot={slot}
-        title={title}
-        description={description}
+      <SectionInro
+        data={sectionInros.faq}
+        icon={
+          <MessageCircleQuestionMark className="xs:size-3 sm:size-4 md:size-5" />
+        }
       />
 
       <Accordion
