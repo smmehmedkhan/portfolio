@@ -1,26 +1,30 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { Paragraph } from '@/components/ui/paragraph'
 import type { AboutTypographyType } from '@/data/about'
+import { getAnimationPreset } from '@/lib/animations/registry'
 
 export default function AboutTypographys({
   data,
 }: {
   data: AboutTypographyType[]
 }) {
+  const fadeDown = getAnimationPreset('fade-down')
+
   return (
-    <motion.div className="wrapper text-left">
+    <div className="wrapper text-left">
       {data.map((item, index) => (
-        <motion.p
+        <Paragraph
           key={item.id}
+          className="my-2.5 text-center lg:text-left tracking-tighter lg:tracking-wide"
           tabIndex={index}
-          initial={{ opacity: 0, y: -100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ type: 'tween', delay: index * 0.2, duration: 0.6 }}
-          className="text-balance my-2.5">
+          animated
+          initial={fadeDown.initial}
+          whileInView={fadeDown.whileInView}
+          transition={{ ...fadeDown.transition, delay: index * 0.2 }}>
           {item.description}
-        </motion.p>
+        </Paragraph>
       ))}
-    </motion.div>
+    </div>
   )
 }

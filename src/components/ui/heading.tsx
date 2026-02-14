@@ -1,6 +1,11 @@
 'use client'
 
 import { cva, type VariantProps } from 'class-variance-authority'
+import type {
+  TargetAndTransition,
+  Transition,
+  VariantLabels,
+} from 'motion/react'
 import * as motion from 'motion/react-client'
 import React from 'react'
 import { cn } from '@/lib/utils'
@@ -15,7 +20,8 @@ const headingVariants = cva('scroll-m-20 text-balance', {
       'main-heading':
         'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700',
       'sub-heading': 'text-muted-foreground font-semibold tracking-tight',
-      'primary-heading': 'font-bold tracking-wide',
+      'primary-heading':
+        'w-full xs:text-xl sm:text-2xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
       'secondary-heading': 'font-semibold tracking-wide text-muted-foreground',
       'tertiary-heading': 'font-semibold tracking-tight',
       'title-heading':
@@ -100,23 +106,23 @@ interface HeadingProps
    * Initial animation state (Framer Motion)
    * @default { opacity: 0, transform: 'translateY(-100%)' }
    */
-  initial?: Record<string, string | number>
+  initial?: TargetAndTransition | VariantLabels
 
   /**
    * Animation state when element enters viewport (Framer Motion)
    * @default { opacity: 1, transform: 'translateY(0)', transition: { type: 'spring', duration: 0.6 } }
    */
-  whileInView?: Record<string, string | number>
+  whileInView?: TargetAndTransition | VariantLabels
 
   /**
    * Animation state (Framer Motion)
    */
-  animate?: Record<string, string | number>
+  animate?: TargetAndTransition | VariantLabels
 
   /**
    * Animation transition config (Framer Motion)
    */
-  transition?: Record<string, string | number | boolean>
+  transition?: Transition
 }
 
 /**

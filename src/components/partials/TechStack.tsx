@@ -1,28 +1,23 @@
 import { Gem } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import SectionInro from '@/components/assets/SectionInro'
+import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { siteHeadings } from '@/data/siteHeadings'
+import { sectionInros } from '@/data/sectionInros'
 import { skills } from '@/data/skillsList'
-import SiteHeading from '../assets/SiteHeading'
-import { Button } from '../ui/button'
 
 export default function TechStack() {
-  const { id, slot, title, description } = siteHeadings.skills
-
   return (
     <section className="container skills flex-box">
-      <SiteHeading
-        icon={<Gem className="size-5" />}
-        id={id}
-        slot={slot}
-        title={title}
-        description={description}
+      <SectionInro
+        data={sectionInros.skills}
+        icon={<Gem className="xs:size-3 sm:size-4 md:size-5" />}
       />
 
       {/* Bottom: Skills layout */}

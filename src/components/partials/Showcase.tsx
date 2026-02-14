@@ -1,15 +1,16 @@
 import { FolderKanban } from 'lucide-react'
 import type { Variants } from 'motion/react'
+
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
 import Link from 'next/link'
+import SectionInro from '@/components/assets/SectionInro'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Heading } from '@/components/ui/heading'
 import { projects } from '@/data/projects'
-import { siteHeadings } from '@/data/siteHeadings'
+import { sectionInros } from '@/data/sectionInros'
 import type { CardProps, InfoProps, ProjectProps, ProjectTypes } from '@/types'
-import SiteHeading from '../assets/SiteHeading'
-import { Button } from '../ui/button'
-import { Heading } from '../ui/heading'
 
 const cardVariants: Variants = {
   offscreen: {
@@ -123,16 +124,11 @@ function Project({ project, index }: ProjectProps) {
 }
 
 export default function Showcase() {
-  const { id, slot, title, description } = siteHeadings.project
-
   return (
     <section className="container showcase flex-box">
-      <SiteHeading
-        icon={<FolderKanban className="size-5" />}
-        id={id}
-        slot={slot}
-        title={title}
-        description={description}
+      <SectionInro
+        data={sectionInros.project}
+        icon={<FolderKanban className="xs:size-3 sm:size-4 md:size-5" />}
       />
 
       {projects.map((project: ProjectTypes, index) => (
