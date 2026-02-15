@@ -33,25 +33,24 @@ export default function ItemCard({ item, index }: ItemCardProps) {
       }}>
       <HoverCard>
         <HoverCardTrigger asChild>
-          <motion.div
-            initial={pulse.initial}
-            whileInView={pulse.whileInView}
-            whileHover={pulse.animate}
-            transition={pulse.transition}>
-            <Button
-              variant="outline"
-              className="size-12 sm:size-14 p-2 rounded-xl">
-              <Link href={item.link} target="_blank" rel="noopener noreferrer">
+          <Button
+            asChild
+            variant="outline"
+            className="size-12 sm:size-14 p-2 rounded-xl">
+            <Link href={item.link} target="_blank" rel="noopener noreferrer">
+              <motion.div
+                initial={pulse.initial}
+                whileInView={pulse.whileInView}
+                whileHover={pulse.animate}
+                transition={pulse.transition}>
                 <Image
                   src={item.src}
                   alt={item.title}
-                  width={48}
-                  height={48}
                   className="size-8 sm:size-10 lg:size-12 object-contain"
                 />
-              </Link>
-            </Button>
-          </motion.div>
+              </motion.div>
+            </Link>
+          </Button>
         </HoverCardTrigger>
         <HoverCardContent className="size-full xs:max-w-60 sm:max-w-sm max-w-2xl flex flex-col gap-2">
           <Heading
