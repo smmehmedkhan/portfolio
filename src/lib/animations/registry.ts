@@ -4,6 +4,7 @@
  * Extensible for custom animation configurations
  */
 import type { TargetAndTransition, VariantLabels } from 'motion/react'
+import { s } from 'motion/react-client'
 
 /**
  * Animation preset configuration
@@ -85,8 +86,10 @@ export const animationPresets: Record<string, AnimationConfig> = {
     whileInView: { scale: 1 },
     animate: { scale: [1, 1.05, 1] },
     transition: {
-      duration: 2,
+      duration: 0.6,
       type: 'tween',
+      stiffness: 100,
+      damping: 10,
     } as Record<string, number | string>,
   },
 

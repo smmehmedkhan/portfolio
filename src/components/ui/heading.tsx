@@ -23,7 +23,8 @@ const headingVariants = cva('scroll-m-20 text-balance', {
         'xs:text-md sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight',
       'primary-heading':
         'w-full xs:text-xl sm:text-2xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
-      'secondary-heading': 'font-semibold tracking-wide text-muted-foreground',
+      'secondary-heading':
+        'xs:text-lg sm:text-xl font-semibold tracking-tight md:tracking-normal lg:tracking-wide',
       'tertiary-heading': 'font-semibold tracking-tight',
       'title-heading':
         'font-medium tracking-tight text-sm text-muted-foreground',

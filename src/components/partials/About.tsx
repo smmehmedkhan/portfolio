@@ -29,7 +29,7 @@ export default function About() {
       />
 
       {/* About content layout */}
-      <div className="about-layout md:max-w-xl lg:max-w-full">
+      <div className="about-layout">
         <ImageCarousel data={aboutImages} />
 
         <AboutTypographys data={aboutTypographys} />

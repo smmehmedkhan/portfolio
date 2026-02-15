@@ -27,3 +27,19 @@ export interface InfoProps {
   demoUrl?: string
   githubUrl?: string
 }
+
+export interface SkillItem {
+  id: number
+  title: string
+  src: string
+  link: string
+  description: string
+  joined: string
+}
+
+export interface SkillCategory {
+  id: number
+  title: string
+  icon: string
+  items: SkillItem[]
+}
