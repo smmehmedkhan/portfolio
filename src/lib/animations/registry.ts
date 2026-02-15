@@ -85,8 +85,10 @@ export const animationPresets: Record<string, AnimationConfig> = {
     whileInView: { scale: 1 },
     animate: { scale: [1, 1.05, 1] },
     transition: {
-      duration: 2,
-      type: 'tween',
+      duration: 0.6,
+      type: 'spring',
+      stiffness: 100,
+      damping: 10,
     } as Record<string, number | string>,
   },
 

@@ -6,7 +6,7 @@ import type {
   Transition,
   VariantLabels,
 } from 'motion/react'
-import * as motion from 'motion/react-client'
+import { motion } from 'motion/react'
 import React from 'react'
 import { cn } from '@/lib/utils'
 
@@ -18,11 +18,13 @@ const headingVariants = cva('scroll-m-20 text-balance', {
   variants: {
     variant: {
       'main-heading':
-        'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700',
-      'sub-heading': 'text-muted-foreground font-semibold tracking-tight',
+        'xs:h-17 sm:h-20 md:h-11 lg:h-24 2xl:h-13 xs:text-lg sm:text-xl md:text-2xl font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
+      'sub-heading':
+        'xs:text-md sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight',
       'primary-heading':
         'w-full xs:text-xl sm:text-2xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
-      'secondary-heading': 'font-semibold tracking-wide text-muted-foreground',
+      'secondary-heading':
+        'xs:text-lg sm:text-xl font-semibold tracking-tight md:tracking-normal lg:tracking-wide',
       'tertiary-heading': 'font-semibold tracking-tight',
       'title-heading':
         'font-medium tracking-tight text-sm text-muted-foreground',
@@ -58,12 +60,12 @@ const variantTagMap: Record<string, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'> = {
 }
 
 const motionComponents = {
-  h1: motion.h1,
-  h2: motion.h2,
-  h3: motion.h3,
-  h4: motion.h4,
-  h5: motion.h5,
-  h6: motion.h6,
+  h1: motion.create(motion.h1),
+  h2: motion.create(motion.h2),
+  h3: motion.create(motion.h3),
+  h4: motion.create(motion.h4),
+  h5: motion.create(motion.h5),
+  h6: motion.create(motion.h6),
 } as const
 
 /**
@@ -205,7 +207,7 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
     // Return animated or static heading
     if (animated) {
       // Use motion element corresponding to the semantic tag
-      const MotionComponent = motionComponents[tag] || motion.h2
+      const MotionComponent = motionComponents[tag] || motion.create(motion.h2)
 
       return (
         <MotionComponent
