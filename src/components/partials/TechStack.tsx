@@ -21,7 +21,7 @@ export default function TechStack() {
       />
 
       {/* Bottom: Skills layout */}
-      <div className=" w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
         {/* Languages */}
         <div className="wrapper gap-4 md:gap-6 lg:gap-7.5">
           <Heading variant="secondary-heading" size="xl">
