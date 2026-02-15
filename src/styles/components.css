@@ -42,29 +42,27 @@
     @apply w-full min-h-[calc(100dvh-60px)] flex-col-reverse lg:flex-row gap-20 xs:gap-5 sm:gap-7.5 md:gap-10 overflow-hidden;
 
     & .hero-intros {
-      @apply size-full xs:gap-4 sm:gap-5 md:gap-7.5 gap-10;
+      @apply size-full xs:p-5 p-0 xs:gap-4 sm:gap-5 md:gap-7.5 gap-10;
 
       & .headings {
-        @apply w-full flex flex-col gap-2 xs:gap-1 sm:gap-1.5 overflow-hidden;
+        @apply size-full max-w-md sm:max-w-full flex flex-col xs:gap-1 sm:gap-1.5 gap-2 overflow-hidden;
       }
 
       & .buttons {
-        @apply size-full flex flex-col sm:flex-row xs:gap-3 sm:gap-4 md:gap-4 gap-5;
+        @apply size-full flex flex-col sm:flex-row items-center md:items-start gap-3 sm:gap-4 lg:gap-5;
       }
     }
 
     & .wrapper {
-      @apply size-full;
-
       & .hero-images {
         @apply w-full min-h-fit relative overflow-hidden flex flex-col items-center justify-end xs:size-76 sm:size-138 md:size-120 lg:size-full;
 
         & .hero-image {
-          @apply w-auto h-110 xs:h-60 sm:h-110 md:h-90 xl:h-112 2xl:h-140 absolute;
+          @apply w-auto h-56 sm:h-105 md:h-90 lg:h-100 xl:h-120 2xl:h-150 absolute;
         }
 
         & .hero-canvas {
-          @apply xs:size-76 sm:size-138 md:size-120 lg:size-full mx-auto xs:translate-y-4 sm:translate-y-8 md:translate-y-12 translate-y-3 -z-10;
+          @apply xs:size-76 sm:size-138 md:size-120 lg:size-full mx-auto translate-y-4 sm:translate-y-8 md:translate-y-6.5 xl:translate-y-8 2xl:translate-y-11 -z-10;
         }
       }
     }

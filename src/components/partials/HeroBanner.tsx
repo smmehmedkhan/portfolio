@@ -17,18 +17,14 @@ export default function HeroBanner() {
   return (
     <header className="hero-banner flex-center">
       {/* left: Hero intros */}
-      <div className="hero-intros flex-box xs:p-5">
+      <div className="hero-intros flex-box sm:max-w-2xl">
         {/* Headings */}
-        <div className="headings">
+        <div className="size-full max-w-md sm:max-w-full">
           <motion.div
             initial={{ opacity: 0, transform: 'translateY(-100%)' }}
             whileInView={{ opacity: 1, transform: 'translateY(0)' }}
             transition={{ delay: 0.2, duration: 0.6 }}>
-            <Heading
-              className="xs:text-lg sm:text-xl 2xl:text-xl"
-              variant={'sub-heading'}
-              size={'xl'}
-              animated={true}>
+            <Heading variant={'sub-heading'} size={'xl'} animated={true}>
               {greeting}
             </Heading>
           </motion.div>
@@ -36,14 +32,8 @@ export default function HeroBanner() {
             initial={{ opacity: 0, transform: 'translateY(-100%)' }}
             whileInView={{ opacity: 1, transform: 'translateY(0)' }}
             transition={{ delay: 0.4, duration: 0.6 }}>
-            <Heading
-              className="xs:h-18 sm:h-27 md:h-12 xl:h-24 2xl:h-12 xs:text-xl sm:text-2xl lg:text-3xl xl:text-2xl 2xl:text-3xl"
-              variant={'main-heading'}
-              size="3xl"
-              animated={true}>
-              <span className="xs:block sm:block md:inline lg:block xl:block 2xl:inline">
-                I'm a
-              </span>{' '}
+            <Heading variant={'main-heading'} size="3xl" animated={true}>
+              <span className="block md:inline lg:block 2xl:inline">I'm a</span>{' '}
               <HeroTitle titles={titles} />
             </Heading>
           </motion.div>
@@ -51,16 +41,16 @@ export default function HeroBanner() {
 
         {/* Description */}
         <motion.div
-          className="size-full"
+          className="size-full max-w-md sm:max-w-full"
           initial={{ opacity: 0, transform: 'translateY(-100%)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.6, duration: 0.6 }}>
           <Paragraph>
-            <Paragraph variant="lead" className="mr-2" as="span">
+            <Paragraph className="mr-2" as="span">
               ❛
             </Paragraph>
             {description}
-            <Paragraph variant="lead" className="ml-2" as="span">
+            <Paragraph className="ml-2" as="span">
               ❜
             </Paragraph>
           </Paragraph>
@@ -72,10 +62,10 @@ export default function HeroBanner() {
           initial={{ opacity: 0, transform: 'translateY(-100%)' }}
           whileInView={{ opacity: 1, transform: 'translateY(0)' }}
           transition={{ delay: 0.8, duration: 0.6 }}>
-          <Button className="w-full sm:w-fit">
+          <Button className="w-full sm:w-fit max-w-md">
             <Link href="/contact">Contact Me</Link>
           </Button>
-          <Button className="w-full sm:w-fit" variant="secondary">
+          <Button className="w-full sm:w-fit max-w-md" variant="secondary">
             <Link href="/#">Resume</Link>
           </Button>
         </motion.div>
