@@ -6,8 +6,9 @@ import type {
   Transition,
   VariantLabels,
 } from 'motion/react'
-import * as motion from 'motion/react-client'
+import { motion } from 'motion/react'
 import React from 'react'
+import { env } from '@/lib/env'
 import { cn } from '@/lib/utils'
 
 /**
@@ -112,18 +113,18 @@ const defaultMotionProps = {
  */
 function getMotionComponent(tag: ParagraphTag) {
   const motionMap = {
-    p: motion.p,
-    strong: motion.strong,
-    small: motion.small,
-    mark: motion.mark,
-    code: motion.code,
-    em: motion.em,
-    s: motion.s,
-    sub: motion.sub,
-    sup: motion.sup,
-    span: motion.span,
+    p: motion.create('p'),
+    strong: motion.create('strong'),
+    small: motion.create('small'),
+    mark: motion.create('mark'),
+    code: motion.create('code'),
+    em: motion.create('em'),
+    s: motion.create('s'),
+    sub: motion.create('sub'),
+    sup: motion.create('sup'),
+    span: motion.create('span'),
   }
-  return motionMap[tag] || motion.span
+  return motionMap[tag] || motion.create('span')
 }
 
 type ParagraphElement = HTMLParagraphElement
@@ -283,7 +284,7 @@ const Paragraph = React.forwardRef<ParagraphElement, ParagraphProps>(
     if (
       variant
       && !validVariants.includes(variant as ParagraphVariant)
-      && process.env.NODE_ENV === 'development'
+      && env.NODE_ENV === 'development'
     ) {
       console.warn(
         `[Paragraph] Invalid variant "${variant}". Valid variants are: ${validVariants.join(', ')}. Falling back to "main".`
