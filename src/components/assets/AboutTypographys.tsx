@@ -14,7 +14,7 @@ export default function AboutTypographys({
   const fadeDown = getAnimationPreset('fade-down')
 
   return (
-    <div className="wrapper lg:w-1/2 px-5 lg:px-0 text-left space-y-6">
+    <div className="wrapper lg:w-1/2 space-y-6">
       {/* Top: About typography items */}
       {data.map((item, index) => (
         <Paragraph
@@ -29,7 +29,7 @@ export default function AboutTypographys({
         </Paragraph>
       ))}
       {/* Bottom: See more button */}
-      <div className="w-full xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full mx-auto lg:mx-0">
+      <div className="w-full sm:max-w-sm lg:max-w-full mx-auto lg:mx-0">
         <Button className="w-full lg:w-fit" variant="outline" asChild>
           <Link href="/about">Read More</Link>
         </Button>

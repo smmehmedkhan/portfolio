@@ -86,7 +86,6 @@ export const animationPresets: Record<string, AnimationConfig> = {
     animate: { scale: [1, 1.05, 1] },
     transition: {
       duration: 0.6,
-      type: 'spring',
       stiffness: 100,
       damping: 10,
     } as Record<string, number | string>,

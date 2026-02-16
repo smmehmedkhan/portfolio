@@ -46,6 +46,8 @@ export default function ItemCard({ item, index }: ItemCardProps) {
                 <Image
                   src={item.src}
                   alt={item.title}
+                  width={40}
+                  height={40}
                   className="size-8 sm:size-10 lg:size-12 object-contain"
                 />
               </motion.div>

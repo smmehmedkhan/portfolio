@@ -72,7 +72,7 @@ export default function HeroBanner() {
       </div>
 
       {/* right: Hero images */}
-      <div className="wrapper">
+      <div className="wrapper max-w-xl">
         <motion.div
           className="hero-images"
           initial={{ opacity: 0, transform: 'translateY(50%)' }}
