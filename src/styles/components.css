@@ -73,7 +73,7 @@
     @apply gap-12 md:gap-20 lg:gap-30;
 
     & .about-layout {
-      @apply size-full max-w-xl lg:max-w-full;
+      @apply max-w-xl lg:max-w-full gap-5 md:gap-10 lg:gap-5 2xl:gap-10;
     }
   }
 
@@ -95,30 +95,34 @@
   }
 
   /* ========== Showcase section ========== */
-  .showcase {
-    @apply w-full mx-auto py-12 md:py-16 lg:py-20 gap-10 md:gap-15 lg:gap-20 xl:gap-30;
+  .case-studies {
+    @apply gap-10 md:gap-15 lg:gap-20 xl:gap-30;
 
     & .project {
-      @apply gap-8 lg:gap-10;
+      @apply gap-10 md:gap-15 lg:gap-20;
 
-      & .alignment {
-        @apply size-full flex flex-col items-center gap-8 lg:gap-10;
+      & .project-content {
+        @apply size-fit flex flex-col items-center gap-8 lg:gap-10;
 
           & .wrapper {
-            & .card-container {
+            & .case-card-container {
               @apply size-full xs:max-w-xs sm:max-w-md lg:max-w-lg overflow-hidden relative;
 
-              & .card {
-                @apply rounded-3xl bg-secondary shadow-2xl origin-[10%_60%];
+              & .case-card {
+                @apply xs:w-50 sm:w-80 xl:w-85 xs:h-65 sm:h-100 xl:h-110 p-2 sm:p-3 rounded-xl sm:rounded-3xl bg-secondary shadow-2xl origin-[10%_60%];
+
+                & .case-card-image {
+                  @apply size-full bg-primary xs:rounded-lg sm:rounded-2xl object-contain;
+                }
               }
             }
-          }
 
-          & .info {
-            @apply size-full max-w-xl lg:max-w-full flex flex-col xs:gap-2 sm:gap-3 gap-4 text-center;
+            & .case-info {
+              @apply size-full max-w-xl lg:max-w-full flex flex-col xs:gap-2 sm:gap-3 gap-4 text-center;
 
-            & .badge-container {
-              @apply flex flex-wrap gap-2 justify-center;
+              & .badge-container {
+                @apply flex flex-wrap gap-2 justify-center;
+            }
           }
         }
     }

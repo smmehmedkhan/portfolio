@@ -2,7 +2,7 @@ import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import Logo from '@/components/assets/Logo'
+import Logo from '@/components/assets/nav/Logo'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/drawer'
 import ThemeSwitcher from '@/components/ui/theme-switcher'
 import { navLinks } from '@/data/nav-links'
-import SocialLinks from './SocialLinks'
+import SocialLinks from '../SocialLinks'
 
 export default function Hamburger() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

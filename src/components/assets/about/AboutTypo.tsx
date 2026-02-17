@@ -1,16 +1,9 @@
-'use client'
-
-import Link from 'next/link'
 import { Paragraph } from '@/components/ui/paragraph'
 import type { AboutTypographyType } from '@/data/about'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import { Button } from '../ui/button'
+import ReadMore from './ReadMore'
 
-export default function AboutTypographys({
-  data,
-}: {
-  data: AboutTypographyType[]
-}) {
+export default function AboutTypo({ data }: { data: AboutTypographyType[] }) {
   const fadeDown = getAnimationPreset('fade-down')
 
   return (
@@ -29,10 +22,8 @@ export default function AboutTypographys({
         </Paragraph>
       ))}
       {/* Bottom: See more button */}
-      <div className="w-full sm:max-w-sm lg:max-w-full mx-auto lg:mx-0">
-        <Button className="w-full lg:w-fit" variant="outline" asChild>
-          <Link href="/about">Read More</Link>
-        </Button>
+      <div className="size-full max-w-sm lg:max-w-full mx-auto lg:mx-0">
+        <ReadMore />
       </div>
     </div>
   )

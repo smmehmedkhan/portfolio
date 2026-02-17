@@ -1,9 +1,7 @@
 import { MessageSquareText } from 'lucide-react'
-import Link from 'next/link'
-import AboutTypographys from '@/components/assets/AboutTypographys'
-import ImageCarousel from '@/components/assets/ImageCarousel'
+import AboutCaro from '@/components/assets/about/AboutCaro'
+import AboutTypo from '@/components/assets/about/AboutTypo'
 import SectionInro from '@/components/assets/SectionInro'
-import { Button } from '@/components/ui/button'
 import { aboutImages, aboutTypographys } from '@/data/about'
 import { sectionInros } from '@/data/sectionInros'
 
@@ -29,10 +27,10 @@ export default function About() {
       />
 
       {/* About content layout */}
-      <div className="about-layout flex-box flex-direction">
-        <ImageCarousel data={aboutImages} />
+      <div className="container about-layout flex-center flip">
+        <AboutCaro data={aboutImages} />
 
-        <AboutTypographys data={aboutTypographys} />
+        <AboutTypo data={aboutTypographys} />
       </div>
     </section>
   )

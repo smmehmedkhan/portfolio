@@ -1,6 +1,6 @@
 @layer layout {
   .container {
-    @apply size-full max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-0 mx-auto;
+    @apply size-full max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-0 mx-auto box-border;
   }
 
   .wrapper {

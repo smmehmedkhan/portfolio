@@ -12,6 +12,14 @@
     @apply inline-flex items-center;
   }
 
+  .flip {
+    @apply flex-col lg:flex-row;
+  }
+
+  .alter {
+    @apply flex-col-reverse lg:flex-row;
+  }
+
   /* Link and text helpers */
   .link-reset {
     @apply text-inherit no-underline hover:underline;

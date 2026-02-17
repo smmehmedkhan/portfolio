@@ -102,6 +102,9 @@ const defaultMotionProps = {
     type: 'spring' as const,
     duration: 0.6,
   },
+  viewport: {
+    amount: 0.6,
+  },
 }
 
 /**
