@@ -37,8 +37,11 @@ export const animationPresets: Record<string, AnimationConfig> = {
   },
 
   'fade-up': {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
+    initial: {
+      opacity: 0,
+      transform: 'translateY(100%)',
+    },
+    whileInView: { opacity: 1, transform: 'translateY(0)' },
     transition: {
       duration: 0.6,
       type: 'spring',
@@ -48,8 +51,11 @@ export const animationPresets: Record<string, AnimationConfig> = {
   },
 
   'fade-down': {
-    initial: { opacity: 0, y: -20 },
-    whileInView: { opacity: 1, y: 0 },
+    initial: {
+      opacity: 0,
+      transform: 'translateY(-100%)',
+    },
+    whileInView: { opacity: 1, transform: 'translateY(0)' },
     transition: {
       duration: 0.6,
       type: 'spring',

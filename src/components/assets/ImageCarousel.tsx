@@ -16,10 +16,11 @@ import type { AboutImageType } from '@/data/about'
 
 export default function ImageCarousel({ data }: { data: AboutImageType[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
+
   return (
-    <div className="wrapper lg:w-1/2 p-10 xl:p-10 2xl:p-12 space-y-6">
+    <div className="wrapper lg:w-1/2 px-12 box-border">
       <Carousel
-        className="w-full"
+        className="size-full"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}>

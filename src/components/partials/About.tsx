@@ -29,7 +29,7 @@ export default function About() {
       />
 
       {/* About content layout */}
-      <div className="about-layout">
+      <div className="about-layout flex-box flex-direction">
         <ImageCarousel data={aboutImages} />
 
         <AboutTypographys data={aboutTypographys} />
