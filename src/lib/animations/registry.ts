@@ -31,8 +31,10 @@ export const animationPresets: Record<string, AnimationConfig> = {
     initial: { opacity: 0 },
     whileInView: { opacity: 1 },
     transition: {
-      duration: 0.5,
       type: 'tween',
+      duration: 0.6,
+      stiffness: 300,
+      damping: 10,
     },
   },
 
@@ -45,7 +47,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
     transition: {
       duration: 0.6,
       type: 'spring',
-      stiffness: 100,
+      stiffness: 300,
       damping: 10,
     },
   },
@@ -59,7 +61,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
     transition: {
       duration: 0.6,
       type: 'spring',
-      stiffness: 100,
+      stiffness: 300,
       damping: 10,
     },
   },

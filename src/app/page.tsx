@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import type { JSX } from 'react'
 import About from '@/components/partials/About'
+import CaseStudies from '@/components/partials/CaseStudies'
 import FAQ from '@/components/partials/FAQ'
 import Hero from '@/components/partials/Hero'
-import Showcase from '@/components/partials/Showcase'
 import TechStack from '@/components/partials/TechStack'
 import Testimonials from '@/components/partials/Testimonials'
 import { CONFIG } from '@/constants/config'
@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
       <Hero />
       <About />
       <TechStack />
-      <Showcase />
+      <CaseStudies />
       <Testimonials />
       <FAQ />
     </main>

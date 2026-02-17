@@ -36,7 +36,8 @@ export default function SectionInro({
         )}
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
-        transition={fadeDown.transition}>
+        transition={fadeDown.transition}
+        viewport={{ amount: 0.6 }}>
         {icon}
         <Paragraph variant="small" className="text-xs sm:text-sm md:text-nm">
           {slot}

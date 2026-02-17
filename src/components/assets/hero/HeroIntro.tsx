@@ -1,9 +1,9 @@
+import { HeroButtons } from '@/components/assets/hero/HeroButtons'
+import HeroTitle from '@/components/assets/hero/HeroTitle'
 import { Heading } from '@/components/ui/heading'
-import HeroTitle from '@/components/ui/hero-title'
 import { Paragraph } from '@/components/ui/paragraph'
 import { heroIntro } from '@/data/HeroIntro'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import { HeroButtons } from './HeroButtons'
 
 export default function HeroIntro() {
   const { greeting, titles, description } = heroIntro

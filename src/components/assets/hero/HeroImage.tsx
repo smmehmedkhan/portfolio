@@ -17,7 +17,8 @@ export default function HeroImage() {
         className="hero-images"
         initial={fadeUp.initial}
         whileInView={fadeUp.whileInView}
-        transition={fadeUp.transition}>
+        transition={fadeUp.transition}
+        viewport={{ once: true }}>
         {/* Hero Image */}
         <MImage
           className="hero-image"
@@ -29,6 +30,7 @@ export default function HeroImage() {
           initial={fade.initial}
           whileInView={fade.whileInView}
           transition={{ ...fade.transition, delay: 0.5 }}
+          viewport={{ once: true }}
         />
 
         {/* Hero Canvas */}

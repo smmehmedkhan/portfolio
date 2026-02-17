@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FaLink } from 'react-icons/fa'
 import { Button } from '../ui/button'
 import { Paragraph } from '../ui/paragraph'
-import Logo from './Logo'
+import Logo from './nav/Logo'
 
 export default function Addresses() {
   return (

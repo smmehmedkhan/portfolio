@@ -14,12 +14,12 @@ export interface ProjectProps {
   index: number
 }
 
-export interface CardProps {
+export interface CaseCardProps {
   image: string
   title: string
 }
 
-export interface InfoProps {
+export interface CaseInfoProps {
   title: string
   description: string
   longDescription: string

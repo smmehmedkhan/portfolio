@@ -1,9 +1,9 @@
 'use client'
 
 import Autoplay from 'embla-carousel-autoplay'
+import { motion } from 'motion/react'
 import Image from 'next/image'
 import { useRef } from 'react'
-
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import {
   Carousel,
@@ -13,12 +13,22 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import type { AboutImageType } from '@/data/about'
+import { getAnimationPreset } from '@/lib/animations/registry'
 
-export default function ImageCarousel({ data }: { data: AboutImageType[] }) {
+const MDiv = motion.create('div')
+
+export default function AboutCaro({ data }: { data: AboutImageType[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
+  const fadeUp = getAnimationPreset('fade-up')
+
   return (
-    <div className="wrapper lg:w-1/2 px-12 box-border">
+    <MDiv
+      className="wrapper lg:w-1/2 px-12 box-border"
+      initial={fadeUp.initial}
+      whileInView={fadeUp.whileInView}
+      transition={fadeUp.transition}
+      viewport={{ amount: 0.6, once: true }}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
@@ -43,6 +53,6 @@ export default function ImageCarousel({ data }: { data: AboutImageType[] }) {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-    </div>
+    </MDiv>
   )
 }

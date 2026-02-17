@@ -2,12 +2,4 @@
   .nav-link-dark {
     @apply dark:hover:bg-accent/30 dark:hover:text-accent;
   }
-
-  .flex-direction {
-    @apply flex-col lg:flex-row gap-5 md:gap-10 lg:gap-5 2xl:gap-10;
-  }
-
-  .hero-flip {
-    @apply flex-col-reverse lg:flex-row;
-  }
 }
