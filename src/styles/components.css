@@ -38,11 +38,11 @@
   }
 
   /* ========== Hero banner ========== */
-  .hero-banner {
-    @apply w-full min-h-[calc(100dvh-60px)] flex-col-reverse lg:flex-row gap-20 xs:gap-5 sm:gap-7.5 md:gap-10 overflow-hidden;
+  .hero {
+    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden gap-20 xs:gap-5 sm:gap-7.5 md:gap-10;
 
-    & .hero-intros {
-      @apply size-full xs:p-5 p-0 xs:gap-4 sm:gap-5 md:gap-7.5 gap-10;
+    & .hero-intro {
+      @apply sm:max-w-2xl xs:gap-4 sm:gap-5 md:gap-7.5 gap-10;
 
       & .headings {
         @apply size-full max-w-md sm:max-w-full flex flex-col xs:gap-1 sm:gap-1.5 gap-2 overflow-hidden;
@@ -62,7 +62,7 @@
         }
 
         & .hero-canvas {
-          @apply size-full sm:size-110 md:size-120 lg:size-120 xl:size-full mx-auto translate-y-4 sm:translate-y-6 md:translate-y-8 xl:translate-y-8 -z-10;
+          @apply size-full sm:size-110 md:size-120 lg:size-120 xl:size-full mx-auto translate-y-4 sm:translate-y-6 md:translate-y-6.5 xl:translate-y-8 -z-10;
         }
       }
     }
@@ -70,10 +70,10 @@
 
   /* ========== About section ========== */
   .about {
-    @apply py-10 gap-12 md:gap-20 lg:gap-30;
+    @apply gap-12 md:gap-20 lg:gap-30;
 
     & .about-layout {
-      @apply w-full md:max-w-xl lg:max-w-full flex items-center justify-center flex-col gap-8 md:gap-12 lg:flex-row lg:gap-20;
+      @apply size-full max-w-xl lg:max-w-full;
     }
   }
 
@@ -124,8 +124,6 @@
     }
   }
 }
-
-
 
   /* ========== Testimonials section ========== */
   .testimonials {
