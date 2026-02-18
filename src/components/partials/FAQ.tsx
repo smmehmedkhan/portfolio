@@ -32,11 +32,13 @@ export default function FAQ() {
             value={faq.id}
             className={`px-3 ${index < faqData.length - 1 ? 'border-b border-border' : ''}`}>
             <AccordionTrigger className="cursor-pointer">
-              <Heading
+              <Paragraph
                 className="hover:text-accent transition-colors duration-200 ease-in"
-                variant="role">
+                variant="large"
+                as="span"
+                size="md">
                 {faq.question}
-              </Heading>
+              </Paragraph>
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               {faq.answer.map((paragraph, pIndex) => (

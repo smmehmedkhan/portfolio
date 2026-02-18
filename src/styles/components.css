@@ -62,7 +62,7 @@
         @apply size-full md:min-h-fit relative overflow-hidden flex flex-col items-center justify-end xs:size-76 sm:size-138 md:size-120 lg:size-full;
 
         & .hero-image {
-          @apply w-auto h-60 sm:h-85 md:h-92 xl:h-120 absolute;
+          @apply w-auto h-60 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute;
         }
 
         & .hero-canvas {

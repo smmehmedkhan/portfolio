@@ -21,7 +21,7 @@ export default function HeroImage() {
         viewport={{ once: true }}>
         {/* Hero Image */}
         <MImage
-          className="hero-image 2xl:h-130"
+          className="hero-image"
           src="/images/Mehmed_Khan.webp"
           alt="Mehmed Khan - Full Stack Developer"
           width={1024}
