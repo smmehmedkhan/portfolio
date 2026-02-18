@@ -1,5 +1,5 @@
 import { BadgeCheck } from 'lucide-react'
-import ReviewCarousel from '@/components/assets/ReviewCarousel'
+import ReviewCarousel from '@/components/assets/review/ReviewCarousel'
 import SectionInro from '@/components/assets/SectionInro'
 import { sectionInros } from '@/data/sectionInros'
 import { testimonials } from '@/data/testimonials'

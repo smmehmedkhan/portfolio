@@ -3,7 +3,7 @@ import { Heading } from '../ui/heading'
 
 export default function Resources() {
   return (
-    <div className="wrapper gap-5">
+    <div className="wrapper gap-5 order-3 md:order-3 2xl:order-3">
       <Heading variant="title" size="lg">
         Resources
       </Heading>

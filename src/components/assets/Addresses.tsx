@@ -6,7 +6,7 @@ import Logo from './nav/Logo'
 
 export default function Addresses() {
   return (
-    <address className="w-full flex flex-col items-start gap-5 not-italic">
+    <address className="size-full flex flex-col items-center gap-5 not-italic order-1 md:order-2 2xl:order-1">
       {/* Top: Logo + Location */}
       <div className="flex-box justify-start">
         <Logo />
@@ -23,16 +23,16 @@ export default function Addresses() {
       </div>
 
       {/* Bottom: Message */}
-      <div className="w-full flex flex-col items-start gap-2">
-        <Paragraph variant="large" size="md">
+      <div className="w-full flex flex-col items-center gap-2">
+        <Paragraph variant="large">
           Always ready to bring your ideas to life.
         </Paragraph>
-        <Paragraph variant="large" size="md">
+        <Paragraph variant="large">
           Let's build something amazing together.
         </Paragraph>
       </div>
 
-      <div className="w-full flex-inline items-center">
+      <div className="w-full flex-inline justify-center">
         <Button
           className="text-muted-foreground hover:text-accent"
           variant="link"

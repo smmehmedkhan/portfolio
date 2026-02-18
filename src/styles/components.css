@@ -72,6 +72,19 @@
     }
   }
 
+  /* ========== Section intro ========== */
+  .section-intro {
+    @apply w-full xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5;
+
+    & .badge {
+      @apply xs:py-1 py-2 px-4 md:px-6 gap-1;
+
+      & .badge-typo {
+        @apply text-xs sm:text-sm md:text-nm;
+      }
+    }
+  }
+
   /* ========== About section ========== */
   .about {
     @apply gap-12 md:gap-20 lg:gap-30;
@@ -171,6 +184,6 @@
 
   /* ========== Get in touch section ========== */
   .get-in-touch {
-    @apply w-full h-1/2 bg-primary relative overflow-hidden;
+    @apply basis-1/2 bg-primary relative overflow-hidden;
   }
 }

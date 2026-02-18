@@ -29,20 +29,15 @@ export default function SectionInro({
   const fadeDown = getAnimationPreset('fade-down')
 
   return (
-    <div
-      className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit gap-3"
-      data-slot={slot}
-      data-id={id}>
+    <div className="section-intro flex-box" data-slot={slot} data-id={id}>
       <MotionBadge
-        className={cn(
-          `flex-inline xs:py-1 py-2 px-4 md:px-6 gap-1 ${badgeStyles}`
-        )}
+        className={cn(`badge flex-inline ${badgeStyles}`)}
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
         transition={fadeDown.transition}
         viewport={{ amount: 0.5 }}>
         {icon}
-        <Paragraph variant="small" className="text-xs sm:text-sm md:text-nm">
+        <Paragraph className="badge-typo" variant="small" as="span">
           {slot}
         </Paragraph>
       </MotionBadge>
@@ -56,7 +51,7 @@ export default function SectionInro({
         {title}
       </Heading>
       <Paragraph
-        className={cn(`max-w-2xl text-center ${paragraphStyles}`)}
+        className={cn(`text-center ${paragraphStyles}`)}
         variant="lead"
         animated
         initial={fadeDown.initial}

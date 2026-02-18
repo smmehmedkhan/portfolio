@@ -42,7 +42,7 @@ const paragraphVariants = cva('scroll-m-20 text-balance', {
     variant: {
       main: 'font-normal tracking-normal xs:text-nm text-md',
       lead: 'text-md 2xl:text-lg font-semibold xs:tracking-tight racking-normal text-muted-foreground',
-      large: 'text-lg 2xl:text-xl font-medium tracking-wide font-bold',
+      large: 'text-md lg:text-lg font-medium tracking-wide font-bold',
       small: 'xs:text-xs text-sm font-light tracking-tight',
       muted: 'xs:text-xs text-sm text-muted-foreground',
       code: 'relative rounded bg-accent/30 px-[0.3rem] py-[0.2rem] font-mono text-sm text-accent-foreground',

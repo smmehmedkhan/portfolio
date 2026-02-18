@@ -42,12 +42,14 @@ export default function Newsletters() {
   }
 
   return (
-    <div className="wrapper gap-10">
-      <div className="wrapper gap-3">
-        <Heading variant="title" size="xl" className="capitalize">
+    <div className="wrapper max-w-2xl mx-auto gap-10 col-span-1 order-2 md:col-span-2 md:order-1 2xl:col-span-1 2xl:order-2">
+      <div className="size-fit flex flex-col items-center gap-3">
+        <Heading className="text-md md:text-lg lg:text-xl font-semibold capitalize">
           Subscribe to my newsletter
         </Heading>
-        <Paragraph variant="muted" className="text-center">
+        <Paragraph
+          variant="muted"
+          className="text-sm md:text-nm lg:text-md text-center">
           Stay updated with my latest projects, tech insights, and development
           tips delivered to your inbox.
         </Paragraph>

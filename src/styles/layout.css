@@ -7,6 +7,10 @@
     @apply size-full flex flex-col items-center justify-center;
   }
 
+  .combo-layout {
+    @apply w-full min-h-dvh flex flex-col;
+  }
+
   nav {
     @apply w-full xs:h-10 sm:h-11 md:h-12 lg:h-15 bg-background text-nm border-b border-border sticky top-0 z-50;
   }

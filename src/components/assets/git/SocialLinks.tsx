@@ -33,7 +33,7 @@ export default function SocialLinks({
       className={cn('flex-inline gap-10', className)}
       {...(animated && containerAnimation)}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (
-        <motion.div
+        <Container
           key={id}
           whileHover={animated ? buttonHoverAnimation : undefined}>
           <Button
@@ -50,7 +50,7 @@ export default function SocialLinks({
               <Icon className={cn('size-10', iconClassName)} />
             </Link>
           </Button>
-        </motion.div>
+        </Container>
       ))}
     </Container>
   )

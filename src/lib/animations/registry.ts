@@ -32,6 +32,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
     whileInView: { opacity: 1 },
     transition: {
       type: 'tween',
+      delay: 0.2,
       duration: 0.6,
       stiffness: 300,
       damping: 10,
@@ -45,8 +46,8 @@ export const animationPresets: Record<string, AnimationConfig> = {
     },
     whileInView: { opacity: 1, transform: 'translateY(0)' },
     transition: {
-      duration: 0.6,
       type: 'spring',
+      duration: 0.6,
       stiffness: 300,
       damping: 10,
     },
@@ -59,8 +60,8 @@ export const animationPresets: Record<string, AnimationConfig> = {
     },
     whileInView: { opacity: 1, transform: 'translateY(0)' },
     transition: {
-      duration: 0.6,
       type: 'spring',
+      duration: 0.6,
       stiffness: 300,
       damping: 10,
     },
@@ -72,7 +73,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
     transition: {
       duration: 0.6,
       type: 'spring',
-      stiffness: 100,
+      stiffness: 300,
       damping: 10,
     },
   },
@@ -83,7 +84,19 @@ export const animationPresets: Record<string, AnimationConfig> = {
     transition: {
       duration: 0.6,
       type: 'spring',
-      stiffness: 100,
+      stiffness: 300,
+      damping: 10,
+    },
+  },
+
+  'slide-up': {
+    initial: { y: 0 },
+    whileInView: { y: 0 },
+    animate: { y: [0, -6, 0] },
+    transition: {
+      type: 'spring',
+      duration: 0.3,
+      stiffness: 300,
       damping: 10,
     },
   },
