@@ -1,7 +1,7 @@
-import ItemCard from '@/components/assets/ItemCard'
+import SkillCard from '@/components/assets/skill/SkillCard'
 import { Heading } from '@/components/ui/heading'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import { iconMap } from '@/lib/iconMap'
+import { iconMap } from '@/lib/icon-map'
 import type { SkillCategory } from '@/types'
 
 interface SkillsetProps {
@@ -16,7 +16,7 @@ export default function Skillset({ category }: SkillsetProps) {
     <div className="skillset">
       <Heading
         className="flex-inline gap-2 md:gap-3"
-        variant="secondary-heading"
+        variant="secondary"
         animated
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
@@ -29,7 +29,7 @@ export default function Skillset({ category }: SkillsetProps) {
       </Heading>
       <ul className="flex-center skills-list">
         {category.items.map((item, index) => (
-          <ItemCard key={item.id} item={item} index={index} />
+          <SkillCard key={item.id} item={item} index={index} />
         ))}
       </ul>
     </div>

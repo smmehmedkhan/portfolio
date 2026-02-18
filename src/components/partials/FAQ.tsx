@@ -13,7 +13,7 @@ import SectionInro from '../assets/SectionInro'
 
 export default function FAQ() {
   return (
-    <section className="container flex-box py-24 gap-30">
+    <section className="container faq flex-box">
       <SectionInro
         data={sectionInros.faq}
         icon={
@@ -24,15 +24,21 @@ export default function FAQ() {
       <Accordion
         type="single"
         collapsible
-        className="w-full max-w-mobile bg-card border border-border rounded-md"
+        className="accordion"
         defaultValue={faqData[0]?.id}>
         {faqData.map((faq, index) => (
           <AccordionItem
             key={faq.id}
             value={faq.id}
             className={`px-3 ${index < faqData.length - 1 ? 'border-b border-border' : ''}`}>
-            <AccordionTrigger className="hover:text-accent transition-colors duration-200 ease-in">
-              <Heading size="md">{faq.question}</Heading>
+            <AccordionTrigger className="cursor-pointer">
+              <Paragraph
+                className="hover:text-accent transition-colors duration-200 ease-in"
+                variant="large"
+                as="span"
+                size="md">
+                {faq.question}
+              </Paragraph>
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               {faq.answer.map((paragraph, pIndex) => (

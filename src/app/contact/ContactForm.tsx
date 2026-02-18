@@ -32,8 +32,6 @@ export default function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       // TODO: Implement actual contact form API call
-      // amazonq-ignore-next-line
-      // amazonq-ignore-next-line
       console.log('Contact form submission:', data)
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -48,7 +46,7 @@ export default function ContactForm() {
   return (
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col items-center gap-12 max-w-3xl mx-auto">
-        <Heading variant="primary-heading">Get In Touch</Heading>
+        <Heading variant="primary">Get In Touch</Heading>
 
         <div className="w-full grid md:grid-cols-2 gap-12">
           <div className="flex flex-col gap-6">

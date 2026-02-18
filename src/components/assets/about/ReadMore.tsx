@@ -12,7 +12,7 @@ export default function ReadMore() {
 
   return (
     <MButton
-      className="w-full lg:w-fit"
+      className="w-full max-w-lg lg:w-fit"
       variant="outline"
       initial={fadeDown.initial}
       whileInView={fadeDown.whileInView}

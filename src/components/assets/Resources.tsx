@@ -4,7 +4,7 @@ import { Heading } from '../ui/heading'
 export default function Resources() {
   return (
     <div className="wrapper gap-5">
-      <Heading variant="tertiary-heading" size="lg">
+      <Heading variant="title" size="lg">
         Resources
       </Heading>
 

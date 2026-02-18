@@ -12,7 +12,7 @@ export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
 
   return (
-    <div className="wrapper max-w-xl">
+    <div className="wrapper max-w-2xl">
       <MDiv
         className="hero-images"
         initial={fadeUp.initial}

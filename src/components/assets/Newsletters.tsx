@@ -30,8 +30,6 @@ export default function Newsletters() {
   const onSubmit = async (data: NewsletterFormData) => {
     try {
       // TODO: Implement actual newsletter subscription API call
-      // amazonq-ignore-next-line
-      // amazonq-ignore-next-line
       console.log('Newsletter subscription:', data.email)
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -46,7 +44,7 @@ export default function Newsletters() {
   return (
     <div className="wrapper gap-10">
       <div className="wrapper gap-3">
-        <Heading variant="tertiary-heading" size="xl" className="capitalize">
+        <Heading variant="title" size="xl" className="capitalize">
           Subscribe to my newsletter
         </Heading>
         <Paragraph variant="muted" className="text-center">

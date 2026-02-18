@@ -13,14 +13,14 @@ export function HeroButtons() {
 
   return (
     <MDiv
-      className="buttons"
+      className="buttons box-border"
       initial={fadeDown.initial}
       whileInView={fadeDown.whileInView}
       transition={{ ...fadeDown.transition, delay: 0.8 }}>
-      <MBtn className="w-full sm:w-fit max-w-md">
+      <MBtn className="btn">
         <Link href="/contact">Contact Me</Link>
       </MBtn>
-      <MBtn className="w-full sm:w-fit max-w-md" variant="secondary">
+      <MBtn className="btn" variant="secondary">
         <Link href="/#">Resume</Link>
       </MBtn>
     </MDiv>

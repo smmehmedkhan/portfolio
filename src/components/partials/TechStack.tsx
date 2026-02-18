@@ -1,6 +1,6 @@
 import { Gem } from 'lucide-react'
 import SectionInro from '@/components/assets/SectionInro'
-import SkillsGrid from '@/components/assets/SkillsGrid'
+import SkillGrid from '@/components/assets/skill/SkillsGrid'
 import { sectionInros } from '@/data/sectionInros'
 import { skillsData } from '@/data/skillsList'
 
@@ -11,7 +11,7 @@ export default function TechStack() {
         data={sectionInros.skills}
         icon={<Gem className="xs:size-3 sm:size-4 md:size-5" />}
       />
-      <SkillsGrid categories={skillsData} />
+      <SkillGrid categories={skillsData} />
     </section>
   )
 }

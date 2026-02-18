@@ -35,7 +35,7 @@ export default function ProjectPage() {
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col gap-12">
         <div className="text-center">
-          <Heading variant="primary-heading">My Projects</Heading>
+          <Heading variant="primary">My Projects</Heading>
           <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
             Explore a collection of projects I've built using modern web
             technologies. Each project demonstrates different aspects of

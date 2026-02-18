@@ -12,7 +12,7 @@
   }
 
   main {
-    @apply xs:pb-10 sm:pb-12 md:pb-16 pb-20 xs:gap-10 sm:gap-12 md:gap-16 gap-20;
+    @apply xs:pb-10 sm:pb-12 md:pb-16 pb-20 xs:gap-10 sm:gap-12 md:gap-16 lg:gap-20;
   }
 
   footer {

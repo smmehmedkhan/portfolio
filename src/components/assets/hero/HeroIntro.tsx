@@ -12,9 +12,9 @@ export default function HeroIntro() {
   return (
     <div className="wrapper hero-intro">
       {/* Headings */}
-      <div className="size-full max-w-md sm:max-w-full">
+      <div className="size-full">
         <Heading
-          variant={'sub-heading'}
+          variant="sub"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}
@@ -22,7 +22,7 @@ export default function HeroIntro() {
           {greeting}
         </Heading>
         <Heading
-          variant={'main-heading'}
+          variant="main"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}
@@ -33,7 +33,7 @@ export default function HeroIntro() {
       </div>
 
       {/* Description */}
-      <div className="size-full max-w-md sm:max-w-full">
+      <div className="size-full">
         <Paragraph
           animated
           initial={fadeDown.initial}
