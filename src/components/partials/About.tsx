@@ -27,9 +27,8 @@ export default function About() {
       />
 
       {/* About content layout */}
-      <div className="container about-layout flex-center flip">
+      <div className="about-layout flip">
         <AboutCaro data={aboutImages} />
-
         <AboutTypo data={aboutTypographys} />
       </div>
     </section>

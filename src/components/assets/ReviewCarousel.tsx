@@ -33,7 +33,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
 
   return (
     <MDiv
-      className="wrapper max-w-6xl"
+      className="wrapper review-caro"
       initial={fadeUp.initial}
       whileInView={fadeUp.whileInView}
       transition={fadeUp.transition}
@@ -52,23 +52,29 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                     <StarRating rating={testimonial.rating} size={25} />
                   </CardHeader>
                   <CardContent className="text-center">
-                    <Paragraph>"{testimonial.feedback}"</Paragraph>
+                    <Paragraph>
+                      <Paragraph className="mr-1" as="span">
+                        ❛
+                      </Paragraph>
+                      {testimonial.feedback}
+                      <Paragraph className="ml-1" as="span">
+                        ❜
+                      </Paragraph>
+                    </Paragraph>
                   </CardContent>
-                  <CardFooter className="size-full flex gap-1 sm:gap-2.5">
-                    <Avatar className="size-10">
+                  <CardFooter className="size-full flex-inline gap-2 sm:gap-3 md:gap-4">
+                    <Avatar className="size-8 md:size-10">
                       <AvatarImage src={testimonial.image} />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
-                    <CardContent className="flex flex-col gap-1">
-                      <CardTitle>
-                        <Heading variant="tertiary-heading">
-                          {testimonial.name}
-                        </Heading>
-                        <Heading variant="title-heading">
-                          {testimonial.position}
-                        </Heading>
-                      </CardTitle>
-                    </CardContent>
+                    <div className="size-full">
+                      <Heading className="text-md" variant="title">
+                        {testimonial.name}
+                      </Heading>
+                      <Heading className="text-sm" variant="role" size="sm">
+                        {testimonial.position}
+                      </Heading>
+                    </div>
                   </CardFooter>
                 </Card>
               </div>

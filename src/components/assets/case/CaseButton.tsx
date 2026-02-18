@@ -16,7 +16,7 @@ export default function CaseButton({
 
   return (
     <MButton
-      className="size-full max-w-sm lg:w-fit"
+      className="project-btn"
       variant="outline"
       initial={fadeDown.initial}
       whileInView={fadeDown.whileInView}

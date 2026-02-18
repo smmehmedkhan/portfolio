@@ -24,7 +24,7 @@ export default function AboutCaro({ data }: { data: AboutImageType[] }) {
 
   return (
     <MDiv
-      className="wrapper lg:w-1/2 px-12 box-border"
+      className="wrapper about-caro"
       initial={fadeUp.initial}
       whileInView={fadeUp.whileInView}
       transition={fadeUp.transition}
@@ -37,16 +37,14 @@ export default function AboutCaro({ data }: { data: AboutImageType[] }) {
         <CarouselContent>
           {data.map((image, index) => (
             <CarouselItem key={image.id} tabIndex={index}>
-              <div className="w-full flex items-center justify-center">
-                <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
-                  <Image
-                    src={image.url}
-                    alt={image.alt}
-                    fill
-                    className="h-full w-full rounded-lg object-cover"
-                  />
-                </AspectRatio>
-              </div>
+              <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
+                <Image
+                  className="size-full rounded-lg object-cover"
+                  src={image.url}
+                  alt={image.alt}
+                  fill
+                />
+              </AspectRatio>
             </CarouselItem>
           ))}
         </CarouselContent>

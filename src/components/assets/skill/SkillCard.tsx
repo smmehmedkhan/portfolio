@@ -4,22 +4,17 @@ import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Heading } from '@/components/ui/heading'
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card'
+import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import type { SkillItem } from '@/types'
-import { Heading } from '../ui/heading'
-import { Paragraph } from '../ui/paragraph'
+import type { SkillCardProps } from '@/types'
 
-interface ItemCardProps {
-  item: SkillItem
-  index: number
-}
-
-export default function ItemCard({ item, index }: ItemCardProps) {
+export default function SkillCard({ item, index }: SkillCardProps) {
   const fadeDown = getAnimationPreset('fade-down')
   const pulse = getAnimationPreset('pulse')
 
@@ -30,7 +25,8 @@ export default function ItemCard({ item, index }: ItemCardProps) {
       transition={{
         ...fadeDown.transition,
         delay: 0.2 * index,
-      }}>
+      }}
+      viewport={{ amount: 0.6 }}>
       <HoverCard>
         <HoverCardTrigger asChild>
           <Button
@@ -56,7 +52,7 @@ export default function ItemCard({ item, index }: ItemCardProps) {
         </HoverCardTrigger>
         <HoverCardContent className="size-full xs:max-w-60 sm:max-w-sm max-w-2xl flex flex-col gap-2">
           <Heading
-            variant="title-heading"
+            variant="title"
             className="text-accent font-semibold flex-inline gap-2"
             size="md">
             <span>@</span>

@@ -28,6 +28,13 @@ export interface CaseInfoProps {
   githubUrl?: string
 }
 
+export interface SkillCategory {
+  id: number
+  title: string
+  icon: string
+  items: SkillItem[]
+}
+
 export interface SkillItem {
   id: number
   title: string
@@ -37,9 +44,7 @@ export interface SkillItem {
   joined: string
 }
 
-export interface SkillCategory {
-  id: number
-  title: string
-  icon: string
-  items: SkillItem[]
+export interface SkillCardProps {
+  item: SkillItem
+  index: number
 }

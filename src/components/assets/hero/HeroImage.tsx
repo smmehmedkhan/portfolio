@@ -12,7 +12,7 @@ export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
 
   return (
-    <div className="wrapper max-w-xl">
+    <div className="wrapper max-w-2xl">
       <MDiv
         className="hero-images"
         initial={fadeUp.initial}
@@ -21,7 +21,7 @@ export default function HeroImage() {
         viewport={{ once: true }}>
         {/* Hero Image */}
         <MImage
-          className="hero-image"
+          className="hero-image 2xl:h-130"
           src="/images/Mehmed_Khan.webp"
           alt="Mehmed Khan - Full Stack Developer"
           width={1024}

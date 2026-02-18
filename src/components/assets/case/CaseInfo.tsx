@@ -25,7 +25,7 @@ export default function CaseInfo({
       <div className={getInfoClasses(isEven)}>
         <Heading
           className="text-foreground"
-          variant="secondary-heading"
+          variant="secondary"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}

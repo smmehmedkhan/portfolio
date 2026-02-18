@@ -17,17 +17,14 @@ import { cn } from '@/lib/utils'
 const headingVariants = cva('scroll-m-20 text-balance', {
   variants: {
     variant: {
-      'main-heading':
-        'xs:h-17 sm:h-20 md:h-11 lg:h-24 2xl:h-13 xs:text-lg sm:text-xl md:text-2xl font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
-      'sub-heading':
-        'xs:text-md sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight',
-      'primary-heading':
+      main: 'xs:h-17 sm:h-20 md:h-11 lg:h-24 2xl:h-13 xs:text-lg sm:text-xl md:text-2xl font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
+      sub: 'xs:text-md sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight',
+      primary:
         'xs:text-xl sm:text-2xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
-      'secondary-heading':
+      secondary:
         'xs:text-lg sm:text-xl font-semibold text-muted-foreground tracking-tight md:tracking-normal lg:tracking-wide',
-      'tertiary-heading': 'font-semibold tracking-tight',
-      'title-heading':
-        'font-medium tracking-tight text-sm text-muted-foreground',
+      title: 'text-md font-semibold tracking-tight',
+      role: 'text-sm font-medium tracking-tight text-muted-foreground',
     },
     size: {
       xs: 'text-[length:var(--text-xs)]',
@@ -42,7 +39,7 @@ const headingVariants = cva('scroll-m-20 text-balance', {
     },
   },
   defaultVariants: {
-    variant: 'primary-heading',
+    variant: 'primary',
     size: '2xl',
   },
 })
@@ -51,21 +48,21 @@ const headingVariants = cva('scroll-m-20 text-balance', {
  * Mapping of variant to default semantic HTML heading tag
  */
 const variantTagMap: Record<string, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'> = {
-  'main-heading': 'h1',
-  'sub-heading': 'h2',
-  'primary-heading': 'h3',
-  'secondary-heading': 'h4',
-  'tertiary-heading': 'h5',
-  'title-heading': 'h6',
+  main: 'h1',
+  sub: 'h2',
+  primary: 'h3',
+  secondary: 'h4',
+  title: 'h5',
+  role: 'h6',
 }
 
 const motionComponents = {
-  h1: motion.create(motion.h1),
-  h2: motion.create(motion.h2),
-  h3: motion.create(motion.h3),
-  h4: motion.create(motion.h4),
-  h5: motion.create(motion.h5),
-  h6: motion.create(motion.h6),
+  h1: motion.create('h1'),
+  h2: motion.create('h2'),
+  h3: motion.create('h3'),
+  h4: motion.create('h4'),
+  h5: motion.create('h5'),
+  h6: motion.create('h6'),
 } as const
 
 /**
@@ -168,7 +165,7 @@ interface HeadingProps
 const Heading = React.forwardRef<HeadingElement, HeadingProps>(
   (
     {
-      variant = 'primary-heading',
+      variant = 'primary',
       size = 'lg',
       as: asOverride,
       animated = false,
@@ -210,7 +207,7 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
     // Return animated or static heading
     if (animated) {
       // Use motion element corresponding to the semantic tag
-      const MotionComponent = motionComponents[tag] || motion.create(motion.h2)
+      const MotionComponent = motionComponents[tag] || motion.create('h2')
 
       return (
         <MotionComponent
