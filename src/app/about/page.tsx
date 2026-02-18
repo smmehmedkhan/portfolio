@@ -31,7 +31,7 @@ export default function AboutPage() {
   return (
     <main className="w-full min-h-dvh container py-20">
       <div className="flex flex-col items-center gap-12">
-        <Heading variant="primary-heading">About Me</Heading>
+        <Heading variant="primary">About Me</Heading>
 
         <div className="flex flex-col md:flex-row items-center gap-12 max-w-4xl">
           <div className="shrink-0">
