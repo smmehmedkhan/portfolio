@@ -14,6 +14,7 @@ interface SocialLinksProps {
   animated?: boolean
 }
 
+const MDiv = motion.create('div')
 export default function SocialLinks({
   className,
   buttonClassName,
@@ -30,16 +31,14 @@ export default function SocialLinks({
 
   return (
     <Container
-      className={cn('flex-inline gap-10', className)}
+      className={cn('flex-inline gap-5 md:gap-7.5 lg:gap-10', className)}
       {...(animated && containerAnimation)}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (
-        <motion.div
-          key={id}
-          whileHover={animated ? buttonHoverAnimation : undefined}>
+        <MDiv key={id} whileHover={animated ? buttonHoverAnimation : undefined}>
           <Button
             variant="outline"
             className={cn(
-              'size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
+              'size-8 md:size-10 lg:size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
             <Link
@@ -47,10 +46,12 @@ export default function SocialLinks({
               aria-label={name}
               target="_blank"
               rel="noopener noreferrer">
-              <Icon className={cn('size-10', iconClassName)} />
+              <Icon
+                className={cn('size-6 md:size-8 lg:size-10', iconClassName)}
+              />
             </Link>
           </Button>
-        </motion.div>
+        </MDiv>
       ))}
     </Container>
   )

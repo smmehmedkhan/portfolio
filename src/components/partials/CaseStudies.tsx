@@ -8,10 +8,7 @@ import type { ProjectTypes } from '@/types'
 export default function CaseStudies() {
   return (
     <section className="container case-studies flex-box">
-      <SectionInro
-        data={sectionInros.project}
-        icon={<FolderKanban className="xs:size-3 sm:size-4 md:size-5" />}
-      />
+      <SectionInro data={sectionInros.project} icon={<FolderKanban />} />
 
       {projects.map((project: ProjectTypes, index) => (
         <Project key={project.id} project={project} index={index} />

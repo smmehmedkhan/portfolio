@@ -105,7 +105,7 @@ export default function RootLayout({
             disableTransitionOnChange>
             <Navbar />
             {children}
-            <div className="w-full h-dvh flex-box">
+            <div className="combo-layout">
               <GetInTouch />
               <Footer />
             </div>

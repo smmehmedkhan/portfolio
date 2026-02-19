@@ -1,15 +1,26 @@
-import Addresses from '@/components/assets/Addresses'
-import Copyrights from '@/components/assets/Copyrights'
-import Newsletters from '@/components/assets/Newsletters'
-import Resources from '@/components/assets/Resources'
+import Addresses from '@/components/assets/footer/Addresses'
+import Copyrights from '@/components/assets/footer/Copyrights'
+import Newsletters from '@/components/assets/footer/Newsletters'
+import Resources from '@/components/assets/footer/Resources'
 
 export default function Footer() {
   return (
-    <footer className="wrapper">
-      <div className="container flex flex-col md:flex-row justify-between items-start py-12 md:py-16 lg:py-25 gap-8 md:gap-5">
-        <Addresses />
-        <Newsletters />
-        <Resources />
+    <footer className="wrapper footer">
+      <div className="container footer-grid">
+        {/* addresses: left on lg */}
+        <div className="2xl:order-1">
+          <Addresses />
+        </div>
+
+        {/* newsletter: top on md, centered on sm/lg */}
+        <div className="mx-auto md:col-span-2 md:order-first 2xl:order-2 2xl:col-span-1">
+          <Newsletters />
+        </div>
+
+        {/* resources: right on lg */}
+        <div className="2xl:order-3">
+          <Resources />
+        </div>
       </div>
       <hr className="w-full border-border" />
       <Copyrights />

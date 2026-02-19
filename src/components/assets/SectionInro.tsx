@@ -8,7 +8,7 @@ import type { SectionInroType } from '@/data/sectionInros'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
 
-const MotionBadge = motion(Badge)
+const MotionBadge = motion.create(Badge)
 
 type SectionInroProps = {
   data: SectionInroType
@@ -29,20 +29,25 @@ export default function SectionInro({
   const fadeDown = getAnimationPreset('fade-down')
 
   return (
-    <div
-      className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit gap-3"
-      data-slot={slot}
-      data-id={id}>
+    <div className="section-intro flex-box" data-slot={slot} data-id={id}>
       <MotionBadge
         className={cn(
-          `flex-inline xs:py-1 py-2 px-4 md:px-6 gap-1 ${badgeStyles}`
+          'flex-inline',
+          'size-max py-1 md:py-1.5 px-3 md:px-4 gap-1',
+          badgeStyles
         )}
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
         transition={fadeDown.transition}
         viewport={{ amount: 0.5 }}>
-        {icon}
-        <Paragraph variant="small" className="text-xs sm:text-sm md:text-nm">
+        <span className="flex-box size-4 lg:size-5" aria-hidden="true">
+          {icon}
+        </span>
+        <Paragraph
+          className="text-primary-foreground"
+          variant="small"
+          size="sm"
+          as="span">
           {slot}
         </Paragraph>
       </MotionBadge>
@@ -56,7 +61,7 @@ export default function SectionInro({
         {title}
       </Heading>
       <Paragraph
-        className={cn(`max-w-2xl text-center ${paragraphStyles}`)}
+        className={cn(`text-center ${paragraphStyles}`)}
         variant="lead"
         animated
         initial={fadeDown.initial}

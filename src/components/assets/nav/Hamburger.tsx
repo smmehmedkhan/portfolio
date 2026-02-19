@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/drawer'
 import ThemeSwitcher from '@/components/ui/theme-switcher'
 import { navLinks } from '@/data/nav-links'
-import SocialLinks from '../SocialLinks'
+import SocialLinks from '../git/SocialLinks'
 
 export default function Hamburger() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

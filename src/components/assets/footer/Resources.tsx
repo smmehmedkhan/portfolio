@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Heading } from '../ui/heading'
+import { Heading } from '@/components/ui/heading'
 
 export default function Resources() {
   return (
@@ -8,24 +8,24 @@ export default function Resources() {
         Resources
       </Heading>
 
-      <ul className="flex-box gap-2">
+      <ul className="resources">
         <li>
-          <Link href="/about" className="nav-links nav-link-dark">
+          <Link href="/about" className="rs-link">
             About
           </Link>
         </li>
         <li>
-          <Link href="/contact" className="nav-links nav-link-dark">
+          <Link href="/contact" className="rs-link">
             Contact
           </Link>
         </li>
         <li>
-          <Link href="/projects" className="nav-links nav-link-dark">
+          <Link href="/projects" className="rs-link">
             Projects
           </Link>
         </li>
         <li>
-          <Link href="/" className="nav-links nav-link-dark">
+          <Link href="/" className="rs-link">
             Privacy
           </Link>
         </li>

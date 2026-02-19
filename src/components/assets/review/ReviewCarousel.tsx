@@ -4,14 +4,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import { motion } from 'motion/react'
 import { useRef } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import {
   Carousel,
   CarouselContent,
@@ -19,25 +12,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import StarRating from '@/components/ui/StarRating'
 import type { Testimonial } from '@/data/testimonials'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import { Heading } from '../ui/heading'
 
 const MDiv = motion.create('div')
 
 export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
-  const fadeUp = getAnimationPreset('fade-up')
+  const fade = getAnimationPreset('fade')
 
   return (
     <MDiv
       className="wrapper review-caro"
-      initial={fadeUp.initial}
-      whileInView={fadeUp.whileInView}
-      transition={fadeUp.transition}
-      viewport={{ amount: 0.6, once: true }}>
+      initial={fade.initial}
+      whileInView={fade.whileInView}
+      transition={fade.transition}
+      viewport={{ amount: 0.6 }}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
