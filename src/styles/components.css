@@ -77,11 +77,7 @@
     @apply w-full xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5;
 
     & .badge {
-      @apply xs:py-1 py-2 px-4 md:px-6 gap-1;
-
-      & .badge-typo {
-        @apply text-xs sm:text-sm md:text-nm;
-      }
+      @apply size-max py-1 md:py-1.5 px-3 md:px-4 gap-1;
     }
   }
 
@@ -184,6 +180,57 @@
 
   /* ========== Get in touch section ========== */
   .get-in-touch {
-    @apply basis-1/2 bg-primary relative overflow-hidden;
+    @apply 2xl:flex-1 py-10 2xl:py-0 bg-primary relative overflow-hidden;
+
+    & .git-container {
+      @apply gap-5 md:gap-7.5 lg:gap-10;
+    }
+  }
+
+  /* ========== Footer ========== */
+  .footer {
+    @apply 2xl:flex-1;
+
+    & .footer-grid {
+      @apply py-10 2xl:py-0 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
+    }
+  }
+
+  .addresses {
+    @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
+
+    & .flex-box {
+      @apply 2xl:justify-start;
+    }
+  }
+
+  .newsletters {
+    @apply max-w-2xl mx-auto gap-5 md:gap-7.5 lg:gap-10;
+
+    & .newsletters-intro {
+      @apply size-fit flex flex-col items-center gap-3;
+    }
+
+    & .newsletter-form {
+      @apply w-full gap-5;
+
+      & .wrapper {
+        & .input {
+          @apply w-full max-w-100 mx-auto;
+        }
+      }
+    }
+  }
+
+  .resources {
+    @apply size-fit flex md:flex-col items-center gap-2;
+
+    & li .rs-link {
+      @apply hover:text-accent transition-colors duration-300 ease-in-out;
+    }
+  }
+
+  .copyrights {
+    @apply w-full py-2 text-center;
   }
 }

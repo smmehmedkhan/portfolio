@@ -8,9 +8,7 @@ export default function FAQ() {
     <section className="container faq flex-box">
       <SectionInro
         data={sectionInros.faq}
-        icon={
-          <MessageCircleQuestionMark className="xs:size-3 sm:size-4 md:size-5" />
-        }
+        icon={<MessageCircleQuestionMark />}
       />
 
       <FaqAccordion />

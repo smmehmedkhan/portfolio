@@ -8,7 +8,7 @@ import type { SectionInroType } from '@/data/sectionInros'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
 
-const MotionBadge = motion(Badge)
+const MotionBadge = motion.create(Badge)
 
 type SectionInroProps = {
   data: SectionInroType
@@ -31,13 +31,21 @@ export default function SectionInro({
   return (
     <div className="section-intro flex-box" data-slot={slot} data-id={id}>
       <MotionBadge
-        className={cn(`badge flex-inline ${badgeStyles}`)}
+        className={cn(
+          'flex-inline',
+          'size-max py-1 md:py-1.5 px-3 md:px-4 gap-1',
+          `${badgeStyles}`
+        )}
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
         transition={fadeDown.transition}
         viewport={{ amount: 0.5 }}>
-        {icon}
-        <Paragraph className="badge-typo" variant="small" as="span">
+        <i className="flex-box size-4 lg:size-5">{icon}</i>
+        <Paragraph
+          className="text-primary-foreground"
+          variant="small"
+          size="sm"
+          as="span">
           {slot}
         </Paragraph>
       </MotionBadge>

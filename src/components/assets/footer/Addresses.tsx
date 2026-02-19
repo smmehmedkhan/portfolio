@@ -1,19 +1,19 @@
 import Link from 'next/link'
 import { FaLink } from 'react-icons/fa'
-import { Button } from '../ui/button'
-import { Paragraph } from '../ui/paragraph'
-import Logo from './nav/Logo'
+import { Button } from '@/components/ui/button'
+import { Paragraph } from '@/components/ui/paragraph'
+import Logo from '../nav/Logo'
 
 export default function Addresses() {
   return (
-    <address className="size-full flex flex-col items-center gap-5 not-italic order-1 md:order-2 2xl:order-1">
+    <address className="addresses">
       {/* Top: Logo + Location */}
-      <div className="flex-box justify-start">
+      <div className="flex-box">
         <Logo />
         <Paragraph className="flex-inline gap-1" size="nm">
           <span>Based in</span>
           <Link
-            className="hover:text-accent hover:underline underline-offset-4 transition-all duration-200 ease-in"
+            className="underline underline-offset-2 hover:text-accent transition-all duration-200 ease-in"
             href="https://maps.app.goo.gl/b4ZUW2if3LEAmmZo9"
             target="_blank"
             rel="noopener noreferrer">
@@ -22,8 +22,8 @@ export default function Addresses() {
         </Paragraph>
       </div>
 
-      {/* Bottom: Message */}
-      <div className="w-full flex flex-col items-center gap-2">
+      {/* Middle: Message */}
+      <div className="w-full flex flex-col items-center 2xl:items-start gap-2">
         <Paragraph variant="large">
           Always ready to bring your ideas to life.
         </Paragraph>
@@ -32,7 +32,8 @@ export default function Addresses() {
         </Paragraph>
       </div>
 
-      <div className="w-full flex-inline justify-center">
+      {/* Bottom: Links */}
+      <div className="w-full flex-center">
         <Button
           className="text-muted-foreground hover:text-accent"
           variant="link"

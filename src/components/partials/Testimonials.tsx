@@ -7,10 +7,7 @@ import { testimonials } from '@/data/testimonials'
 export default function Testimonials() {
   return (
     <section className="container testimonials flex-box">
-      <SectionInro
-        data={sectionInros.testimonials}
-        icon={<BadgeCheck className="xs:size-3 sm:size-4 md:size-5" />}
-      />
+      <SectionInro data={sectionInros.testimonials} icon={<BadgeCheck />} />
 
       <ReviewCarousel data={testimonials} />
     </section>

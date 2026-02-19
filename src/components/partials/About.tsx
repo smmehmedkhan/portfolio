@@ -21,10 +21,7 @@ import { sectionInros } from '@/data/sectionInros'
 export default function About() {
   return (
     <section className="container about flex-box">
-      <SectionInro
-        data={sectionInros.about}
-        icon={<MessageSquareText className="xs:size-3 sm:size-4 md:size-5" />}
-      />
+      <SectionInro data={sectionInros.about} icon={<MessageSquareText />} />
 
       {/* About content layout */}
       <div className="about-layout flip">
