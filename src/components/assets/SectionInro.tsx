@@ -34,13 +34,15 @@ export default function SectionInro({
         className={cn(
           'flex-inline',
           'size-max py-1 md:py-1.5 px-3 md:px-4 gap-1',
-          `${badgeStyles}`
+          badgeStyles
         )}
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}
         transition={fadeDown.transition}
         viewport={{ amount: 0.5 }}>
-        <i className="flex-box size-4 lg:size-5">{icon}</i>
+        <span className="flex-box size-4 lg:size-5" aria-hidden="true">
+          {icon}
+        </span>
         <Paragraph
           className="text-primary-foreground"
           variant="small"

@@ -14,6 +14,7 @@ interface SocialLinksProps {
   animated?: boolean
 }
 
+const MDiv = motion.create('div')
 export default function SocialLinks({
   className,
   buttonClassName,
@@ -33,9 +34,7 @@ export default function SocialLinks({
       className={cn('flex-inline gap-5 md:gap-7.5 lg:gap-10', className)}
       {...(animated && containerAnimation)}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (
-        <Container
-          key={id}
-          whileHover={animated ? buttonHoverAnimation : undefined}>
+        <MDiv key={id} whileHover={animated ? buttonHoverAnimation : undefined}>
           <Button
             variant="outline"
             className={cn(
@@ -52,7 +51,7 @@ export default function SocialLinks({
               />
             </Link>
           </Button>
-        </Container>
+        </MDiv>
       ))}
     </Container>
   )

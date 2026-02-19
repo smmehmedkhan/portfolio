@@ -41,11 +41,11 @@ const paragraphVariants = cva('scroll-m-20 text-balance', {
   variants: {
     variant: {
       main: 'font-normal tracking-normal text-sm md:text-nm lg:text-md',
-      lead: 'text-md lg:text-lg font-semibold xs:tracking-tight racking-normal text-muted-foreground',
+      lead: 'text-md lg:text-lg font-semibold xs:tracking-tight tracking-normal text-muted-foreground',
       large: 'text-md lg:text-lg font-medium tracking-wide font-bold',
       small: 'font-light tracking-tight text-xs md:text-sm lg:text-nm',
       muted: 'text-muted-foreground text-xs md:text-sm',
-      code: 'font-mono text-accent-foreground px-[0.3rem] py-[0.2rem] rounded bg-accent dark.bg-accent/30 relative text-xs md:text-sm',
+      code: 'font-mono text-accent-foreground px-[0.3rem] py-[0.2rem] rounded bg-accent dark:bg-accent/30 relative text-xs md:text-sm',
     },
     size: {
       xs: 'text-[length:var(--text-xs)]',

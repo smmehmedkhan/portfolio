@@ -13,9 +13,8 @@ const MButton = motion.create(Button)
 
 const newsletterSchema = z.object({
   email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Please enter a valid email address'),
+    .email({ error: 'Please enter a valid email address' })
+    .min(1, 'Email is required'),
 })
 
 type NewsletterFormData = z.infer<typeof newsletterSchema>
