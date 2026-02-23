@@ -10,12 +10,14 @@ export const CONFIG = {
     URL: env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     AUTHOR: 'Mehmed Khan',
     KEYWORDS: [
+      'Web Developer',
       'Full-Stack Developer',
-      'MERN Stack',
-      'React',
+      'Full-Stack Engineer',
+      'MERN Stack Developer',
+      'PERN Stack Developer',
+      'React.js',
       'Next.js',
       'TypeScript',
-      'Web Developer',
     ],
   },
 
@@ -27,8 +29,8 @@ export const CONFIG = {
       'Web Developer',
       'Full-Stack Engineer',
       'MERN Stack Developer',
+      'PERN Stack Developer',
       'ReactJs & NextJs Developer',
-      'DevOps & DevSecOps Beginner',
     ],
     EMAIL: env.NEXT_PUBLIC_EMAIL || 'contact@mehmedkhan.dev',
     LOCATION: 'Dhaka, Bangladesh',
@@ -37,12 +39,13 @@ export const CONFIG = {
 
   // Social links
   SOCIAL: {
-    GITHUB: env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/smmehmedkhan',
-    LINKEDIN:
-      env.NEXT_PUBLIC_LINKEDIN_URL || 'https://linkedin.com/in/smmehmedkhan',
-    TWITTER:
-      env.NEXT_PUBLIC_TWITTER_URL || 'https://twitter.com/sm_mehmed_khan',
-    PORTFOLIO: env.NEXT_PUBLIC_PORTFOLIO_URL || 'https://mehmedkhan.dev',
+    GITHUB: env.NEXT_PUBLIC_GITHUB_URL || '#',
+    DISCORD: env.NEXT_PUBLIC_DISCORD_URL || '#',
+    FACEBOOK: env.NEXT_PUBLIC_FACEBOOK_URL || '#',
+    INSTAGRAM: env.NEXT_PUBLIC_INSTAGRAM_URL || '#',
+    LINKEDIN: env.NEXT_PUBLIC_LINKEDIN_URL || '#',
+    TWITTER: env.NEXT_PUBLIC_TWITTER_URL || '#',
+    PORTFOLIO: env.NEXT_PUBLIC_PORTFOLIO_URL || '#',
   },
 
   // App settings
@@ -63,12 +66,14 @@ export const CONFIG = {
 
   // UI Constants
   UI: {
-    CONTAINER_MAX_WIDTH: '1200px',
+    CONTAINER_MAX_WIDTH: '1536px',
     BREAKPOINTS: {
+      XS: '320px',
       SM: '640px',
       MD: '768px',
       LG: '1024px',
       XL: '1280px',
+      '2xl': '1536px',
     },
   },
 

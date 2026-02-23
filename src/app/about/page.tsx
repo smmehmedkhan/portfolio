@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: `${CONFIG.SITE.URL}/about`,
     images: [
       {
-        url: '/images/mehmed-khan.png',
+        url: '/images/Mehmed_Khan.png',
         width: 1200,
         height: 630,
         alt: `${CONFIG.PERSONAL.NAME} - ${CONFIG.PERSONAL.ROLE}`,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `About | ${CONFIG.SITE.NAME}`,
     description: `Learn more about ${CONFIG.PERSONAL.NAME}, a ${CONFIG.PERSONAL.ROLE}.`,
-    images: ['/images/mehmed-khan.png'],
+    images: ['/images/mehmed_khan.webp'],
   },
 }
 
