@@ -12,9 +12,11 @@ export default function HeroIntro() {
   return (
     <div className="wrapper hero-intro">
       {/* Headings */}
-      <div className="size-full">
+      <div className="size-full flex flex-col gap-2">
         <Heading
+          className="text-lg sm:text-xl"
           variant="sub"
+          size="xl"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}
@@ -22,7 +24,9 @@ export default function HeroIntro() {
           {greeting}
         </Heading>
         <Heading
+          className="text-xl sm:text-2xl h-12.5 sm:h-17.5 md:h-9 lg:h-18 2xl:h-10"
           variant="main"
+          size="2xl"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}

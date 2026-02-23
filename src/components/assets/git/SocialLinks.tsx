@@ -38,7 +38,7 @@ export default function SocialLinks({
           <Button
             variant="outline"
             className={cn(
-              'size-8 md:size-10 lg:size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
+              'size-10 md:size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
             <Link
@@ -46,9 +46,7 @@ export default function SocialLinks({
               aria-label={name}
               target="_blank"
               rel="noopener noreferrer">
-              <Icon
-                className={cn('size-6 md:size-8 lg:size-10', iconClassName)}
-              />
+              <Icon className={cn('size-8 md:size-10', iconClassName)} />
             </Link>
           </Button>
         </MDiv>

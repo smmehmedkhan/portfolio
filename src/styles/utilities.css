@@ -32,7 +32,7 @@
   }
 
   .hero-caret {
-    @apply inline-block w-[0.6ch] h-8 lg:h-11 xl:h-12 rounded-sm ml-2 bg-amber-500;
+    @apply inline-block w-[0.6ch] h-8 lg:h-10 rounded-sm ml-2 bg-amber-500;
   }
 
   /* Text utilities */

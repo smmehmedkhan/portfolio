@@ -53,7 +53,6 @@ export default function SectionInro({
       </MotionBadge>
       <Heading
         className={headingStyles}
-        variant={'primary'}
         animated
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}

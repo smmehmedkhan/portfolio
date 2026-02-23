@@ -14,17 +14,17 @@ import { cn } from '@/lib/utils'
  * CVA-based heading variants with semantic HTML tag mapping
  * Supports 6 heading levels (h1-h6) with customizable sizing and animations
  */
-const headingVariants = cva('scroll-m-20 text-balance', {
+const headingVariants = cva('scroll-m-20 text-pretty', {
   variants: {
     variant: {
-      main: 'xs:h-17 sm:h-20 md:h-11 lg:h-24 2xl:h-13 xs:text-lg sm:text-xl md:text-2xl font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
-      sub: 'xs:text-md sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight',
+      main: 'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
+      sub: 'text-muted-foreground font-semibold tracking-tight',
       primary:
-        'xs:text-xl sm:text-2xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
+        'text-xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
       secondary:
-        'xs:text-lg sm:text-xl font-semibold text-muted-foreground tracking-tight md:tracking-normal lg:tracking-wide',
+        'text-lg font-semibold text-muted-foreground tracking-tight md:tracking-normal lg:tracking-wide',
       title: 'text-md font-semibold tracking-tight',
-      role: 'text-sm font-medium tracking-tight text-muted-foreground',
+      role: 'text-nm font-medium tracking-tight text-muted-foreground',
     },
     size: {
       xs: 'text-[length:var(--text-xs)]',
@@ -40,7 +40,7 @@ const headingVariants = cva('scroll-m-20 text-balance', {
   },
   defaultVariants: {
     variant: 'primary',
-    size: '2xl',
+    size: 'xl',
   },
 })
 
@@ -166,7 +166,7 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
   (
     {
       variant = 'primary',
-      size = 'lg',
+      size = 'xl',
       as: asOverride,
       animated = false,
       initial,

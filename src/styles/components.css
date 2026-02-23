@@ -39,10 +39,10 @@
 
   /* ========== Hero banner ========== */
   .hero {
-    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden gap-20 xs:gap-5 sm:gap-7.5 md:gap-10;
+    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden gap-10 lg:gap-0 xl:gap-10;
 
     & .hero-intro {
-      @apply xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit xs:gap-3 sm:gap-4 md:gap-5 lg:gap-10;
+      @apply xs:max-w-md sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-5;
 
       & .headings {
         @apply size-full max-w-md sm:max-w-full flex flex-col xs:gap-1 sm:gap-1.5 gap-2 overflow-hidden;
@@ -83,10 +83,10 @@
 
   /* ========== About section ========== */
   .about {
-    @apply gap-12 md:gap-20 lg:gap-30;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .about-layout {
-      @apply size-full xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit flex items-center xs:gap-3 sm:gap-4 md:gap-5 lg:gap-10;
+      @apply size-full xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit flex items-center gap-5 sm:gap-6.5 md:gap-7.5 lg:gap-10;
 
       & .about-caro {
         @apply lg:basis-1/2 px-0 sm:px-12 box-border;
@@ -104,7 +104,7 @@
 
   /* ========== Tech stack section ========== */
   .tech-stack {
-    @apply py-12 md:py-18 lg:py-24 gap-12 md:gap-16 lg:gap-20;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .skill-grid {
       @apply w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-16;
@@ -121,10 +121,10 @@
 
   /* ========== Showcase section ========== */
   .case-studies {
-    @apply gap-10 md:gap-15 lg:gap-20 xl:gap-30;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .project {
-      @apply xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-5 md:gap-10 lg:gap-20;
+      @apply max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-5 md:gap-10 lg:gap-20;
 
       & .project-content {
         @apply size-full flex flex-col items-center gap-8 lg:gap-10;
@@ -143,7 +143,7 @@
             }
 
             & .case-info {
-              @apply size-full md:max-w-2xl lg:max-w-full flex flex-col xs:gap-2 sm:gap-3 gap-4 text-center;
+              @apply size-full md:max-w-2xl lg:max-w-full flex flex-col gap-5 text-center;
 
               & .badge-container {
                 @apply flex flex-wrap gap-2 justify-center;
@@ -162,7 +162,7 @@
 
   /* ========== Testimonials section ========== */
   .testimonials {
-    @apply py-10 sm:py-15 md:py-20 lg:py-30 gap-10 sm:gap-15 md:gap-20 lg:gap-30;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .review-caro {
       @apply px-0 sm:px-12 box-border;
@@ -171,7 +171,7 @@
 
   /* ========== FAQ section ========== */
   .faq {
-    @apply py-10 sm:py-15 md:py-20 lg:py-30 gap-10 sm:gap-15 md:gap-20 lg:gap-30;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .accordion {
       @apply size-full max-w-2xl bg-card border border-border rounded-sm md:rounded-md overflow-hidden;
@@ -183,18 +183,15 @@
     @apply 2xl:flex-1 py-10 2xl:py-0 bg-primary relative overflow-hidden;
 
     & .git-container {
-      @apply gap-5 md:gap-7.5 lg:gap-10;
+      @apply gap-5 sm:gap-7.5 md:gap-10 lg:gap-12.5;
     }
   }
 
   /* ========== Footer ========== */
-  .footer {
-    @apply 2xl:flex-1;
-
-    & .footer-grid {
-      @apply py-10 2xl:py-0 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
-    }
+  .footer-grid {
+    @apply py-10 2xl:py-0 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
   }
+
 
   .addresses {
     @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
