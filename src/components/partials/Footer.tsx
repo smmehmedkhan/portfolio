@@ -5,7 +5,7 @@ import Resources from '@/components/assets/footer/Resources'
 
 export default function Footer() {
   return (
-    <footer className="wrapper footer">
+    <footer className="wrapper">
       <div className="container footer-grid">
         {/* addresses: left on lg */}
         <div className="2xl:order-1">

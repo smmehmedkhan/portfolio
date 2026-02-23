@@ -15,13 +15,13 @@ export const sectionInros: Record<string, SectionInroType> = {
   },
   skills: {
     id: 2,
-    slot: 'Skills',
+    slot: 'My Skills',
     title: 'What technologies do I master?',
     description: 'A showcase of my technical proficiencies and expertise.',
   },
   project: {
     id: 3,
-    slot: 'Projects',
+    slot: 'Case Studies',
     title: 'What have I built recently?',
     description:
       'Explore real-world applications and innovative solutions that showcase my problem-solving abilities and technical craftsmanship.',

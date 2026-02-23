@@ -17,6 +17,7 @@ export default function Skillset({ category }: SkillsetProps) {
       <Heading
         className="flex-inline gap-2 md:gap-3"
         variant="secondary"
+        size="lg"
         animated
         initial={fadeDown.initial}
         whileInView={fadeDown.whileInView}

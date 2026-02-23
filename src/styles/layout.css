@@ -1,6 +1,6 @@
 @layer layout {
   .container {
-    @apply size-full max-w-8xl xs:px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-0 mx-auto box-border;
+    @apply size-full max-w-8xl xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 2xl:px-0 mx-auto box-border;
   }
 
   .wrapper {
@@ -20,10 +20,10 @@
   }
 
   main {
-    @apply xs:pb-10 sm:pb-12 md:pb-16 pb-20 xs:gap-10 sm:gap-12 md:gap-16 lg:gap-20;
+    @apply pb-10 sm:pb-15 md:pb-20 lg:pb-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
   }
 
   footer {
-    @apply w-full h-1/2;
+    @apply size-full 2xl:flex-1;
   }
 }
