@@ -31,20 +31,20 @@ export interface AboutTypographyType {
 export const aboutTypographys: AboutTypographyType[] = [
   {
     id: 1,
-    title: 'Introduction to Web Development',
+    title: 'My Passion',
     description:
-      "I'm a passionate Full-Stack Engineer with expertise in the MERN stack, specializing in building modern, responsive, and scalable web applications. My journey in web development started with a curiosity about how things work on the internet, and it has evolved into a deep passion for creating exceptional digital experiences.",
+      "Web development isn't just my career — it's what genuinely excites me. A simple curiosity about how internet works grew into building fast, scalable, and meaningful web experiences.",
   },
   {
     id: 2,
-    title: 'My Expertise in Web Development',
+    title: 'My Expertise',
     description:
-      'I excel at crafting beautiful, eye-catching frontend interfaces using React and Next.js, while also building robust, secure, and enterprise-grade APIs on the backend. My approach combines creativity with technical excellence, ensuring that every project not only looks great but also performs flawlessly.',
+      'I specialize in full-stack development, with expertise across the modern web stack — from UI to infrastructure. Every project I take on is built with clean architecture, type safety, and production-readiness in mind.',
   },
   {
     id: 3,
-    title: 'My Passion for Web Development',
+    title: 'Beyond the Code',
     description:
-      "When I'm not coding, I'm continuously learning about the latest web technologies, DevOps practices, and security best practices to stay at the forefront of modern web development.",
+      "When I'm not building, I'm learning — exploring the latest in DevOps, cloud infrastructure, and security best practices. I believe staying sharp is part of the job, and continuous growth is what separates good engineers from great ones.",
   },
 ]

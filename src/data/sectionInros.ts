@@ -45,4 +45,11 @@ export const sectionInros: Record<string, SectionInroType> = {
     description:
       'Have a project in mind or want to discuss potential opportunities? Feel free to reach out!',
   },
+  contact: {
+    id: 7,
+    slot: 'Contact Me',
+    title: 'Ready to start your project?',
+    description:
+      'Fill out the form and I will get back to you as soon as possible.',
+  },
 }
