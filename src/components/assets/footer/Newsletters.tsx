@@ -11,8 +11,6 @@ export default function Newsletters() {
       <div className="newsletters-intro">
         <Heading
           className="text-foreground capitalize"
-          variant="secondary"
-          size="md"
           animated
           initial={fadeDown.initial}
           whileInView={fadeDown.whileInView}

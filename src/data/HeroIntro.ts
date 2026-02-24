@@ -8,5 +8,5 @@ export const heroIntro = {
     'React & Next Developer',
   ],
   description:
-    'I build amaze, eye-catching and responsive app, fast and reliable REST/GrapQL API. Implement authentication, logging and monitoring, CI/CD, configure secure servers—delivering end-to-end solutions from development to production.',
+    'I craft polished, responsive, eye-catching UIs and build reliable, secure APIs. With a sharp focus on authentication, observability, and production server security — I deliver complete end-to-end solutions from development to production.',
 }

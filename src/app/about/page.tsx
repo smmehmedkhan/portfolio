@@ -1,7 +1,14 @@
+import { MessageSquareText } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import AboutCaro from '@/components/assets/about/AboutCaro'
+import AboutTypo from '@/components/assets/about/AboutTypo'
+import SectionInro from '@/components/assets/SectionInro'
 import { Heading } from '@/components/ui/heading'
+import { Paragraph } from '@/components/ui/paragraph'
 import { CONFIG } from '@/constants/config'
+import { aboutImages, aboutTypographys } from '@/data/about'
+import { sectionInros } from '@/data/sectionInros'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -29,70 +36,75 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="w-full min-h-dvh container py-20">
-      <div className="flex flex-col items-center gap-12">
-        <Heading variant="primary">About Me</Heading>
+    <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
+      <SectionInro data={sectionInros.about} icon={<MessageSquareText />} />
 
-        <div className="flex flex-col md:flex-row items-center gap-12 max-w-4xl">
-          <div className="shrink-0">
-            <Image
-              src="/images/mehmed-khan.png"
-              alt={CONFIG.PERSONAL.NAME}
-              width={300}
-              height={300}
-              className="rounded-lg shadow-lg"
-              priority
-            />
+      <section className="container about gap-25">
+        {/* About content layout */}
+        <div className="about-layout alter">
+          <div className="wrapper about-typo">
+            <div className="wrapper gap-2">
+              <Heading
+                className="size-full text-center lg:text-right tracking-normal lg:tracking-wide"
+                variant="role"
+                size="nm">
+                My Passion
+              </Heading>
+              <Paragraph className="text-center lg:text-right tracking-normal lg:tracking-wide">
+                Web development isn't just my career — it's what genuinely
+                excites me. A simple curiosity about how internet works grew
+                into building fast, scalable, and meaningful web experiences.
+              </Paragraph>
+            </div>
+            <div className="wrapper gap-2">
+              <Heading
+                className="size-full text-center lg:text-right tracking-normal lg:tracking-wide"
+                variant="role"
+                size="nm">
+                My Passion
+              </Heading>
+              <Paragraph className="text-center lg:text-right tracking-normal lg:tracking-wide">
+                Web development isn't just my career — it's what genuinely
+                excites me. A simple curiosity about how internet works grew
+                into building fast, scalable, and meaningful web experiences.
+              </Paragraph>
+            </div>
           </div>
+          <AboutCaro data={aboutImages} />
+        </div>
 
-          <div className="flex flex-col gap-6 text-lg leading-relaxed">
-            <p>
-              Hi, I'm <strong>{CONFIG.PERSONAL.NAME}</strong>, a passionate{' '}
-              <strong>{CONFIG.PERSONAL.ROLE}</strong> based in Dhaka,
-              Bangladesh. I specialize in building modern, responsive, and
-              scalable web applications using cutting-edge technologies.
-            </p>
-
-            <p>
-              My expertise lies in the MERN stack (MongoDB, Express, React, and
-              Node.js), with a particular focus on React and Next.js for
-              frontend development. I'm skilled at creating beautiful,
-              eye-catching user interfaces that provide exceptional user
-              experiences while ensuring the underlying code is clean,
-              maintainable, and performant.
-            </p>
-
-            <p>
-              On the backend, I build robust, secure, and enterprise-grade APIs
-              that can handle high traffic and scale with your business needs. I
-              follow best practices for security, performance optimization, and
-              code quality, ensuring that every application I build is
-              production-ready.
-            </p>
-
-            <p>
-              I'm also exploring DevOps and DevSecOps practices to enhance my
-              development workflow and ensure secure deployments. Continuous
-              learning is a core part of my journey, and I stay updated with the
-              latest trends and technologies in web development.
-            </p>
-
-            <div className="mt-4">
-              <h2 className="text-2xl font-bold mb-4">What I Do</h2>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Build responsive and modern web applications</li>
-                <li>Develop scalable RESTful APIs and microservices</li>
-                <li>Create beautiful UI/UX designs with React and Next.js</li>
-                <li>
-                  Implement secure authentication and authorization systems
-                </li>
-                <li>Optimize applications for performance and SEO</li>
-                <li>Write clean, maintainable, and well-documented code</li>
-              </ul>
+        <div className="about-layout flip">
+          <AboutCaro data={aboutImages} />
+          <div className="wrapper about-typo">
+            <div className="wrapper gap-2">
+              <Heading
+                className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
+                variant="role"
+                size="nm">
+                My Passion
+              </Heading>
+              <Paragraph className="text-center lg:text-left tracking-normal lg:tracking-wide">
+                Web development isn't just my career — it's what genuinely
+                excites me. A simple curiosity about how internet works grew
+                into building fast, scalable, and meaningful web experiences.
+              </Paragraph>
+            </div>
+            <div className="wrapper gap-2">
+              <Heading
+                className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
+                variant="role"
+                size="nm">
+                My Passion
+              </Heading>
+              <Paragraph className="text-center lg:text-left tracking-normal lg:tracking-wide">
+                Web development isn't just my career — it's what genuinely
+                excites me. A simple curiosity about how internet works grew
+                into building fast, scalable, and meaningful web experiences.
+              </Paragraph>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
   )
 }

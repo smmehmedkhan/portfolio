@@ -192,7 +192,6 @@
     @apply py-10 2xl:py-0 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
   }
 
-
   .addresses {
     @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
 

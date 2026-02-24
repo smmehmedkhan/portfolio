@@ -24,16 +24,22 @@ export default function Addresses() {
 
       {/* Middle: Message */}
       <div className="w-full flex flex-col items-center 2xl:items-start gap-2">
-        <Paragraph variant="large">
+        <Paragraph
+          variant="large"
+          size="lg"
+          className="text-md lg:text-lg leading-normal">
           Always ready to bring your ideas to life.
         </Paragraph>
-        <Paragraph variant="large">
+        <Paragraph
+          variant="large"
+          size="lg"
+          className="text-md lg:text-lg leading-normal">
           Let's build something amazing together.
         </Paragraph>
       </div>
 
       {/* Bottom: Links */}
-      <div className="w-full flex-center">
+      <div className="w-full inline-flex justify-center 2xl:justify-start">
         <Button
           className="text-muted-foreground hover:text-accent"
           variant="link"

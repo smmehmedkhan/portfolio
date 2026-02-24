@@ -20,11 +20,11 @@ const headingVariants = cva('scroll-m-20 text-pretty', {
       main: 'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
       sub: 'text-muted-foreground font-semibold tracking-tight',
       primary:
-        'text-xl font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
+        'font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',
       secondary:
-        'text-lg font-semibold text-muted-foreground tracking-tight md:tracking-normal lg:tracking-wide',
-      title: 'text-md font-semibold tracking-tight',
-      role: 'text-nm font-medium tracking-tight text-muted-foreground',
+        'font-semibold text-muted-foreground tracking-tight md:tracking-normal lg:tracking-wide',
+      title: 'font-semibold tracking-tight',
+      role: 'font-medium tracking-tight text-muted-foreground',
     },
     size: {
       xs: 'text-[length:var(--text-xs)]',
