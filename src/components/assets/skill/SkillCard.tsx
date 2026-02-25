@@ -14,19 +14,17 @@ import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import type { SkillCardProps } from '@/types'
 
+const MLi = motion.create('li')
+const MDiv = motion.create('div')
+
 export default function SkillCard({ item, index }: SkillCardProps) {
   const fadeDown = getAnimationPreset('fade-down')
   const pulse = getAnimationPreset('pulse')
 
   return (
-    <motion.li
-      initial={fadeDown.initial}
-      whileInView={fadeDown.whileInView}
-      transition={{
-        ...fadeDown.transition,
-        delay: 0.2 * index,
-      }}
-      viewport={{ amount: 0.6 }}>
+    <MLi
+      {...fadeDown}
+      transition={{ ...fadeDown.transition, delay: 0.2 * index }}>
       <HoverCard>
         <HoverCardTrigger asChild>
           <Button
@@ -34,11 +32,7 @@ export default function SkillCard({ item, index }: SkillCardProps) {
             variant="outline"
             className="size-12 sm:size-14 p-2 rounded-xl">
             <Link href={item.link} target="_blank" rel="noopener noreferrer">
-              <motion.div
-                initial={pulse.initial}
-                whileInView={pulse.whileInView}
-                whileHover={pulse.animate}
-                transition={pulse.transition}>
+              <MDiv {...pulse}>
                 <Image
                   src={item.src}
                   alt={item.title}
@@ -46,7 +40,7 @@ export default function SkillCard({ item, index }: SkillCardProps) {
                   height={40}
                   className="size-8 sm:size-10 lg:size-12 object-contain"
                 />
-              </motion.div>
+              </MDiv>
             </Link>
           </Button>
         </HoverCardTrigger>
@@ -64,6 +58,6 @@ export default function SkillCard({ item, index }: SkillCardProps) {
           </Paragraph>
         </HoverCardContent>
       </HoverCard>
-    </motion.li>
+    </MLi>
   )
 }

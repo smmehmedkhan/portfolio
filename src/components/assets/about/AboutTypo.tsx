@@ -26,8 +26,6 @@ function AboutTypoBlock({
   item: AboutTypographyType
   index: number
 }) {
-  const fadeDown = getAnimationPreset('fade-down')
-
   return (
     <div className="wrapper gap-2" key={index}>
       <Heading
@@ -35,17 +33,13 @@ function AboutTypoBlock({
         variant="role"
         size="nm"
         animated
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{ ...fadeDown.transition, delay: index * 0.2 }}>
+        transition={{ delay: 0.2 * index }}>
         {item.title}
       </Heading>
       <Paragraph
         className="text-center lg:text-left tracking-normal lg:tracking-wide"
         animated
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{ ...fadeDown.transition, delay: index * 0.2 }}>
+        transition={{ delay: 0.2 * index * 2 }}>
         {item.description}
       </Paragraph>
     </div>

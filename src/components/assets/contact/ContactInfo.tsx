@@ -14,18 +14,13 @@ export default function ContactInfo() {
           className="text-foreground text-center md:text-start"
           variant="secondary"
           size="lg"
-          animated
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={fadeDown.transition}>
+          animated>
           Let's Connect🤝
         </Heading>
         <Paragraph
           className="text-muted-foreground text-pretty text-center md:text-start"
           animated
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={fadeDown.transition}>
+          transition={{ delay: 0.2 }}>
           I'm always open to discussing new projects, creative ideas, or
           opportunities to be part of your vision. Whether you have a question
           or just want to say hi, feel free to reach out!
@@ -39,9 +34,7 @@ export default function ContactInfo() {
             variant="secondary"
             size="lg"
             animated
-            initial={fadeDown.initial}
-            whileInView={fadeDown.whileInView}
-            transition={fadeDown.transition}>
+            transition={{ delay: 0.4 }}>
             Email
           </Heading>
           <Link
@@ -57,9 +50,7 @@ export default function ContactInfo() {
             variant="secondary"
             size="lg"
             animated
-            initial={fadeDown.initial}
-            whileInView={fadeDown.whileInView}
-            transition={fadeDown.transition}>
+            transition={{ delay: 0.6 }}>
             Location
           </Heading>
           <Link
@@ -77,9 +68,7 @@ export default function ContactInfo() {
             variant="secondary"
             size="lg"
             animated
-            initial={fadeDown.initial}
-            whileInView={fadeDown.whileInView}
-            transition={fadeDown.transition}>
+            transition={{ delay: 0.8 }}>
             Social Media
           </Heading>
           <div className="flex flex-col gap-2">

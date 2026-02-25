@@ -11,7 +11,12 @@ export default function CaseStudies() {
       <SectionInro data={sectionInros.project} icon={<FolderKanban />} />
 
       {projects.map((project: ProjectTypes, index) => (
-        <Project key={project.id} project={project} index={index} />
+        <Project
+          key={project.id}
+          data={project}
+          isProjectPage={false}
+          index={index}
+        />
       ))}
     </section>
   )

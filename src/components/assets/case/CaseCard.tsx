@@ -23,7 +23,7 @@ const cardVariants: Variants = {
 const MDiv = motion.create('div')
 const MImage = motion.create(Image)
 
-export default function CaseCard({ image, title }: CaseCardProps) {
+export default function CaseCard({ image, name }: CaseCardProps) {
   const fade = getAnimationPreset('fade')
 
   return (
@@ -64,13 +64,11 @@ export default function CaseCard({ image, title }: CaseCardProps) {
           <MImage
             className="case-card-image"
             src={image}
-            alt={title}
+            alt={name}
             width={300}
             height={300}
-            initial={fade.initial}
-            whileInView={fade.whileInView}
+            {...fade}
             transition={{ ...fade.transition, delay: 0.4 }}
-            viewport={{ amount: 0.6 }}
           />
         </MDiv>
       </MDiv>

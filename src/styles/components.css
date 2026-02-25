@@ -227,6 +227,6 @@
   }
 
   .copyrights {
-    @apply w-full py-2 text-center;
+    @apply w-full py-2 text-center bottom-0;
   }
 }

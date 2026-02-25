@@ -36,10 +36,7 @@ export default function SectionInro({
           'size-max py-1 md:py-1.5 px-3 md:px-4 gap-1',
           badgeStyles
         )}
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={fadeDown.transition}
-        viewport={{ amount: 0.5 }}>
+        {...fadeDown}>
         <span className="flex-box size-4 lg:size-5" aria-hidden="true">
           {icon}
         </span>
@@ -51,21 +48,14 @@ export default function SectionInro({
           {slot}
         </Paragraph>
       </MotionBadge>
-      <Heading
-        className={headingStyles}
-        animated
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{ ...fadeDown.transition, delay: 0.2 }}>
+      <Heading className={headingStyles} animated transition={{ delay: 0.2 }}>
         {title}
       </Heading>
       <Paragraph
         className={cn(`text-center ${paragraphStyles}`)}
         variant="lead"
         animated
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{ ...fadeDown.transition, delay: 0.2 * 2 }}>
+        transition={{ delay: 0.4 }}>
         {description}
       </Paragraph>
     </div>

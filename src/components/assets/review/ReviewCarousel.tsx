@@ -19,18 +19,14 @@ import type { Testimonial } from '@/data/testimonials'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
 const MDiv = motion.create('div')
+const MCardFooter = motion.create(CardFooter)
 
 export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv
-      className="wrapper review-caro"
-      initial={fade.initial}
-      whileInView={fade.whileInView}
-      transition={fade.transition}
-      viewport={{ amount: 0.6 }}>
+    <MDiv className="wrapper review-caro" {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
@@ -45,7 +41,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                     <StarRating rating={testimonial.rating} size={25} />
                   </CardHeader>
                   <CardContent className="text-center">
-                    <Paragraph>
+                    <Paragraph animated transition={{ delay: 0.5 }}>
                       <Paragraph className="mr-1" as="span">
                         ❛
                       </Paragraph>
@@ -55,7 +51,10 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                       </Paragraph>
                     </Paragraph>
                   </CardContent>
-                  <CardFooter className="size-full flex-inline gap-2 sm:gap-3 md:gap-4">
+                  <MCardFooter
+                    className="size-full flex-inline gap-2 sm:gap-3 md:gap-4"
+                    {...fade}
+                    transition={{ ...fade.transition, delay: 0.6 }}>
                     <Avatar className="size-8 md:size-10">
                       <AvatarImage src={testimonial.image} />
                       <AvatarFallback>CN</AvatarFallback>
@@ -68,7 +67,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                         {testimonial.position}
                       </Heading>
                     </div>
-                  </CardFooter>
+                  </MCardFooter>
                 </Card>
               </div>
             </CarouselItem>

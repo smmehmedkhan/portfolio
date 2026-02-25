@@ -5,9 +5,11 @@ import type {
   TargetAndTransition,
   Transition,
   VariantLabels,
+  ViewportOptions,
 } from 'motion/react'
 import { motion } from 'motion/react'
 import React from 'react'
+import { getAnimationPreset } from '@/lib/animations/registry'
 import { env } from '@/lib/env'
 import { cn } from '@/lib/utils'
 
@@ -37,7 +39,7 @@ type ParagraphVariant = 'main' | 'lead' | 'large' | 'small' | 'muted' | 'code'
  *
  * @see {@link https://shadcn-ui.com/} for design system reference
  */
-const paragraphVariants = cva('scroll-m-20 text-balance', {
+const paragraphVariants = cva('scroll-m-20 text-pretty', {
   variants: {
     variant: {
       main: 'font-normal tracking-normal text-sm md:text-nm lg:text-md',
@@ -85,23 +87,17 @@ const variantTagMap: Record<ParagraphVariant, ParagraphTag> = {
 }
 
 /**
+ * Fade animation preset from animation registry
+ * @see {@link getAnimationPreset}
+ */
+const fade = getAnimationPreset('fade')
+
+/**
  * Default Framer Motion animation properties
  * Provides smooth entrance animations with viewport trigger
  */
 const defaultMotionProps = {
-  initial: {
-    opacity: 0,
-    transform: 'translateY(-100%)',
-  },
-  whileInView: {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-  transition: {
-    delay: 0.2,
-    type: 'spring' as const,
-    duration: 0.6,
-  },
+  ...fade,
   viewport: {
     amount: 0.6,
   },
@@ -130,10 +126,14 @@ function getMotionComponent(tag: ParagraphTag) {
   return motionMap[tag] || motion.create('span')
 }
 
-type ParagraphElement = HTMLParagraphElement
+/**
+ * HTML element type for paragraph component
+ * Can be any valid paragraph-related HTML element
+ */
+type ParagraphElement = HTMLElement
 
 interface ParagraphProps
-  extends React.HTMLAttributes<HTMLParagraphElement>,
+  extends React.HTMLAttributes<HTMLElement>,
     VariantProps<typeof paragraphVariants> {
   /**
    * Semantic HTML paragraph tag override
@@ -204,6 +204,23 @@ interface ParagraphProps
    * Extends Framer Motion's transition options
    */
   transition?: Transition
+
+  /**
+   * Viewport configuration for scroll-triggered animations (Framer Motion)
+   * Controls when and how animations trigger based on viewport intersection.
+   *
+   * @default { amount: 0.6 }
+   * @remarks
+   * Only applies when animated={true}
+   * - `amount`: Percentage of element visible before triggering (0-1)
+   * - `once`: Whether animation should only happen once
+   * - `margin`: Viewport margin offset
+   *
+   * @see {@link https://motion.dev/docs/react-scroll-animations}
+   * @example
+   * <Paragraph animated viewport={{ amount: 0.8, once: true }}>Triggers at 80% visible</Paragraph>
+   */
+  viewport?: ViewportOptions
 }
 
 /**
@@ -269,6 +286,7 @@ const Paragraph = React.forwardRef<ParagraphElement, ParagraphProps>(
       whileInView,
       animate,
       transition,
+      viewport,
       className,
       children,
       ...props
@@ -306,19 +324,11 @@ const Paragraph = React.forwardRef<ParagraphElement, ParagraphProps>(
       initial: initial ?? defaultMotionProps.initial,
       whileInView: whileInView ?? defaultMotionProps.whileInView,
       animate,
-      transition: transition ?? defaultMotionProps.transition,
+      transition: transition
+        ? { ...defaultMotionProps.transition, ...transition }
+        : defaultMotionProps.transition,
+      viewport: viewport ?? defaultMotionProps.viewport,
     }
-
-    // Base component props (HTML standard attributes only)
-    const baseProps = {
-      className: mergedClassName,
-      'data-slot': 'paragraph',
-      'data-variant': variant,
-      'data-size': size,
-      ref,
-      ...props,
-      ...(animated && motionConfig),
-    } as const
 
     // Return animated or static element
     if (animated) {
@@ -331,12 +341,18 @@ const Paragraph = React.forwardRef<ParagraphElement, ParagraphProps>(
           data-slot="paragraph"
           data-variant={variant}
           data-size={size}
-          ref={ref}
           {...motionConfig}
           role={props.role}
+          tabIndex={props.tabIndex}
+          title={props.title}
           aria-label={props['aria-label']}
           aria-live={props['aria-live']}
-          aria-hidden={props['aria-hidden']}>
+          aria-hidden={props['aria-hidden']}
+          id={props.id}
+          style={props.style}
+          onClick={props.onClick}
+          onMouseEnter={props.onMouseEnter}
+          onMouseLeave={props.onMouseLeave}>
           {children}
         </MotionComponent>
       )
@@ -345,11 +361,12 @@ const Paragraph = React.forwardRef<ParagraphElement, ParagraphProps>(
     return React.createElement(
       tag,
       {
-        ...baseProps,
-        role: props.role,
-        'aria-label': props['aria-label'],
-        'aria-live': props['aria-live'],
-        'aria-hidden': props['aria-hidden'],
+        className: mergedClassName,
+        'data-slot': 'paragraph',
+        'data-variant': variant,
+        'data-size': size,
+        ref,
+        ...props,
       },
       children
     )
@@ -370,4 +387,4 @@ const MemoizedParagraph = React.memo(Paragraph)
 MemoizedParagraph.displayName = 'Paragraph(Memoized)'
 
 export { Paragraph, MemoizedParagraph, paragraphVariants }
-export type { ParagraphProps }
+export type { ParagraphProps, ParagraphTag, ParagraphVariant }

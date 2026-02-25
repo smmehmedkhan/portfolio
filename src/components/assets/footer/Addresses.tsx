@@ -1,16 +1,39 @@
+'use client'
+
+import { Link2 } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
-import { FaLink } from 'react-icons/fa'
 import { Button } from '@/components/ui/button'
 import { Paragraph } from '@/components/ui/paragraph'
+import { getAnimationPreset } from '@/lib/animations/registry'
+import { env } from '@/lib/env'
 import Logo from '../nav/Logo'
 
+const MButton = motion.create(Button)
+
+const btnItems = [
+  { id: 1, label: 'Contact Me', href: '/contact' },
+  {
+    id: 2,
+    label: 'Join Community',
+    href: env.NEXT_PUBLIC_DISCORD_URL || '#',
+  },
+  {
+    id: 3,
+    label: 'Source Code',
+    href: env.NEXT_PUBLIC_SOURCE_URL || '#',
+  },
+]
+
 export default function Addresses() {
+  const fadeDown = getAnimationPreset('fade-down')
+
   return (
     <address className="addresses">
       {/* Top: Logo + Location */}
       <div className="flex-box">
         <Logo />
-        <Paragraph className="flex-inline gap-1" size="nm">
+        <Paragraph className="flex-inline gap-1" size="nm" animated>
           <span>Based in</span>
           <Link
             className="underline underline-offset-2 hover:text-accent transition-all duration-200 ease-in"
@@ -25,56 +48,39 @@ export default function Addresses() {
       {/* Middle: Message */}
       <div className="w-full flex flex-col items-center 2xl:items-start gap-2">
         <Paragraph
+          className="text-md lg:text-lg leading-normal"
           variant="large"
           size="lg"
-          className="text-md lg:text-lg leading-normal">
+          animated
+          transition={{ delay: 0.2 }}>
           Always ready to bring your ideas to life.
         </Paragraph>
         <Paragraph
+          className="text-md lg:text-lg leading-normal"
           variant="large"
           size="lg"
-          className="text-md lg:text-lg leading-normal">
+          animated
+          transition={{ delay: 0.4 }}>
           Let's build something amazing together.
         </Paragraph>
       </div>
 
       {/* Bottom: Links */}
       <div className="w-full inline-flex justify-center 2xl:justify-start">
-        <Button
-          className="text-muted-foreground hover:text-accent"
-          variant="link"
-          asChild>
-          <Link className="flex-inline gap-1" href="/contact">
-            <FaLink className="size-3" />
-            <span>Contact Me</span>
-          </Link>
-        </Button>
-        <Button
-          className="text-muted-foreground hover:text-accent"
-          variant="link"
-          asChild>
-          <Link
-            className="flex-inline gap-1"
-            href="https://discord.com/channels/@smmehmedkhan"
-            target="_blank"
-            rel="noopener noreferrer">
-            <FaLink className="size-3" />
-            <span>Join Community</span>
-          </Link>
-        </Button>
-        <Button
-          className="text-muted-foreground hover:text-accent"
-          variant="link"
-          asChild>
-          <Link
-            className="flex-inline gap-1"
-            href="https://github.com/smmehmedkhan/portfolio"
-            target="_blank"
-            rel="noopener noreferrer">
-            <FaLink className="size-3" />
-            <span>Source Code</span>
-          </Link>
-        </Button>
+        {btnItems.map((item, index) => (
+          <MButton
+            className="text-muted-foreground hover:text-accent"
+            key={item.id}
+            variant="link"
+            {...fadeDown}
+            transition={{ ...fadeDown.transition, delay: 0.2 * index }}
+            asChild>
+            <Link className="flex-inline gap-1" href={item.href}>
+              <span>{item.label}</span>
+              <Link2 />
+            </Link>
+          </MButton>
+        ))}
       </div>
     </address>
   )

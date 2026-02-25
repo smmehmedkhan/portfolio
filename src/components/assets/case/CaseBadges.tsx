@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import { Badge } from '@/components/ui/badge'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
+const MDiv = motion.create('div')
 const MBadge = motion.create(Badge)
 
 export default function CaseBadges({
@@ -21,18 +22,19 @@ export default function CaseBadges({
   }
 
   return (
-    <div className={getBadgeClasses(isEven)}>
+    <MDiv
+      className={getBadgeClasses(isEven)}
+      {...fadeDown}
+      transition={{ ...fadeDown.transition, delay: 0.6 }}>
       {technologies.map((item, index) => (
         <MBadge
           key={item}
           className="w-fit xs:px-2 px-3 xs:py-0.5 py-1 bg-accent text-accent-foreground text-sm lg:text-nm font-medium"
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={{ ...fadeDown.transition, delay: 0.2 * index }}
-          viewport={{ amount: 0.6 }}>
+          {...fadeDown}
+          transition={{ ...fadeDown.transition, delay: 0.6 + 0.2 * index }}>
           {item}
         </MBadge>
       ))}
-    </div>
+    </MDiv>
   )
 }

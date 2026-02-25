@@ -10,7 +10,6 @@ interface SkillsetProps {
 
 export default function Skillset({ category }: SkillsetProps) {
   const Icon = iconMap[category.icon]
-  const fadeDown = getAnimationPreset('fade-down')
 
   return (
     <div className="skillset">
@@ -19,12 +18,7 @@ export default function Skillset({ category }: SkillsetProps) {
         variant="secondary"
         size="lg"
         animated
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{
-          ...fadeDown.transition,
-          delay: 0.2 * category.id,
-        }}>
+        transition={{ delay: 0.2 * category.id }}>
         {Icon && <Icon className="size-4 sm:size-6 md:size-8 text-secondary" />}
         <span>{category.title}</span>
       </Heading>

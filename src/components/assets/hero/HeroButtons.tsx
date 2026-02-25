@@ -14,9 +14,8 @@ export function HeroButtons() {
   return (
     <MDiv
       className="buttons box-border"
-      initial={fadeDown.initial}
-      whileInView={fadeDown.whileInView}
-      transition={{ ...fadeDown.transition, delay: 0.8 }}>
+      {...fadeDown}
+      transition={{ ...fadeDown.transition, delay: 0.6 }}>
       <MBtn className="btn">
         <Link href="/contact">Contact Me</Link>
       </MBtn>

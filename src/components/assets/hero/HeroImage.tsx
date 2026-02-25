@@ -13,12 +13,7 @@ export default function HeroImage() {
 
   return (
     <div className="wrapper max-w-2xl">
-      <MDiv
-        className="hero-images"
-        initial={fadeUp.initial}
-        whileInView={fadeUp.whileInView}
-        transition={fadeUp.transition}
-        viewport={{ once: true }}>
+      <MDiv className="hero-images" {...fadeUp} viewport={{ once: true }}>
         {/* Hero Image */}
         <MImage
           className="hero-image"

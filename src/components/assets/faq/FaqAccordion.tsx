@@ -17,11 +17,7 @@ export default function FaqAccordion() {
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv
-      initial={fade.initial}
-      whileInView={fade.whileInView}
-      transition={{ ...fade.transition, delay: 0.2 }}
-      viewport={{ amount: 0.6 }}>
+    <MDiv {...fade}>
       <Accordion
         className="accordion"
         type="single"
@@ -33,7 +29,7 @@ export default function FaqAccordion() {
             value={faq.id}
             className={`px-5 ${index < faqData.length - 1 ? 'border-b border-border' : ''}`}>
             <AccordionTrigger className="cursor-pointer group hover:no-underline">
-              <span className="text-md md:text-lg group-hover:text-accent transition-colors duration-300 ease-in-out">
+              <span className="text-lg group-hover:text-accent transition-colors duration-300 ease-in-out">
                 {faq.question}
               </span>
             </AccordionTrigger>

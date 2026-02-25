@@ -52,9 +52,8 @@ export default function ContactForm() {
     <MForm
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-6"
-      initial={fade.initial}
-      whileInView={fade.whileInView}
-      transition={{ ...fade.transition, delay: 0.2 }}>
+      {...fade}
+      transition={{ ...fade.transition, delay: 0.5 }}>
       <Field data-invalid={!!errors.name}>
         <FieldLabel htmlFor="name">Name</FieldLabel>
         <Input

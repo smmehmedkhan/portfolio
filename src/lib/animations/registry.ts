@@ -3,7 +3,12 @@
  * Centralized definitions for all predefined animations
  * Extensible for custom animation configurations
  */
-import type { TargetAndTransition, VariantLabels } from 'motion/react'
+import type {
+  TargetAndTransition,
+  Transition,
+  VariantLabels,
+  ViewportOptions,
+} from 'motion/react'
 
 /**
  * Animation preset configuration
@@ -12,15 +17,8 @@ export interface AnimationConfig {
   initial: TargetAndTransition | VariantLabels
   whileInView?: TargetAndTransition | VariantLabels
   animate?: TargetAndTransition | VariantLabels
-  transition: {
-    delay?: number
-    type?: 'spring' | 'tween' | 'inertia'
-    duration?: number
-    stiffness?: number
-    damping?: number
-    mass?: number
-    velocity?: number
-  }
+  transition: Transition
+  viewport?: ViewportOptions
 }
 
 /**
@@ -37,6 +35,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'fade-up': {
@@ -51,6 +50,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'fade-down': {
@@ -65,6 +65,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'slide-left': {
@@ -76,6 +77,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'slide-right': {
@@ -87,6 +89,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'slide-up': {
@@ -99,6 +102,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 300,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   pulse: {
@@ -109,7 +113,8 @@ export const animationPresets: Record<string, AnimationConfig> = {
       duration: 0.6,
       stiffness: 100,
       damping: 10,
-    } as Record<string, number | string>,
+    },
+    viewport: { amount: 0.6 },
   },
 
   bounce: {
@@ -119,7 +124,8 @@ export const animationPresets: Record<string, AnimationConfig> = {
     transition: {
       duration: 1.5,
       type: 'tween',
-    } as Record<string, number | string>,
+    },
+    viewport: { amount: 0.6 },
   },
 
   zoom: {
@@ -131,6 +137,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 150,
       damping: 15,
     },
+    viewport: { amount: 0.6 },
   },
 
   flip: {
@@ -142,6 +149,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 100,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'rotate-in': {
@@ -153,6 +161,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       stiffness: 100,
       damping: 10,
     },
+    viewport: { amount: 0.6 },
   },
 
   'blur-in': {
@@ -162,6 +171,7 @@ export const animationPresets: Record<string, AnimationConfig> = {
       duration: 0.7,
       type: 'tween',
     },
+    viewport: { amount: 0.6 },
   },
 }
 

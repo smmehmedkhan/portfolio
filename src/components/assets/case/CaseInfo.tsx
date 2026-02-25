@@ -1,16 +1,19 @@
+import { data } from 'motion/react-client'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import { getAnimationPreset } from '@/lib/animations/registry'
 import type { CaseInfoProps } from '@/types'
 import CaseBadges from './CaseBadges'
+import ProjectButtons from './ProjectButtons'
 
 export default function CaseInfo({
-  title,
-  description,
+  name,
+  bio,
+  shortDescription,
   longDescription,
   technologies,
   isEven,
-}: CaseInfoProps & { isEven: boolean }) {
+  isProjectPage,
+}: CaseInfoProps & { isEven: boolean; isProjectPage: boolean }) {
   const getInfoClasses = (isEven: boolean) => {
     const alignment = isEven
       ? 'lg:items-start lg:text-left'
@@ -18,38 +21,35 @@ export default function CaseInfo({
     return `case-info ${alignment}`
   }
 
-  const fadeDown = getAnimationPreset('fade-down')
-
   return (
     <div className="wrapper">
       <div className={getInfoClasses(isEven)}>
-        <Heading
-          className="text-foreground"
-          variant="secondary"
-          animated
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={fadeDown.transition}>
-          {title}
+        <Heading className="text-secondary" variant="secondary" animated>
+          {name}
         </Heading>
         <Paragraph
-          className="leading-relaxed"
-          variant="lead"
+          className="leading-none"
+          variant="large"
           animated
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={{ ...fadeDown.transition, delay: 0.2 }}>
-          {description}
+          transition={{ delay: 0.2 }}>
+          {bio}
         </Paragraph>
         <Paragraph
           className="leading-relaxed"
           animated
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
-          transition={{ ...fadeDown.transition, delay: 0.4 }}>
-          {longDescription}
+          transition={{ delay: 0.4 }}>
+          {shortDescription}
         </Paragraph>
+        {isProjectPage && (
+          <Paragraph
+            className="leading-relaxed"
+            animated
+            transition={{ delay: 0.6 }}>
+            {longDescription}
+          </Paragraph>
+        )}
         <CaseBadges isEven={isEven} technologies={technologies} />
+        {isProjectPage && <ProjectButtons isEven={isEven} {...data} />}
       </div>
     </div>
   )

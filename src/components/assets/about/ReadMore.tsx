@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowUpRight } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -14,12 +15,13 @@ export default function ReadMore() {
     <MButton
       className="w-full max-w-lg lg:w-fit"
       variant="outline"
-      initial={fadeDown.initial}
-      whileInView={fadeDown.whileInView}
+      {...fadeDown}
       transition={{ ...fadeDown.transition, delay: 0.6 }}
-      viewport={{ amount: 0.6 }}
       asChild>
-      <Link href="/about">Read More</Link>
+      <Link href="/about">
+        <span>Read More</span>
+        <ArrowUpRight />
+      </Link>
     </MButton>
   )
 }

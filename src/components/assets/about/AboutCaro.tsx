@@ -20,15 +20,10 @@ const MDiv = motion.create('div')
 export default function AboutCaro({ data }: { data: AboutImageType[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
-  const fadeUp = getAnimationPreset('fade-up')
+  const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv
-      className="wrapper about-caro"
-      initial={fadeUp.initial}
-      whileInView={fadeUp.whileInView}
-      transition={fadeUp.transition}
-      viewport={{ amount: 0.6, once: true }}>
+    <MDiv className="wrapper about-caro" {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}

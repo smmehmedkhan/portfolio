@@ -1,31 +1,40 @@
 export interface ProjectTypes {
   id: number
-  title: string
-  description: string
-  longDescription: string
+  name: string
+  bio: string
+  shortDescription: string
+  longDescription?: string
   image: string
   technologies: string[]
-  demoUrl?: string
-  githubUrl?: string
+  projectUrl?: string
+  sourceUrl?: string
 }
 
 export interface ProjectProps {
-  project: ProjectTypes
+  data: ProjectTypes
+  isProjectPage: boolean
   index: number
 }
 
 export interface CaseCardProps {
   image: string
-  title: string
+  name: string
 }
 
 export interface CaseInfoProps {
-  title: string
-  description: string
-  longDescription: string
+  name: string
+  bio: string
+  shortDescription: string
+  longDescription?: string
   technologies: string[]
-  demoUrl?: string
-  githubUrl?: string
+  projectUrl?: string
+  sourceUrl?: string
+}
+
+export interface ProjectBtnTypes {
+  isEven: boolean
+  projectUrl?: string
+  sourceUrl?: string
 }
 
 export interface SkillCategory {

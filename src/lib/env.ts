@@ -43,7 +43,7 @@ const envSchema = z.object({
     .url()
     .optional()
     .transform(val => val || undefined),
-  NEXT_PUBLIC_PORTFOLIO_URL: z
+  NEXT_PUBLIC_SOURCE_URL: z
     .url()
     .optional()
     .transform(val => val || undefined),
@@ -78,7 +78,7 @@ function getEnv(): Env {
     NEXT_PUBLIC_FACEBOOK_URL: process.env.NEXT_PUBLIC_FACEBOOK_URL,
     NEXT_PUBLIC_INSTAGRAM_URL: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
     NEXT_PUBLIC_DISCORD_URL: process.env.NEXT_PUBLIC_DISCORD_URL,
-    NEXT_PUBLIC_PORTFOLIO_URL: process.env.NEXT_PUBLIC_PORTFOLIO_URL,
+    NEXT_PUBLIC_SOURCE_URL: process.env.NEXT_PUBLIC_SOURCE_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
     VERCEL_URL: process.env.VERCEL_URL,
@@ -109,7 +109,7 @@ function getEnv(): Env {
       NEXT_PUBLIC_FACEBOOK_URL: undefined,
       NEXT_PUBLIC_INSTAGRAM_URL: undefined,
       NEXT_PUBLIC_DISCORD_URL: undefined,
-      NEXT_PUBLIC_PORTFOLIO_URL: undefined,
+      NEXT_PUBLIC_SOURCE_URL: undefined,
       NEXT_PUBLIC_API_URL: undefined,
       NEXT_PUBLIC_GA_ID: undefined,
       VERCEL_URL: undefined,

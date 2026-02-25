@@ -5,10 +5,29 @@ import type {
   TargetAndTransition,
   Transition,
   VariantLabels,
+  ViewportOptions,
 } from 'motion/react'
 import { motion } from 'motion/react'
 import React from 'react'
+import { getAnimationPreset } from '@/lib/animations/registry'
+import { env } from '@/lib/env'
 import { cn } from '@/lib/utils'
+
+/**
+ * Valid semantic HTML heading tags
+ */
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+/**
+ * Valid heading variants
+ */
+type HeadingVariant =
+  | 'main'
+  | 'sub'
+  | 'primary'
+  | 'secondary'
+  | 'title'
+  | 'role'
 
 /**
  * CVA-based heading variants with semantic HTML tag mapping
@@ -46,8 +65,17 @@ const headingVariants = cva('scroll-m-20 text-pretty', {
 
 /**
  * Mapping of variant to default semantic HTML heading tag
+ * Ensures proper semantic HTML hierarchy based on variant selection
+ *
+ * @remarks
+ * - main → h1: primary page heading
+ * - sub → h2: section headings
+ * - primary → h3: subsection headings
+ * - secondary → h4: minor headings
+ * - title → h5: small titles
+ * - role → h6: labels and captions
  */
-const variantTagMap: Record<string, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'> = {
+const variantTagMap: Record<HeadingVariant, HeadingTag> = {
   main: 'h1',
   sub: 'h2',
   primary: 'h3',
@@ -56,6 +84,10 @@ const variantTagMap: Record<string, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'> = {
   role: 'h6',
 }
 
+/**
+ * Pre-created motion components for each heading level
+ * Optimizes performance by reusing motion component instances
+ */
 const motionComponents = {
   h1: motion.create('h1'),
   h2: motion.create('h2'),
@@ -66,27 +98,24 @@ const motionComponents = {
 } as const
 
 /**
+ * Fade-down animation preset from animation registry
+ * @see {@link getAnimationPreset}
+ */
+const fadeDown = getAnimationPreset('fade-down')
+
+/**
  * Default Framer Motion animation properties
  */
 const defaultMotionProps = {
-  initial: {
-    opacity: 0,
-    transform: 'translateY(-100%)',
-  },
-  whileInView: {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-  transition: {
-    delay: 0.2,
-    type: 'spring' as const,
-    duration: 0.6,
-  },
+  ...fadeDown,
   viewport: {
     amount: 0.6,
   },
 }
 
+/**
+ * HTML heading element type
+ */
 type HeadingElement = HTMLHeadingElement
 
 interface HeadingProps
@@ -94,13 +123,22 @@ interface HeadingProps
     VariantProps<typeof headingVariants> {
   /**
    * Semantic HTML heading tag override
-   * @default tag determined by variant (main-heading=h1, sub-heading=h2, etc.)
+   * @default tag determined by variant (main=h1, sub=h2, primary=h3, secondary=h4, title=h5, role=h6)
+   * @example
+   * <Heading as="h1">Override to h1</Heading>
    */
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  as?: HeadingTag
 
   /**
-   * Enable Framer Motion animations
+   * Enable Framer Motion entrance animations
+   * When true, the heading will animate in when it enters the viewport.
+   *
    * @default false
+   * @remarks
+   * - Set to false for static content to avoid animation overhead
+   * - Animations respect prefers-reduced-motion media query
+   * @example
+   * <Heading animated>Animates on scroll</Heading>
    */
   animated?: boolean
 
@@ -125,35 +163,47 @@ interface HeadingProps
    * Animation transition config (Framer Motion)
    */
   transition?: Transition
+
+  /**
+   * Viewport configuration for scroll-triggered animations
+   * Controls when animations trigger based on viewport intersection.
+   *
+   * @default { amount: 0.6 }
+   * @remarks
+   * Only applies when animated={true}
+   * @see {@link https://motion.dev/docs/react-scroll-animations}
+   */
+  viewport?: ViewportOptions
 }
 
 /**
  * Unified Typography Heading Component
  *
+ * @component
  * A flexible, production-ready heading component following shadcn-ui patterns.
  * Supports 6 semantic heading variants (h1-h6), customizable sizing,
  * optional Framer Motion animations, and full TypeScript support.
  *
  * @example
  * Basic usage with variant
- * <Heading variant="main-heading">Section Title</Heading>
+ * <Heading variant="main">Section Title</Heading>
  *
  * @example
  * Custom size independent of variant
- * <Heading variant="primary-heading" size="2xl">Custom Sized Heading</Heading>
+ * <Heading variant="primary" size="2xl">Custom Sized Heading</Heading>
  *
  * @example
  * Override semantic tag
- * <Heading variant="sub-heading" as="h1">Override Tag</Heading>
+ * <Heading variant="sub" as="h1">Override Tag</Heading>
  *
  * @example
  * With animations (opt-in)
- * <Heading variant="main-heading" animated={true}>Animated Title</Heading>
+ * <Heading variant="main" animated={true}>Animated Title</Heading>
  *
  * @example
  * Custom animation props
  * <Heading
- *   variant="primary-heading"
+ *   variant="primary"
  *   animated={true}
  *   initial={{ opacity: 0, scale: 0.8 }}
  *   whileInView={{ opacity: 1, scale: 1 }}
@@ -173,14 +223,35 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
       whileInView,
       animate,
       transition,
+      viewport,
       className,
       children,
       ...props
     },
     ref
   ) => {
+    // Validate variant in development
+    const validVariants: HeadingVariant[] = [
+      'main',
+      'sub',
+      'primary',
+      'secondary',
+      'title',
+      'role',
+    ]
+
+    if (
+      variant
+      && !validVariants.includes(variant as HeadingVariant)
+      && env.NODE_ENV === 'development'
+    ) {
+      console.warn(
+        `[Heading] Invalid variant "${variant}". Valid variants are: ${validVariants.join(', ')}. Falling back to "primary".`
+      )
+    }
+
     // Determine semantic tag: use override or map from variant
-    const tag = asOverride || variantTagMap[variant as string] || 'h2'
+    const tag = asOverride || variantTagMap[variant as HeadingVariant] || 'h2'
 
     // Merge class names
     const mergedClassName = cn(headingVariants({ variant, size }), className)
@@ -190,23 +261,14 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
       initial: initial ?? defaultMotionProps.initial,
       whileInView: whileInView ?? defaultMotionProps.whileInView,
       animate,
-      transition: transition ?? defaultMotionProps.transition,
+      transition: transition
+        ? { ...defaultMotionProps.transition, ...transition }
+        : defaultMotionProps.transition,
+      viewport: viewport ?? defaultMotionProps.viewport,
     }
-
-    // Base component props (HTML standard attributes only)
-    const baseProps = {
-      className: mergedClassName,
-      'data-slot': 'heading',
-      'data-variant': variant,
-      'data-size': size,
-      ref,
-      ...(animated && motionConfig),
-      ...props,
-    } as const
 
     // Return animated or static heading
     if (animated) {
-      // Use motion element corresponding to the semantic tag
       const MotionComponent = motionComponents[tag] || motion.create('h2')
 
       return (
@@ -218,9 +280,16 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
           ref={ref}
           {...motionConfig}
           role={props.role}
+          tabIndex={props.tabIndex}
+          title={props.title}
           aria-label={props['aria-label']}
           aria-live={props['aria-live']}
-          aria-hidden={props['aria-hidden']}>
+          aria-hidden={props['aria-hidden']}
+          id={props.id}
+          style={props.style}
+          onClick={props.onClick}
+          onMouseEnter={props.onMouseEnter}
+          onMouseLeave={props.onMouseLeave}>
           {children}
         </MotionComponent>
       )
@@ -229,11 +298,12 @@ const Heading = React.forwardRef<HeadingElement, HeadingProps>(
     return React.createElement(
       tag,
       {
-        ...baseProps,
-        role: props.role,
-        'aria-label': props['aria-label'],
-        'aria-live': props['aria-live'],
-        'aria-hidden': props['aria-hidden'],
+        className: mergedClassName,
+        'data-slot': 'heading',
+        'data-variant': variant,
+        'data-size': size,
+        ref,
+        ...props,
       },
       children
     )
@@ -253,5 +323,5 @@ Heading.displayName = 'Heading'
 const MemoizedHeading = React.memo(Heading)
 MemoizedHeading.displayName = 'Heading(Memoized)'
 
-export { Heading, headingVariants }
-export type { HeadingProps }
+export { Heading, MemoizedHeading, headingVariants }
+export type { HeadingProps, HeadingTag, HeadingVariant }

@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
+import { Field, FieldError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
@@ -12,9 +13,7 @@ const MInput = motion.create(Input)
 const MButton = motion.create(Button)
 
 const newsletterSchema = z.object({
-  email: z
-    .email({ error: 'Please enter a valid email address' })
-    .min(1, 'Email is required'),
+  email: z.email({ error: 'Please enter a valid email address' }),
 })
 
 type NewsletterFormData = z.infer<typeof newsletterSchema>
@@ -49,7 +48,7 @@ export default function NewsletterForm() {
       className="newsletter-form flex-box"
       onSubmit={handleSubmit(onSubmit)}
       noValidate>
-      <div className="wrapper">
+      <Field className="wrapper">
         <MInput
           className="input"
           type="email"
@@ -57,28 +56,18 @@ export default function NewsletterForm() {
           aria-label="Email address"
           aria-invalid={errors.email ? 'true' : 'false'}
           aria-describedby={errors.email ? 'email-error' : undefined}
+          required
           {...register('email')}
-          initial={fadeDown.initial}
-          whileInView={fadeDown.whileInView}
+          {...fadeDown}
           transition={{ ...fadeDown.transition, delay: 0.4 }}
-          viewport={{ amount: 0.6 }}
         />
-        {errors.email && (
-          <p
-            id="email-error"
-            className="mt-1 text-sm text-destructive"
-            role="alert">
-            {errors.email.message}
-          </p>
-        )}
-      </div>
+        <FieldError errors={[errors.email]} />
+      </Field>
       <MButton
         type="submit"
         disabled={isSubmitting}
-        initial={fadeDown.initial}
-        whileInView={fadeDown.whileInView}
-        transition={{ ...fadeDown.transition, delay: 0.6 }}
-        viewport={{ amount: 0.6 }}>
+        {...fadeDown}
+        transition={{ ...fadeDown.transition, delay: 0.6 }}>
         {isSubmitting ? 'Subscribing...' : 'Subscribe'}
       </MButton>
     </form>
