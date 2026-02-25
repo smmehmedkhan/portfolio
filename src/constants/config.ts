@@ -45,7 +45,7 @@ export const CONFIG = {
     INSTAGRAM: env.NEXT_PUBLIC_INSTAGRAM_URL || '#',
     LINKEDIN: env.NEXT_PUBLIC_LINKEDIN_URL || '#',
     TWITTER: env.NEXT_PUBLIC_TWITTER_URL || '#',
-    PORTFOLIO: env.NEXT_PUBLIC_PORTFOLIO_URL || '#',
+    PORTFOLIO: env.NEXT_PUBLIC_SOURCE_URL || '#',
   },
 
   // App settings
