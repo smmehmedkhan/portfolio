@@ -46,7 +46,7 @@ export default function ContactInfo() {
           </Heading>
           <Link
             href={`mailto:${CONFIG.PERSONAL.EMAIL}`}
-            className="text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
+            className="size-fit text-md text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
             contact@mehmedkhan.dev
           </Link>
         </div>
@@ -63,7 +63,7 @@ export default function ContactInfo() {
             Location
           </Heading>
           <Link
-            className="text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in"
+            className="size-fit text-md text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in"
             href="https://maps.app.goo.gl/b4ZUW2if3LEAmmZo9"
             target="_blank"
             rel="noopener noreferrer">
@@ -87,21 +87,21 @@ export default function ContactInfo() {
               href={CONFIG.SOCIAL.GITHUB}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
+              className="size-fit text-md text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
               GitHub
             </Link>
             <Link
               href={CONFIG.SOCIAL.LINKEDIN}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
+              className="size-fit text-md text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
               LinkedIn
             </Link>
             <Link
               href={CONFIG.SOCIAL.TWITTER}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
+              className="size-fit text-md text-muted-foreground underline underline-offset-2 hover:text-accent transition-all duration-300 ease-in">
               Twitter
             </Link>
           </div>
