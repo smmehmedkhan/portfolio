@@ -8,14 +8,14 @@
   }
 
   .combo-layout {
-    @apply lg:h-screen flex flex-col;
+    @apply size-full lg:h-screen flex flex-col;
 
     & > * {
       @apply flex-1;
     }
   }
 
-  nav {
+  .navigation {
     @apply w-full xs:h-10 sm:h-11 md:h-12 lg:h-15 bg-background text-nm border-b border-border sticky top-0 z-50;
   }
 

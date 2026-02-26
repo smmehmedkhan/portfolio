@@ -6,11 +6,13 @@ import { sectionInros } from '@/data/sectionInros'
 import type { ProjectTypes } from '@/types'
 
 export default function CaseStudies() {
+  const topProjects = projects.slice(0, 3)
+
   return (
     <section className="container case-studies flex-box">
       <SectionInro data={sectionInros.project} icon={<FolderKanban />} />
 
-      {projects.map((project: ProjectTypes, index) => (
+      {topProjects.map((project: ProjectTypes, index) => (
         <Project
           key={project.id}
           data={project}

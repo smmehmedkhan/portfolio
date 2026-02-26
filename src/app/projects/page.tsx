@@ -1,11 +1,9 @@
 import { FolderKanbanIcon } from 'lucide-react'
 import type { Metadata } from 'next'
-import Project from '@/components/assets/case/Project'
 import SectionInro from '@/components/assets/SectionInro'
+import PaginatedProjects from '@/components/partials/PaginatedProjects'
 import { CONFIG } from '@/constants/config'
-import { projects } from '@/data/projects'
 import { sectionInros } from '@/data/sectionInros'
-import type { ProjectTypes } from '@/types'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -35,17 +33,7 @@ export default function ProjectPage() {
   return (
     <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
       <SectionInro data={sectionInros.project} icon={<FolderKanbanIcon />} />
-
-      <section className="container case-studies flex-box">
-        {projects.map((project: ProjectTypes, index) => (
-          <Project
-            key={project.id}
-            data={project}
-            isProjectPage={true}
-            index={index}
-          />
-        ))}
-      </section>
+      <PaginatedProjects />
     </main>
   )
 }
