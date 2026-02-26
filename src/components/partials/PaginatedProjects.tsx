@@ -30,6 +30,14 @@ export default function PaginatedProjects() {
     setCurrentPage(prev => Math.min(prev + 1, totalPages))
   }
 
+  if (projects.length === 0) {
+    return (
+      <section className="container case-studies flex-box">
+        <p>No projects available.</p>
+      </section>
+    )
+  }
+
   return (
     <section className="container case-studies flex-box">
       {currentProjects.map((project: ProjectTypes, index) => (
