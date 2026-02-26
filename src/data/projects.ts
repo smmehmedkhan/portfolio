@@ -59,4 +59,108 @@ export const projects: ProjectTypes[] = [
     projectUrl: 'https://portfolio.com',
     sourceUrl: 'https://github.com/portfolio',
   },
+  {
+    id: 5,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 6,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 7,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 8,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 9,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 10,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 11,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
+  {
+    id: 12,
+    name: 'Portfolio Website',
+    bio: 'Modern portfolio with smooth animations and responsive design',
+    shortDescription:
+      'A responsive portfolio website showcasing projects, skills, and professional experience. Built with Next.js 16, React 19, and Motion for animations. Features include dark mode support, SEO optimization, fast page loads, and a modern UI/UX design. The site is fully responsive and optimized for all devices.',
+    longDescription:
+      'This portfolio website is designed to provide a visually appealing and user-friendly experience for visitors. Built with the latest versions of Next.js and React, it incorporates smooth animations using Motion to enhance the user interface. The site includes sections for showcasing projects, listing skills, and detailing professional experience. With dark mode support and SEO optimization, the portfolio ensures that it looks great and performs well across all devices.',
+    image: '/icons/next-js.svg',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Motion', 'Tailwind CSS'],
+    projectUrl: 'https://portfolio.com',
+    sourceUrl: 'https://github.com/portfolio',
+  },
 ]

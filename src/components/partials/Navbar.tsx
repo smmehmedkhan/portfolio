@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="flex-center"
+      className="site-navigation flex-center"
       initial={{ opacity: 1, y: 0 }}
       animate={{
         opacity: scrollDirection === 'down' ? 1 : 0,
