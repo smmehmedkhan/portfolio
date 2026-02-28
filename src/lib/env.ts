@@ -59,6 +59,26 @@ const envSchema = z.object({
 
   // Vercel specific
   VERCEL_URL: z.string().optional(),
+
+  // Vercel OIDC
+  VERCEL_OIDC_TOKEN: z.string().optional(),
+
+  // Brevo email service
+  BREVO_API_KEY: z.string().optional(),
+  BREVO_SENDER_EMAIL: z
+    .email()
+    .optional()
+    .transform(val => val || undefined),
+  BREVO_SENDER_NAME: z.string().optional(),
+  ADMIN_EMAIL: z
+    .email()
+    .optional()
+    .transform(val => val || undefined),
+
+  // MongoDB
+  MONGODB_URI: z.string().optional(),
+  MONGODB_DB_USERNAME: z.string().optional(),
+  MONGODB_DB_PASSWORD: z.string().optional(),
 })
 
 type Env = z.infer<typeof envSchema>
@@ -82,6 +102,14 @@ function getEnv(): Env {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
     VERCEL_URL: process.env.VERCEL_URL,
+    VERCEL_OIDC_TOKEN: process.env.VERCEL_OIDC_TOKEN,
+    BREVO_API_KEY: process.env.BREVO_API_KEY,
+    BREVO_SENDER_EMAIL: process.env.BREVO_SENDER_EMAIL,
+    BREVO_SENDER_NAME: process.env.BREVO_SENDER_NAME,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    MONGODB_URI: process.env.MONGODB_URI,
+    MONGODB_DB_USERNAME: process.env.MONGODB_DB_USERNAME,
+    MONGODB_DB_PASSWORD: process.env.MONGODB_DB_PASSWORD,
   })
 
   if (!result.success) {
@@ -113,6 +141,14 @@ function getEnv(): Env {
       NEXT_PUBLIC_API_URL: undefined,
       NEXT_PUBLIC_GA_ID: undefined,
       VERCEL_URL: undefined,
+      VERCEL_OIDC_TOKEN: undefined,
+      BREVO_API_KEY: undefined,
+      BREVO_SENDER_EMAIL: undefined,
+      BREVO_SENDER_NAME: undefined,
+      ADMIN_EMAIL: undefined,
+      MONGODB_URI: undefined,
+      MONGODB_DB_USERNAME: undefined,
+      MONGODB_DB_PASSWORD: undefined,
     }
   }
 

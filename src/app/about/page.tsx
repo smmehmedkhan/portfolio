@@ -1,11 +1,8 @@
 import { MessageSquareText } from 'lucide-react'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import AboutCaro from '@/components/assets/about/AboutCaro'
-import AboutTypo from '@/components/assets/about/AboutTypo'
+import AboutTypoBlock from '@/components/assets/about/AboutTypoBlock'
 import SectionInro from '@/components/assets/SectionInro'
-import { Heading } from '@/components/ui/heading'
-import { Paragraph } from '@/components/ui/paragraph'
 import { CONFIG } from '@/constants/config'
 import { aboutImages, aboutTypographys } from '@/data/about'
 import { sectionInros } from '@/data/sectionInros'
@@ -39,69 +36,49 @@ export default function AboutPage() {
     <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
       <SectionInro data={sectionInros.about} icon={<MessageSquareText />} />
 
-      <section className="container about gap-25">
-        {/* About content layout */}
-        <div className="about-layout alter">
+      <section className="container about flex-box">
+        <div className="about-layout">
+          <AboutCaro data={aboutImages} />
           <div className="wrapper about-typo">
-            <div className="wrapper gap-2">
-              <Heading
-                className="size-full text-center lg:text-right tracking-normal lg:tracking-wide"
-                variant="role"
-                size="nm">
-                My Passion
-              </Heading>
-              <Paragraph className="text-center lg:text-right tracking-normal lg:tracking-wide">
-                Web development isn't just my career — it's what genuinely
-                excites me. A simple curiosity about how internet works grew
-                into building fast, scalable, and meaningful web experiences.
-              </Paragraph>
-            </div>
-            <div className="wrapper gap-2">
-              <Heading
-                className="size-full text-center lg:text-right tracking-normal lg:tracking-wide"
-                variant="role"
-                size="nm">
-                My Passion
-              </Heading>
-              <Paragraph className="text-center lg:text-right tracking-normal lg:tracking-wide">
-                Web development isn't just my career — it's what genuinely
-                excites me. A simple curiosity about how internet works grew
-                into building fast, scalable, and meaningful web experiences.
-              </Paragraph>
-            </div>
+            {/* Top: About typography items */}
+            {aboutTypographys.map((item, index) => (
+              <AboutTypoBlock key={item.id} item={item} index={index} />
+            ))}
           </div>
-          <AboutCaro data={aboutImages} />
         </div>
-
-        <div className="about-layout flip">
-          <AboutCaro data={aboutImages} />
-          <div className="wrapper about-typo">
-            <div className="wrapper gap-2">
-              <Heading
-                className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
-                variant="role"
-                size="nm">
-                My Passion
-              </Heading>
-              <Paragraph className="text-center lg:text-left tracking-normal lg:tracking-wide">
-                Web development isn't just my career — it's what genuinely
-                excites me. A simple curiosity about how internet works grew
-                into building fast, scalable, and meaningful web experiences.
-              </Paragraph>
-            </div>
-            <div className="wrapper gap-2">
-              <Heading
-                className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
-                variant="role"
-                size="nm">
-                My Passion
-              </Heading>
-              <Paragraph className="text-center lg:text-left tracking-normal lg:tracking-wide">
-                Web development isn't just my career — it's what genuinely
-                excites me. A simple curiosity about how internet works grew
-                into building fast, scalable, and meaningful web experiences.
-              </Paragraph>
-            </div>
+        <div className="size-full flex-center gap-10">
+          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
+            <h3 className="text-center font-bold">Available for work</h3>
+            <p className="text-center text-muted-foreground">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
+              sint at totam modi vel voluptate nobis architecto blanditiis magni
+              neque ratione excepturi beatae ducimus asperiores eos adipisci
+              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
+              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
+              molestiae dignissimos beatae quas non?
+            </p>
+          </div>
+          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
+            <h3 className="text-center font-bold">Available for work</h3>
+            <p className="text-center text-muted-foreground">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
+              sint at totam modi vel voluptate nobis architecto blanditiis magni
+              neque ratione excepturi beatae ducimus asperiores eos adipisci
+              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
+              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
+              molestiae dignissimos beatae quas non?
+            </p>
+          </div>
+          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
+            <h3 className="text-center font-bold">Available for work</h3>
+            <p className="text-center text-muted-foreground">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
+              sint at totam modi vel voluptate nobis architecto blanditiis magni
+              neque ratione excepturi beatae ducimus asperiores eos adipisci
+              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
+              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
+              molestiae dignissimos beatae quas non?
+            </p>
           </div>
         </div>
       </section>

@@ -1,23 +1,23 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2, Mail } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import {
+  type NewsletterFormData,
+  newsletterSchema,
+} from '@/schemas/newsletterSchema'
 
-const MInput = motion.create(Input)
-const MButton = motion.create(Button)
+const MForm = motion.create('form')
 
-const newsletterSchema = z.object({
-  email: z.email({ error: 'Please enter a valid email address' }),
-})
-
-type NewsletterFormData = z.infer<typeof newsletterSchema>
 export default function NewsletterForm() {
+  const fade = getAnimationPreset('fade')
   const {
     register,
     handleSubmit,
@@ -25,51 +25,74 @@ export default function NewsletterForm() {
     reset,
   } = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
+    defaultValues: { email: '' },
   })
 
-  const fadeDown = getAnimationPreset('fade-down')
+  const onSubmit = async (values: NewsletterFormData) => {
+    // Show a loading toast and capture its ID so we can update it later
+    const toastId = toast.loading('Subscribing...')
 
-  const onSubmit = async (data: NewsletterFormData) => {
     try {
-      // TODO: Implement actual newsletter subscription API call
-      console.log('Newsletter subscription:', data.email)
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const res = await fetch('/api/v1/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      const data = await res.json()
+
+      if (!res.ok) throw new Error(data.error || 'Subscription failed')
+
+      // Dismiss the loading toast and replace with success
+      toast.success('Subscribed!', {
+        id: toastId,
+        description: data.message,
+        duration: 5000,
+      })
+
       reset()
-      // In a real implementation, you would show a success message here
-    } catch (error) {
-      console.error('Failed to subscribe:', error)
-      // In a real implementation, you would show an error message here
+    } catch (err) {
+      console.error('[NEWSLETTER_FORM_ERROR]', err)
+
+      // Dismiss the loading toast and replace with error
+      toast.error('Subscription failed', {
+        id: toastId,
+        description:
+          err instanceof Error ? err.message : 'Please try again later.',
+        duration: 5000,
+      })
     }
   }
 
   return (
-    <form
+    <MForm
       className="newsletter-form flex-box"
       onSubmit={handleSubmit(onSubmit)}
+      {...fade}
+      transition={{ ...fade.transition, delay: 0.5 }}
       noValidate>
-      <Field className="wrapper">
-        <MInput
+      <Field className="wrapper" data-invalid={!!errors.email}>
+        <Input
           className="input"
           type="email"
-          placeholder="johndoe@example.com"
-          aria-label="Email address"
-          aria-invalid={errors.email ? 'true' : 'false'}
-          aria-describedby={errors.email ? 'email-error' : undefined}
+          placeholder="your.email@example.com"
           required
           {...register('email')}
-          {...fadeDown}
-          transition={{ ...fadeDown.transition, delay: 0.4 }}
         />
-        <FieldError errors={[errors.email]} />
+        <FieldError className="max-w-md text-center" errors={[errors.email]} />
       </Field>
-      <MButton
-        type="submit"
-        disabled={isSubmitting}
-        {...fadeDown}
-        transition={{ ...fadeDown.transition, delay: 0.6 }}>
-        {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-      </MButton>
-    </form>
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <span>Subscribing...</span>
+          </>
+        ) : (
+          <>
+            <Mail />
+            <span>Subscribe</span>
+          </>
+        )}
+      </Button>
+    </MForm>
   )
 }

@@ -7,6 +7,7 @@ import GetInTouch from '@/components/partials/GetInTouch'
 import Navbar from '@/components/partials/Navbar'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
 import { ThemeProvider } from '@/components/providers/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 import { CONFIG } from '@/constants/config'
 
 const publicSans = Public_Sans({
@@ -109,6 +110,7 @@ export default function RootLayout({
               <GetInTouch />
               <Footer />
             </div>
+            <Toaster />
           </ThemeProvider>
         </ErrorBoundary>
         <Analytics />
