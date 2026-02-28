@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError } from 'zod'
 import brevo from '@/lib/brevo'
 import { newsletterWelcomeTemplate } from '@/lib/emailTemplates'
+import { env } from '@/lib/env'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
 import { newsletterSchema } from '@/schemas/newsletterSchema'
@@ -10,7 +11,10 @@ import { newsletterSchema } from '@/schemas/newsletterSchema'
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
+    const body = await req.json().catch(() => null)
+    if (!body) {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+    }
 
     // 1. Validate with Zod
     const { email } = newsletterSchema.parse(body)
@@ -50,8 +54,8 @@ export async function POST(req: NextRequest) {
     // 5. Send welcome email via Brevo
     await brevo.transactionalEmails.sendTransacEmail({
       sender: {
-        email: process.env.BREVO_SENDER_EMAIL || '',
-        name: process.env.BREVO_SENDER_NAME || '',
+        email: env.BREVO_SENDER_EMAIL || '',
+        name: env.BREVO_SENDER_NAME || '',
       },
       to: [{ email }],
       subject: "Welcome! You're subscribed 🎉",

@@ -30,7 +30,7 @@ export default function NewsletterForm() {
 
   const onSubmit = async (values: NewsletterFormData) => {
     // Show a loading toast and capture its ID so we can update it later
-    const toastId = toast.loading('Sending your message...')
+    const toastId = toast.loading('Subscribing...')
 
     try {
       const res = await fetch('/api/v1/newsletter', {
@@ -43,7 +43,7 @@ export default function NewsletterForm() {
       if (!res.ok) throw new Error(data.error || 'Subscription failed')
 
       // Dismiss the loading toast and replace with success
-      toast.success('Message sent!', {
+      toast.success('Subscribed!', {
         id: toastId,
         description: data.message,
         duration: 5000,
@@ -51,10 +51,10 @@ export default function NewsletterForm() {
 
       reset()
     } catch (err) {
-      console.error('[CONTACT_FORM_ERROR]', err)
+      console.error('[NEWSLETTER_FORM_ERROR]', err)
 
       // Dismiss the loading toast and replace with error
-      toast.error('Failed to send message', {
+      toast.error('Subscription failed', {
         id: toastId,
         description:
           err instanceof Error ? err.message : 'Please try again later.',

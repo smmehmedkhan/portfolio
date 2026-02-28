@@ -12,7 +12,10 @@ import { contactSchema } from '@/schemas/contactSchema'
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
+    const body = await req.json().catch(() => null)
+    if (!body) {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+    }
 
     // 1. Validate with Zod
     const data = contactSchema.parse(body)
@@ -27,7 +30,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Send emails in parallel via Brevo
-    await Promise.all([
+    const emailResults = await Promise.allSettled([
       // Admin notification
       brevo.transactionalEmails.sendTransacEmail({
         sender,
@@ -44,6 +47,14 @@ export async function POST(req: NextRequest) {
         htmlContent: contactAutoReplyTemplate(data.name),
       }),
     ])
+
+    const emailFailed = emailResults.some(r => r.status === 'rejected')
+    if (emailFailed) {
+      return NextResponse.json(
+        { message: 'Message saved; email delivery is delayed.' },
+        { status: 202 }
+      )
+    }
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },

@@ -8,13 +8,28 @@ import Subscriber from '@/models/Subscriber'
 // TODO: Add proper logger (e.g., winston, pino) for production logging
 
 const unsubscribeSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email('Invalid email address'),
 })
 
-export async function GET(req: NextRequest) {
+export function GET(req: NextRequest) {
+  // Render confirmation page instead of directly unsubscribing
+  const { searchParams } = new URL(req.url)
+  const email = searchParams.get('email')
+
+  // Redirect to a confirmation page
+  return NextResponse.redirect(
+    new URL(`/unsubscribe?email=${encodeURIComponent(email || '')}`, req.url)
+  )
+}
+
+export async function POST(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url)
-    const email = searchParams.get('email')
+    const body = await req.json()
+    if (!body) {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+    }
+
+    const { email } = body
 
     // Validate email
     const { email: validEmail } = unsubscribeSchema.parse({ email })

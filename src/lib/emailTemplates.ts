@@ -1,11 +1,26 @@
 import { env } from './env'
 
+const escapeHtml = (str: string): string => {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 export const contactNotificationTemplate = (data: {
   name: string
   email: string
   subject: string
   message: string
-}) => `
+}) => {
+  const safeName = escapeHtml(data.name)
+  const safeEmail = escapeHtml(data.email)
+  const safeSubject = escapeHtml(data.subject)
+  const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br/>')
+
+  return `
   <div style="font-family: Inter, Arial, sans-serif; max-width: 640px; margin: 0 auto; background: #ffffff;">
     <div style="background: #0f172a; padding: 24px 32px;">
       <h1 style="color: #f8fafc; margin: 0; font-size: 20px;">📬 New Contact Form Submission</h1>
@@ -14,28 +29,31 @@ export const contactNotificationTemplate = (data: {
       <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
         <tr>
           <td style="padding: 10px 0; font-weight: 600; color: #475569; width: 100px;">Name</td>
-          <td style="padding: 10px 0; color: #0f172a;">${data.name}</td>
+          <td style="padding: 10px 0; color: #0f172a;">${safeName}</td>
         </tr>
         <tr style="border-top: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #475569;">Email</td>
-          <td style="padding: 10px 0;"><a href="mailto:${data.email}" style="color: #3b82f6;">${data.email}</a></td>
+          <td style="padding: 10px 0;"><a href="mailto:${safeEmail}" style="color: #3b82f6;">${safeEmail}</a></td>
         </tr>
         <tr style="border-top: 1px solid #f1f5f9;">
           <td style="padding: 10px 0; font-weight: 600; color: #475569;">Subject</td>
-          <td style="padding: 10px 0; color: #0f172a;">${data.subject}</td>
+          <td style="padding: 10px 0; color: #0f172a;">${safeSubject}</td>
         </tr>
       </table>
       <div style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 4px;">
-        <p style="margin: 0; color: #334155; line-height: 1.7;">${data.message.replace(/\n/g, '<br/>')}</p>
+        <p style="margin: 0; color: #334155; line-height: 1.7;">${safeMessage}</p>
       </div>
     </div>
   </div>
 `
+}
 
-export const contactAutoReplyTemplate = (name: string) => `
+export const contactAutoReplyTemplate = (name: string) => {
+  const safeName = escapeHtml(name)
+  return `
   <div style="font-family: Inter, Arial, sans-serif; max-width: 640px; margin: 0 auto;">
     <div style="background: #0f172a; padding: 24px 32px;">
-      <h1 style="color: #f8fafc; margin: 0; font-size: 20px;">Thank you, ${name}!</h1>
+      <h1 style="color: #f8fafc; margin: 0; font-size: 20px;">Thank you, ${safeName}!</h1>
     </div>
     <div style="padding: 32px; border: 1px solid #e2e8f0; border-top: none;">
       <p style="color: #334155; font-size: 16px; line-height: 1.7;">
@@ -47,15 +65,18 @@ export const contactAutoReplyTemplate = (name: string) => `
     </div>
   </div>
 `
+}
 
-export const newsletterWelcomeTemplate = (email: string) => `
+export const newsletterWelcomeTemplate = (email: string) => {
+  const safeEmail = escapeHtml(email)
+  return `
   <div style="font-family: Inter, Arial, sans-serif; max-width: 640px; margin: 0 auto;">
     <div style="background: #0f172a; padding: 24px 32px;">
       <h1 style="color: #f8fafc; margin: 0; font-size: 20px;">🎉 Welcome to the Newsletter!</h1>
     </div>
     <div style="padding: 32px; border: 1px solid #e2e8f0; border-top: none;">
       <p style="color: #334155; font-size: 16px; line-height: 1.7;">
-        You've successfully subscribed with <strong>${email}</strong>.
+        You've successfully subscribed with <strong>${safeEmail}</strong>.
         Expect curated updates, tips, and news delivered straight to your inbox.
       </p>
       <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
@@ -66,15 +87,18 @@ export const newsletterWelcomeTemplate = (email: string) => `
     </div>
   </div>
 `
+}
 
-export const newsletterUnsubscribeTemplate = (email: string) => `
+export const newsletterUnsubscribeTemplate = (email: string) => {
+  const safeEmail = escapeHtml(email)
+  return `
   <div style="font-family: Inter, Arial, sans-serif; max-width: 640px; margin: 0 auto;">
     <div style="background: #0f172a; padding: 24px 32px;">
       <h1 style="color: #f8fafc; margin: 0; font-size: 20px;">👋 You've been unsubscribed</h1>
     </div>
     <div style="padding: 32px; border: 1px solid #e2e8f0; border-top: none;">
       <p style="color: #334155; font-size: 16px; line-height: 1.7;">
-        <strong>${email}</strong> has been successfully removed from our newsletter.
+        <strong>${safeEmail}</strong> has been successfully removed from our newsletter.
       </p>
       <p style="color: #334155; font-size: 16px; line-height: 1.7;">
         We're sorry to see you go! If you change your mind, you can always subscribe again.
@@ -85,3 +109,4 @@ export const newsletterUnsubscribeTemplate = (email: string) => `
     </div>
   </div>
 `
+}
