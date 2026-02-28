@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError } from 'zod'
-import brevo from '@/lib/brevo'
+import getBrevoClient from '@/lib/brevo'
 import { newsletterWelcomeTemplate } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
 import connectDB from '@/lib/mongodb'
@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
     // 3. Add contact to Brevo contact list
     let brevoContactId: string | undefined
     try {
+      const brevo = getBrevoClient()
       const contact = await brevo.contacts.createContact({
         email,
         listIds: [], // Add your Brevo list ID(s) here, e.g. [5]
@@ -52,6 +53,7 @@ export async function POST(req: NextRequest) {
     )
 
     // 5. Send welcome email via Brevo
+    const brevo = getBrevoClient()
     await brevo.transactionalEmails.sendTransacEmail({
       sender: {
         email: env.BREVO_SENDER_EMAIL || '',

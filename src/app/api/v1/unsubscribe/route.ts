@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import brevo from '@/lib/brevo'
+import getBrevoClient from '@/lib/brevo'
 import { newsletterUnsubscribeTemplate } from '@/lib/emailTemplates'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send unsubscribe confirmation email via Brevo
+    const brevo = getBrevoClient()
     await brevo.transactionalEmails.sendTransacEmail({
       sender: {
         email: process.env.BREVO_SENDER_EMAIL || '',
