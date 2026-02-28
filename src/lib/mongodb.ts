@@ -1,12 +1,6 @@
 import mongoose from 'mongoose'
 import { env } from './env'
 
-const MONGODB_URI = env.MONGODB_URI || ''
-
-if (!MONGODB_URI) {
-  throw new Error('Missing MONGODB_URI environment variable')
-}
-
 // Prevent multiple connections in dev (Next.js hot reload)
 declare global {
   var mongooseCache: {
@@ -22,6 +16,12 @@ if (!cached) {
 }
 
 async function connectDB() {
+  const MONGODB_URI = env.MONGODB_URI || ''
+
+  if (!MONGODB_URI) {
+    throw new Error('Missing MONGODB_URI environment variable')
+  }
+
   if (cached.conn) return cached.conn
 
   if (!cached.promise) {
