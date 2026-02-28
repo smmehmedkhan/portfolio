@@ -1,12 +1,21 @@
 import { BrevoClient } from '@getbrevo/brevo'
+import { env } from './env'
 
-if (!process.env.BREVO_API_KEY) {
-  throw new Error('Missing BREVO_API_KEY environment variable')
+let brevoClient: BrevoClient | null = null
+
+function getBrevoClient(): BrevoClient {
+  if (!env.BREVO_API_KEY) {
+    throw new Error('Missing BREVO_API_KEY environment variable')
+  }
+
+  if (!brevoClient) {
+    brevoClient = new BrevoClient({
+      apiKey: env.BREVO_API_KEY,
+      maxRetries: 3,
+    })
+  }
+
+  return brevoClient
 }
 
-const brevo = new BrevoClient({
-  apiKey: process.env.BREVO_API_KEY,
-  maxRetries: 3,
-})
-
-export default brevo
+export default getBrevoClient

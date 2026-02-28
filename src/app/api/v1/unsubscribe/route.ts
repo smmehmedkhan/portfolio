@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import brevo from '@/lib/brevo'
+import getBrevoClient from '@/lib/brevo'
 import { newsletterUnsubscribeTemplate } from '@/lib/emailTemplates'
+import { env } from '@/lib/env'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
 
@@ -49,16 +50,21 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Send unsubscribe confirmation email via Brevo
-    await brevo.transactionalEmails.sendTransacEmail({
-      sender: {
-        email: process.env.BREVO_SENDER_EMAIL || '',
-        name: process.env.BREVO_SENDER_NAME || '',
-      },
-      to: [{ email: validEmail }],
-      subject: "You've been unsubscribed",
-      htmlContent: newsletterUnsubscribeTemplate(validEmail),
-    })
+    try {
+      // Send unsubscribe confirmation email via Brevo
+      const brevo = getBrevoClient()
+      await brevo.transactionalEmails.sendTransacEmail({
+        sender: {
+          email: env.BREVO_SENDER_EMAIL || '',
+          name: env.BREVO_SENDER_NAME || '',
+        },
+        to: [{ email: validEmail }],
+        subject: "You've been unsubscribed",
+        htmlContent: newsletterUnsubscribeTemplate(validEmail),
+      })
+    } catch (error) {
+      console.warn('[UNSUBSCRIBE_EMAIL_WARN]', error)
+    }
 
     return NextResponse.json(
       { message: 'Successfully unsubscribed!' },
