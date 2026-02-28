@@ -29,7 +29,16 @@ export async function POST(req: NextRequest) {
       name: env.BREVO_SENDER_NAME || '',
     }
 
-    const brevo = getBrevoClient()
+    let brevo: ReturnType<typeof getBrevoClient> | null = null
+    try {
+      brevo = getBrevoClient()
+    } catch (clientError) {
+      console.warn('[BREVO_CLIENT_WARN]', clientError)
+      return NextResponse.json(
+        { message: 'Message saved; email delivery is delayed.' },
+        { status: 202 }
+      )
+    }
 
     // 3. Send emails in parallel via Brevo
     const emailResults = await Promise.allSettled([

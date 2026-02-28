@@ -32,8 +32,15 @@ export async function POST(req: NextRequest) {
 
     // 3. Add contact to Brevo contact list
     let brevoContactId: string | undefined
+    let brevo: ReturnType<typeof getBrevoClient> | null = null
     try {
-      const brevo = getBrevoClient()
+      brevo = getBrevoClient()
+    } catch (clientError) {
+      console.warn('[BREVO_CLIENT_WARN]', clientError)
+    }
+
+    try {
+      if (!brevo) throw new Error('Brevo client unavailable')
       const contact = await brevo.contacts.createContact({
         email,
         listIds: [], // Add your Brevo list ID(s) here, e.g. [5]
@@ -53,16 +60,18 @@ export async function POST(req: NextRequest) {
     )
 
     // 5. Send welcome email via Brevo
-    const brevo = getBrevoClient()
-    await brevo.transactionalEmails.sendTransacEmail({
-      sender: {
-        email: env.BREVO_SENDER_EMAIL || '',
-        name: env.BREVO_SENDER_NAME || '',
-      },
-      to: [{ email }],
-      subject: "Welcome! You're subscribed 🎉",
-      htmlContent: newsletterWelcomeTemplate(email),
-    })
+    if (brevo) {
+      await brevo.transactionalEmails.sendTransacEmail({
+        sender: {
+          email: env.BREVO_SENDER_EMAIL || '',
+          name: env.BREVO_SENDER_NAME || '',
+        },
+        to: [{ email }],
+        subject: "Welcome! You're subscribed 🎉",
+        htmlContent: newsletterWelcomeTemplate(email),
+      })
+    }
+
     return NextResponse.json(
       { message: 'Successfully subscribed!' },
       { status: 201 }
