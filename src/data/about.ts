@@ -33,7 +33,7 @@ export const aboutTypographys: AboutTypographyType[] = [
     id: 1,
     title: 'My Passion',
     description:
-      "Web development isn't just my career — it's what genuinely excites me. A simple curiosity about how internet works grew into building fast, scalable, and meaningful web experiences.",
+      "Web development isn't just my career — it's what genuinely excites me. A simple curiosity about how internet works grew into building meaningful web experiences.",
   },
   {
     id: 2,

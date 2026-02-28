@@ -8,8 +8,8 @@ const MImage = motion.create(Image)
 const MDiv = motion.create('div')
 
 export default function HeroImage() {
-  const fade = getAnimationPreset('fade')
   const fadeUp = getAnimationPreset('fade-up')
+  const fade = getAnimationPreset('fade')
 
   return (
     <div className="wrapper max-w-2xl">
