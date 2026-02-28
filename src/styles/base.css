@@ -24,6 +24,6 @@
   }
 
   :focus-visible {
-    @apply outline-none border-primary ring-2 ring-offset-2 ring-offset-background ring-primary/30;
+    @apply outline-none border-ring ring-2 ring-offset-2 ring-offset-background ring-ring;
   }
 }

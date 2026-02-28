@@ -1,26 +1,18 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Send } from 'lucide-react'
+import { Loader2, Send } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import { type ContactFormData, contactSchema } from '@/schemas/contactSchema'
 
 const MForm = motion.create('form')
-
-const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.email('Please enter a valid email address'),
-  subject: z.string().min(5, 'Subject must be at least 5 characters'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-})
-
-type ContactFormData = z.infer<typeof contactSchema>
 
 export default function ContactForm() {
   const fade = getAnimationPreset('fade')
@@ -32,19 +24,41 @@ export default function ContactForm() {
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: { name: '', email: '', subject: '', message: '' },
   })
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (values: ContactFormData) => {
+    // Show a loading toast and capture its ID so we can update it later
+    const toastId = toast.loading('Sending your message...')
+
     try {
-      // TODO: Implement actual contact form API call
-      console.log('Contact form submission:', data)
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const res = await fetch('/api/v1/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      const data = await res.json()
+
+      if (!res.ok) throw new Error(data.error || 'Submission failed')
+
+      // Dismiss the loading toast and replace with success
+      toast.success('Message sent!', {
+        id: toastId,
+        description: data.message,
+        duration: 5000,
+      })
+
       reset()
-      alert('Thank you for your message! I will get back to you soon.')
-    } catch (error) {
-      console.error('Failed to send message:', error)
-      alert('Failed to send message. Please try again later.')
+    } catch (err) {
+      console.error('[CONTACT_FORM_ERROR]', err)
+
+      // Dismiss the loading toast and replace with error
+      toast.error('Failed to send message', {
+        id: toastId,
+        description:
+          err instanceof Error ? err.message : 'Please try again later.',
+        duration: 5000,
+      })
     }
   }
 
@@ -100,9 +114,18 @@ export default function ContactForm() {
         <FieldError errors={[errors.message]} />
       </Field>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full">
-        <Send />
-        <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+      <Button className="w-full" type="submit" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <span>Sending...</span>
+          </>
+        ) : (
+          <>
+            <Send />
+            <span>Send Message</span>
+          </>
+        )}
       </Button>
     </MForm>
   )
