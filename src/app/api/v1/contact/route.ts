@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError } from 'zod'
-import brevo from '@/lib/brevo'
+import getBrevoClient from '@/lib/brevo'
 import {
   contactAutoReplyTemplate,
   contactNotificationTemplate,
@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
       email: env.BREVO_SENDER_EMAIL || '',
       name: env.BREVO_SENDER_NAME || '',
     }
+
+    const brevo = getBrevoClient()
 
     // 3. Send emails in parallel via Brevo
     const emailResults = await Promise.allSettled([
