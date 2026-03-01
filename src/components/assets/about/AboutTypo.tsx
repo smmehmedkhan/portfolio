@@ -1,6 +1,7 @@
+import { ArrowUpRight } from 'lucide-react'
 import type { AboutTypographyType } from '@/data/about'
+import AnimatedButton from '../AnimatedButton'
 import AboutTypoBlock from './AboutTypoBlock'
-import ReadMore from './ReadMore'
 
 export default function AboutTypo({ data }: { data: AboutTypographyType[] }) {
   return (
@@ -11,7 +12,11 @@ export default function AboutTypo({ data }: { data: AboutTypographyType[] }) {
       ))}
       {/* Bottom: See more button */}
       <div className="cta-btn">
-        <ReadMore />
+        <AnimatedButton
+          href="/about"
+          btnText="Read More"
+          icon={<ArrowUpRight />}
+        />
       </div>
     </div>
   )

@@ -12,10 +12,11 @@ import { CONFIG } from '@/constants/config'
 
 const publicSans = Public_Sans({
   variable: '--font-public-sans',
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
   display: 'swap',
+  preload: false,
 })
 
 const balthazar = Balthazar({
@@ -24,22 +25,15 @@ const balthazar = Balthazar({
   weight: '400',
   style: ['normal'],
   display: 'swap',
+  preload: false,
 })
 
 const notoSerif = Noto_Serif({
   variable: '--font-noto-serif',
-  subsets: [
-    'latin',
-    'latin-ext',
-    'cyrillic',
-    'cyrillic-ext',
-    'greek',
-    'greek-ext',
-    'math',
-    'vietnamese',
-  ],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { MessageSquareText } from 'lucide-react'
+import { ScrollText } from 'lucide-react'
 import AboutCaro from '@/components/assets/about/AboutCaro'
 import AboutTypo from '@/components/assets/about/AboutTypo'
 import SectionInro from '@/components/assets/SectionInro'
@@ -21,7 +21,7 @@ import { sectionInros } from '@/data/sectionInros'
 export default function About() {
   return (
     <section className="container about flex-box">
-      <SectionInro data={sectionInros.about} icon={<MessageSquareText />} />
+      <SectionInro data={sectionInros.about} icon={<ScrollText />} />
 
       {/* About content layout */}
       <div className="about-layout flip">

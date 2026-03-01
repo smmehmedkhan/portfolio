@@ -1,6 +1,5 @@
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import { getAnimationPreset } from '@/lib/animations/registry'
 import NewsletterForm from './NewsletterForm'
 
 export default function Newsletters() {

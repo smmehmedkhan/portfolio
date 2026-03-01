@@ -35,7 +35,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
         <CarouselContent>
           {data.map(testimonial => (
             <CarouselItem key={testimonial.id} className="lg:basis-1/2">
-              <div className="p-4">
+              <div className="p-0 lg:p-4">
                 <Card className="bg-card border-border">
                   <CardHeader className="flex-center">
                     <StarRating rating={testimonial.rating} size={25} />

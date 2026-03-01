@@ -1,33 +1,27 @@
-'use client'
-
 import { Link2 } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import AnimatedButton from '@/components/assets/AnimatedButton'
+import Logo from '@/components/assets/nav/Logo'
 import { Paragraph } from '@/components/ui/paragraph'
-import { getAnimationPreset } from '@/lib/animations/registry'
 import { env } from '@/lib/env'
-import Logo from '../nav/Logo'
-
-const MButton = motion.create(Button)
 
 const btnItems = [
-  { id: 1, label: 'Contact Me', href: '/contact' },
+  { id: 1, label: 'Contact Me', href: '/contact', target: '_self' },
   {
     id: 2,
     label: 'Join Community',
     href: env.NEXT_PUBLIC_DISCORD_URL || '#',
+    target: '_blank',
   },
   {
     id: 3,
     label: 'Source Code',
     href: env.NEXT_PUBLIC_SOURCE_URL || '#',
+    target: '_blank',
   },
 ]
 
 export default function Addresses() {
-  const fadeDown = getAnimationPreset('fade-down')
-
   return (
     <address className="addresses">
       {/* Top: Logo + Location */}
@@ -68,18 +62,16 @@ export default function Addresses() {
       {/* Bottom: Links */}
       <div className="w-full inline-flex justify-center 2xl:justify-start">
         {btnItems.map((item, index) => (
-          <MButton
-            className="text-muted-foreground hover:text-accent"
+          <AnimatedButton
+            className="size-fit"
             key={item.id}
             variant="link"
-            {...fadeDown}
-            transition={{ ...fadeDown.transition, delay: 0.2 * index }}
-            asChild>
-            <Link className="flex-inline gap-1" href={item.href}>
-              <span>{item.label}</span>
-              <Link2 />
-            </Link>
-          </MButton>
+            href={item.href}
+            target={item.target}
+            btnText={item.label}
+            icon={<Link2 />}
+            delay={0.6 + index * 0.1}
+          />
         ))}
       </div>
     </address>

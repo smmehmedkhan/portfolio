@@ -43,12 +43,11 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // amazonq-ignore-next-line
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "connect-src 'self'",
+              "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

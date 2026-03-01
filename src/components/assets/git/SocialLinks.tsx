@@ -24,7 +24,13 @@ export default function SocialLinks({
   const containerAnimation = getAnimationPreset('fade-down')
   const buttonHoverAnimation = {
     y: -6,
-    transition: { duration: 0.3, type: 'spring', stiffness: 300 },
+    transition: {
+      duration: 0.3,
+      type: 'spring',
+      stiffness: 300,
+      damping: 10,
+      ease: 'easeIn',
+    },
   } as const
 
   const Container = animated ? motion.div : 'div'

@@ -1,6 +1,5 @@
 import SkillCard from '@/components/assets/skill/SkillCard'
 import { Heading } from '@/components/ui/heading'
-import { getAnimationPreset } from '@/lib/animations/registry'
 import { iconMap } from '@/lib/icon-map'
 import type { SkillCategory } from '@/types'
 

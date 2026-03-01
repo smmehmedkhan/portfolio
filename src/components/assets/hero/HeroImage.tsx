@@ -13,7 +13,7 @@ export default function HeroImage() {
 
   return (
     <div className="wrapper max-w-2xl">
-      <MDiv className="hero-images" {...fadeUp} viewport={{ once: true }}>
+      <MDiv className="hero-images" {...fadeUp}>
         {/* Hero Image */}
         <MImage
           className="hero-image"
@@ -22,10 +22,8 @@ export default function HeroImage() {
           width={1024}
           height={1365}
           priority
-          initial={fade.initial}
-          whileInView={fade.whileInView}
+          {...fade}
           transition={{ ...fade.transition, delay: 0.5 }}
-          viewport={{ once: true }}
         />
 
         {/* Hero Canvas */}

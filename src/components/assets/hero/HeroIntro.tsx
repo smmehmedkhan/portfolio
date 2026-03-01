@@ -1,8 +1,9 @@
-import { HeroButtons } from '@/components/assets/hero/HeroButtons'
+import { FilesIcon, PhoneIcon } from 'lucide-react'
 import HeroTitle from '@/components/assets/hero/HeroTitle'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { heroIntro } from '@/data/HeroIntro'
+import AnimatedButton from '../AnimatedButton'
 
 export default function HeroIntro() {
   const { greeting, titles, description } = heroIntro
@@ -43,7 +44,24 @@ export default function HeroIntro() {
       </div>
 
       {/* Call to Action Buttons */}
-      <HeroButtons />
+      <div className="buttons box-border">
+        <AnimatedButton
+          className="lg:size-fit"
+          variant="default"
+          href="/contact"
+          icon={<PhoneIcon />}
+          btnText="Contact Me"
+          swap={true}
+        />
+        <AnimatedButton
+          className="lg:size-fit"
+          variant="secondary"
+          href="/resume"
+          icon={<FilesIcon />}
+          btnText="Resume"
+          swap={true}
+        />
+      </div>
     </div>
   )
 }
