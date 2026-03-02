@@ -12,6 +12,7 @@ interface SocialLinksProps {
   buttonClassName?: string
   iconClassName?: string
   animated?: boolean
+  delay?: number
 }
 
 const MDiv = motion.create('div')
@@ -20,27 +21,23 @@ export default function SocialLinks({
   buttonClassName,
   iconClassName,
   animated = true,
+  delay,
 }: SocialLinksProps) {
-  const containerAnimation = getAnimationPreset('fade-down')
-  const buttonHoverAnimation = {
-    y: -6,
-    transition: {
-      duration: 0.3,
-      type: 'spring',
-      stiffness: 300,
-      damping: 10,
-      ease: 'easeIn',
-    },
-  } as const
+  const fadeDown = getAnimationPreset('fade-down')
+  const bounce = getAnimationPreset('bounce')
 
-  const Container = animated ? motion.div : 'div'
+  const Container = animated ? motion.create('div') : 'div'
 
   return (
     <Container
       className={cn('flex-inline gap-5 md:gap-7.5 lg:gap-10', className)}
-      {...(animated && containerAnimation)}>
+      {...(animated && fadeDown)}
+      transition={{ ...fadeDown.transition, delay }}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (
-        <MDiv key={id} whileHover={animated ? buttonHoverAnimation : undefined}>
+        <MDiv
+          key={id}
+          whileHover={animated ? bounce.animate : undefined}
+          transition={bounce.transition}>
           <Button
             variant="outline"
             className={cn(

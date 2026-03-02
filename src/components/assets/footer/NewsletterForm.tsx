@@ -18,6 +18,7 @@ const MForm = motion.create('form')
 
 export default function NewsletterForm() {
   const fade = getAnimationPreset('fade')
+  const bounce = getAnimationPreset('bounce')
   const {
     register,
     handleSubmit,
@@ -63,6 +64,8 @@ export default function NewsletterForm() {
     }
   }
 
+  const Wrapper = motion.create('div')
+
   return (
     <MForm
       className="newsletter-form flex-box"
@@ -80,19 +83,22 @@ export default function NewsletterForm() {
         />
         <FieldError className="max-w-md text-center" errors={[errors.email]} />
       </Field>
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            <span>Subscribing...</span>
-          </>
-        ) : (
-          <>
-            <Mail />
-            <span>Subscribe</span>
-          </>
-        )}
-      </Button>
+
+      <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <span>Subscribing...</span>
+            </>
+          ) : (
+            <>
+              <Mail />
+              <span>Subscribe</span>
+            </>
+          )}
+        </Button>
+      </Wrapper>
     </MForm>
   )
 }

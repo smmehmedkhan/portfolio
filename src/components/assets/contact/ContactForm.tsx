@@ -16,6 +16,7 @@ const MForm = motion.create('form')
 
 export default function ContactForm() {
   const fade = getAnimationPreset('fade')
+  const bounce = getAnimationPreset('bounce')
 
   const {
     register,
@@ -61,6 +62,8 @@ export default function ContactForm() {
       })
     }
   }
+
+  const Wrapper = motion.create('div')
 
   return (
     <MForm
@@ -113,20 +116,21 @@ export default function ContactForm() {
         />
         <FieldError errors={[errors.message]} />
       </Field>
-
-      <Button className="w-full" type="submit" disabled={isSubmitting}>
-        {isSubmitting ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            <span>Sending...</span>
-          </>
-        ) : (
-          <>
-            <Send />
-            <span>Send Message</span>
-          </>
-        )}
-      </Button>
+      <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
+        <Button className="w-full" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <span>Sending...</span>
+            </>
+          ) : (
+            <>
+              <Send />
+              <span>Send Message</span>
+            </>
+          )}
+        </Button>
+      </Wrapper>
     </MForm>
   )
 }

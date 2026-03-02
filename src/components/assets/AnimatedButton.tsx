@@ -7,6 +7,7 @@ import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
 
 const MDiv = motion.create('div')
+const MBtn = motion.create(Button)
 
 type AnimatedButtonProps = {
   href: string
@@ -38,26 +39,32 @@ export default function AnimatedButton({
   swap = false,
 }: AnimatedButtonProps) {
   const fadeDown = getAnimationPreset('fade-down')
+  const bounce = getAnimationPreset('bounce')
+
+  const Container = motion.create('div')
+  const Wrapper = motion.create('div')
   return (
-    <MDiv
+    <Container
       className={cn('size-full', className)}
       {...fadeDown}
       transition={{ ...fadeDown.transition, delay }}>
-      <Button className="w-full max-w-lg lg:w-fit" variant={variant} asChild>
-        <Link href={href} target={target}>
-          {swap ? (
-            <>
-              {icon}
-              <span>{btnText}</span>
-            </>
-          ) : (
-            <>
-              <span>{btnText}</span>
-              {icon}
-            </>
-          )}
-        </Link>
-      </Button>
-    </MDiv>
+      <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
+        <Button className="w-full max-w-lg lg:w-fit" variant={variant} asChild>
+          <Link href={href} target={target}>
+            {swap ? (
+              <>
+                {icon}
+                <span>{btnText}</span>
+              </>
+            ) : (
+              <>
+                <span>{btnText}</span>
+                {icon}
+              </>
+            )}
+          </Link>
+        </Button>
+      </Wrapper>
+    </Container>
   )
 }

@@ -164,7 +164,7 @@
     @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .accordion {
-      @apply size-full max-w-2xl bg-card border border-border rounded-sm md:rounded-md overflow-hidden;
+      @apply size-full max-w-3xl bg-card border border-border rounded-sm md:rounded-md overflow-hidden;
     }
   }
 

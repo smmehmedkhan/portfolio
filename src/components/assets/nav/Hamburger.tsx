@@ -1,7 +1,11 @@
+'use client'
+
 import { Menu, X } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import SocialLinks from '@/components/assets/git/SocialLinks'
 import Logo from '@/components/assets/nav/Logo'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,11 +17,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
+import { Heading } from '@/components/ui/heading'
 import ThemeSwitcher from '@/components/ui/theme-switcher'
 import { navLinks } from '@/data/nav-links'
-import SocialLinks from '../git/SocialLinks'
+import { getAnimationPreset } from '@/lib/animations/registry'
 
 export default function Hamburger() {
+  const fade = getAnimationPreset('fade')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
@@ -27,6 +33,7 @@ export default function Hamburger() {
     setMobileMenuOpen(false)
   }, [pathname])
 
+  const MenuItem = motion.create('li')
   return (
     <Drawer
       open={mobileMenuOpen}
@@ -56,12 +63,16 @@ export default function Hamburger() {
 
         {/* Mobile Navigation Links */}
         <menu className="links-menu">
-          {navLinks.map(({ id, href, label }) => (
-            <li key={id} className="link-item">
+          {navLinks.map(({ id, href, label }, index) => (
+            <MenuItem
+              key={id}
+              className="link-item"
+              {...fade}
+              transition={{ ...fade.transition, delay: 0.2 * index }}>
               <Link href={href} className="link">
                 {label}
               </Link>
-            </li>
+            </MenuItem>
           ))}
         </menu>
 
@@ -69,11 +80,16 @@ export default function Hamburger() {
         <ThemeSwitcher />
 
         {/* Drawer Footer */}
-        <DrawerFooter className="drawer-footer flex-inline">
+        <DrawerFooter className="drawer-footer flex-center">
+          <Heading variant="title" size="nm" animated>
+            Follow Me
+          </Heading>
           <SocialLinks
             className="items-center flex-wrap gap-2 sm:gap-2.5 md:gap-3"
             buttonClassName="size-8"
             iconClassName="size-6"
+            animated
+            delay={0.2}
           />
         </DrawerFooter>
       </DrawerContent>

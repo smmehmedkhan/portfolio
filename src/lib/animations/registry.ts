@@ -21,6 +21,7 @@
  * ```
  */
 import {
+  delay,
   easeIn,
   easeInOut,
   easeOut,
@@ -78,7 +79,15 @@ const TRANSITIONS = {
     damping: 10,
     easeIn,
   },
-  tween: { type: 'tween' as const, duration: 0.6, easeOut },
+  'fast-spring': {
+    type: 'spring' as const,
+    duration: 0.3,
+    delay: 0,
+    stiffness: 300,
+    damping: 10,
+    easeIn,
+  },
+  tween: { type: 'tween' as const, duration: 0.6, easeIn },
   slow: {
     type: 'spring' as const,
     duration: 0.8,
@@ -151,6 +160,12 @@ export const animationPresets: Record<string, AnimationConfig> = {
     whileInView: { opacity: 1, x: 0 },
     transition: TRANSITIONS.spring,
     viewport: VIEWPORT_CONFIGS.scroll,
+  },
+
+  bounce: {
+    initial: { y: 0 },
+    animate: { y: -6 },
+    transition: TRANSITIONS['fast-spring'],
   },
 
   zoom: {
@@ -234,16 +249,6 @@ export const animationPresets: Record<string, AnimationConfig> = {
     animate: { scale: [1, 1.05, 1] },
     transition: {
       duration: 2,
-      repeat: Number.POSITIVE_INFINITY,
-      ease: 'easeInOut',
-    },
-  },
-
-  bounce: {
-    initial: { y: 0 },
-    animate: { y: [0, -10, 0] },
-    transition: {
-      duration: 1.5,
       repeat: Number.POSITIVE_INFINITY,
       ease: 'easeInOut',
     },
