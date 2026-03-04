@@ -3,7 +3,21 @@
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import {
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Heading } from '@/components/ui/heading'
 import {
   HoverCard,
@@ -14,50 +28,104 @@ import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import type { SkillCardProps } from '@/types'
 
-const MLi = motion.create('li')
-const MDiv = motion.create('div')
+const MotionItem = motion.create('li')
+const Container = motion.create('div')
 
 export default function SkillCard({ item, index }: SkillCardProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [hoverOpen, setHoverOpen] = useState(false)
   const fadeDown = getAnimationPreset('fade-down')
   const pulse = getAnimationPreset('pulse')
 
-  return (
-    <MLi
-      {...fadeDown}
-      transition={{ ...fadeDown.transition, delay: 0.2 * index }}>
-      <HoverCard>
-        <HoverCardTrigger asChild>
-          <Button
-            asChild
-            variant="outline"
-            className="size-12 sm:size-14 p-2 rounded-xl">
-            <Link href={item.link} target="_blank" rel="noopener noreferrer">
-              <MDiv {...pulse}>
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={40}
-                  height={40}
-                  className="size-8 sm:size-10 lg:size-12 object-contain"
-                />
-              </MDiv>
-            </Link>
-          </Button>
-        </HoverCardTrigger>
-        <HoverCardContent className="size-full xs:max-w-60 sm:max-w-sm max-w-2xl flex flex-col gap-2">
+  const handleModalChange = (open: boolean) => {
+    setModalOpen(open)
+    if (!open) {
+      setHoverOpen(false)
+      setTimeout(() => setHoverOpen(false), 300)
+    }
+  }
+
+  const cardContent = (
+    <>
+      <CardHeader className="flex items-center justify-between">
+        <div className="size-12 p-2 rounded-lg bg-primary dark:bg-card flex-center">
+          <Image
+            src={item.src}
+            alt={item.title}
+            width={40}
+            height={40}
+            className="size-10 sm:size-10 lg:size-12 object-contain"
+          />
+        </div>
+      </CardHeader>
+      <CardContent className="size-full flex flex-col gap-2">
+        <CardTitle>
           <Heading
             variant="title"
-            className="text-accent font-semibold flex-inline gap-2"
+            className="text-md text-primary font-semibold"
             size="md">
-            <span>@</span>
             {item.title}
           </Heading>
-          <Paragraph>{item.description}</Paragraph>
-          <Paragraph variant="muted" className="mt-1 text-xs">
-            Joined {item.joined}
+        </CardTitle>
+        <CardDescription id={`skill-description-${item.id}`}>
+          <Paragraph
+            variant="muted"
+            size="nm"
+            className="text-sm md:text-nm leading-relaxed">
+            {item.description}
           </Paragraph>
+        </CardDescription>
+        <CardAction className="w-full inline-flex items-center justify-end">
+          <Button
+            className="bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent"
+            variant="outline"
+            asChild>
+            <Link href={item.link} target="_blank" rel="noopener noreferrer">
+              Visit
+            </Link>
+          </Button>
+        </CardAction>
+      </CardContent>
+    </>
+  )
+
+  return (
+    <MotionItem
+      {...fadeDown}
+      transition={{ ...fadeDown.transition, delay: 0.2 * index }}>
+      <HoverCard
+        open={modalOpen ? false : hoverOpen}
+        onOpenChange={setHoverOpen}>
+        <HoverCardTrigger asChild>
+          <Button
+            className="size-10 md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
+            variant="outline"
+            onClick={() => setModalOpen(true)}>
+            <Container {...pulse}>
+              <Image
+                src={item.src}
+                alt={item.title}
+                width={40}
+                height={40}
+                className="size-8 md:size-10 lg:size-12 object-contain"
+              />
+            </Container>
+          </Button>
+        </HoverCardTrigger>
+        <HoverCardContent className="hidden md:flex size-full xs:max-w-75 sm:max-w-sm lg:max-w-lg border border-border bg-popover flex-col gap-2">
+          {cardContent}
         </HoverCardContent>
       </HoverCard>
-    </MLi>
+
+      <Dialog open={modalOpen} onOpenChange={handleModalChange}>
+        <DialogOverlay className="size-full bg-background/10 backdrop-blur-[2px]" />
+        <DialogContent
+          className="w-full xs:max-w-75 sm:max-w-sm lg:max-w-lg border border-border bg-popover flex flex-col gap-2"
+          aria-describedby={`skill-description-${item.id}`}>
+          <DialogTitle className="sr-only">{item.title}</DialogTitle>
+          {cardContent}
+        </DialogContent>
+      </Dialog>
+    </MotionItem>
   )
 }

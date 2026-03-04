@@ -18,7 +18,7 @@ export default function Project({ data, isProjectPage, index }: ProjectProps) {
       </div>
       {!isProjectPage && (
         <AnimatedButton
-          className="wrapper"
+          className="size-full lg:size-fit mx-auto"
           href={`/projects#project-${data.id}`}
           btnText="View Project"
           icon={<ArrowUpRight />}

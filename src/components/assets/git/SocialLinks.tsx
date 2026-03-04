@@ -41,7 +41,7 @@ export default function SocialLinks({
           <Button
             variant="outline"
             className={cn(
-              'size-10 md:size-12 p-2 bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-card/90 dark:hover:text-accent dark:hover:border-accent',
+              'size-10 md:size-12 p-2 bg-popover text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-popover/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
             <Link

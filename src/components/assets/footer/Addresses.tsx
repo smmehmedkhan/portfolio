@@ -1,8 +1,11 @@
+'use client'
+
 import { Link2 } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
-import AnimatedButton from '@/components/assets/AnimatedButton'
 import Logo from '@/components/assets/nav/Logo'
 import { Paragraph } from '@/components/ui/paragraph'
+import { getAnimationPreset } from '@/lib/animations/registry'
 import { env } from '@/lib/env'
 
 const btnItems = [
@@ -22,6 +25,8 @@ const btnItems = [
 ]
 
 export default function Addresses() {
+  const fade = getAnimationPreset('fade')
+  const MotionItem = motion.create('li')
   return (
     <address className="addresses">
       {/* Top: Logo + Location */}
@@ -60,20 +65,22 @@ export default function Addresses() {
       </div>
 
       {/* Bottom: Links */}
-      <div className="w-full inline-flex justify-center 2xl:justify-start">
+      <ul className="w-full inline-flex justify-center 2xl:justify-start gap-2.5 lg:gap-5">
         {btnItems.map((item, index) => (
-          <AnimatedButton
-            className="size-fit"
+          <MotionItem
             key={item.id}
-            variant="link"
-            href={item.href}
-            target={item.target}
-            btnText={item.label}
-            icon={<Link2 />}
-            delay={0.6 + index * 0.1}
-          />
+            {...fade}
+            transition={{ ...fade.transition, delay: 0.4 + 0.2 * index }}>
+            <Link
+              className="text-sm md:text-nm text-muted-foreground inline-flex items-center gap-1 lg:gap-2 hover:text-accent underline-offset-3 transition-all duration-300"
+              href={item.href}
+              target={item.target}>
+              <span>{item.label}</span>
+              <Link2 className="size-4 lg:size-5" />
+            </Link>
+          </MotionItem>
         ))}
-      </div>
+      </ul>
     </address>
   )
 }

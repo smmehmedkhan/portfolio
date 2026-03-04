@@ -25,7 +25,7 @@ export default function About() {
 
       {/* About content layout */}
       <div className="about-layout flip">
-        <AboutCaro data={aboutImages} />
+        <AboutCaro data={aboutImages} className="wrapper about-caro" />
         <AboutTypo data={aboutTypographys} />
       </div>
     </section>

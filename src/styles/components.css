@@ -39,7 +39,7 @@
 
   /* ========== Hero banner ========== */
   .hero {
-    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden gap-10 lg:gap-0 xl:gap-10;
+    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden gap-10 lg:gap-0 xl:gap-10 2xl:gap-25;
 
     & .hero-intro {
       @apply xs:max-w-md sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-5;
@@ -82,14 +82,14 @@
     @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .about-layout {
-      @apply size-full xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-fit flex items-center gap-5 sm:gap-6.5 md:gap-7.5 lg:gap-10;
+      @apply size-full xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full flex items-center gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
       & .about-caro {
-        @apply lg:basis-1/2 px-0 sm:px-12 box-border;
+        @apply lg:flex-1 px-0 sm:px-12 box-border;
       }
 
       & .about-typo {
-        @apply lg:basis-1/2 xs:gap-3 sm:gap-4 md:gap-5;
+        @apply lg:flex-1 xs:gap-3 sm:gap-4 md:gap-5;
 
         & .cta-btn {
           @apply size-full flex items-center justify-center lg:justify-start;
@@ -120,7 +120,7 @@
     @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .project {
-      @apply max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-5 md:gap-10 lg:gap-20;
+      @apply max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
       & .project-content {
         @apply size-full flex flex-col items-center gap-8 lg:gap-10;

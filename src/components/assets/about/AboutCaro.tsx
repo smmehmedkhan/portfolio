@@ -17,13 +17,19 @@ import { getAnimationPreset } from '@/lib/animations/registry'
 
 const MDiv = motion.create('div')
 
-export default function AboutCaro({ data }: { data: AboutImageType[] }) {
+export default function AboutCaro({
+  data,
+  className,
+}: {
+  data: AboutImageType[]
+  className?: string
+}) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv className="wrapper about-caro" {...fade}>
+    <MDiv className={className} {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
@@ -38,6 +44,7 @@ export default function AboutCaro({ data }: { data: AboutImageType[] }) {
                   src={image.url}
                   alt={image.alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </AspectRatio>
             </CarouselItem>

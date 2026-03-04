@@ -24,7 +24,10 @@ export default function CaseInfo({
   return (
     <div className="wrapper">
       <div className={getInfoClasses(isEven)}>
-        <Heading className="text-secondary" variant="secondary" animated>
+        <Heading
+          className="text-primary dark:text-secondary"
+          variant="secondary"
+          animated>
           {name}
         </Heading>
         <Paragraph

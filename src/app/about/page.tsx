@@ -1,8 +1,18 @@
-import { MessageSquareText } from 'lucide-react'
+import { Book, MessageSquareText } from 'lucide-react'
 import type { Metadata } from 'next'
 import AboutCaro from '@/components/assets/about/AboutCaro'
 import AboutTypoBlock from '@/components/assets/about/AboutTypoBlock'
 import SectionInro from '@/components/assets/SectionInro'
+import { Badge } from '@/components/ui/badge'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Heading } from '@/components/ui/heading'
+import { Paragraph } from '@/components/ui/paragraph'
 import { CONFIG } from '@/constants/config'
 import { aboutImages, aboutTypographys } from '@/data/about'
 import { sectionInros } from '@/data/sectionInros'
@@ -37,8 +47,8 @@ export default function AboutPage() {
       <SectionInro data={sectionInros.about} icon={<MessageSquareText />} />
 
       <section className="container about flex-box">
-        <div className="about-layout">
-          <AboutCaro data={aboutImages} />
+        <div className="about-layout flip">
+          <AboutCaro data={aboutImages} className="wrapper about-caro" />
           <div className="wrapper about-typo">
             {/* Top: About typography items */}
             {aboutTypographys.map((item, index) => (
@@ -46,39 +56,84 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-        <div className="size-full flex-center gap-10">
-          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
-            <h3 className="text-center font-bold">Available for work</h3>
-            <p className="text-center text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
-              sint at totam modi vel voluptate nobis architecto blanditiis magni
-              neque ratione excepturi beatae ducimus asperiores eos adipisci
-              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
-              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
-              molestiae dignissimos beatae quas non?
-            </p>
+        <div className="about-layout flip">
+          {/* left: About Headings */}
+          <div className="size-full flex flex-col flex-2/5 gap-2">
+            <Heading size="xl" className="text-center lg:text-start">
+              My Working Exprience
+            </Heading>
+            <Paragraph variant="lead" className="text-center lg:text-start">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
+              aut?
+            </Paragraph>
           </div>
-          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
-            <h3 className="text-center font-bold">Available for work</h3>
-            <p className="text-center text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
-              sint at totam modi vel voluptate nobis architecto blanditiis magni
-              neque ratione excepturi beatae ducimus asperiores eos adipisci
-              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
-              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
-              molestiae dignissimos beatae quas non?
-            </p>
+
+          {/* Right: About Cards */}
+          <div className="wrapper flex-3/5">
+            <div className="size-full grid grid-cols-1 lg:grid-cols-2 gap-7.5">
+              {[1, 2, 3, 4, 5, 6].map(item => (
+                <Card key={item} className="border border-border bg-card">
+                  <CardHeader className="flex items-center justify-between">
+                    <div className="size-12 p-2 rounded-lg bg-primary dark:bg-primary/15 flex-center">
+                      <Book
+                        size={100}
+                        className="size-10 text-primary-foreground dark:text-primary"
+                      />
+                    </div>
+                    <Badge className="bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent">
+                      hello
+                    </Badge>
+                  </CardHeader>
+                  <CardContent className="size-full flex flex-col gap-2">
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>
+                      <Paragraph
+                        variant="muted"
+                        size="nm"
+                        className="text-sm md:text-nm leading-relaxed">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </Paragraph>
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-          <div className="size-full max-w-md p-10 bg-card border border-border rounded-lg flex-box gap-2">
-            <h3 className="text-center font-bold">Available for work</h3>
-            <p className="text-center text-muted-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic
-              sint at totam modi vel voluptate nobis architecto blanditiis magni
-              neque ratione excepturi beatae ducimus asperiores eos adipisci
-              nisi maiores, laudantium, tempora dignissimos sed dolorum. Iusto
-              cum veritatis fugiat dolorum, eius, fuga voluptas veniam labore
-              molestiae dignissimos beatae quas non?
-            </p>
+        </div>
+        <div className="about-layout flex-box">
+          <Heading className="text-center">Educations & Qualifications</Heading>
+
+          <div className="wrapper">
+            <div className="size-full grid grid-cols-1 lg:grid-cols-3 gap-7.5">
+              {[1, 2, 3].map(item => (
+                <Card key={item} className="border border-border bg-card">
+                  <CardHeader className="flex items-center justify-between">
+                    <div className="size-12 p-2 rounded-lg bg-primary dark:bg-primary/15 flex-center">
+                      <Book
+                        size={100}
+                        className="size-10 text-primary-foreground dark:text-primary"
+                      />
+                    </div>
+                    <Badge className="bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent">
+                      hello
+                    </Badge>
+                  </CardHeader>
+                  <CardContent className="size-full flex flex-col gap-2">
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>
+                      <Paragraph
+                        variant="muted"
+                        size="nm"
+                        className="text-sm md:text-nm leading-relaxed">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </Paragraph>
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>

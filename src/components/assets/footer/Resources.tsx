@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { Heading } from '@/components/ui/heading'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const MLi = motion.create('li')
-
 const listItems = [
   { id: 1, label: 'About', href: '/about' },
   { id: 2, label: 'Projects', href: '/projects' },
@@ -16,6 +14,7 @@ const listItems = [
 
 export default function Resources() {
   const fade = getAnimationPreset('fade')
+  const MotionItem = motion.create('li')
 
   return (
     <div className="wrapper gap-5">
@@ -25,7 +24,7 @@ export default function Resources() {
 
       <ul className="resources">
         {listItems.map((item, index) => (
-          <MLi
+          <MotionItem
             key={item.id}
             {...fade}
             transition={{ ...fade.transition, delay: 0.2 * index }}>
@@ -34,7 +33,7 @@ export default function Resources() {
               className="text-md text-muted-foreground hover:text-accent">
               {item.label}
             </Link>
-          </MLi>
+          </MotionItem>
         ))}
       </ul>
     </div>
