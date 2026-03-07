@@ -14,7 +14,7 @@ export default function AboutAvater() {
       <MotionImage
         className="size-full max-w-lg object-contain"
         src="/icons/undraw_programming.svg"
-        alt="Photo"
+        alt="Illustration of a programmer"
         width={300}
         height={300}
         {...fade}

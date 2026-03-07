@@ -68,7 +68,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Experiance & Evoluation */}
+      {/* Experience & Evoluation */}
       <section className="container about-expevo flex-center flip">
         {/* left: Expevo Headings */}
         <div className="expevo-container">

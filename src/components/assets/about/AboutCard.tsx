@@ -3,6 +3,7 @@
 import {
   Cloud,
   Database,
+  HelpCircle,
   Layout,
   PictureInPicture,
   Server,
@@ -42,7 +43,7 @@ export default function AboutCard({
 }: AboutCardType & { index: number }) {
   const fadeDown = getAnimationPreset('fade-down')
   const bounce = getAnimationPreset('bounce')
-  const IconComponent = iconMap[icon as keyof typeof iconMap]
+  const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
 
   const getBadgeStyles = (badge: string) => {
     switch (badge) {
