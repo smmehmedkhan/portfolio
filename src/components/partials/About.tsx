@@ -20,11 +20,11 @@ import { sectionInros } from '@/data/sectionInros'
  */
 export default function About() {
   return (
-    <section className="container about flex-box">
+    <section className="container about-container flex-box">
       <SectionInro data={sectionInros.about} icon={<ScrollText />} />
 
       {/* About content layout */}
-      <div className="about-layout flip">
+      <div className="about-layout flex-center flip">
         <AboutCaro data={aboutImages} className="wrapper about-caro" />
         <AboutTypo data={aboutTypographys} />
       </div>

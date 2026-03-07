@@ -100,6 +100,7 @@ const defaultMotionProps = {
   ...fade,
   viewport: {
     amount: 0.6,
+    margin: '-16px',
   },
 }
 

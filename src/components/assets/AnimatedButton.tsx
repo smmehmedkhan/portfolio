@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
 
-const MDiv = motion.create('div')
-const MBtn = motion.create(Button)
+const Container = motion.create('div')
+const Wrapper = motion.create('div')
 
 type AnimatedButtonProps = {
   href: string
@@ -41,8 +41,6 @@ export default function AnimatedButton({
   const fadeDown = getAnimationPreset('fade-down')
   const bounce = getAnimationPreset('bounce')
 
-  const Container = motion.create('div')
-  const Wrapper = motion.create('div')
   return (
     <Container
       className={cn('size-full', className)}

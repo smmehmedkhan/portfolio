@@ -3,21 +3,28 @@ import type { AboutTypographyType } from '@/data/about'
 import AnimatedButton from '../AnimatedButton'
 import AboutTypoBlock from './AboutTypoBlock'
 
-export default function AboutTypo({ data }: { data: AboutTypographyType[] }) {
+export default function AboutTypo({
+  data,
+  page = false,
+}: {
+  data: AboutTypographyType[]
+  page?: boolean
+}) {
   return (
-    <div className="wrapper about-typo">
+    <div className="about-typo">
       {/* Top: About typography items */}
       {data.map((item, index) => (
         <AboutTypoBlock key={item.id} item={item} index={index} />
       ))}
       {/* Bottom: See more button */}
-      <div className="cta-btn">
+      {!page && (
         <AnimatedButton
+          className="lg:size-fit"
           href="/about"
           btnText="Read More"
           icon={<ArrowUpRight />}
         />
-      </div>
+      )}
     </div>
   )
 }

@@ -23,14 +23,20 @@ export default function ThemeToggler() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+      <DropdownMenuContent className="border-border" align="end">
+        <DropdownMenuItem
+          className="hover:bg-accent dark:hover:bg-accent/30 hover:text-accent-foreground dark:hover:text-accent"
+          onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem
+          className="hover:bg-accent dark:hover:bg-accent/30 hover:text-accent-foreground dark:hover:text-accent"
+          onClick={() => setTheme('dark')}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem
+          className="hover:bg-accent dark:hover:bg-accent/30 hover:text-accent-foreground dark:hover:text-accent"
+          onClick={() => setTheme('system')}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

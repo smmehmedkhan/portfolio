@@ -13,14 +13,15 @@ export default function AboutTypoBlock({
     <div className="wrapper gap-2" key={index}>
       <Heading
         className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
-        variant="role"
-        size="nm"
+        variant="title"
+        size="md"
         animated
         transition={{ delay: 0.2 * index }}>
         {item.title}
       </Heading>
       <Paragraph
-        className="text-center lg:text-left tracking-normal lg:tracking-wide"
+        className="text-muted-foreground text-center lg:text-left tracking-normal lg:tracking-wide"
+        size="nm"
         animated
         transition={{ delay: 0.2 * index * 2 }}>
         {item.description}
