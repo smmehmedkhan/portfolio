@@ -54,7 +54,7 @@ export interface AboutCardType {
   title: string
   icon: string
   description: string
-  badge: string
+  expertise: string
 }
 
 export const aboutCardContent = [
@@ -64,39 +64,39 @@ export const aboutCardContent = [
     icon: 'PictureInPicture',
     description:
       'Crafting intuitive and engaging user experiences with Figma, Adobe XD, and prototyping tools, ensuring seamless interactions.',
-    badge: 'Medium',
+    expertise: 'Proficient',
   },
   {
     id: 2,
     title: 'Frontend Development',
     icon: 'Layout',
     description:
-      'Creating responsive, accessible, and performant user interfaces with modern frameworks like React, Next.js, and Vue.js.',
-    badge: 'Strong',
+      'Creating responsive, accessible, and performant user interfaces with modern library and frameworks like React, TailwindCSS, Radix UI, Shadcn/ui, etc.',
+    expertise: 'Experienced',
   },
   {
     id: 3,
     title: 'Backend Development',
     icon: 'Server',
     description:
-      'Designing scalable server-side applications and APIs using Node.js, Express, Python (Django/Flask), and cloud services.',
-    badge: 'Strong',
+      'Designing scalable, secure server-side applications. Build APIs using Node.js, Express.js, and full-stack frameworks like Next.js, Tanstack, etc.',
+    expertise: 'Experienced',
   },
   {
     id: 4,
     title: 'Database Schema Design',
     icon: 'Database',
     description:
-      'Designing and optimizing relational and NoSQL databases with PostgreSQL, MySQL, MongoDB, and Redis for high-performance applications.',
-    badge: 'Strong',
+      'Designing and optimizing relational and non-relational databases with MongoDB, Mongoose ODM, PostgreSQL, Prisma ORM, Redis, etc.',
+    expertise: 'Experienced',
   },
   {
     id: 5,
     title: 'DevOps & Cloud',
     icon: 'Cloud',
     description:
-      'Deploying and managing applications on cloud platforms like AWS, GCP, and Azure, with CI/CD pipelines and containerization using Docker and Kubernetes.',
-    badge: 'Medium',
+      'Deploying and managing applications on cloud with CI/CD pipelines, containerization using Docker, and orchestration using Kubernetes.',
+    expertise: 'Proficient',
   },
   {
     id: 6,
@@ -104,6 +104,6 @@ export const aboutCardContent = [
     icon: 'Smartphone',
     description:
       'Building cross-platform mobile applications using React Native and Flutter for both iOS and Android devices.',
-    badge: 'Beginner',
+    expertise: 'Familiar',
   },
 ]

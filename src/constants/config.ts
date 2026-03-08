@@ -40,6 +40,7 @@ export const CONFIG = {
   // Social links
   SOCIAL: {
     GITHUB: env.NEXT_PUBLIC_GITHUB_URL || '#',
+    GITHUB_USERNAME: 'smmehmedkhan',
     DISCORD: env.NEXT_PUBLIC_DISCORD_URL || '#',
     FACEBOOK: env.NEXT_PUBLIC_FACEBOOK_URL || '#',
     INSTAGRAM: env.NEXT_PUBLIC_INSTAGRAM_URL || '#',

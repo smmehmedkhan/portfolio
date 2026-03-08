@@ -175,7 +175,7 @@
 
   /* ========== About me page ========== */
   .about-page {
-    @apply  pt-10 sm:pt-15 md:pt-20 lg:pt-25;
+    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25;
 
     & .about-pg-container {
       @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;

@@ -38,20 +38,20 @@ export default function AboutCard({
   icon,
   title,
   description,
-  badge,
+  expertise,
   index,
 }: AboutCardType & { index: number }) {
   const fadeDown = getAnimationPreset('fade-down')
   const bounce = getAnimationPreset('bounce')
   const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
 
-  const getBadgeStyles = (badge: string) => {
-    switch (badge) {
-      case 'Beginner':
+  const getBadgeStyles = (expertise: string) => {
+    switch (expertise) {
+      case 'Familiar':
         return 'bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400'
-      case 'Medium':
+      case 'Proficient':
         return 'bg-lime-100 dark:bg-lime-950/30 text-lime-700 dark:text-lime-400'
-      case 'Strong':
+      case 'Experienced':
         return 'bg-amber-100 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400'
       default:
         return 'bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent'
@@ -76,7 +76,7 @@ export default function AboutCard({
                 className="size-10 text-primary-foreground dark:text-primary"
               />
             </div>
-            <Badge className={getBadgeStyles(badge)}>{badge}</Badge>
+            <Badge className={getBadgeStyles(expertise)}>{expertise}</Badge>
           </CardHeader>
           <CardContent className="size-full flex flex-col gap-2">
             <CardTitle>
@@ -89,7 +89,7 @@ export default function AboutCard({
             </CardTitle>
             <CardDescription>
               <Paragraph
-                className="text-sm md:text-nm leading-relaxed"
+                className="text-sm md:text-nm leading-relaxed text-pretty tracking-tight"
                 variant="muted"
                 size="nm">
                 {description}
