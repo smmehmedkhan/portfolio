@@ -1,16 +1,8 @@
-import { Book } from 'lucide-react'
 import type { Metadata } from 'next'
 import AboutAvater from '@/components/assets/about/AboutAvater'
 import AboutCard from '@/components/assets/about/AboutCard'
+import AboutContributions from '@/components/assets/about/AboutContributions'
 import AboutTypo from '@/components/assets/about/AboutTypo'
-import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { CONFIG } from '@/constants/config'
@@ -85,9 +77,8 @@ export default function AboutPage() {
             className="w-full lg:max-w-2xl text-center lg:text-start"
             animated
             transition={{ delay: 0.2 }}>
-            Proven expertise in full-stack development, cloud infrastructure,
-            and agile methodologies. I specialize in building performant,
-            accessible applications that solve real-world problems.
+            I specialize in building performant, accessible applications that
+            solve real-world problems.
           </Paragraph>
         </div>
 
@@ -101,40 +92,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container flex-box gap-10">
-        <Heading className="text-center">Educations & Qualifications</Heading>
-
-        <div className="wrapper">
-          <div className="size-full grid grid-cols-1 lg:grid-cols-3 gap-7.5">
-            {[1, 2, 3].map(item => (
-              <Card key={item} className="border border-border bg-card">
-                <CardHeader className="flex items-center justify-between">
-                  <div className="size-12 p-2 rounded-lg bg-primary dark:bg-primary/15 flex-center">
-                    <Book
-                      size={100}
-                      className="size-10 text-primary-foreground dark:text-primary"
-                    />
-                  </div>
-                  <Badge className="bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent">
-                    hello
-                  </Badge>
-                </CardHeader>
-                <CardContent className="size-full flex flex-col gap-2">
-                  <CardTitle>Card Title</CardTitle>
-                  <CardDescription>
-                    <Paragraph
-                      variant="muted"
-                      size="nm"
-                      className="text-sm md:text-nm leading-relaxed">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </Paragraph>
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      {/* GitHub Contributions */}
+      <section className="container flex-box gap-10 sm:gap-15 md:gap-20 lg:gap-25">
+        <div className="wrapper gap-3">
+          <Heading className="leading-tight" animated>
+            Contributions
+            <br />
+            <span className="text-accent">&</span>{' '}
+            <span className="text-primary">Activity</span>
+          </Heading>
+          <Paragraph
+            variant="lead"
+            className="w-full max-w-lg text-center"
+            animated
+            transition={{ delay: 0.2 }}>
+            A visual representation of my coding journey and open-source
+            contributions.
+          </Paragraph>
         </div>
+
+        <AboutContributions username={CONFIG.SOCIAL.GITHUB_USERNAME} />
       </section>
     </main>
   )
