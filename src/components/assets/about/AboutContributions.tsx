@@ -14,7 +14,7 @@ const GitHubCalendarComponent = dynamic(
 
 export default function AboutContributions({ username }: { username: string }) {
   const fade = getAnimationPreset('fade-instant')
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   return (
     <Wrapper
@@ -23,7 +23,7 @@ export default function AboutContributions({ username }: { username: string }) {
       transition={{ ...fade.transition, delay: 0.4 }}>
       <GitHubCalendarComponent
         username={username}
-        colorScheme={theme === 'dark' ? 'dark' : 'light'}
+        colorScheme={resolvedTheme === 'dark' ? 'dark' : 'light'}
         blockSize={16}
         blockMargin={5}
         fontSize={16}
