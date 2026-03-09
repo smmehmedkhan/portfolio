@@ -11,13 +11,16 @@ import { Paragraph } from '@/components/ui/paragraph'
 import { faqData } from '@/data/faq'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const MDiv = motion.create('div')
+const Wrapper = motion.create('div')
 
 export default function FaqAccordion() {
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv {...fade}>
+    <Wrapper
+      className="wrapper"
+      {...fade}
+      transition={{ ...fade.transition, delay: 0.4 }}>
       <Accordion
         className="accordion"
         type="single"
@@ -45,6 +48,6 @@ export default function FaqAccordion() {
           </AccordionItem>
         ))}
       </Accordion>
-    </MDiv>
+    </Wrapper>
   )
 }

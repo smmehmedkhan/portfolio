@@ -1,8 +1,6 @@
-import { ScrollText } from 'lucide-react'
 import AboutCaro from '@/components/assets/about/AboutCaro'
 import AboutTypo from '@/components/assets/about/AboutTypo'
 import SectionInro from '@/components/assets/SectionInro'
-import { aboutImages, aboutTypographys } from '@/data/about'
 import { sectionInros } from '@/data/sectionInros'
 
 /**
@@ -21,12 +19,12 @@ import { sectionInros } from '@/data/sectionInros'
 export default function About() {
   return (
     <section className="container about-container flex-box">
-      <SectionInro data={sectionInros.about} icon={<ScrollText />} />
+      <SectionInro data={sectionInros.about} />
 
       {/* About content layout */}
       <div className="about-layout flex-center flip">
-        <AboutCaro data={aboutImages} className="wrapper about-caro" />
-        <AboutTypo data={aboutTypographys} />
+        <AboutCaro />
+        <AboutTypo />
       </div>
     </section>
   )

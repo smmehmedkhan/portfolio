@@ -1,12 +1,3 @@
-export interface Testimonial {
-  id: number
-  name: string
-  image: string
-  position: string
-  feedback: string
-  rating: number
-}
-
 export const testimonials = [
   {
     id: 1,

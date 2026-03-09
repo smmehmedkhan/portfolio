@@ -12,31 +12,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import type { AboutImageType } from '@/data/about'
+import { aboutImages } from '@/data/about'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const MDiv = motion.create('div')
+const Wrapper = motion.create('div')
 
-export default function AboutCaro({
-  data,
-  className,
-}: {
-  data: AboutImageType[]
-  className?: string
-}) {
+export default function AboutCaro() {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
 
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv className={className} {...fade}>
+    <Wrapper className="wrapper about-caro" {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}>
         <CarouselContent>
-          {data.map((image, index) => (
+          {aboutImages.map((image, index) => (
             <CarouselItem key={image.id} tabIndex={index}>
               <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
                 <Image
@@ -53,6 +47,6 @@ export default function AboutCaro({
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-    </MDiv>
+    </Wrapper>
   )
 }

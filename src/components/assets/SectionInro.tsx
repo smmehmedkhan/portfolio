@@ -1,35 +1,47 @@
 'use client'
 
+import {
+  BadgeCheck,
+  FolderKanban,
+  Gem,
+  HelpCircle,
+  Mailbox,
+  MessageCircleQuestionMark,
+  ScrollText,
+} from 'lucide-react'
 import { motion } from 'motion/react'
+import { FaBolt } from 'react-icons/fa'
 import { Badge } from '@/components/ui/badge'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import type { SectionInroType } from '@/data/sectionInros'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
+import type { SectionIntroProps } from '@/types'
 
 const MotionBadge = motion.create(Badge)
 
-type SectionInroProps = {
-  data: SectionInroType
-  icon: React.ReactNode
-  badgeStyles?: string
-  headingStyles?: string
-  paragraphStyles?: string
+const iconMap = {
+  ScrollText,
+  Gem,
+  FolderKanban,
+  BadgeCheck,
+  MessageCircleQuestionMark,
+  FaBolt,
+  Mailbox,
 }
 
 export default function SectionInro({
   badgeStyles,
   headingStyles,
   paragraphStyles,
-  icon,
   data,
-}: SectionInroProps) {
-  const { id, slot, title, description } = data
+}: SectionIntroProps) {
+  const { id, icon, label, title, description } = data
   const fadeDown = getAnimationPreset('fade-down')
+  const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
 
   return (
-    <div className="section-intro flex-box" data-slot={slot} data-id={id}>
+    <div className="section-intro flex-box" data-slot={label} data-id={id}>
       <MotionBadge
         className={cn(
           'flex-inline',
@@ -38,14 +50,14 @@ export default function SectionInro({
         )}
         {...fadeDown}>
         <span className="flex-box size-4 lg:size-5" aria-hidden="true">
-          {icon}
+          <IconComponent />
         </span>
         <Paragraph
           className="text-primary-foreground"
           variant="small"
           size="sm"
           as="span">
-          {slot}
+          {label}
         </Paragraph>
       </MotionBadge>
       <Heading className={headingStyles} animated transition={{ delay: 0.2 }}>

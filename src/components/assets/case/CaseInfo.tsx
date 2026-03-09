@@ -1,19 +1,12 @@
-import { data } from 'motion/react-client'
+import CaseBadges from '@/components/assets/case/CaseBadges'
+import ProjectButtons from '@/components/assets/case/ProjectButtons'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import type { CaseInfoProps } from '@/types'
-import CaseBadges from './CaseBadges'
-import ProjectButtons from './ProjectButtons'
 
-export default function CaseInfo({
-  name,
-  bio,
-  shortDescription,
-  longDescription,
-  technologies,
-  isEven,
-  isProjectPage,
-}: CaseInfoProps & { isEven: boolean; isProjectPage: boolean }) {
+export default function CaseInfo({ isEven, page, data }: CaseInfoProps) {
+  const { name, bio, shortDescription, longDescription, technologies } = data
+
   const getInfoClasses = (isEven: boolean) => {
     const alignment = isEven
       ? 'lg:items-start lg:text-left'
@@ -43,7 +36,7 @@ export default function CaseInfo({
           transition={{ delay: 0.4 }}>
           {shortDescription}
         </Paragraph>
-        {isProjectPage && (
+        {page && (
           <Paragraph
             className="leading-relaxed"
             animated
@@ -52,7 +45,7 @@ export default function CaseInfo({
           </Paragraph>
         )}
         <CaseBadges isEven={isEven} technologies={technologies} />
-        {isProjectPage && <ProjectButtons isEven={isEven} {...data} />}
+        {page && <ProjectButtons isEven={isEven} {...data} />}
       </div>
     </div>
   )

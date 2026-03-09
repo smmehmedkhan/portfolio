@@ -26,14 +26,16 @@ import {
 } from '@/components/ui/hover-card'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import type { SkillCardProps } from '@/types'
+import type { SkillItemProps } from '@/types'
 
 const MotionItem = motion.create('li')
 const Container = motion.create('div')
 
-export default function SkillCard({ item, index }: SkillCardProps) {
+export default function SkillItem({ index, data }: SkillItemProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const [hoverOpen, setHoverOpen] = useState(false)
+
+  const { id, title, description, image, url } = data
   const fadeDown = getAnimationPreset('fade-down')
   const pulse = getAnimationPreset('pulse')
 
@@ -50,8 +52,8 @@ export default function SkillCard({ item, index }: SkillCardProps) {
       <CardHeader className="flex items-center justify-between">
         <div className="size-12 p-2 rounded-lg bg-primary dark:bg-card flex-center">
           <Image
-            src={item.src}
-            alt={item.title}
+            src={image}
+            alt={title}
             width={40}
             height={40}
             className="size-10 sm:size-10 lg:size-12 object-contain"
@@ -64,15 +66,15 @@ export default function SkillCard({ item, index }: SkillCardProps) {
             variant="title"
             className="text-md text-primary font-semibold"
             size="md">
-            {item.title}
+            {title}
           </Heading>
         </CardTitle>
-        <CardDescription id={`skill-description-${item.id}`}>
+        <CardDescription id={`skill-description-${id}`}>
           <Paragraph
             variant="muted"
             size="nm"
             className="text-sm md:text-nm leading-relaxed">
-            {item.description}
+            {description}
           </Paragraph>
         </CardDescription>
         <CardAction className="w-full inline-flex items-center justify-end">
@@ -80,7 +82,7 @@ export default function SkillCard({ item, index }: SkillCardProps) {
             className="bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent"
             variant="outline"
             asChild>
-            <Link href={item.link} target="_blank" rel="noopener noreferrer">
+            <Link href={url} target="_blank" rel="noopener noreferrer">
               Visit
             </Link>
           </Button>
@@ -103,8 +105,8 @@ export default function SkillCard({ item, index }: SkillCardProps) {
             onClick={() => setModalOpen(true)}>
             <Container {...pulse}>
               <Image
-                src={item.src}
-                alt={item.title}
+                src={image}
+                alt={title}
                 width={40}
                 height={40}
                 className="size-8 md:size-10 lg:size-12 object-contain"
@@ -121,8 +123,8 @@ export default function SkillCard({ item, index }: SkillCardProps) {
         <DialogOverlay className="size-full bg-background/10 backdrop-blur-[2px]" />
         <DialogContent
           className="w-full xs:max-w-75 sm:max-w-sm lg:max-w-lg border border-border bg-popover flex flex-col gap-2"
-          aria-describedby={`skill-description-${item.id}`}>
-          <DialogTitle className="sr-only">{item.title}</DialogTitle>
+          aria-describedby={`skill-description-${id}`}>
+          <DialogTitle className="sr-only">{title}</DialogTitle>
           {cardContent}
         </DialogContent>
       </Dialog>

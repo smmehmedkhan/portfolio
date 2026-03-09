@@ -20,19 +20,19 @@ const cardVariants: Variants = {
   },
 }
 
-const MDiv = motion.create('div')
-const MImage = motion.create(Image)
+const Wrapper = motion.create('div')
+const MotionImage = motion.create(Image)
 
 export default function CaseCard({ image, name }: CaseCardProps) {
   const fade = getAnimationPreset('fade')
 
   return (
     <div className="wrapper">
-      <MDiv
+      <Wrapper
         className={'case-card-container flex-center'}
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{ amount: 0.6 }}>
+        viewport={{ amount: 0.8 }}>
         {/* Splash Canvas */}
         <svg
           className="splash"
@@ -60,8 +60,8 @@ export default function CaseCard({ image, name }: CaseCardProps) {
         </svg>
 
         {/* Project Image */}
-        <MDiv className="case-card flex-box" variants={cardVariants}>
-          <MImage
+        <Wrapper className="case-card flex-box" variants={cardVariants}>
+          <MotionImage
             className="case-card-image"
             src={image}
             alt={name}
@@ -70,8 +70,8 @@ export default function CaseCard({ image, name }: CaseCardProps) {
             {...fade}
             transition={{ ...fade.transition, delay: 0.4 }}
           />
-        </MDiv>
-      </MDiv>
+        </Wrapper>
+      </Wrapper>
     </div>
   )
 }

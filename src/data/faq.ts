@@ -1,8 +1,4 @@
-export interface FAQItem {
-  id: string
-  question: string
-  answer: string[]
-}
+import type { FAQItem } from '@/types'
 
 export const faqData: FAQItem[] = [
   {
