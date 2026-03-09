@@ -1,6 +1,6 @@
-import type { ExperienceType } from '@/types'
+import type { Experience } from '@/types'
 
-export const experiences: ExperienceType[] = [
+export const experiences: Experience[] = [
   {
     id: 1,
     title: 'UI/UX Design',

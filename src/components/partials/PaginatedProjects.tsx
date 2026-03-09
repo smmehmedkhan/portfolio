@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/pagination'
 import { CONFIG } from '@/constants/config'
 import { projects } from '@/data/projects'
-import type { ProjectTypes } from '@/types'
+import type { Project as ProjectType } from '@/types'
 
 export default function PaginatedProjects() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -40,13 +40,8 @@ export default function PaginatedProjects() {
 
   return (
     <section className="container case-studies flex-box">
-      {currentProjects.map((project: ProjectTypes, index) => (
-        <Project
-          key={project.id}
-          data={project}
-          isProjectPage={true}
-          index={index}
-        />
+      {currentProjects.map((project: ProjectType, index) => (
+        <Project key={project.id} data={project} page={true} index={index} />
       ))}
 
       <Pagination>

@@ -1,6 +1,6 @@
-import type { AboutDescriptionType, AboutImageType } from '@/types'
+import type { AboutDescription, AboutImage } from '@/types'
 
-export const aboutImages: AboutImageType[] = [
+export const aboutImages: AboutImage[] = [
   {
     id: 1,
     url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&dpr=2&q=80',
@@ -18,7 +18,7 @@ export const aboutImages: AboutImageType[] = [
   },
 ]
 
-export const aboutDescription: AboutDescriptionType[] = [
+export const aboutDescription: AboutDescription[] = [
   {
     id: 1,
     title: 'Passion',

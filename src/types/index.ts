@@ -127,7 +127,7 @@ export interface Testimonial {
 }
 
 // ============================================
-// FAQI Section Types
+// FAQ Section Types
 // ============================================
 export interface FAQItem {
   id: string

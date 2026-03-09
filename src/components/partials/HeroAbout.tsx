@@ -27,7 +27,7 @@ export default function HeroAbout() {
       {/* Bottom: About Avatar & Typography */}
       <div className="about-pg-layout flex-center flip">
         <AboutAvater />
-        <AboutTypo data={aboutDescription} page={true} />
+        <AboutTypo page={true} />
       </div>
     </header>
   )

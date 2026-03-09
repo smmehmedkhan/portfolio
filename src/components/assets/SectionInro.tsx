@@ -16,7 +16,7 @@ import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
-import type { SectionInroProps } from '@/types'
+import type { SectionIntroProps } from '@/types'
 
 const MotionBadge = motion.create(Badge)
 
@@ -35,7 +35,7 @@ export default function SectionInro({
   headingStyles,
   paragraphStyles,
   data,
-}: SectionInroProps) {
+}: SectionIntroProps) {
   const { id, icon, label, title, description } = data
   const fadeDown = getAnimationPreset('fade-down')
   const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle

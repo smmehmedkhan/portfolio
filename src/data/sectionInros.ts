@@ -1,6 +1,6 @@
-import type { SectionInroType } from '@/types'
+import type { SectionIntro } from '@/types'
 
-export const sectionInros: Record<string, SectionInroType> = {
+export const sectionInros: Record<string, SectionIntro> = {
   about: {
     id: 1,
     icon: 'ScrollText',
