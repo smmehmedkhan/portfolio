@@ -2,7 +2,6 @@ import AboutAvater from '@/components/assets/about/AboutAvater'
 import AboutTypo from '@/components/assets/about/AboutTypo'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import { aboutDescription } from '@/data/about'
 
 export default function HeroAbout() {
   return (

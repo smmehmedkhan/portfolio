@@ -57,7 +57,7 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
     <Wrapper
       className="wrapper"
       {...fadeDown}
-      transition={{ ...fadeDown.transition, delay: 0.2 * (index || 1) }}>
+      transition={{ ...fadeDown.transition, delay: 0.2 * (index ?? 0) }}>
       <Wrapper
         className="wrapper"
         initial={bounce.initial}
