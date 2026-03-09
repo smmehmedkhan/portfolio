@@ -1,20 +1,14 @@
 import { ArrowUpRight } from 'lucide-react'
-import type { AboutTypographyType } from '@/data/about'
-import AnimatedButton from '../AnimatedButton'
-import AboutTypoBlock from './AboutTypoBlock'
+import AnimatedButton from '@/components/assets/AnimatedButton'
+import AboutTypoBlock from '@/components/assets/about/AboutTypoBlock'
+import { aboutDescription } from '@/data/about'
 
-export default function AboutTypo({
-  data,
-  page = false,
-}: {
-  data: AboutTypographyType[]
-  page?: boolean
-}) {
+export default function AboutTypo({ page = false }: { page?: boolean }) {
   return (
     <div className="about-typo">
       {/* Top: About typography items */}
-      {data.map((item, index) => (
-        <AboutTypoBlock key={item.id} item={item} index={index} />
+      {aboutDescription.map((item, index) => (
+        <AboutTypoBlock key={item.id} data={item} index={index} />
       ))}
       {/* Bottom: See more button */}
       {!page && (

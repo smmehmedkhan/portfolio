@@ -20,8 +20,8 @@ import {
 } from '@/components/ui/card'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import type { AboutCardType } from '@/data/about'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import type { ExperienceCardProps } from '@/types'
 
 const Wrapper = motion.create('div')
 
@@ -34,13 +34,8 @@ const iconMap = {
   Smartphone,
 }
 
-export default function AboutCard({
-  icon,
-  title,
-  description,
-  expertise,
-  index,
-}: AboutCardType & { index: number }) {
+export default function ExperienceCard({ index, data }: ExperienceCardProps) {
+  const { icon, title, description, expertise } = data
   const fadeDown = getAnimationPreset('fade-down')
   const bounce = getAnimationPreset('bounce')
   const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
@@ -48,11 +43,11 @@ export default function AboutCard({
   const getBadgeStyles = (expertise: string) => {
     switch (expertise) {
       case 'Familiar':
-        return 'bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400'
+        return 'bg-blue-300 dark:bg-blue-950/30 text-accent-foreground dark:text-blue-400'
       case 'Proficient':
-        return 'bg-lime-100 dark:bg-lime-950/30 text-lime-700 dark:text-lime-400'
+        return 'bg-lime-300 dark:bg-lime-950/30  text-accent-foreground dark:text-lime-400'
       case 'Experienced':
-        return 'bg-amber-100 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400'
+        return 'bg-amber-300 dark:bg-amber-950/30  text-accent-foreground dark:text-amber-400'
       default:
         return 'bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent'
     }
@@ -62,7 +57,7 @@ export default function AboutCard({
     <Wrapper
       className="wrapper"
       {...fadeDown}
-      transition={{ ...fadeDown.transition, delay: 0.2 * index }}>
+      transition={{ ...fadeDown.transition, delay: 0.2 * (index || 1) }}>
       <Wrapper
         className="wrapper"
         initial={bounce.initial}

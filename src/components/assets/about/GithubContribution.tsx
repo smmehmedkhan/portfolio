@@ -12,7 +12,7 @@ const GitHubCalendarComponent = dynamic(
   { ssr: false }
 )
 
-export default function AboutContributions({ username }: { username: string }) {
+export default function GithubContribution({ username }: { username: string }) {
   const fade = getAnimationPreset('fade-instant')
   const { resolvedTheme } = useTheme()
 

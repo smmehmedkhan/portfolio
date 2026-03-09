@@ -15,25 +15,27 @@ import {
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import StarRating from '@/components/ui/StarRating'
-import type { Testimonial } from '@/data/testimonials'
+import { testimonials } from '@/data/testimonials'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const MDiv = motion.create('div')
-const MCardFooter = motion.create(CardFooter)
+const Wrapper = motion.create('div')
 
-export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
+export default function ReviewCarousel() {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
   const fade = getAnimationPreset('fade')
 
   return (
-    <MDiv className="wrapper review-caro" {...fade}>
+    <Wrapper
+      className="wrapper review-caro"
+      {...fade}
+      transition={{ ...fade.transition, delay: 0.4 }}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}>
         <CarouselContent>
-          {data.map(testimonial => (
+          {testimonials.map(testimonial => (
             <CarouselItem key={testimonial.id} className="lg:basis-1/2">
               <div className="p-0 lg:p-4">
                 <Card className="bg-card border-border">
@@ -41,7 +43,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                     <StarRating rating={testimonial.rating} size={25} />
                   </CardHeader>
                   <CardContent className="text-center">
-                    <Paragraph animated transition={{ delay: 0.5 }}>
+                    <Paragraph>
                       <Paragraph className="mr-1" as="span">
                         ❛
                       </Paragraph>
@@ -51,10 +53,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                       </Paragraph>
                     </Paragraph>
                   </CardContent>
-                  <MCardFooter
-                    className="size-full flex-inline gap-2 sm:gap-3 md:gap-4"
-                    {...fade}
-                    transition={{ ...fade.transition, delay: 0.6 }}>
+                  <CardFooter className="size-full flex-inline gap-2 sm:gap-3 md:gap-4">
                     <Avatar className="size-8 md:size-10">
                       <AvatarImage src={testimonial.image} />
                       <AvatarFallback>CN</AvatarFallback>
@@ -67,7 +66,7 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
                         {testimonial.position}
                       </Heading>
                     </div>
-                  </MCardFooter>
+                  </CardFooter>
                 </Card>
               </div>
             </CarouselItem>
@@ -76,6 +75,6 @@ export default function ReviewCarousel({ data }: { data: Testimonial[] }) {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-    </MDiv>
+    </Wrapper>
   )
 }

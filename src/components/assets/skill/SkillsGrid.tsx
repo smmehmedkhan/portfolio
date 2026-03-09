@@ -1,15 +1,11 @@
-import Skillset from '@/components/assets/skill/Skillset'
-import type { SkillCategory } from '@/types'
+import SkillGroup from '@/components/assets/skill/SkillGroup'
+import { skills } from '@/data/skills'
 
-interface SkillsGridProps {
-  categories: SkillCategory[]
-}
-
-export default function SkillGrid({ categories }: SkillsGridProps) {
+export default function SkillGrid() {
   return (
     <div className="skill-grid">
-      {categories.map(category => (
-        <Skillset key={category.id} category={category} />
+      {skills.map(category => (
+        <SkillGroup key={category.id} {...category} />
       ))}
     </div>
   )

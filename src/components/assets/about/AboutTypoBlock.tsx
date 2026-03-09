@@ -1,14 +1,9 @@
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
-import type { AboutTypographyType } from '@/data/about'
+import type { AboutTypoBlockProps } from '@/types'
 
-export default function AboutTypoBlock({
-  item,
-  index,
-}: {
-  item: AboutTypographyType
-  index: number
-}) {
+export default function AboutTypoBlock({ index, data }: AboutTypoBlockProps) {
+  const { title, description } = data
   return (
     <div className="wrapper gap-2" key={index}>
       <Heading
@@ -17,14 +12,14 @@ export default function AboutTypoBlock({
         size="md"
         animated
         transition={{ delay: 0.2 * index }}>
-        {item.title}
+        {title}
       </Heading>
       <Paragraph
         className="text-muted-foreground text-center lg:text-left tracking-normal lg:tracking-wide"
         size="nm"
         animated
         transition={{ delay: 0.2 * index * 2 }}>
-        {item.description}
+        {description}
       </Paragraph>
     </div>
   )

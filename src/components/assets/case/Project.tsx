@@ -4,7 +4,7 @@ import CaseInfo from '@/components/assets/case/CaseInfo'
 import type { ProjectProps } from '@/types'
 import AnimatedButton from '../AnimatedButton'
 
-export default function Project({ data, isProjectPage, index }: ProjectProps) {
+export default function Project({ index, data, page = true }: ProjectProps) {
   const isEven = index % 2 === 0
 
   const getFlexDirection = (isEven: boolean) =>
@@ -14,9 +14,9 @@ export default function Project({ data, isProjectPage, index }: ProjectProps) {
     <div id={`project-${data.id}`} className="wrapper project scroll-my-20">
       <div className={`project-content ${getFlexDirection(isEven)}`}>
         <CaseCard {...data} />
-        <CaseInfo isEven={isEven} {...data} isProjectPage={isProjectPage} />
+        <CaseInfo isEven={isEven} page={page} data={data} />
       </div>
-      {!isProjectPage && (
+      {!page && (
         <AnimatedButton
           className="size-full lg:size-fit mx-auto"
           href={`/projects#project-${data.id}`}

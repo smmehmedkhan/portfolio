@@ -1,16 +1,16 @@
-import type { SkillCategory } from '@/types'
+import type { SkillsCategory } from '@/types'
 
-export const skillsData: SkillCategory[] = [
+export const skills: SkillsCategory[] = [
   {
     id: 1,
-    title: 'Languages',
     icon: 'Code2',
-    items: [
+    title: 'Languages',
+    skills: [
       {
         id: 1,
         title: 'C',
-        src: '/icons/c-lang.svg',
-        link: 'https://www.c-language.org/',
+        image: '/icons/c-lang.svg',
+        url: 'https://www.c-language.org/',
         description:
           'A powerful general-purpose programming language for system programming and embedded systems.',
         joined: 'January 2020',
@@ -18,8 +18,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 2,
         title: 'C++',
-        src: '/images/cpp.png',
-        link: 'https://isocpp.org/',
+        image: '/images/cpp.png',
+        url: 'https://isocpp.org/',
         description:
           'An extension of C with object-oriented features for high-performance applications.',
         joined: 'March 2020',
@@ -27,8 +27,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 3,
         title: 'JavaScript',
-        src: '/images/javascript.png',
-        link: 'https://javascript.info/',
+        image: '/images/javascript.png',
+        url: 'https://javascript.info/',
         description:
           'The programming language of the web, enabling interactive and dynamic web applications.',
         joined: 'June 2021',
@@ -36,8 +36,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 4,
         title: 'TypeScript',
-        src: '/icons/typescript.svg',
-        link: 'https://www.typescriptlang.org/',
+        image: '/icons/typescript.svg',
+        url: 'https://www.typescriptlang.org/',
         description:
           'JavaScript with syntax for types, providing better tooling and code quality.',
         joined: 'January 2022',
@@ -48,12 +48,12 @@ export const skillsData: SkillCategory[] = [
     id: 2,
     title: 'Frontend',
     icon: 'Palette',
-    items: [
+    skills: [
       {
         id: 5,
         title: 'HTML',
-        src: '/icons/html.svg',
-        link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+        image: '/icons/html.svg',
+        url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
         description:
           'The standard markup language for creating web pages and web applications.',
         joined: 'June 2021',
@@ -61,8 +61,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 6,
         title: 'CSS',
-        src: '/icons/css.svg',
-        link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+        image: '/icons/css.svg',
+        url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
         description:
           'Style sheet language for describing the presentation of web documents.',
         joined: 'June 2021',
@@ -70,8 +70,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 7,
         title: 'Bootstrap',
-        src: '/icons/bootstrap.svg',
-        link: 'https://getbootstrap.com/',
+        image: '/icons/bootstrap.svg',
+        url: 'https://getbootstrap.com/',
         description:
           'Popular CSS framework for building responsive, mobile-first websites.',
         joined: 'August 2021',
@@ -79,8 +79,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 8,
         title: 'Tailwind CSS',
-        src: '/icons/tailwind-css.svg',
-        link: 'https://tailwindcss.com/',
+        image: '/icons/tailwind-css.svg',
+        url: 'https://tailwindcss.com/',
         description:
           'Utility-first CSS framework for rapidly building custom user interfaces.',
         joined: 'March 2022',
@@ -88,8 +88,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 9,
         title: 'React.js',
-        src: '/icons/react.svg',
-        link: 'https://react.dev/',
+        image: '/icons/react.svg',
+        url: 'https://react.dev/',
         description:
           'A JavaScript library for building user interfaces with component-based architecture.',
         joined: 'September 2021',
@@ -97,8 +97,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 10,
         title: 'Shadcn UI',
-        src: '/images/shadcn-ui.png',
-        link: 'https://ui.shadcn.com/',
+        image: '/images/shadcn-ui.png',
+        url: 'https://ui.shadcn.com/',
         description:
           'Beautifully designed components built with Radix UI and Tailwind CSS.',
         joined: 'June 2023',
@@ -106,8 +106,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 11,
         title: 'Material UI',
-        src: '/icons/material-ui.svg',
-        link: 'https://mui.com/material-ui/',
+        image: '/icons/material-ui.svg',
+        url: 'https://mui.com/material-ui/',
         description:
           "React component library implementing Google's Material Design system.",
         joined: 'November 2021',
@@ -115,8 +115,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 12,
         title: 'Chakra UI',
-        src: '/icons/chakra-ui.svg',
-        link: 'https://chakra-ui.com/',
+        image: '/icons/chakra-ui.svg',
+        url: 'https://chakra-ui.com/',
         description:
           'Simple, modular and accessible component library for React applications.',
         joined: 'February 2022',
@@ -127,12 +127,12 @@ export const skillsData: SkillCategory[] = [
     id: 3,
     title: 'Backend',
     icon: 'Server',
-    items: [
+    skills: [
       {
         id: 13,
         title: 'Node.js',
-        src: '/icons/node-js.svg',
-        link: 'https://nodejs.org/en',
+        image: '/icons/node-js.svg',
+        url: 'https://nodejs.org/en',
         description:
           "JavaScript runtime built on Chrome's V8 engine for building scalable server-side applications.",
         joined: 'October 2021',
@@ -140,8 +140,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 14,
         title: 'Express.js',
-        src: '/icons/express-js.svg',
-        link: 'https://expressjs.com/',
+        image: '/icons/express-js.svg',
+        url: 'https://expressjs.com/',
         description:
           'Fast, unopinionated, minimalist web framework for Node.js applications.',
         joined: 'November 2021',
@@ -149,8 +149,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 15,
         title: 'Hono.js',
-        src: '/icons/hono-js.svg',
-        link: 'https://hono.dev/',
+        image: '/icons/hono-js.svg',
+        url: 'https://hono.dev/',
         description:
           'Ultrafast web framework for the edge with TypeScript support.',
         joined: 'August 2023',
@@ -158,8 +158,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 16,
         title: 'Fastify.js',
-        src: '/icons/fastify-js.svg',
-        link: 'https://fastify.dev/',
+        image: '/icons/fastify-js.svg',
+        url: 'https://fastify.dev/',
         description:
           'Fast and low overhead web framework for Node.js with powerful plugin architecture.',
         joined: 'May 2023',
@@ -167,8 +167,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 34,
         title: 'Postman',
-        src: '/icons/postman.svg',
-        link: 'https://www.postman.com/',
+        image: '/icons/postman.svg',
+        url: 'https://www.postman.com/',
         description:
           'API platform for building, testing, and documenting APIs efficiently.',
         joined: 'October 2021',
@@ -179,12 +179,12 @@ export const skillsData: SkillCategory[] = [
     id: 4,
     title: 'Database',
     icon: 'Database',
-    items: [
+    skills: [
       {
         id: 17,
         title: 'MongoDB',
-        src: '/icons/mongo-db.svg',
-        link: 'https://www.mongodb.com/',
+        image: '/icons/mongo-db.svg',
+        url: 'https://www.mongodb.com/',
         description:
           'NoSQL document database for modern applications with flexible schema design.',
         joined: 'December 2021',
@@ -192,8 +192,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 18,
         title: 'Mongoose',
-        src: '/icons/mongoose-js.svg',
-        link: 'https://mongoosejs.com/',
+        image: '/icons/mongoose-js.svg',
+        url: 'https://mongoosejs.com/',
         description:
           'Elegant MongoDB object modeling for Node.js with schema validation.',
         joined: 'December 2021',
@@ -201,8 +201,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 19,
         title: 'PostgreSQL',
-        src: '/icons/postgresql.svg',
-        link: 'https://www.postgresql.org/',
+        image: '/icons/postgresql.svg',
+        url: 'https://www.postgresql.org/',
         description:
           'Powerful, open-source relational database with advanced features and reliability.',
         joined: 'April 2022',
@@ -210,8 +210,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 20,
         title: 'Prisma',
-        src: '/icons/prisma.svg',
-        link: 'https://www.prisma.io/',
+        image: '/icons/prisma.svg',
+        url: 'https://www.prisma.io/',
         description:
           'Next-generation ORM for Node.js and TypeScript with type-safe database access.',
         joined: 'June 2022',
@@ -219,8 +219,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 21,
         title: 'Firebase',
-        src: '/icons/firebase.svg',
-        link: 'https://firebase.google.com/',
+        image: '/icons/firebase.svg',
+        url: 'https://firebase.google.com/',
         description:
           "Google's platform for building web and mobile apps with real-time database and authentication.",
         joined: 'January 2022',
@@ -231,12 +231,12 @@ export const skillsData: SkillCategory[] = [
     id: 5,
     title: 'Advanced',
     icon: 'Zap',
-    items: [
+    skills: [
       {
         id: 22,
         title: 'Next.js',
-        src: '/icons/next-js.svg',
-        link: 'https://nextjs.org/',
+        image: '/icons/next-js.svg',
+        url: 'https://nextjs.org/',
         description:
           'The React framework for production with server-side rendering and static generation.',
         joined: 'March 2022',
@@ -244,8 +244,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 23,
         title: 'Tanstack',
-        src: '/images/tanstack.png',
-        link: 'https://tanstack.com/',
+        image: '/images/tanstack.png',
+        url: 'https://tanstack.com/',
         description:
           'High-quality open-source libraries for web developers including React Query and Table.',
         joined: 'July 2022',
@@ -253,8 +253,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 24,
         title: 'Redis',
-        src: '/icons/redis.svg',
-        link: 'https://redis.io/',
+        image: '/icons/redis.svg',
+        url: 'https://redis.io/',
         description:
           'In-memory data structure store used as database, cache, and message broker.',
         joined: 'September 2022',
@@ -262,8 +262,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 25,
         title: 'Motion',
-        src: '/images/motion.png',
-        link: 'https://motion.dev/',
+        image: '/images/motion.png',
+        url: 'https://motion.dev/',
         description:
           'Production-ready animation library for React with simple and powerful API.',
         joined: 'January 2024',
@@ -271,8 +271,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 26,
         title: 'GSAP',
-        src: '/icons/gsap.svg',
-        link: 'https://gsap.com/',
+        image: '/icons/gsap.svg',
+        url: 'https://gsap.com/',
         description:
           'Professional-grade JavaScript animation library for creating high-performance animations.',
         joined: 'August 2022',
@@ -283,12 +283,12 @@ export const skillsData: SkillCategory[] = [
     id: 6,
     title: 'Tools',
     icon: 'Wrench',
-    items: [
+    skills: [
       {
         id: 27,
         title: 'Git',
-        src: '/icons/git.svg',
-        link: 'https://git-scm.com/',
+        image: '/icons/git.svg',
+        url: 'https://git-scm.com/',
         description:
           'Distributed version control system for tracking changes in source code.',
         joined: 'June 2021',
@@ -296,8 +296,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 28,
         title: 'GitHub',
-        src: '/icons/github.svg',
-        link: 'https://github.com/',
+        image: '/icons/github.svg',
+        url: 'https://github.com/',
         description:
           'Platform for version control and collaboration using Git repositories.',
         joined: 'June 2021',
@@ -305,8 +305,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 29,
         title: 'Docker',
-        src: '/icons/docker.svg',
-        link: 'https://www.docker.com/',
+        image: '/icons/docker.svg',
+        url: 'https://www.docker.com/',
         description:
           'Platform for developing, shipping, and running applications in containers.',
         joined: 'May 2022',
@@ -314,8 +314,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 30,
         title: 'Kafka',
-        src: '/icons/apachekafka.svg',
-        link: 'https://kafka.apache.org/',
+        image: '/icons/apachekafka.svg',
+        url: 'https://kafka.apache.org/',
         description:
           'Distributed event streaming platform for high-performance data pipelines.',
         joined: 'November 2023',
@@ -323,8 +323,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 31,
         title: 'Kubernetes',
-        src: '/icons/kubernetes.svg',
-        link: 'https://kubernetes.io/',
+        image: '/icons/kubernetes.svg',
+        url: 'https://kubernetes.io/',
         description:
           'Container orchestration platform for automating deployment and scaling.',
         joined: 'December 2023',
@@ -332,8 +332,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 32,
         title: 'Jest.js',
-        src: '/icons/jest-js.svg',
-        link: 'https://jestjs.io/',
+        image: '/icons/jest-js.svg',
+        url: 'https://jestjs.io/',
         description:
           'Delightful JavaScript testing framework with focus on simplicity.',
         joined: 'February 2022',
@@ -341,8 +341,8 @@ export const skillsData: SkillCategory[] = [
       {
         id: 33,
         title: 'Vitest',
-        src: '/icons/vitest.svg',
-        link: 'https://vitest.dev/',
+        image: '/icons/vitest.svg',
+        url: 'https://vitest.dev/',
         description:
           'Blazing fast unit test framework powered by Vite for modern web projects.',
         joined: 'October 2023',

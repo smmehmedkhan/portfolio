@@ -1,11 +1,7 @@
 'use client'
 
 import { Star } from 'lucide-react'
-import { motion } from 'motion/react'
-import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
-
-const MDiv = motion.create('div')
 
 interface StarRatingProps {
   rating: number
@@ -13,9 +9,8 @@ interface StarRatingProps {
 }
 
 export default function StarRating({ rating, size = 16 }: StarRatingProps) {
-  const fade = getAnimationPreset('fade')
   return (
-    <MDiv className="flex gap-1" {...fade}>
+    <div className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map(star => (
         <Star
           key={star}
@@ -28,6 +23,6 @@ export default function StarRating({ rating, size = 16 }: StarRatingProps) {
           )}
         />
       ))}
-    </MDiv>
+    </div>
   )
 }
