@@ -1,4 +1,3 @@
-import { FolderKanbanIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import SectionInro from '@/components/assets/SectionInro'
 import PaginatedProjects from '@/components/partials/PaginatedProjects'
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
 export default function ProjectPage() {
   return (
     <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
-      <SectionInro data={sectionInros.project} icon={<FolderKanbanIcon />} />
+      <SectionInro data={sectionInros.project} />
       <PaginatedProjects />
     </main>
   )
