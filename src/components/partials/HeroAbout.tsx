@@ -5,7 +5,7 @@ import { Paragraph } from '@/components/ui/paragraph'
 
 export default function HeroAbout() {
   return (
-    <header className="container about-pg-container flex-box">
+    <header className="wrapper hero-about">
       {/* Top: Page Introduction */}
       <div className="wrapper gap-3">
         <Heading className="leading-tight" animated>
@@ -24,7 +24,7 @@ export default function HeroAbout() {
       </div>
 
       {/* Bottom: About Avatar & Typography */}
-      <div className="about-pg-layout flex-center flip">
+      <div className="illustratioin flex-center flip">
         <AboutAvater />
         <AboutTypo page={true} />
       </div>

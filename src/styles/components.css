@@ -173,40 +173,56 @@
     }
   }
 
-  /* ========== About me page ========== */
+  /* ========== About Page ========== */
   .about-page {
-    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25;
+    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+  }
 
-    & .about-pg-container {
-      @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+  /* ========== Hero About section ========== */
+  .hero-about {
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
-      & .about-pg-layout {
-        @apply size-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-12.5 md:gap-15 lg:gap-5 xl:gap-25;
+    & .illustratioin {
+      @apply size-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-12.5 md:gap-15 lg:gap-5 xl:gap-25;
 
-        & .about-avater {
-          @apply lg:flex-1 box-border;
-        }
+      & .about-avater {
+        @apply lg:flex-1 box-border;
+      }
 
-        & .about-typo {
-          @apply size-full lg:flex-1 flex flex-col items-center lg:items-start gap-3 sm:gap-4 md:gap-5;
-        }
+      & .about-typo {
+        @apply size-full lg:flex-1 flex flex-col items-center lg:items-start gap-3 sm:gap-4 md:gap-5;
       }
     }
+  }
 
-    & .about-expevo {
-      @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+  /* ========== Hero Experience section ========== */
+  .experience {
+    @apply size-full gap-10 sm:gap-15 md:gap-20 lg:gap-5 xl:gap-10 2xl:gap-25;
 
-      & .expevo-container {
-        @apply size-full flex-1 lg:flex-2 flex flex-col gap-3;
+    & .exp-intro {
+      @apply flex-1 lg:flex-1 2xl:flex-2 flex flex-col gap-3;
+    }
+
+    & .exp-layout {
+      @apply flex-1 lg:flex-3 2xl:flex-3;
+
+      & .exp-grid {
+        @apply size-full grid grid-cols-1 lg:grid-cols-2 gap-7.5;
       }
+    }
+  }
 
-      & .about-card-container {
-        @apply flex-1 lg:flex-3;
+  /* ========== Hero Contributions section ========== */
+  .contributions {
+    @apply size-full gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+  }
 
-        & .about-card-grid {
-          @apply size-full grid grid-cols-1 lg:grid-cols-2 gap-7.5;
-        }
-      }
+  /* ========== Hero Education section ========== */
+  .education {
+    @apply size-full gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+
+    .edu-layout {
+      @apply size-full gap-10;
     }
   }
 
