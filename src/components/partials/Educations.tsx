@@ -5,9 +5,9 @@ import { educatons } from '@/data/education'
 
 export default function Educations() {
   return (
-    <section className=" wrapper education">
-      {/* left: Expevo Headings */}
-      <div className="wrapper max-w-2xl gap-3">
+    <section className="wrapper education">
+      {/* left: Education Headings */}
+      <div className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5">
         <Heading className="size-full text-center leading-tight" animated>
           Education
           <br />
@@ -16,7 +16,7 @@ export default function Educations() {
         </Heading>
         <Paragraph
           variant="lead"
-          className="w-full text-center"
+          className="w-full text-center text-balance"
           animated
           transition={{ delay: 0.2 }}>
           I am a lifelong learner, constantly seeking new knowledge and skills
@@ -24,7 +24,7 @@ export default function Educations() {
         </Paragraph>
       </div>
 
-      {/* Right: About Cards */}
+      {/* Right: Education Cards */}
       <div className="edu-layout flex-inline flip">
         {educatons.map((item, index) => (
           <EducationCard key={item.id} data={item} index={index} />

@@ -50,7 +50,7 @@ export default function EducationCard({ index, data }: EducationCardProps) {
         initial={bounce.initial}
         whileHover={bounce.animate}
         transition={bounce.transition}>
-        <Card className="size-full border border-border bg-card">
+        <Card className="about-card">
           <CardHeader className="flex items-center justify-between">
             <div className="size-12 p-2 rounded-lg bg-primary dark:bg-primary/15 flex-center">
               <IconComponent
@@ -87,7 +87,7 @@ export default function EducationCard({ index, data }: EducationCardProps) {
                 {institute}
               </Heading>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="w-full h-full lg:h-75 xl:h-50 2xl:h-40">
               <Paragraph
                 className="text-sm md:text-nm leading-relaxed text-pretty tracking-tight"
                 variant="muted"

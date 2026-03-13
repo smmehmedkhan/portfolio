@@ -63,7 +63,7 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
         initial={bounce.initial}
         whileHover={bounce.animate}
         transition={bounce.transition}>
-        <Card className="size-full border border-border bg-card">
+        <Card className="about-card">
           <CardHeader className="flex items-center justify-between">
             <div className="size-12 p-2 rounded-lg bg-primary dark:bg-primary/15 flex-center">
               <IconComponent
