@@ -182,7 +182,7 @@
   .hero-about {
     @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
-    & .illustratioin {
+    & .illustration {
       @apply size-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-12.5 md:gap-15 lg:gap-5 xl:gap-25;
 
       & .about-avater {

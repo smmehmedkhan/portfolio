@@ -24,7 +24,7 @@ export default function HeroAbout() {
       </div>
 
       {/* Bottom: About Avatar & Typography */}
-      <div className="illustratioin flex-center flip">
+      <div className="illustration flex-center flip">
         <AboutAvater />
         <AboutTypo page={true} />
       </div>
