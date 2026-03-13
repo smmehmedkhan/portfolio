@@ -5,9 +5,9 @@ import { Paragraph } from '@/components/ui/paragraph'
 
 export default function HeroAbout() {
   return (
-    <header className="container about-pg-container flex-box">
+    <header className="wrapper hero-about">
       {/* Top: Page Introduction */}
-      <div className="wrapper gap-3">
+      <div className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5">
         <Heading className="leading-tight" animated>
           Who am I
           <br />
@@ -16,7 +16,7 @@ export default function HeroAbout() {
         </Heading>
         <Paragraph
           variant="lead"
-          className="w-full max-w-lg text-center"
+          className="w-full text-center text-balance"
           animated
           transition={{ delay: 0.2 }}>
           I craft engaging digital experiences with modern web technologies.
@@ -24,7 +24,7 @@ export default function HeroAbout() {
       </div>
 
       {/* Bottom: About Avatar & Typography */}
-      <div className="about-pg-layout flex-center flip">
+      <div className="illustration flex-center flip">
         <AboutAvater />
         <AboutTypo page={true} />
       </div>

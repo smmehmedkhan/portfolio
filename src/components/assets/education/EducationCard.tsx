@@ -1,57 +1,44 @@
 'use client'
 
-import {
-  Cloud,
-  Database,
-  HelpCircle,
-  Layout,
-  PictureInPicture,
-  Server,
-  Smartphone,
-} from 'lucide-react'
+import { GraduationCap, HelpCircle, School, University } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
-import type { ExperienceCardProps } from '@/types'
+import type { EducationCardProps } from '@/types'
 
 const Wrapper = motion.create('div')
 
 const iconMap = {
-  PictureInPicture,
-  Layout,
-  Server,
-  Database,
-  Cloud,
-  Smartphone,
+  GraduationCap,
+  University,
+  School,
 }
 
-export default function ExperienceCard({ index, data }: ExperienceCardProps) {
-  const { icon, title, description, expertise } = data
+export default function EducationCard({ index, data }: EducationCardProps) {
+  const {
+    icon,
+    degree,
+    institute,
+    board,
+    startDate,
+    endDate,
+    field,
+    gpa,
+    description,
+  } = data
   const fadeDown = getAnimationPreset('fade-down')
   const bounce = getAnimationPreset('bounce')
   const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
-
-  const getBadgeStyles = (expertise: string) => {
-    switch (expertise) {
-      case 'Familiar':
-        return 'bg-blue-300 dark:bg-blue-950/30 text-accent-foreground dark:text-blue-400'
-      case 'Proficient':
-        return 'bg-lime-300 dark:bg-lime-950/30  text-accent-foreground dark:text-lime-400'
-      case 'Experienced':
-        return 'bg-amber-300 dark:bg-amber-950/30  text-accent-foreground dark:text-amber-400'
-      default:
-        return 'bg-accent dark:bg-accent/15 text-accent-foreground dark:text-accent'
-    }
-  }
 
   return (
     <Wrapper
@@ -71,18 +58,36 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
                 className="size-10 text-primary-foreground dark:text-primary"
               />
             </div>
-            <Badge className={getBadgeStyles(expertise)}>{expertise}</Badge>
+            <Badge className="bg-accent dark:bg-amber-950/30 text-accent-foreground dark:text-accent">
+              {startDate.toLocaleDateString('en-US', {
+                month: 'short',
+                year: 'numeric',
+              })}{' '}
+              &mdash;{' '}
+              {typeof endDate === 'string'
+                ? endDate
+                : endDate.toLocaleDateString('en-US', {
+                    month: 'short',
+                    year: 'numeric',
+                  })}
+            </Badge>
           </CardHeader>
           <CardContent className="size-full flex flex-col gap-2">
             <CardTitle>
               <Heading
-                className="text-nm md:text-md leading-relaxed"
+                className="text-md md:text-lg leading-relaxed"
+                variant="title"
+                size="lg">
+                {degree}
+              </Heading>
+              <Heading
+                className="text-nm md:text-md leading-relaxed text-gray-500"
                 variant="title"
                 size="md">
-                {title}
+                {institute}
               </Heading>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="w-full h-full lg:h-75 xl:h-50 2xl:h-40">
               <Paragraph
                 className="text-sm md:text-nm leading-relaxed text-pretty tracking-tight"
                 variant="muted"
@@ -91,6 +96,21 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
               </Paragraph>
             </CardDescription>
           </CardContent>
+          <CardFooter className="w-full flex-inline gap-2">
+            <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+              Board: {board}
+            </Badge>
+            {field && (
+              <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+                Group: {field}
+              </Badge>
+            )}
+            {gpa && (
+              <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+                GPA: {gpa}
+              </Badge>
+            )}
+          </CardFooter>
         </Card>
       </Wrapper>
     </Wrapper>

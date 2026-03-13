@@ -134,3 +134,24 @@ export interface FAQItem {
   question: string
   answer: string[]
 }
+
+// ============================================
+// Educatons Section Types
+// ============================================
+export interface Educaton {
+  id: number
+  icon: string
+  degree: string
+  institute: string
+  board: string
+  description: string
+  startDate: Date
+  endDate: Date | string
+  field?: string
+  gpa?: number
+}
+
+export type EducationCardProps = {
+  index: number
+  data: Educaton
+}

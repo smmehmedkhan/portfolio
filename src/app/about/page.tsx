@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Contributions from '@/components/partials/Contributions'
+import Educations from '@/components/partials/Educations'
 import Experience from '@/components/partials/Experience'
 import HeroAbout from '@/components/partials/HeroAbout'
 import { CONFIG } from '@/constants/config'
@@ -30,9 +31,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="wrapper about-page">
+    <main className="container about-page flex-box">
       <HeroAbout />
       <Experience />
+      <Educations />
       <Contributions />
     </main>
   )

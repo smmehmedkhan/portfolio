@@ -3,7 +3,7 @@ import { Paragraph } from '@/components/ui/paragraph'
 
 export default function ExperienceIntro() {
   return (
-    <div className="expevo-container">
+    <div className="exp-intro">
       <Heading
         className="size-full text-center lg:text-start leading-tight"
         animated>
@@ -14,7 +14,7 @@ export default function ExperienceIntro() {
       </Heading>
       <Paragraph
         variant="lead"
-        className="w-full lg:max-w-2xl text-center lg:text-start"
+        className="w-full max-w-2xl text-center lg:text-start"
         animated
         transition={{ delay: 0.2 }}>
         I specialize in building performant, accessible applications that solve

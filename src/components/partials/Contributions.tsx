@@ -5,7 +5,7 @@ import { CONFIG } from '@/constants/config'
 
 export default function Contributions() {
   return (
-    <section className="container flex-box gap-10 sm:gap-15 md:gap-20 lg:gap-25">
+    <section className="contributions flex-box">
       <div className="wrapper gap-3">
         <Heading className="leading-tight" animated>
           Contributions
