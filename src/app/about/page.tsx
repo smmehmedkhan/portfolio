@@ -1,4 +1,4 @@
-import type Metadata from 'next'
+import type { Metadata } from 'next'
 import Contributions from '@/components/partials/Contributions'
 import Educations from '@/components/partials/Educations'
 import Experience from '@/components/partials/Experience'
