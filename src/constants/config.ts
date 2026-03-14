@@ -32,7 +32,7 @@ export const CONFIG = {
       'PERN Stack Developer',
       'ReactJs & NextJs Developer',
     ],
-    EMAIL: env.NEXT_PUBLIC_EMAIL || 'contact@mehmedkhan.dev',
+    EMAIL: env.NEXT_PUBLIC_EMAIL || 'contact@smmehmedkhan.dev',
     LOCATION: 'Dhaka, Bangladesh',
     BIO: 'I build modern, responsive and scalable web applications. Can build shiny, eye-catching & responsive frontend React applications. Scalable, secured and enterprise-grade APIs. Use advanced web tools and technologies to build web applications.',
   },
