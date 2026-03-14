@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
 const MImage = motion.create(Image)
-const MDiv = motion.create('div')
+const Box = motion.create('div')
 
 export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
@@ -13,7 +13,7 @@ export default function HeroImage() {
 
   return (
     <div className="wrapper max-w-2xl">
-      <MDiv className="hero-images" {...fadeUp}>
+      <Box className="hero-images" {...fadeUp}>
         {/* Hero Image */}
         <MImage
           className="hero-image"
@@ -65,7 +65,7 @@ export default function HeroImage() {
             />
           </g>
         </svg>
-      </MDiv>
+      </Box>
     </div>
   )
 }

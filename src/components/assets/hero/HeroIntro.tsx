@@ -11,7 +11,7 @@ export default function HeroIntro() {
   return (
     <div className="wrapper hero-intro">
       {/* Headings */}
-      <div className="size-full flex flex-col gap-2">
+      <div className="headings">
         <Heading
           className="text-lg sm:text-xl"
           variant="sub"
@@ -31,17 +31,18 @@ export default function HeroIntro() {
       </div>
 
       {/* Description */}
-      <div className="size-full">
-        <Paragraph animated transition={{ delay: 0.4 }}>
-          <Paragraph className="mr-2" as="span">
-            ❛
-          </Paragraph>
-          {description}
-          <Paragraph className="ml-2" as="span">
-            ❜
-          </Paragraph>
+      <Paragraph
+        className="size-full text-balance"
+        animated
+        transition={{ delay: 0.4 }}>
+        <Paragraph className="mr-2" as="span">
+          ❛
         </Paragraph>
-      </div>
+        {description}
+        <Paragraph className="ml-2" as="span">
+          ❜
+        </Paragraph>
+      </Paragraph>
 
       {/* Call to Action Buttons */}
       <div className="buttons box-border">

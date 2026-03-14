@@ -34,13 +34,15 @@ export const metadata: Metadata = {
 
 export default function Home(): JSX.Element {
   return (
-    <main className="wrapper">
+    <>
       <Hero />
-      <About />
-      <TechStack />
-      <CaseStudies />
-      <Testimonials />
-      <FAQ />
-    </main>
+      <main className="wrapper">
+        <About />
+        <TechStack />
+        <CaseStudies />
+        <Testimonials />
+        <FAQ />
+      </main>
+    </>
   )
 }

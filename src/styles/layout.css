@@ -20,7 +20,7 @@
   }
 
   main {
-    @apply pb-10 sm:pb-15 md:pb-20 lg:pb-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+    @apply py-10 sm:py-15 md:py-20 lg:py-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
   }
 
   footer {
