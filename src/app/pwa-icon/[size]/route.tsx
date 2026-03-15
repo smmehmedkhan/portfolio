@@ -47,7 +47,11 @@ export async function GET(
         }}
       />
       {/** biome-ignore lint/performance/noImgElement: Can't use next Image here */}
-      <img src={imageUrl} alt="Mehmed Khan" />
+      <img
+        src={imageUrl}
+        alt="Mehmed Khan"
+        style={{ filter: 'contrast(1.25) brightness(1.125)' }}
+      />
     </div>,
     { width: size, height: size }
   )
