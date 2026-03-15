@@ -1,8 +1,9 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
-import { CONFIG } from '@/constants/config'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 const VALID_SIZES = [192, 512] as const
 type ValidSize = (typeof VALID_SIZES)[number]
@@ -22,7 +23,10 @@ export async function GET(
     return new Response('Invalid size. Use 192 or 512.', { status: 400 })
   }
 
-  const imageUrl = `${CONFIG.SITE.URL}/images/mehmed-khan.png`
+  const imgBuffer = fs.readFileSync(
+    path.join(process.cwd(), 'public/images/mehmed-khan.png')
+  )
+  const imageUrl = `data:image/png;base64,${imgBuffer.toString('base64')}`
 
   return new ImageResponse(
     <div
@@ -50,7 +54,9 @@ export async function GET(
       <img
         src={imageUrl}
         alt="Mehmed Khan"
-        style={{ filter: 'contrast(1.25) brightness(1.125)' }}
+        width={size}
+        height={size}
+        style={{ filter: 'contrast(1.1) brightness(1.05)' }}
       />
     </div>,
     { width: size, height: size }

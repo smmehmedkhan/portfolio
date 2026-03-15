@@ -1,11 +1,15 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { ImageResponse } from 'next/og'
-import { CONFIG } from '@/constants/config'
 
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
 export default function Icon() {
-  const imageUrl = `${CONFIG.SITE.URL}/images/mehmed-khan.png`
+  const imgBuffer = fs.readFileSync(
+    path.join(process.cwd(), 'public/images/mehmed-khan.png')
+  )
+  const imageUrl = `data:image/png;base64,${imgBuffer.toString('base64')}`
 
   return new ImageResponse(
     <div
@@ -34,6 +38,8 @@ export default function Icon() {
       <img
         src={imageUrl}
         alt="Mehmed Khan"
+        width={size.width}
+        height={size.height}
         style={{ filter: 'contrast(1.1) brightness(1.05)' }}
       />
     </div>,
