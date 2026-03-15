@@ -9,7 +9,7 @@ const listItems = [
   { id: 1, label: 'About', href: '/about' },
   { id: 2, label: 'Projects', href: '/projects' },
   { id: 3, label: 'Contact', href: '/contact' },
-  { id: 4, label: 'Resume', href: '/Resume' },
+  { id: 4, label: 'Resume', href: '/resume' },
 ]
 
 export default function Resources() {
