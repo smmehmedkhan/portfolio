@@ -3,17 +3,20 @@
 import { RefreshCw } from 'lucide-react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import AnimatedButton from '@/components/assets/AnimatedButton'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import { env } from '@/lib/env'
+import { resolveErrorInfo } from '@/lib/errors'
 import type { ErrorProps } from '@/types'
 
 const Wrapper = motion.create('div')
 
 export default function ErrorLayout({ error, reset }: ErrorProps) {
   const fade = getAnimationPreset('fade')
+  const { code, title, message } = resolveErrorInfo(error)
 
   return (
     <div className="container flex-box gap-5 sm:gap-7.5 md:gap-10">
@@ -27,12 +30,12 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
           width={860}
           height={571}
           priority
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+          className="w-full max-w-xs sm:max-w-sm"
         />
       </Wrapper>
       <div className="wrapper gap-3 sm:gap-4 md:gap-5">
         <Heading variant="main" as="h1" size="4xl" animated>
-          500
+          {code}
         </Heading>
         <Heading
           variant="sub"
@@ -40,16 +43,16 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
           size="xl"
           animated
           transition={{ delay: 0.2 }}>
-          Something Went Wrong
+          {title}
         </Heading>
         <Paragraph
           variant="lead"
           className="max-w-lg text-center text-pretty"
           animated
           transition={{ delay: 0.4 }}>
-          An unexpected error occurred. Please try again or go back home.
+          {message}
         </Paragraph>
-        {process.env.NODE_ENV === 'development' && error && (
+        {env.NODE_ENV === 'development' && error && (
           <details className="mt-2 text-left w-full max-w-lg">
             <summary className="cursor-pointer text-sm font-medium text-muted-foreground mb-2">
               Error Details (Development Only)
@@ -61,20 +64,18 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
           </details>
         )}
       </div>
-      <div className="flex gap-4 flex-wrap justify-center">
+      <div className="size-full flex-center gap-4">
         {reset && (
           <Button variant="default" onClick={reset}>
             <RefreshCw />
             Try Again
           </Button>
         )}
-        <AnimatedButton
-          variant="outline"
-          href="/"
-          target="_self"
-          btnText="Go Home"
-          swap
-        />
+        <Button variant="outline" asChild>
+          <Link href="/" target="_self">
+            Go Home
+          </Link>
+        </Button>
       </div>
     </div>
   )

@@ -11,7 +11,7 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"

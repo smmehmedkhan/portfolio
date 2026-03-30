@@ -77,8 +77,16 @@ export type AnimatedButtonProps = {
 // ============================================
 // Error Types
 // ============================================
+export type AppError = Error & { statusCode?: number; digest?: string }
+
+export interface ErrorInfo {
+  code: string
+  title: string
+  message: string
+}
+
 export interface ErrorProps {
-  error?: Error | null
+  error?: AppError | null
   reset?: () => void
 }
 
@@ -89,7 +97,7 @@ export interface ErrorBoundaryProps {
 
 export interface ErrorBoundaryState {
   hasError: boolean
-  error: Error | null
+  error: AppError | null
 }
 
 // ============================================
