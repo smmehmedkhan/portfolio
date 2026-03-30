@@ -21,10 +21,8 @@
  * ```
  */
 import {
-  delay,
   easeIn,
   easeInOut,
-  easeOut,
   type TargetAndTransition,
   type Transition,
   type VariantLabels,

@@ -116,7 +116,6 @@ function Carousel({
         canScrollPrev,
         canScrollNext,
       }}>
-      {/** biome-ignore lint/a11y/useSemanticElements: It's component by default */}
       <section
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}

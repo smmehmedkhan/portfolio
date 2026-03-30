@@ -2,11 +2,8 @@ import Link from 'next/link'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { CONFIG } from '@/constants/config'
-import { getAnimationPreset } from '@/lib/animations/registry'
 
 export default function ContactInfo() {
-  const fadeDown = getAnimationPreset('fade-down')
-
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-3">

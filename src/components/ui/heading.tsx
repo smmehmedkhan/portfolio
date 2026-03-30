@@ -324,5 +324,5 @@ Heading.displayName = 'Heading'
 const MemoizedHeading = React.memo(Heading)
 MemoizedHeading.displayName = 'Heading(Memoized)'
 
-export { Heading, MemoizedHeading, headingVariants }
 export type { HeadingProps, HeadingTag, HeadingVariant }
+export { Heading, headingVariants, MemoizedHeading }

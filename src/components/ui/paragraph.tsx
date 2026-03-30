@@ -387,5 +387,5 @@ Paragraph.displayName = 'Paragraph'
 const MemoizedParagraph = React.memo(Paragraph)
 MemoizedParagraph.displayName = 'Paragraph(Memoized)'
 
-export { Paragraph, MemoizedParagraph, paragraphVariants }
 export type { ParagraphProps, ParagraphTag, ParagraphVariant }
+export { MemoizedParagraph, Paragraph, paragraphVariants }
