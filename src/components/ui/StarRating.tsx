@@ -2,11 +2,7 @@
 
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-interface StarRatingProps {
-  rating: number
-  size?: number
-}
+import type { StarRatingProps } from '@/types'
 
 export default function StarRating({ rating, size = 16 }: StarRatingProps) {
   return (

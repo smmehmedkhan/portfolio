@@ -28,24 +28,7 @@ import {
   type VariantLabels,
   type ViewportOptions,
 } from 'motion/react'
-
-/**
- * Configuration interface for animation presets
- *
- * @interface AnimationConfig
- * @property {TargetAndTransition | VariantLabels} initial - Initial state before animation
- * @property {TargetAndTransition | VariantLabels} [whileInView] - Animation state when element enters viewport (scroll-triggered)
- * @property {TargetAndTransition | VariantLabels} [animate] - Animation state on mount (instant) or looping animation
- * @property {Transition} transition - Transition configuration (duration, easing, etc.)
- * @property {ViewportOptions} [viewport] - Viewport detection options (once, amount, margin)
- */
-export interface AnimationConfig {
-  initial: TargetAndTransition | VariantLabels
-  whileInView?: TargetAndTransition | VariantLabels
-  animate?: TargetAndTransition | VariantLabels
-  transition: Transition
-  viewport?: ViewportOptions
-}
+import type { AnimationConfig } from '@/types'
 
 /**
  * Predefined viewport configurations for consistent scroll behavior
@@ -362,10 +345,3 @@ export function getAllAnimationPresets(): Record<string, AnimationConfig> {
 export function isValidAnimationPreset(name: string): boolean {
   return name in animationPresets || name in customAnimations
 }
-
-/**
- * Type union of all available animation preset names
- *
- * @typedef {keyof typeof animationPresets | string} AnimationPresetName
- */
-export type AnimationPresetName = keyof typeof animationPresets | string

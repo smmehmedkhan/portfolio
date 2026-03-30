@@ -8,13 +8,9 @@ import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import type { ErrorProps } from '@/types'
 
 const Wrapper = motion.create('div')
-
-interface ErrorProps {
-  error?: Error | null
-  reset?: () => void
-}
 
 export default function ErrorLayout({ error, reset }: ErrorProps) {
   const fade = getAnimationPreset('fade')

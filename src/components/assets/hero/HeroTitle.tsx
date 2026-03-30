@@ -2,18 +2,14 @@
 
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import type { HeroTitleProps } from '@/types'
 
 export default function HeroTitle({
   titles,
   typingSpeed = 80,
   deletingSpeed = 20,
   pause = 2000,
-}: {
-  titles: string[]
-  typingSpeed?: number
-  deletingSpeed?: number
-  pause?: number
-}) {
+}: HeroTitleProps) {
   const [titleIndex, setTitleIndex] = useState(0)
   const [displayLength, setDisplayLength] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)

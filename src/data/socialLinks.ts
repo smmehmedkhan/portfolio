@@ -1,4 +1,3 @@
-import type { IconType } from 'react-icons'
 import {
   FaDiscord,
   FaFacebook,
@@ -8,13 +7,7 @@ import {
 } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
 import { env } from '@/lib/env'
-
-export interface SocialLink {
-  id: string
-  name: string
-  href: string
-  icon: IconType
-}
+import type { SocialLink } from '@/types'
 
 export const socialLinks: SocialLink[] = [
   {

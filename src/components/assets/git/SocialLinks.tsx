@@ -6,14 +6,7 @@ import { Button } from '@/components/ui/button'
 import { socialLinks } from '@/data/socialLinks'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
-
-interface SocialLinksProps {
-  className?: string
-  buttonClassName?: string
-  iconClassName?: string
-  animated?: boolean
-  delay?: number
-}
+import type { SocialLinksProps } from '@/types'
 
 const MDiv = motion.create('div')
 export default function SocialLinks({

@@ -3,17 +3,12 @@
 import { motion } from 'motion/react'
 import { Badge } from '@/components/ui/badge'
 import { getAnimationPreset } from '@/lib/animations/registry'
+import type { CaseBadgesProps } from '@/types'
 
 const MDiv = motion.create('div')
 const MBadge = motion.create(Badge)
 
-export default function CaseBadges({
-  isEven,
-  technologies,
-}: {
-  isEven: boolean
-  technologies: string[]
-}) {
+export default function CaseBadges({ isEven, technologies }: CaseBadgesProps) {
   const fadeDown = getAnimationPreset('fade-down')
 
   const getBadgeClasses = (isEven: boolean) => {

@@ -1,8 +1,4 @@
-export interface NavLink {
-  id: number
-  href: string
-  label: string
-}
+import type { NavLink } from '@/types'
 
 export const navLinks: NavLink[] = [
   { id: 1, href: '/about', label: 'About' },

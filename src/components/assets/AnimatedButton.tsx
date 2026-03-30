@@ -5,28 +5,10 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { cn } from '@/lib/utils'
+import type { AnimatedButtonProps } from '@/types'
 
 const Container = motion.create('div')
 const Wrapper = motion.create('div')
-
-type AnimatedButtonProps = {
-  href: string
-  target?: string
-  btnText: string
-  icon?: React.ReactNode
-  variant?:
-    | 'link'
-    | 'outline'
-    | 'default'
-    | 'destructive'
-    | 'secondary'
-    | 'ghost'
-    | null
-    | undefined
-  className?: string
-  delay?: number
-  swap?: boolean
-}
 
 export default function AnimatedButton({
   className,
