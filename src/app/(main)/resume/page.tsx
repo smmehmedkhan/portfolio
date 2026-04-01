@@ -1,8 +1,24 @@
-export default function page() {
+import type { Metadata } from 'next'
+import SectionInro from '@/components/assets/SectionInro'
+import ResumeViewer from '@/components/partials/ResumeViewer'
+import { CONFIG } from '@/constants/config'
+import { sectionInros } from '@/data/sectionInros'
+
+export const metadata: Metadata = {
+  title: 'Resume',
+  description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE} based in ${CONFIG.PERSONAL.LOCATION}.`,
+  openGraph: {
+    title: `Resume | ${CONFIG.SITE.NAME}`,
+    description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE}.`,
+    url: `${CONFIG.SITE.URL}/resume`,
+  },
+}
+
+export default function ResumePage() {
   return (
-    <main className="wrapper">
-      <h1>Resume Page</h1>
-      <p>This is where the resume content will go.</p>
+    <main className="wrapper resume-page">
+      <SectionInro data={sectionInros.resume} />
+      <ResumeViewer />
     </main>
   )
 }

@@ -301,4 +301,25 @@
   .copyrights {
     @apply w-full h-fit py-2 text-center;
   }
+
+  /* ========== Resume Page ========== */
+  .resume-page {
+    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+  }
+
+  .resume-viewer {
+    @apply relative w-full xs:max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-md sm:rounded-lg overflow-hidden shadow-xl sm:shadow-2xl border border-border;
+
+    & .resume-doc {
+      @apply w-full h-[60vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] pointer-events-none select-none;
+    }
+
+    & .resume-overlay {
+      @apply absolute inset-0 flex items-center justify-center bg-background/40 pointer-events-none;
+
+      & .resume-download-btn {
+        @apply pointer-events-auto shadow-lg;
+      }
+    }
+  }
 }

@@ -2,6 +2,7 @@
 
 import {
   BadgeCheck,
+  FileText,
   FolderKanban,
   Gem,
   HelpCircle,
@@ -28,6 +29,7 @@ const iconMap = {
   MessageCircleQuestionMark,
   FaBolt,
   Mailbox,
+  FileText,
 }
 
 export default function SectionInro({

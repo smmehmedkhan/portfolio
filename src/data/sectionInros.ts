@@ -54,4 +54,12 @@ export const sectionInros: Record<string, SectionIntro> = {
     description:
       'Fill out the form and I will get back to you as soon as possible.',
   },
+  resume: {
+    id: 8,
+    icon: 'FileText',
+    label: 'My Resume',
+    title: 'A snapshot of my journey.',
+    description:
+      'Discover my professional experience, skills, and accomplishments in one concise document.',
+  },
 }
