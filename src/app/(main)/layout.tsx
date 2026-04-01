@@ -1,6 +1,7 @@
 import Footer from '@/components/partials/Footer'
 import GetInTouch from '@/components/partials/GetInTouch'
 import Navbar from '@/components/partials/Navbar'
+import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
 export default function MainLayout({
   children,
@@ -11,6 +12,7 @@ export default function MainLayout({
     <>
       <Navbar />
       {children}
+      <ScrollToTop />
       <div className="combo-layout">
         <GetInTouch />
         <Footer />

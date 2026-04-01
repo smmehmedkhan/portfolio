@@ -22,10 +22,12 @@ import ThemeSwitcher from '@/components/ui/theme-switcher'
 import { navLinks } from '@/data/nav-links'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
+const MenuItem = motion.create('li')
+
 export default function Hamburger() {
-  const fade = getAnimationPreset('fade')
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const fade = getAnimationPreset('fade')
 
   // Close mobile menu on route change
   // biome-ignore lint/correctness/useExhaustiveDependencies: Intentionaly need pathname as dependencies.
@@ -33,18 +35,22 @@ export default function Hamburger() {
     setMobileMenuOpen(false)
   }, [pathname])
 
-  const MenuItem = motion.create('li')
   return (
     <Drawer
       open={mobileMenuOpen}
       onOpenChange={setMobileMenuOpen}
       direction="right">
-      <DrawerTrigger className="w-max flex md:hidden" asChild>
-        <Button variant="ghost" onClick={() => setMobileMenuOpen(true)}>
+      <DrawerTrigger asChild>
+        <Button
+          className="flex md:hidden px-0!"
+          variant="ghost"
+          onClick={() => setMobileMenuOpen(true)}>
           <Menu className="size-6" size={20} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="drawer-content h-full max-h-svh flex flex-col gap-10">
+      <DrawerContent
+        className="drawer-content h-full max-h-svh flex flex-col gap-10"
+        aria-describedby={undefined}>
         {/* Drawer Header */}
         <DrawerHeader className="drawer-header">
           <DrawerClose asChild>
@@ -69,7 +75,9 @@ export default function Hamburger() {
               className="link-item"
               {...fade}
               transition={{ ...fade.transition, delay: 0.2 * index }}>
-              <Link href={href} className="link">
+              <Link
+                href={href}
+                className={`link ${pathname === href ? 'text-amber-500 dark:text-accent' : ''}`}>
                 {label}
               </Link>
             </MenuItem>

@@ -123,7 +123,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         <DialogOverlay className="size-full bg-background/10 backdrop-blur-[2px]" />
         <DialogContent
           className="w-full xs:max-w-75 sm:max-w-sm lg:max-w-lg border border-border bg-popover flex flex-col gap-2"
-          aria-describedby={`skill-description-${id}`}>
+          aria-describedby={undefined}>
           <DialogTitle className="sr-only">{title}</DialogTitle>
           {cardContent}
         </DialogContent>

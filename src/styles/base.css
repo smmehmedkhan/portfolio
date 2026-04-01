@@ -4,7 +4,7 @@
   }
 
   html {
-    @apply w-full scroll-smooth;
+    @apply w-full overflow-x-hidden scroll-smooth;
   }
 
   body {
