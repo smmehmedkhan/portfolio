@@ -2,9 +2,6 @@ import '@/styles/globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
-import Footer from '@/components/partials/Footer'
-import GetInTouch from '@/components/partials/GetInTouch'
-import Navbar from '@/components/partials/Navbar'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
@@ -98,12 +95,7 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <Navbar />
             {children}
-            <div className="combo-layout">
-              <GetInTouch />
-              <Footer />
-            </div>
             <Toaster />
           </ThemeProvider>
         </ErrorBoundary>

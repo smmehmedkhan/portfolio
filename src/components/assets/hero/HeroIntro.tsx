@@ -59,7 +59,7 @@ export default function HeroIntro() {
           variant="secondary"
           href="/resume"
           icon={<FilesIcon />}
-          btnText="Resume"
+          btnText="Get Resume"
           swap={true}
         />
       </div>
