@@ -2,9 +2,11 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Heading } from '@/components/ui/heading'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
+const MotionItem = motion.create('li')
 const listItems = [
   { id: 1, label: 'About', href: '/about' },
   { id: 2, label: 'Projects', href: '/projects' },
@@ -13,8 +15,8 @@ const listItems = [
 ]
 
 export default function Resources() {
+  const pathname = usePathname()
   const fade = getAnimationPreset('fade')
-  const MotionItem = motion.create('li')
 
   return (
     <div className="wrapper gap-5">
@@ -30,7 +32,7 @@ export default function Resources() {
             transition={{ ...fade.transition, delay: 0.2 * index }}>
             <Link
               href={item.href}
-              className="text-md text-muted-foreground hover:text-accent">
+              className={`text-md hover:text-accent ${pathname === item.href ? 'text-amber-500 dark:text-accent' : 'text-muted-foreground'}`}>
               {item.label}
             </Link>
           </MotionItem>

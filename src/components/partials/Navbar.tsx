@@ -3,6 +3,7 @@
 import { useMotionValueEvent, useScroll } from 'motion/react'
 import * as motion from 'motion/react-client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Hamburger from '@/components/assets/nav/Hamburger'
 import Logo from '@/components/assets/nav/Logo'
@@ -23,6 +24,7 @@ import { navLinks } from '@/data/nav-links'
  * ```
  */
 export default function Navbar() {
+  const pathname = usePathname()
   const { scrollY } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('down')
 
@@ -51,7 +53,9 @@ export default function Navbar() {
         <motion.ul className="nav-links">
           {navLinks.map(({ id, href, label }) => (
             <motion.li key={id}>
-              <Link href={href} className="nav-link nav-link-dark">
+              <Link
+                href={href}
+                className={`nav-link nav-link-dark ${pathname === href ? 'text-amber-500 dark:text-accent' : ''}`}>
                 {label}
               </Link>
             </motion.li>

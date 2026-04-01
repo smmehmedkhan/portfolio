@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Addresses from '@/components/assets/footer/Addresses'
 import Copyrights from '@/components/assets/footer/Copyrights'
 import Newsletters from '@/components/assets/footer/Newsletters'
@@ -19,7 +20,9 @@ export default function Footer() {
 
         {/* resources: right on lg */}
         <div className="2xl:order-3">
-          <Resources />
+          <Suspense>
+            <Resources />
+          </Suspense>
         </div>
       </div>
       <hr className="w-full border-border" />
