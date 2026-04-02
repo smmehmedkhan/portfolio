@@ -20,14 +20,7 @@
  * <motion.div {...fadeDownInstant}>Hero Content</motion.div>
  * ```
  */
-import {
-  easeIn,
-  easeInOut,
-  type TargetAndTransition,
-  type Transition,
-  type VariantLabels,
-  type ViewportOptions,
-} from 'motion/react'
+import { easeOut, type ViewportOptions } from 'motion/react'
 import type { AnimationConfig } from '@/types'
 
 /**
@@ -55,26 +48,23 @@ const VIEWPORT_CONFIGS = {
 const TRANSITIONS = {
   spring: {
     type: 'spring' as const,
-    duration: 0.6,
     stiffness: 300,
     damping: 10,
-    easeIn,
+    mass: 1,
+    velocity: 3,
   },
   'fast-spring': {
     type: 'spring' as const,
-    duration: 0.3,
     delay: 0,
-    stiffness: 300,
+    stiffness: 500,
     damping: 10,
-    easeIn,
   },
-  tween: { type: 'tween' as const, duration: 0.6, easeIn },
+  tween: { type: 'tween' as const, duration: 0.6, easeOut },
   slow: {
     type: 'spring' as const,
     duration: 0.8,
     stiffness: 200,
     damping: 15,
-    easeInOut,
   },
 } as const
 
