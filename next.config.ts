@@ -48,11 +48,11 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: https:",
               "font-src 'self' data:",
               "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://github-contributions-api.jogruber.de",
-              "frame-ancestors 'none'",
+              "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'",
-              "frame-src 'none'",
-              "object-src 'none'",
+              "frame-src 'self'",
+              "object-src 'self'",
               'upgrade-insecure-requests',
             ].join('; '),
           },
@@ -62,7 +62,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-XSS-Protection',

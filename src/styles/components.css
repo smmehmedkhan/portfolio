@@ -311,7 +311,9 @@
     @apply relative w-full xs:max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto rounded-md sm:rounded-lg overflow-hidden shadow-xl sm:shadow-2xl border border-border;
 
     & .resume-doc {
-      @apply w-full h-[60vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] pointer-events-none select-none;
+      @apply w-full pointer-events-none select-none;
+
+      aspect-ratio: 1 / 1.414;
     }
 
     & .resume-overlay {
