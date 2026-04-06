@@ -13,18 +13,16 @@ const unsubscribeSchema = z.object({
   email: z.email('Invalid email address'),
 })
 
-const ajUnsubscribe = (() => {
-  if (!env.ARCJET_KEY) {
-    throw new Error(
-      'ARCJET_KEY is not configured. Please set the environment variable.'
-    )
-  }
-  return createArcjet({ max: 20 })
-})()
+let _ajUnsubscribe: ReturnType<typeof createArcjet> | null = null
+
+function getArcjet() {
+  if (!_ajUnsubscribe) _ajUnsubscribe = createArcjet({ max: 20 })
+  return _ajUnsubscribe
+}
 
 export async function GET(req: NextRequest) {
   try {
-    const decision = await ajUnsubscribe.protect(req)
+    const decision = await getArcjet().protect(req)
 
     if (decision.isDenied()) {
       const denial = arcjetDenialResponse(decision)
@@ -55,7 +53,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const decision = await ajUnsubscribe.protect(req)
+    const decision = await getArcjet().protect(req)
 
     if (decision.isDenied()) {
       const denial = arcjetDenialResponse(decision)

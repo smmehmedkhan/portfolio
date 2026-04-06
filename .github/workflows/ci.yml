@@ -47,6 +47,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          ARCJET_KEY: ${{ secrets.ARCJET_KEY }}
 
       - name: Generate version
         id: version
