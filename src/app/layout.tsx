@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
+import Script from 'next/script'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
@@ -101,6 +102,22 @@ export default function RootLayout({
         </ErrorBoundary>
         <Analytics />
       </body>
+      {CONFIG.SERVICES.ANALYTICS_ID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${CONFIG.SERVICES.ANALYTICS_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${CONFIG.SERVICES.ANALYTICS_ID}');
+            `}
+          </Script>
+        </>
+      )}
     </html>
   )
 }
