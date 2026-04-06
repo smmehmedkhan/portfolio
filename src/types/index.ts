@@ -184,6 +184,11 @@ export type ProjectFeatures = {
   description: string
 }
 
+export type ProjectFeaturesProps = {
+  page?: boolean
+  features: ProjectFeatures[]
+}
+
 export type ProjectProps = {
   index: number
   data: Project
