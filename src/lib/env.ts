@@ -79,6 +79,11 @@ const envSchema = z.object({
   MONGODB_URI: z.string().optional(),
   MONGODB_DB_USERNAME: z.string().optional(),
   MONGODB_DB_PASSWORD: z.string().optional(),
+
+  // Arcjet security
+  ARCJET_KEY: z.string().optional(),
+  ARCJET_ENV: z.enum(['development', 'production']).default('development'),
+  ARCJET_LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('warn'),
 })
 
 type Env = z.infer<typeof envSchema>
@@ -110,6 +115,9 @@ function getEnv(): Env {
     MONGODB_URI: process.env.MONGODB_URI,
     MONGODB_DB_USERNAME: process.env.MONGODB_DB_USERNAME,
     MONGODB_DB_PASSWORD: process.env.MONGODB_DB_PASSWORD,
+    ARCJET_KEY: process.env.ARCJET_KEY,
+    ARCJET_ENV: process.env.ARCJET_ENV,
+    ARCJET_LOG_LEVEL: process.env.ARCJET_LOG_LEVEL,
   })
 
   if (!result.success) {
@@ -149,6 +157,9 @@ function getEnv(): Env {
       MONGODB_URI: undefined,
       MONGODB_DB_USERNAME: undefined,
       MONGODB_DB_PASSWORD: undefined,
+      ARCJET_KEY: undefined,
+      ARCJET_ENV: 'development',
+      ARCJET_LOG_LEVEL: 'warn',
     }
   }
 

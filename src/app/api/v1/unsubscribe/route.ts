@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { arcjetDenialResponse, createArcjet } from '@/lib/arcjet'
 import getBrevoClient from '@/lib/brevo'
 import { newsletterUnsubscribeTemplate } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
@@ -12,19 +13,69 @@ const unsubscribeSchema = z.object({
   email: z.email('Invalid email address'),
 })
 
-export function GET(req: NextRequest) {
-  // Render confirmation page instead of directly unsubscribing
-  const { searchParams } = new URL(req.url)
-  const email = searchParams.get('email')
+const ajUnsubscribe = (() => {
+  if (!env.ARCJET_KEY) {
+    throw new Error(
+      'ARCJET_KEY is not configured. Please set the environment variable.'
+    )
+  }
+  return createArcjet({ max: 20 })
+})()
 
-  // Redirect to a confirmation page
-  return NextResponse.redirect(
-    new URL(`/unsubscribe?email=${encodeURIComponent(email || '')}`, req.url)
-  )
+export async function GET(req: NextRequest) {
+  try {
+    const decision = await ajUnsubscribe.protect(req)
+
+    if (decision.isDenied()) {
+      const denial = arcjetDenialResponse(decision)
+      return NextResponse.json(denial.json, { status: denial.status })
+    }
+
+    if (decision.isErrored()) {
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable' },
+        { status: 503 }
+      )
+    }
+
+    const { searchParams } = new URL(req.url)
+    const email = searchParams.get('email')
+
+    return NextResponse.redirect(
+      new URL(`/unsubscribe?email=${encodeURIComponent(email || '')}`, req.url)
+    )
+  } catch (error) {
+    console.error('Error in unsubscribe GET:', error)
+    return NextResponse.json(
+      { error: 'Service temporarily unavailable' },
+      { status: 503 }
+    )
+  }
 }
 
 export async function POST(req: NextRequest) {
   try {
+    const decision = await ajUnsubscribe.protect(req)
+
+    if (decision.isDenied()) {
+      const denial = arcjetDenialResponse(decision)
+      // Add shield-specific message if applicable
+      if (decision.reason.isShield?.()) {
+        return NextResponse.json(
+          { error: 'Request blocked for security reasons' },
+          { status: 403 }
+        )
+      }
+      return NextResponse.json(denial.json, { status: denial.status })
+    }
+
+    if (decision.isErrored()) {
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable' },
+        { status: 503 }
+      )
+    }
+
     const body = await req.json()
     if (!body) {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
