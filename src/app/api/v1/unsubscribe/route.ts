@@ -1,3 +1,4 @@
+import arcjet, { detectBot, fixedWindow, shield } from '@arcjet/next'
 import { type NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import getBrevoClient from '@/lib/brevo'
@@ -12,12 +13,37 @@ const unsubscribeSchema = z.object({
   email: z.email('Invalid email address'),
 })
 
-export function GET(req: NextRequest) {
-  // Render confirmation page instead of directly unsubscribing
+const ajUnsubscribe = arcjet({
+  key: env.ARCJET_KEY || 'placeholder_key',
+  rules: [
+    shield({ mode: 'LIVE' }),
+    detectBot({ mode: 'LIVE', allow: [] }),
+    fixedWindow({ mode: 'LIVE', window: '1h', max: 20 }),
+  ],
+})
+
+export async function GET(req: NextRequest) {
+  const decision = await ajUnsubscribe.protect(req)
+
+  if (decision.isDenied()) {
+    if (decision.reason.isBot()) {
+      return NextResponse.json(
+        { error: 'Automated requests not permitted' },
+        { status: 403 }
+      )
+    }
+    if (decision.reason.isRateLimit()) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
   const { searchParams } = new URL(req.url)
   const email = searchParams.get('email')
 
-  // Redirect to a confirmation page
   return NextResponse.redirect(
     new URL(`/unsubscribe?email=${encodeURIComponent(email || '')}`, req.url)
   )
@@ -25,6 +51,29 @@ export function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const decision = await ajUnsubscribe.protect(req)
+
+    if (decision.isDenied()) {
+      if (decision.reason.isBot()) {
+        return NextResponse.json(
+          { error: 'Automated requests not permitted' },
+          { status: 403 }
+        )
+      }
+      if (decision.reason.isRateLimit()) {
+        return NextResponse.json(
+          { error: 'Too many requests. Please try again later.' },
+          { status: 429 }
+        )
+      }
+      if (decision.reason.isShield()) {
+        return NextResponse.json(
+          { error: 'Request blocked for security reasons' },
+          { status: 403 }
+        )
+      }
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
     const body = await req.json()
     if (!body) {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })

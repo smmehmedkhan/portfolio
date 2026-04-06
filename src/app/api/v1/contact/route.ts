@@ -1,5 +1,6 @@
+import arcjet, { detectBot, fixedWindow, shield } from '@arcjet/next'
 import { type NextRequest, NextResponse } from 'next/server'
-import { ZodError } from 'zod'
+import { ZodError, z } from 'zod'
 import getBrevoClient from '@/lib/brevo'
 import {
   contactAutoReplyTemplate,
@@ -10,8 +11,41 @@ import connectDB from '@/lib/mongodb'
 import ContactMessage from '@/models/ContactMessage'
 import { contactSchema } from '@/schemas/contactSchema'
 
+const ajContact = arcjet({
+  key: env.ARCJET_KEY || 'placeholder_key',
+  rules: [
+    shield({ mode: 'LIVE' }),
+    detectBot({ mode: 'LIVE', allow: [] }),
+    fixedWindow({ mode: 'LIVE', window: '1h', max: 10 }),
+  ],
+})
+
 export async function POST(req: NextRequest) {
   try {
+    const decision = await ajContact.protect(req)
+
+    if (decision.isDenied()) {
+      if (decision.reason.isBot()) {
+        return NextResponse.json(
+          { error: 'Automated requests not permitted' },
+          { status: 403 }
+        )
+      }
+      if (decision.reason.isRateLimit()) {
+        return NextResponse.json(
+          { error: 'Too many requests. Please try again later.' },
+          { status: 429 }
+        )
+      }
+      if (decision.reason.isShield()) {
+        return NextResponse.json(
+          { error: 'Request blocked for security reasons' },
+          { status: 403 }
+        )
+      }
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
     const body = await req.json().catch(() => null)
     if (!body) {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
@@ -74,7 +108,10 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(
-        { error: 'Validation failed', issues: error.flatten().fieldErrors },
+        {
+          error: 'Validation failed',
+          issues: z.flattenError(error).fieldErrors,
+        },
         { status: 422 }
       )
     }
