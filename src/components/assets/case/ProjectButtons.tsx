@@ -6,8 +6,8 @@ import AnimatedButton from '../AnimatedButton'
 
 export default function ProjectButtons({
   isEven,
-  projectUrl,
-  sourceUrl,
+  url,
+  source,
 }: ProjectBtnProps) {
   return (
     <div
@@ -16,13 +16,15 @@ export default function ProjectButtons({
         !isEven && 'md:flex-row-reverse'
       )}>
       <AnimatedButton
-        href={`${projectUrl}`}
+        href={`${url}`}
+        target="_blank"
         btnText="Visit Site"
         delay={0.8}
         icon={<Link2Icon />}
       />
       <AnimatedButton
-        href={`${sourceUrl}`}
+        href={`${source}`}
+        target="_blank"
         btnText="Source Code"
         delay={1}
         icon={<FaGithub />}

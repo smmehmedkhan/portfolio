@@ -4,7 +4,7 @@ import { Download } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
-const RESUME_PATH = '/resume.pdf'
+const RESUME_PATH = '/docs/resume.pdf'
 const RESUME_EMBED_SRC = `${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`
 
 export default function ResumeViewer() {

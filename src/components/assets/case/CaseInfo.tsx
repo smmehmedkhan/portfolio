@@ -5,7 +5,8 @@ import { Paragraph } from '@/components/ui/paragraph'
 import type { CaseInfoProps } from '@/types'
 
 export default function CaseInfo({ isEven, page, data }: CaseInfoProps) {
-  const { name, bio, shortDescription, longDescription, technologies } = data
+  const { name, title, features, technologies } = data
+  const selectedFeature = features.slice(0, 3)
 
   const getInfoClasses = (isEven: boolean) => {
     const alignment = isEven
@@ -24,25 +25,55 @@ export default function CaseInfo({ isEven, page, data }: CaseInfoProps) {
           {name}
         </Heading>
         <Paragraph
-          className="leading-none"
+          className="leading-normal"
           variant="large"
           animated
           transition={{ delay: 0.2 }}>
-          {bio}
+          {title}
         </Paragraph>
-        <Paragraph
-          className="leading-relaxed"
-          animated
-          transition={{ delay: 0.4 }}>
-          {shortDescription}
-        </Paragraph>
+        {!page && (
+          <ul className="size-full list-disc list-inside flex flex-col gap-2">
+            {selectedFeature.map((p, i) => (
+              <li key={p.id} className="w-full leading-relaxed">
+                <Paragraph
+                  as="span"
+                  className="font-bold"
+                  animated
+                  transition={{ delay: 0.4 + i * 0.2 }}>
+                  {p.name}:{' '}
+                </Paragraph>
+                <Paragraph
+                  className="text-muted-foreground"
+                  as="span"
+                  animated
+                  transition={{ delay: 0.4 + i * 0.2 }}>
+                  {p.description}
+                </Paragraph>
+              </li>
+            ))}
+          </ul>
+        )}
         {page && (
-          <Paragraph
-            className="leading-relaxed"
-            animated
-            transition={{ delay: 0.6 }}>
-            {longDescription}
-          </Paragraph>
+          <ul className="size-full list-disc list-inside flex flex-col gap-2">
+            {features.map((p, i) => (
+              <li key={p.id} className="w-full leading-relaxed">
+                <Paragraph
+                  as="span"
+                  className="font-bold"
+                  animated
+                  transition={{ delay: 0.4 + i * 0.2 }}>
+                  {p.name}:{' '}
+                </Paragraph>
+                <Paragraph
+                  className="text-muted-foreground"
+                  as="span"
+                  animated
+                  transition={{ delay: 0.4 + i * 0.2 }}>
+                  {p.description}
+                </Paragraph>
+              </li>
+            ))}
+          </ul>
         )}
         <CaseBadges isEven={isEven} technologies={technologies} />
         {page && <ProjectButtons isEven={isEven} {...data} />}

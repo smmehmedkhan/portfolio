@@ -170,13 +170,18 @@ export type ExperienceCardProps = {
 export interface Project {
   id: number
   name: string
-  bio: string
-  shortDescription: string
-  longDescription?: string
+  title: string
+  features: ProjectFeatures[]
   image: string
   technologies: string[]
-  projectUrl?: string
-  sourceUrl?: string
+  url?: string
+  source?: string
+}
+
+export type ProjectFeatures = {
+  id: number
+  name: string
+  description: string
 }
 
 export type ProjectProps = {
@@ -198,8 +203,8 @@ export type CaseInfoProps = {
 
 export type ProjectBtnProps = {
   isEven: boolean
-  projectUrl?: string
-  sourceUrl?: string
+  url?: string
+  source?: string
 }
 
 export type CaseBadgesProps = {
