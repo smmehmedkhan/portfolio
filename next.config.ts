@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://github-contributions-api.jogruber.de https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
+              "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://github-contributions-api.jogruber.de https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
               "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'",
