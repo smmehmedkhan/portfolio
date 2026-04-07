@@ -51,25 +51,14 @@ export async function proxy(request: NextRequest) {
 
     return NextResponse.next()
   } catch (error) {
-    // Log the error for debugging
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    const requestPath = request.nextUrl.pathname
-    console.error(`Arcjet protection error at ${requestPath}: ${errorMessage}`)
-
-    // Fail-closed: deny the request on Arcjet errors
-    const isApiRoute = API_ROUTES.test(request.nextUrl.pathname)
-    if (isApiRoute) {
-      return NextResponse.json(
-        { error: 'Service temporarily unavailable' },
-        { status: 503 }
-      )
-    }
-
-    // For page routes, redirect to blocked with 503 code
-    const url = request.nextUrl.clone()
-    url.pathname = '/blocked'
-    url.search = '?code=503'
-    return NextResponse.redirect(url)
+    // Fail-open: log the error but let the request through so Arcjet errors don't take down the site
+    const errorMessage = (
+      error instanceof Error ? error.message : String(error)
+    ).replace(/[\r\n]/g, ' ')
+    console.error(
+      `Arcjet protection error at ${request.nextUrl.pathname}: ${errorMessage}`
+    )
+    return NextResponse.next()
   }
 }
 

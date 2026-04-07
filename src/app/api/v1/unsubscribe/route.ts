@@ -37,10 +37,13 @@ export async function GET(req: NextRequest) {
     }
 
     const { searchParams } = new URL(req.url)
-    const email = searchParams.get('email')
+    const rawEmail = searchParams.get('email') ?? ''
+    // Validate email before using in redirect to prevent SSRF/XSS
+    const emailResult = z.email().safeParse(rawEmail)
+    const safeEmail = emailResult.success ? emailResult.data : ''
 
     return NextResponse.redirect(
-      new URL(`/unsubscribe?email=${encodeURIComponent(email || '')}`, req.url)
+      new URL(`/unsubscribe?email=${encodeURIComponent(safeEmail)}`, req.url)
     )
   } catch (error) {
     console.error('Error in unsubscribe GET:', error)
