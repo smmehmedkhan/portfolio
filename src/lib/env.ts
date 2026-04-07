@@ -55,8 +55,14 @@ const envSchema = z.object({
     .transform(val => val || undefined),
 
   // Analytics
-  NEXT_PUBLIC_GA_ID: z.string().optional(),
-  NEXT_PUBLIC_GTM_ID: z.string().optional(),
+  NEXT_PUBLIC_GA_ID: z.preprocess(
+    val => (typeof val === 'string' ? val.trim() || undefined : val),
+    z.string().optional()
+  ),
+  NEXT_PUBLIC_GTM_ID: z.preprocess(
+    val => (typeof val === 'string' ? val.trim() || undefined : val),
+    z.string().optional()
+  ),
 
   // Vercel specific
   VERCEL_URL: z.string().optional(),
