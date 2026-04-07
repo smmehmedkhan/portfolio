@@ -81,6 +81,7 @@ export const CONFIG = {
   // External services
   SERVICES: {
     ANALYTICS_ID: env.NEXT_PUBLIC_GA_ID,
+    GTM_ID: env.NEXT_PUBLIC_GTM_ID,
     VERCEL_URL: env.VERCEL_URL,
   },
 } as const
