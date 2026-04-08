@@ -91,6 +91,11 @@ const envSchema = z.object({
   ARCJET_KEY: z.string().optional(),
   ARCJET_ENV: z.enum(['development', 'production']).default('development'),
   ARCJET_LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('warn'),
+
+  // Logging
+  LOG_LEVEL: z
+    .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'])
+    .default('info'),
 })
 
 type Env = z.infer<typeof envSchema>
@@ -126,6 +131,7 @@ function getEnv(): Env {
     ARCJET_KEY: process.env.ARCJET_KEY,
     ARCJET_ENV: process.env.ARCJET_ENV,
     ARCJET_LOG_LEVEL: process.env.ARCJET_LOG_LEVEL,
+    LOG_LEVEL: process.env.LOG_LEVEL,
   })
 
   if (!result.success) {
@@ -169,6 +175,7 @@ function getEnv(): Env {
       ARCJET_KEY: undefined,
       ARCJET_ENV: 'development',
       ARCJET_LOG_LEVEL: 'warn',
+      LOG_LEVEL: 'info',
     }
   }
 

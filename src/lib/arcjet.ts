@@ -1,11 +1,19 @@
 import arcjet, { detectBot, fixedWindow, shield } from '@arcjet/next'
 import { env } from '@/lib/env'
+import { arcjetLogger } from '@/lib/logger'
 
 /**
  * Factory function to create an Arcjet client with configurable rate limits
  * Validates that ARCJET_KEY is properly configured before initialization
  */
-export function createArcjet({ max = 100 }: { max?: number } = {}) {
+export function createArcjet({
+  max = 100,
+  devMode = false,
+}: {
+  max?: number
+  devMode?: boolean
+} = {}) {
+  const isDev = env.NODE_ENV === 'development' || devMode
   // In production, ARCJET_KEY is required
   if (
     env.ARCJET_ENV === 'production'
@@ -21,22 +29,19 @@ export function createArcjet({ max = 100 }: { max?: number } = {}) {
     env.ARCJET_ENV === 'development'
     && (!env.ARCJET_KEY || env.ARCJET_KEY.trim() === '')
   ) {
-    console.warn(
-      '⚠️  ARCJET_KEY is not configured. Arcjet protection will be disabled in development mode.'
+    arcjetLogger.warn(
+      'ARCJET_KEY is not configured. Arcjet protection will be disabled in development mode.'
     )
   }
 
   return arcjet({
     key: env.ARCJET_KEY || 'development_placeholder_key',
     rules: [
-      // Shield WAF - protects against common attacks (SQL injection, XSS, etc.)
       shield({ mode: 'LIVE' }),
-      // Bot detection
       detectBot({
-        mode: 'LIVE',
-        allow: [], // Block all bots initially
+        mode: isDev ? 'DRY_RUN' : 'LIVE',
+        allow: [],
       }),
-      // Rate limiting - generic endpoint protection
       fixedWindow({ mode: 'LIVE', window: '1h', max }),
     ],
   })

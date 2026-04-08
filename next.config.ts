@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-dropdown-menu'],
+    serverActions: { bodySizeLimit: '50kb' },
   },
 
   // Image optimization

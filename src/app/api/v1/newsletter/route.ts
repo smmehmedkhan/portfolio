@@ -4,23 +4,34 @@ import { ZodError, z } from 'zod'
 import getBrevoClient from '@/lib/brevo'
 import { newsletterWelcomeTemplate } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
+import { apiLogger } from '@/lib/logger'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
 import { newsletterSchema } from '@/schemas/newsletterSchema'
 
-// TODO: Add proper logger (e.g., winston, pino) for production logging
+const log = apiLogger.child({ route: 'newsletter' })
+
+const isDev = env.NODE_ENV === 'development'
 
 const ajNewsletter = arcjet({
   key: env.ARCJET_KEY || 'placeholder_key',
   rules: [
     shield({ mode: 'LIVE' }),
-    detectBot({ mode: 'LIVE', allow: [] }),
+    detectBot({ mode: isDev ? 'DRY_RUN' : 'LIVE', allow: [] }),
     fixedWindow({ mode: 'LIVE', window: '1h', max: 20 }),
   ],
 })
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = req.headers.get('origin')
+    if (
+      env.NODE_ENV === 'production'
+      && origin !== env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    ) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
     const decision = await ajNewsletter.protect(req)
 
     if (decision.isDenied()) {
@@ -70,7 +81,7 @@ export async function POST(req: NextRequest) {
     try {
       brevo = getBrevoClient()
     } catch (clientError) {
-      console.warn('[BREVO_CLIENT_WARN]', clientError)
+      log.warn({ err: clientError }, 'Brevo client unavailable')
     }
 
     try {
@@ -83,7 +94,10 @@ export async function POST(req: NextRequest) {
       brevoContactId = contact.id?.toString()
     } catch (contactError) {
       // Non-fatal: log but continue
-      console.warn('[BREVO_CONTACT_WARN]', contactError)
+      log.warn(
+        { err: contactError },
+        'Failed to add contact to Brevo list — continuing'
+      )
     }
 
     // 4. Upsert subscriber in MongoDB
@@ -120,7 +134,7 @@ export async function POST(req: NextRequest) {
         { status: 422 }
       )
     }
-    console.error('[NEWSLETTER_API_ERROR]', error)
+    log.error({ err: error }, 'Unhandled error in newsletter POST')
     return NextResponse.json(
       { error: 'Subscription failed. Please try again.' },
       { status: 500 }

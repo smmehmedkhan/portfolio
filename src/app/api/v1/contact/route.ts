@@ -7,21 +7,34 @@ import {
   contactNotificationTemplate,
 } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
+import { apiLogger } from '@/lib/logger'
 import connectDB from '@/lib/mongodb'
 import ContactMessage from '@/models/ContactMessage'
 import { contactSchema } from '@/schemas/contactSchema'
+
+const log = apiLogger.child({ route: 'contact' })
+
+const isDev = env.NODE_ENV === 'development'
 
 const ajContact = arcjet({
   key: env.ARCJET_KEY || 'placeholder_key',
   rules: [
     shield({ mode: 'LIVE' }),
-    detectBot({ mode: 'LIVE', allow: [] }),
+    detectBot({ mode: isDev ? 'DRY_RUN' : 'LIVE', allow: [] }),
     fixedWindow({ mode: 'LIVE', window: '1h', max: 10 }),
   ],
 })
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = req.headers.get('origin')
+    if (
+      env.NODE_ENV === 'production'
+      && origin !== env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    ) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
     const decision = await ajContact.protect(req)
 
     if (decision.isDenied()) {
@@ -67,7 +80,10 @@ export async function POST(req: NextRequest) {
     try {
       brevo = getBrevoClient()
     } catch (clientError) {
-      console.warn('[BREVO_CLIENT_WARN]', clientError)
+      log.warn(
+        { err: clientError },
+        'Brevo client unavailable — email delivery delayed'
+      )
       return NextResponse.json(
         { message: 'Message saved; email delivery is delayed.' },
         { status: 202 }
@@ -95,6 +111,10 @@ export async function POST(req: NextRequest) {
 
     const emailFailed = emailResults.some(r => r.status === 'rejected')
     if (emailFailed) {
+      log.warn(
+        { results: emailResults.map(r => r.status) },
+        'One or more contact emails failed to send'
+      )
       return NextResponse.json(
         { message: 'Message saved; email delivery is delayed.' },
         { status: 202 }
@@ -115,7 +135,7 @@ export async function POST(req: NextRequest) {
         { status: 422 }
       )
     }
-    console.error('[CONTACT_API_ERROR]', error)
+    log.error({ err: error }, 'Unhandled error in contact POST')
     return NextResponse.json(
       { error: 'Something went wrong. Please try again.' },
       { status: 500 }
