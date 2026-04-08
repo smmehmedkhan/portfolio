@@ -4,10 +4,20 @@ import { arcjetDenialResponse, createArcjet } from '@/lib/arcjet'
 import getBrevoClient from '@/lib/brevo'
 import { newsletterUnsubscribeTemplate } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
+import { apiLogger } from '@/lib/logger'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
 
-// TODO: Add proper logger (e.g., winston, pino) for production logging
+const log = apiLogger.child({ route: 'unsubscribe' })
+
+function normalizeOrigin(value: string | null | undefined) {
+  if (!value) return null
+  try {
+    return new URL(value).origin
+  } catch {
+    return null
+  }
+}
 
 const unsubscribeSchema = z.object({
   email: z.email('Invalid email address'),
@@ -46,7 +56,7 @@ export async function GET(req: NextRequest) {
       new URL(`/unsubscribe?email=${encodeURIComponent(safeEmail)}`, req.url)
     )
   } catch (error) {
-    console.error('Error in unsubscribe GET:', error)
+    log.error({ err: error }, 'Unhandled error in unsubscribe GET')
     return NextResponse.json(
       { error: 'Service temporarily unavailable' },
       { status: 503 }
@@ -56,6 +66,20 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = normalizeOrigin(req.headers.get('origin'))
+    const expectedOrigin = normalizeOrigin(
+      env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    )
+
+    if (
+      env.NODE_ENV === 'production'
+      && origin
+      && expectedOrigin
+      && origin !== expectedOrigin
+    ) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
     const decision = await getArcjet().protect(req)
 
     if (decision.isDenied()) {
@@ -115,7 +139,10 @@ export async function POST(req: NextRequest) {
         htmlContent: newsletterUnsubscribeTemplate(validEmail),
       })
     } catch (error) {
-      console.warn('[UNSUBSCRIBE_EMAIL_WARN]', error)
+      log.warn(
+        { err: error },
+        'Unsubscribe confirmation email failed — subscriber still deactivated'
+      )
     }
 
     return NextResponse.json(
@@ -129,7 +156,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       )
     }
-    console.error('[UNSUBSCRIBE_API_ERROR]', error)
+    log.error({ err: error }, 'Unhandled error in unsubscribe POST')
     return NextResponse.json(
       { error: 'Failed to unsubscribe. Please try again.' },
       { status: 500 }

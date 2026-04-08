@@ -1,6 +1,6 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { arcjetDenialResponse, createArcjet } from '@/lib/arcjet'
+import { arcjetLogger } from '@/lib/logger'
 
 let aj: ReturnType<typeof createArcjet> | null = null
 
@@ -10,9 +10,7 @@ function getArcjetClient() {
     try {
       aj = createArcjet()
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Failed to initialize Arcjet'
-      console.error(`Arcjet initialization error: ${message}`)
+      arcjetLogger.error({ err: error }, 'Arcjet initialization failed')
       throw error
     }
   }
@@ -52,11 +50,9 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next()
   } catch (error) {
     // Fail-open: log the error but let the request through so Arcjet errors don't take down the site
-    const errorMessage = (
-      error instanceof Error ? error.message : String(error)
-    ).replace(/[\r\n]/g, ' ')
-    console.error(
-      `Arcjet protection error at ${request.nextUrl.pathname}: ${errorMessage}`
+    arcjetLogger.error(
+      { err: error, path: request.nextUrl.pathname },
+      'Arcjet protection error — failing open'
     )
     return NextResponse.next()
   }

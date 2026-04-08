@@ -1,27 +1,46 @@
-import arcjet, { detectBot, fixedWindow, shield } from '@arcjet/next'
 import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError, z } from 'zod'
+import { createArcjet } from '@/lib/arcjet'
 import getBrevoClient from '@/lib/brevo'
 import {
   contactAutoReplyTemplate,
   contactNotificationTemplate,
 } from '@/lib/emailTemplates'
 import { env } from '@/lib/env'
+import { apiLogger } from '@/lib/logger'
 import connectDB from '@/lib/mongodb'
 import ContactMessage from '@/models/ContactMessage'
 import { contactSchema } from '@/schemas/contactSchema'
 
-const ajContact = arcjet({
-  key: env.ARCJET_KEY || 'placeholder_key',
-  rules: [
-    shield({ mode: 'LIVE' }),
-    detectBot({ mode: 'LIVE', allow: [] }),
-    fixedWindow({ mode: 'LIVE', window: '1h', max: 10 }),
-  ],
-})
+const log = apiLogger.child({ route: 'contact' })
+
+function normalizeOrigin(value: string | null | undefined) {
+  if (!value) return null
+  try {
+    return new URL(value).origin
+  } catch {
+    return null
+  }
+}
+
+const ajContact = createArcjet({ max: 10 })
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = normalizeOrigin(req.headers.get('origin'))
+    const expectedOrigin = normalizeOrigin(
+      env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    )
+
+    if (
+      env.NODE_ENV === 'production'
+      && origin
+      && expectedOrigin
+      && origin !== expectedOrigin
+    ) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
     const decision = await ajContact.protect(req)
 
     if (decision.isDenied()) {
@@ -67,7 +86,10 @@ export async function POST(req: NextRequest) {
     try {
       brevo = getBrevoClient()
     } catch (clientError) {
-      console.warn('[BREVO_CLIENT_WARN]', clientError)
+      log.warn(
+        { err: clientError },
+        'Brevo client unavailable — email delivery delayed'
+      )
       return NextResponse.json(
         { message: 'Message saved; email delivery is delayed.' },
         { status: 202 }
@@ -93,8 +115,29 @@ export async function POST(req: NextRequest) {
       }),
     ])
 
+    const emailResultDetails = emailResults.map((result, index) => ({
+      status: result.status,
+      recipient: index === 0 ? 'adminNotification' : 'userAutoReply',
+      ...(result.status === 'rejected'
+        ? {
+            reason:
+              result.reason instanceof Error
+                ? result.reason.message
+                : String(result.reason),
+          }
+        : {
+            info:
+              (result.value as { messageId?: string } | undefined)?.messageId
+              ?? 'fulfilled',
+          }),
+    }))
+
     const emailFailed = emailResults.some(r => r.status === 'rejected')
     if (emailFailed) {
+      log.warn(
+        { results: emailResultDetails },
+        'One or more contact emails failed to send'
+      )
       return NextResponse.json(
         { message: 'Message saved; email delivery is delayed.' },
         { status: 202 }
@@ -115,7 +158,7 @@ export async function POST(req: NextRequest) {
         { status: 422 }
       )
     }
-    console.error('[CONTACT_API_ERROR]', error)
+    log.error({ err: error }, 'Unhandled error in contact POST')
     return NextResponse.json(
       { error: 'Something went wrong. Please try again.' },
       { status: 500 }

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { env } from './env'
+import { dbLogger } from './logger'
 
 // Prevent multiple connections in dev (Next.js hot reload)
 declare global {
@@ -15,10 +16,33 @@ if (!cached) {
   cached = global.mongooseCache = { conn: null, promise: null }
 }
 
+function sanitizeMongoError(error: unknown) {
+  if (error instanceof Error) {
+    const sanitized: {
+      name: string
+      message: string
+      code?: unknown
+    } = {
+      name: error.name,
+      message: error.message,
+    }
+
+    if ('code' in error && typeof error.code !== 'function') {
+      sanitized.code = error.code
+    }
+
+    return sanitized
+  }
+
+  return { message: String(error) }
+}
+
 async function connectDB() {
   const MONGODB_URI = env.MONGODB_URI || ''
 
+  // Throw an error if MONGODB_URI is not set
   if (!MONGODB_URI) {
+    dbLogger.fatal('MONGODB_URI is not set')
     throw new Error('Missing MONGODB_URI environment variable')
   }
 
@@ -32,8 +56,13 @@ async function connectDB() {
 
   try {
     cached.conn = await cached.promise
+    dbLogger.info('MongoDB connected')
   } catch (error) {
     cached.promise = null
+    dbLogger.error(
+      { err: sanitizeMongoError(error) },
+      'MongoDB connection failed'
+    )
     throw error
   }
 
