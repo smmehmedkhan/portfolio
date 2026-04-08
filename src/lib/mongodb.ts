@@ -19,6 +19,7 @@ if (!cached) {
 async function connectDB() {
   const MONGODB_URI = env.MONGODB_URI || ''
 
+  // Throw an error if MONGODB_URI is not set
   if (!MONGODB_URI) {
     dbLogger.fatal('MONGODB_URI is not set')
     throw new Error('Missing MONGODB_URI environment variable')

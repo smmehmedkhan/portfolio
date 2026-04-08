@@ -53,6 +53,7 @@ export function createArcjet({
 export function arcjetDenialResponse(decision: {
   reason: { isRateLimit(): boolean; isBot(): boolean }
 }): { json: object; status: number } {
+  // Denial response for bot detections
   if (decision.reason.isBot()) {
     return {
       json: { error: 'Automated requests not permitted' },
@@ -60,6 +61,7 @@ export function arcjetDenialResponse(decision: {
     }
   }
 
+  // Denial response for rate limits
   if (decision.reason.isRateLimit()) {
     return {
       json: { error: 'Too many requests. Please try again later.' },
@@ -67,6 +69,7 @@ export function arcjetDenialResponse(decision: {
     }
   }
 
+  // Default denial response
   return {
     json: { error: 'Forbidden' },
     status: 403,

@@ -91,15 +91,38 @@ export default function RootLayout({
         className={`${publicSans.variable} ${notoSerif.variable} ${balthazar.variable} antialiased`}
         suppressHydrationWarning>
         {CONFIG.SERVICES.GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${CONFIG.SERVICES.GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-              title="Google Tag Manager"
+          <>
+            <Script id="gtm-script" strategy="beforeInteractive">
+              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${CONFIG.SERVICES.GTM_ID}');`}
+            </Script>
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${CONFIG.SERVICES.GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+                title="Google Tag Manager"
+              />
+            </noscript>
+          </>
+        )}
+        {CONFIG.SERVICES.ANALYTICS_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${CONFIG.SERVICES.ANALYTICS_ID}`}
+              strategy="afterInteractive"
             />
-          </noscript>
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${CONFIG.SERVICES.ANALYTICS_ID}');`}
+            </Script>
+          </>
         )}
         <ErrorBoundary>
           <ThemeProvider
@@ -113,31 +136,6 @@ export default function RootLayout({
         </ErrorBoundary>
         <Analytics />
       </body>
-      {CONFIG.SERVICES.GTM_ID && (
-        <Script id="gtm-script" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','${CONFIG.SERVICES.GTM_ID}');`}
-        </Script>
-      )}
-      {CONFIG.SERVICES.ANALYTICS_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${CONFIG.SERVICES.ANALYTICS_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${CONFIG.SERVICES.ANALYTICS_ID}');
-            `}
-          </Script>
-        </>
-      )}
     </html>
   )
 }
