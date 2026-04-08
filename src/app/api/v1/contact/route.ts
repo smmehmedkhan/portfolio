@@ -1,6 +1,6 @@
-import arcjet, { detectBot, fixedWindow, shield } from '@arcjet/next'
 import { type NextRequest, NextResponse } from 'next/server'
 import { ZodError, z } from 'zod'
+import { createArcjet } from '@/lib/arcjet'
 import getBrevoClient from '@/lib/brevo'
 import {
   contactAutoReplyTemplate,
@@ -14,23 +14,29 @@ import { contactSchema } from '@/schemas/contactSchema'
 
 const log = apiLogger.child({ route: 'contact' })
 
-const isDev = env.NODE_ENV === 'development'
+function normalizeOrigin(value: string | null | undefined) {
+  if (!value) return null
+  try {
+    return new URL(value).origin
+  } catch {
+    return null
+  }
+}
 
-const ajContact = arcjet({
-  key: env.ARCJET_KEY || 'placeholder_key',
-  rules: [
-    shield({ mode: 'LIVE' }),
-    detectBot({ mode: isDev ? 'DRY_RUN' : 'LIVE', allow: [] }),
-    fixedWindow({ mode: 'LIVE', window: '1h', max: 10 }),
-  ],
-})
+const ajContact = createArcjet({ max: 10 })
 
 export async function POST(req: NextRequest) {
   try {
-    const origin = req.headers.get('origin')
+    const origin = normalizeOrigin(req.headers.get('origin'))
+    const expectedOrigin = normalizeOrigin(
+      env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    )
+
     if (
       env.NODE_ENV === 'production'
-      && origin !== env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+      && origin
+      && expectedOrigin
+      && origin !== expectedOrigin
     ) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
@@ -109,10 +115,27 @@ export async function POST(req: NextRequest) {
       }),
     ])
 
+    const emailResultDetails = emailResults.map((result, index) => ({
+      status: result.status,
+      recipient: index === 0 ? 'adminNotification' : 'userAutoReply',
+      ...(result.status === 'rejected'
+        ? {
+            reason:
+              result.reason instanceof Error
+                ? result.reason.message
+                : String(result.reason),
+          }
+        : {
+            info:
+              (result.value as { messageId?: string } | undefined)?.messageId
+              ?? 'fulfilled',
+          }),
+    }))
+
     const emailFailed = emailResults.some(r => r.status === 'rejected')
     if (emailFailed) {
       log.warn(
-        { results: emailResults.map(r => r.status) },
+        { results: emailResultDetails },
         'One or more contact emails failed to send'
       )
       return NextResponse.json(

@@ -10,6 +10,15 @@ import Subscriber from '@/models/Subscriber'
 
 const log = apiLogger.child({ route: 'unsubscribe' })
 
+function normalizeOrigin(value: string | null | undefined) {
+  if (!value) return null
+  try {
+    return new URL(value).origin
+  } catch {
+    return null
+  }
+}
+
 const unsubscribeSchema = z.object({
   email: z.email('Invalid email address'),
 })
@@ -57,10 +66,16 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const origin = req.headers.get('origin')
+    const origin = normalizeOrigin(req.headers.get('origin'))
+    const expectedOrigin = normalizeOrigin(
+      env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    )
+
     if (
       env.NODE_ENV === 'production'
-      && origin !== env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+      && origin
+      && expectedOrigin
+      && origin !== expectedOrigin
     ) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }

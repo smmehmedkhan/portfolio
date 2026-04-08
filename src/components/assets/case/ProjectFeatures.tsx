@@ -13,38 +13,24 @@ export default function ProjectFeatures({
 }: ProjectFeaturesProps) {
   const selectedFeatures = features.slice(0, 3)
   const fade = getAnimationPreset('fade')
+  const items = page ? features : selectedFeatures
 
   return (
     <ul className="size-full list-disc list-inside flex flex-col gap-2">
-      {page
-        ? features.map((p, i) => (
-            <MotionItem
-              className="w-full leading-relaxed"
-              key={p.id}
-              {...fade}
-              transition={{ ...fade.transition, delay: 0.4 + i * 0.2 }}>
-              <Paragraph as="span" className="font-bold">
-                {p.name}:{' '}
-              </Paragraph>
-              <Paragraph className="text-muted-foreground" as="span">
-                {p.description}
-              </Paragraph>
-            </MotionItem>
-          ))
-        : selectedFeatures.map((p, i) => (
-            <MotionItem
-              className="w-full leading-relaxed"
-              key={p.id}
-              {...fade}
-              transition={{ ...fade.transition, delay: 0.4 + i * 0.2 }}>
-              <Paragraph as="span" className="font-bold">
-                {p.name}:{' '}
-              </Paragraph>
-              <Paragraph className="text-muted-foreground" as="span">
-                {p.description}
-              </Paragraph>
-            </MotionItem>
-          ))}
+      {items.map((p, i) => (
+        <MotionItem
+          className="w-full leading-relaxed"
+          key={p.id}
+          {...fade}
+          transition={{ ...fade.transition, delay: 0.4 + i * 0.2 }}>
+          <Paragraph as="span" className="font-bold">
+            {p.name}:{' '}
+          </Paragraph>
+          <Paragraph className="text-muted-foreground" as="span">
+            {p.description}
+          </Paragraph>
+        </MotionItem>
+      ))}
     </ul>
   )
 }

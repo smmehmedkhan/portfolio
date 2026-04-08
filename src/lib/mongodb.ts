@@ -16,6 +16,27 @@ if (!cached) {
   cached = global.mongooseCache = { conn: null, promise: null }
 }
 
+function sanitizeMongoError(error: unknown) {
+  if (error instanceof Error) {
+    const sanitized: {
+      name: string
+      message: string
+      code?: unknown
+    } = {
+      name: error.name,
+      message: error.message,
+    }
+
+    if ('code' in error && typeof error.code !== 'function') {
+      sanitized.code = error.code
+    }
+
+    return sanitized
+  }
+
+  return { message: String(error) }
+}
+
 async function connectDB() {
   const MONGODB_URI = env.MONGODB_URI || ''
 
@@ -38,7 +59,10 @@ async function connectDB() {
     dbLogger.info('MongoDB connected')
   } catch (error) {
     cached.promise = null
-    dbLogger.error({ err: error }, 'MongoDB connection failed')
+    dbLogger.error(
+      { err: sanitizeMongoError(error) },
+      'MongoDB connection failed'
+    )
     throw error
   }
 

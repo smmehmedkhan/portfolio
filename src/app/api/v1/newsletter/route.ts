@@ -11,6 +11,15 @@ import { newsletterSchema } from '@/schemas/newsletterSchema'
 
 const log = apiLogger.child({ route: 'newsletter' })
 
+function normalizeOrigin(value: string | null | undefined) {
+  if (!value) return null
+  try {
+    return new URL(value).origin
+  } catch {
+    return null
+  }
+}
+
 const isDev = env.NODE_ENV === 'development'
 
 const ajNewsletter = arcjet({
@@ -24,10 +33,16 @@ const ajNewsletter = arcjet({
 
 export async function POST(req: NextRequest) {
   try {
-    const origin = req.headers.get('origin')
+    const origin = normalizeOrigin(req.headers.get('origin'))
+    const expectedOrigin = normalizeOrigin(
+      env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    )
+
     if (
       env.NODE_ENV === 'production'
-      && origin !== env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+      && origin
+      && expectedOrigin
+      && origin !== expectedOrigin
     ) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }

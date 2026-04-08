@@ -13,7 +13,14 @@ export function createArcjet({
   max?: number
   devMode?: boolean
 } = {}) {
-  const isDev = env.NODE_ENV === 'development' || devMode
+  const isDev = env.NODE_ENV === 'development'
+
+  if (devMode && env.NODE_ENV !== 'development') {
+    arcjetLogger.warn(
+      'createArcjet devMode option is ignored outside development environment.'
+    )
+  }
+
   // In production, ARCJET_KEY is required
   if (
     env.ARCJET_ENV === 'production'
