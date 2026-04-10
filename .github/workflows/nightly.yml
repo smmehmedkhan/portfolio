@@ -26,10 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -80,10 +81,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -119,10 +121,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -151,10 +154,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -184,10 +188,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
+        with:
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
