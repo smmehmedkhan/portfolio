@@ -1,10 +1,18 @@
-import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { cleanup, render, screen, within } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  constructor() {}
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
 
 describe('Tooltip', () => {
   afterEach(() => {
@@ -13,17 +21,17 @@ describe('Tooltip', () => {
 
   it('renders tooltip trigger and content slots', () => {
     render(
-      <Tooltip>
+      <Tooltip open>
         <TooltipTrigger>Hover</TooltipTrigger>
         <TooltipContent>Tooltip text</TooltipContent>
       </Tooltip>
     )
 
     expect(screen.getByText(/hover/i)).toBeInTheDocument()
-    expect(screen.getByText(/tooltip text/i)).toBeInTheDocument()
-    expect(screen.getByText(/tooltip text/i)).toHaveAttribute(
-      'data-slot',
-      'tooltip-content'
+    const contentElement = document.querySelector(
+      '[data-slot="tooltip-content"]'
     )
+    expect(contentElement).toBeInTheDocument()
+    expect(contentElement).toHaveTextContent('Tooltip text')
   })
 })

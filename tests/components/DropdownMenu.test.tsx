@@ -30,7 +30,7 @@ describe('DropdownMenu', () => {
     expect(screen.getByText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByText(/item 1/i)).toBeInTheDocument()
     expect(screen.getByText(/delete/i)).toBeInTheDocument()
-    expect(screen.getByText(/menu/i)).toHaveAttribute(
+    expect(screen.getByText('Menu')).toHaveAttribute(
       'data-slot',
       'dropdown-menu-label'
     )

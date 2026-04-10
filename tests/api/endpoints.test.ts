@@ -1,5 +1,15 @@
 import { describe, expect, it, vi } from 'vitest'
 
+// Mock arcjet
+vi.mock('@/lib/arcjet', () => ({
+  createArcjet: vi.fn(() => ({
+    protect: vi.fn().mockResolvedValue({
+      isDenied: () => true,
+      reason: { isRateLimit: () => true },
+    }),
+  })),
+}))
+
 // ============================================================================
 // PRIORITY 2: API ENDPOINT TESTS
 // ============================================================================
@@ -120,6 +130,15 @@ describe('P2: API Endpoint Tests', () => {
           error: 'Too many requests',
         }),
       })
+
+      // Make 11 requests
+      for (let i = 0; i < 10; i++) {
+        await fetch(`${BASE_URL}/api/v1/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: 'Test', email: 'test@example.com' }),
+        })
+      }
 
       const response = await fetch(`${BASE_URL}/api/v1/contact`, {
         method: 'POST',

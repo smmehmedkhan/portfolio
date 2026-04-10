@@ -8,16 +8,16 @@ describe('Separator', () => {
   })
 
   it('renders horizontal separator by default', () => {
-    render(<Separator />)
+    render(<Separator decorative={false} />)
     const separator = screen.getByRole('separator')
     expect(separator).toBeInTheDocument()
     expect(separator).toHaveAttribute('data-slot', 'separator')
-    expect(separator).toHaveAttribute('orientation', 'horizontal')
+    expect(separator).toHaveAttribute('data-orientation', 'horizontal')
   })
 
   it('supports vertical orientation', () => {
-    render(<Separator orientation="vertical" />)
+    render(<Separator orientation="vertical" decorative={false} />)
     const separator = screen.getByRole('separator')
-    expect(separator).toHaveAttribute('orientation', 'vertical')
+    expect(separator).toHaveAttribute('data-orientation', 'vertical')
   })
 })

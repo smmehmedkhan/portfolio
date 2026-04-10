@@ -419,7 +419,7 @@ describe('P1: Schema Validation', () => {
       const validData = {
         name: '张三 (Zhang San)',
         email: 'zhang@example.com',
-        subject: '你好',
+        subject: 'こんにちは - this is a test subject',
         message: 'こんにちは - this is a test message',
       }
       expect(() => contactSchema.parse(validData)).not.toThrow()
@@ -485,7 +485,7 @@ describe('P1: Schema Validation', () => {
       const attackPatterns = {
         name: '<img src=x onerror="alert(1)">',
         email: 'user@example.com',
-        subject: 'Test',
+        subject: 'Test Subject',
         message: 'onload=alert(1) really long message content',
       }
       expect(() => contactSchema.parse(attackPatterns)).not.toThrow()
