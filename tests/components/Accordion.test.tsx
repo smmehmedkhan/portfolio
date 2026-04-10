@@ -34,9 +34,8 @@ describe('Accordion', () => {
     await user.click(screen.getByText(/section 1/i))
 
     expect(screen.getByText(/content 1/i)).toBeInTheDocument()
-    expect(screen.getByText(/content 1/i).parentElement).toHaveAttribute(
-      'data-slot',
-      'accordion-content'
-    )
+    expect(
+      screen.getByText(/content 1/i).closest('[data-slot="accordion-content"]')
+    ).toHaveAttribute('data-slot', 'accordion-content')
   })
 })

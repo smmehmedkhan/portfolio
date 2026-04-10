@@ -245,11 +245,11 @@ test.describe('P0: Web App Metadata', () => {
 
     // Check for required manifest fields
     const manifestLink = page.locator('link[rel="manifest"]')
-    await expect(manifestLink).toBeVisible()
+    await expect(manifestLink).toHaveAttribute('href', expect.any(String))
 
     // Check for meta viewport tag
     const viewport = page.locator('meta[name="viewport"]')
-    await expect(viewport).toBeVisible()
+    await expect(viewport).toHaveAttribute('content', expect.any(String))
   })
 })
 
