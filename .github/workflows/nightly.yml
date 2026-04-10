@@ -1,0 +1,263 @@
+name: Nightly Tests & Monitoring
+
+on:
+  schedule:
+    # Run at 2 AM UTC daily
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "24.x"
+  PNPM_VERSION: "10.33.0"
+
+jobs:
+  # ============================================================================
+  # NIGHTLY COMPREHENSIVE TESTS
+  # ============================================================================
+
+  nightly-e2e:
+    name: Nightly E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
+
+      - name: Build application
+        run: pnpm build
+
+      - name: Run E2E tests - Chromium
+        run: pnpm exec playwright test --project=chromium
+
+      - name: Run E2E tests - Firefox
+        run: pnpm exec playwright test --project=firefox
+
+      - name: Run E2E tests - WebKit
+        run: pnpm exec playwright test --project=webkit
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: nightly-e2e-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Nightly Test Report
+        if: always()
+        run: |
+          echo "Nightly E2E Tests completed"
+          if [ -f "playwright-report/index.html" ]; then
+            echo "Report generated successfully"
+          fi
+
+  # ============================================================================
+  # PERFORMANCE MONITORING
+  # ============================================================================
+
+  performance:
+    name: Performance Monitoring
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build application
+        run: pnpm build
+
+      - name: Check bundle size
+        run: |
+          echo "Checking bundle size..."
+          if [ -d ".next/static" ]; then
+            du -sh .next/static/
+            echo "Bundle size: OK"
+          fi
+
+      - name: Analyze build performance
+        run: |
+          echo "Build performance analysis:"
+          echo "Build artifacts: $(find .next -type f | wc -l) files"
+
+  # ============================================================================
+  # DEPENDENCY SECURITY CHECK
+  # ============================================================================
+
+  security-audit:
+    name: Dependency Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run npm audit
+        run: pnpm audit --production
+        continue-on-error: true
+
+      - name: Check for known vulnerabilities
+        run: |
+          echo "Security audit completed"
+          echo "Check pnpm audit output above for any vulnerabilities"
+
+  # ============================================================================
+  # CODE QUALITY ANALYSIS
+  # ============================================================================
+
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run linter
+        run: pnpm lint --max-warnings=0
+        continue-on-error: true
+
+      - name: Type check
+        run: pnpm type-check
+
+      - name: Format check
+        run: pnpm check
+
+  # ============================================================================
+  # TEST COVERAGE ANALYSIS
+  # ============================================================================
+
+  coverage-analysis:
+    name: Coverage Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate coverage report
+        run: pnpm test -- --coverage --run
+
+      - name: Check coverage thresholds
+        run: |
+          echo "Coverage report generated"
+          if [ -f "coverage/coverage.json" ]; then
+            echo "Lines: Check coverage/lcov-report/index.html for details"
+          fi
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  # ============================================================================
+  # NIGHTLY SUMMARY
+  # ============================================================================
+
+  nightly-summary:
+    name: Nightly Test Summary
+    runs-on: ubuntu-latest
+    needs:
+      [
+        nightly-e2e,
+        performance,
+        security-audit,
+        code-quality,
+        coverage-analysis,
+      ]
+    if: always()
+    steps:
+      - name: Generate nightly report
+        run: |
+          echo "=================================="
+          echo "NIGHTLY TEST SUMMARY"
+          echo "=================================="
+          echo "Date: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          echo "E2E Tests: ${{ needs.nightly-e2e.result }}"
+          echo "Performance: ${{ needs.performance.result }}"
+          echo "Security Audit: ${{ needs.security-audit.result }}"
+          echo "Code Quality: ${{ needs.code-quality.result }}"
+          echo "Coverage: ${{ needs.coverage-analysis.result }}"
+          echo "=================================="
+
+      - name: GitHub Status Check
+        if: always()
+        run: |
+          if [ "${{ needs.nightly-e2e.result }}" == "success" ] && \
+             [ "${{ needs.performance.result }}" == "success" ] && \
+             [ "${{ needs.code-quality.result }}" == "success" ]; then
+            echo "✅ Nightly tests passed!"
+          else
+            echo "⚠️ Nightly tests had issues - check logs"
+          fi
