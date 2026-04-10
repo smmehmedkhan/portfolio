@@ -1,0 +1,28 @@
+import { expect, test } from '@playwright/test'
+
+const routes = ['/', '/about', '/projects', '/contact', '/resume', '/blocked']
+
+const viewports = [
+  { name: 'mobile', width: 375, height: 667 },
+  { name: 'tablet', width: 768, height: 1024 },
+  { name: 'desktop', width: 1024, height: 768 },
+  { name: 'desktop-lg', width: 1440, height: 900 },
+]
+
+test.describe('P3: Visual Regression', () => {
+  for (const route of routes) {
+    for (const viewport of viewports) {
+      test(`should match visual baseline for ${route} at ${viewport.name}`, async ({
+        page,
+      }) => {
+        await page.setViewportSize({
+          width: viewport.width,
+          height: viewport.height,
+        })
+        await page.goto(route, { waitUntil: 'networkidle' })
+        const screenshotName = `${route.replace('/', 'home')}-${viewport.name}.png`
+        await expect(page).toHaveScreenshot(screenshotName)
+      })
+    }
+  }
+})
