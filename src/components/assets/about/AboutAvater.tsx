@@ -15,6 +15,8 @@ export default function AboutAvater() {
         className="size-full max-w-lg object-contain"
         src="/icons/undraw_programming.svg"
         alt="Illustration of a programmer"
+        loading="eager"
+        priority
         width={300}
         height={300}
         {...fade}
