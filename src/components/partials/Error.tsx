@@ -4,6 +4,7 @@ import { RefreshCw } from 'lucide-react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
@@ -15,6 +16,11 @@ import type { ErrorProps } from '@/types'
 const Wrapper = motion.create('div')
 
 export default function ErrorLayout({ error, reset }: ErrorProps) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const fade = getAnimationPreset('fade')
   const { code, title, message } = resolveErrorInfo(error)
 
@@ -52,7 +58,7 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
           transition={{ delay: 0.4 }}>
           {message}
         </Paragraph>
-        {env.NODE_ENV === 'development' && error && (
+        {mounted && env.NODE_ENV === 'development' && error && (
           <details className="mt-2 text-left w-full max-w-lg">
             <summary className="cursor-pointer text-sm font-medium text-muted-foreground mb-2">
               Error Details (Development Only)
