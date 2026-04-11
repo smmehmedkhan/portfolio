@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import {
   type NewsletterFormData,
@@ -74,9 +75,13 @@ export default function NewsletterForm() {
       transition={{ ...fade.transition, delay: 0.5 }}
       noValidate>
       <Field className="wrapper" data-invalid={!!errors.email}>
+        <Label htmlFor="subscribe-email" className="sr-only">
+          Email Address
+        </Label>
         <Input
           className="input"
           type="email"
+          id="subscribe-email"
           placeholder="your.email@example.com"
           required
           {...register('email')}

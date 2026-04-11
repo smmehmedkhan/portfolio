@@ -24,6 +24,7 @@ export default function FaqAccordion() {
       <Accordion
         className="accordion"
         type="single"
+        aria-label="Common questions and answers"
         collapsible
         defaultValue={faqData[0]?.id}>
         {faqData.map((faq, index) => (

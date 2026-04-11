@@ -55,7 +55,10 @@ export default function ReviewCarousel() {
                   </CardContent>
                   <CardFooter className="size-full flex-inline gap-2 sm:gap-3 md:gap-4">
                     <Avatar className="size-8 md:size-10">
-                      <AvatarImage src={testimonial.image} />
+                      <AvatarImage
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                      />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className="size-full">

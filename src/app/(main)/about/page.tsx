@@ -31,11 +31,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="container about-page flex-box">
+    <>
       <HeroAbout />
-      <Experience />
-      <Educations />
-      <Contributions />
-    </main>
+      <main className="container about-page flex-box">
+        <Experience />
+        <Educations />
+        <Contributions />
+      </main>
+    </>
   )
 }

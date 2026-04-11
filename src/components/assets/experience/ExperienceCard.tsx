@@ -69,6 +69,7 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
               <IconComponent
                 size={40}
                 className="size-10 text-primary-foreground dark:text-primary"
+                aria-label={`${title} icon`}
               />
             </div>
             <Badge className={getBadgeStyles(expertise)}>{expertise}</Badge>

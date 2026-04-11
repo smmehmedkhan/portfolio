@@ -56,6 +56,7 @@ export default function EducationCard({ index, data }: EducationCardProps) {
               <IconComponent
                 size={40}
                 className="size-10 text-primary-foreground dark:text-primary"
+                aria-label={`${degree} icon`}
               />
             </div>
             <Badge className="bg-accent dark:bg-amber-950/30 text-accent-foreground dark:text-accent">

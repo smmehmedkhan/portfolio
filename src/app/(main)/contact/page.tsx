@@ -22,15 +22,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="wrapper">
-      <SectionInro data={sectionInros.contact} />
+    <>
+      <header className="sr-only">
+        <h1>Contact page</h1>
+      </header>
+      <main className="wrapper">
+        <SectionInro data={sectionInros.contact} />
 
-      <div className="wrapper max-w-xl md:max-w-4xl lg:max-w-5xl mx-auto px-4 lg:px-0">
-        <div className="size-full grid md:grid-cols-2 gap-10 lg:gap-5 xl:gap-25">
-          <ContactInfo />
-          <ContactForm />
+        <div className="wrapper max-w-xl md:max-w-4xl lg:max-w-5xl mx-auto px-4 lg:px-0">
+          <div className="size-full grid md:grid-cols-2 gap-10 lg:gap-5 xl:gap-25">
+            <ContactInfo />
+            <ContactForm />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

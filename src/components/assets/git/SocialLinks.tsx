@@ -42,7 +42,10 @@ export default function SocialLinks({
               aria-label={name}
               target="_blank"
               rel="noopener noreferrer">
-              <Icon className={cn('size-8 md:size-10', iconClassName)} />
+              <Icon
+                className={cn('size-8 md:size-10', iconClassName)}
+                aria-label={name}
+              />
             </Link>
           </Button>
         </MDiv>

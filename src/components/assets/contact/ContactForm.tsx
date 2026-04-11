@@ -76,6 +76,7 @@ export default function ContactForm() {
         <Input
           id="name"
           placeholder="Your name"
+          aria-label="Your name"
           required
           {...register('name')}
         />
@@ -88,6 +89,7 @@ export default function ContactForm() {
           id="email"
           type="email"
           placeholder="your.email@example.com"
+          aria-label="Your email address"
           required
           {...register('email')}
         />
@@ -99,6 +101,7 @@ export default function ContactForm() {
         <Input
           id="subject"
           placeholder="What's this about?"
+          aria-label="Subject of your message"
           required
           {...register('subject')}
         />
@@ -111,6 +114,7 @@ export default function ContactForm() {
           id="message"
           rows={6}
           placeholder="Your message here..."
+          aria-label="Your message"
           required
           {...register('message')}
         />
