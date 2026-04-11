@@ -1,8 +1,8 @@
 import '@/styles/globals.css'
+import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
-import Script from 'next/script'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
@@ -85,45 +85,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const GTM_ID = CONFIG.SERVICES.GTM_ID
+
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${publicSans.variable} ${notoSerif.variable} ${balthazar.variable} antialiased`}
         suppressHydrationWarning>
-        {CONFIG.SERVICES.GTM_ID && (
-          <>
-            <Script id="gtm-script" strategy="beforeInteractive">
-              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${CONFIG.SERVICES.GTM_ID}');`}
-            </Script>
-            <noscript>
-              <iframe
-                src={`https://www.googletagmanager.com/ns.html?id=${CONFIG.SERVICES.GTM_ID}`}
-                height="0"
-                width="0"
-                style={{ display: 'none', visibility: 'hidden' }}
-                title="Google Tag Manager"
-              />
-            </noscript>
-          </>
-        )}
-        {CONFIG.SERVICES.ANALYTICS_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${CONFIG.SERVICES.ANALYTICS_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${CONFIG.SERVICES.ANALYTICS_ID}');`}
-            </Script>
-          </>
-        )}
+        {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
         <ErrorBoundary>
           <ThemeProvider
             attribute="class"

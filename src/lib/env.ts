@@ -54,11 +54,6 @@ const envSchema = z.object({
     .optional()
     .transform(val => val || undefined),
 
-  // Analytics
-  NEXT_PUBLIC_GA_ID: z.preprocess(
-    val => (typeof val === 'string' ? val.trim() || undefined : val),
-    z.string().optional()
-  ),
   NEXT_PUBLIC_GTM_ID: z.preprocess(
     val => (typeof val === 'string' ? val.trim() || undefined : val),
     z.string().optional()
@@ -117,7 +112,6 @@ function getEnv(): Env {
     NEXT_PUBLIC_DISCORD_URL: process.env.NEXT_PUBLIC_DISCORD_URL,
     NEXT_PUBLIC_SOURCE_URL: process.env.NEXT_PUBLIC_SOURCE_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
     NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
     VERCEL_URL: process.env.VERCEL_URL,
     VERCEL_OIDC_TOKEN: process.env.VERCEL_OIDC_TOKEN,
@@ -161,7 +155,6 @@ function getEnv(): Env {
       NEXT_PUBLIC_DISCORD_URL: undefined,
       NEXT_PUBLIC_SOURCE_URL: undefined,
       NEXT_PUBLIC_API_URL: undefined,
-      NEXT_PUBLIC_GA_ID: undefined,
       NEXT_PUBLIC_GTM_ID: undefined,
       VERCEL_URL: undefined,
       VERCEL_OIDC_TOKEN: undefined,
