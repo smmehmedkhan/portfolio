@@ -51,7 +51,7 @@ export const CONFIG = {
 
   // App settings
   APP: {
-    PROJECTS_PER_PAGE: 6,
+    PROJECTS_PER_PAGE: 3,
     ANIMATION_DURATION: 300,
     SCROLL_ANIMATION_DURATION: 0.6,
     THEME_STORAGE_KEY: 'portfolio-theme',
@@ -80,7 +80,6 @@ export const CONFIG = {
 
   // External services
   SERVICES: {
-    ANALYTICS_ID: env.NEXT_PUBLIC_GA_ID,
     GTM_ID: env.NEXT_PUBLIC_GTM_ID,
     VERCEL_URL: env.VERCEL_URL,
   },
