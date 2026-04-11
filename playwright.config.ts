@@ -9,6 +9,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:3000',
+    userAgent: 'Mozilla/5.0 (Playwright Test)',
     trace: 'on-first-retry',
   },
 
