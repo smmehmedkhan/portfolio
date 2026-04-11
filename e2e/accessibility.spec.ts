@@ -24,8 +24,8 @@ test.describe('P3: Accessibility Audit', () => {
       page,
     }) => {
       await page.goto(route, { waitUntil: 'networkidle' })
-      await expect(page.locator('main').first()).toBeVisible()
-      await expect(page.locator('header').first()).toBeVisible()
+      await expect(page.locator('header')).toHaveCount(1)
+      await expect(page.locator('main')).toHaveCount(1)
 
       const duplicateIds = await page.evaluate(() => {
         const ids = [...document.querySelectorAll('[id]')].map(el => el.id)

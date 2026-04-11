@@ -21,9 +21,14 @@ export default async function BlockedPage({
       statusCode: 429,
     })
     return (
-      <main className="wrapper min-h-dvh">
-        <ErrorLayout error={error} />
-      </main>
+      <>
+        <header className="sr-only">
+          <h1>Access Blocked</h1>
+        </header>
+        <main className="wrapper min-h-dvh">
+          <ErrorLayout error={error} />
+        </main>
+      </>
     )
   }
 
@@ -36,20 +41,30 @@ export default async function BlockedPage({
       }
     )
     return (
-      <main className="wrapper min-h-dvh">
-        <ErrorLayout error={error} />
-      </main>
+      <>
+        <header className="sr-only">
+          <h1>Service Unavailable</h1>
+        </header>
+        <main className="wrapper min-h-dvh">
+          <ErrorLayout error={error} />
+        </main>
+      </>
     )
   }
 
   // Default to 403 Forbidden
-  const error: AppError = Object.assign(new Error('Access blocked'), {
+  const error: AppError = Object.assign(new Error('Forbidden'), {
     statusCode: 403,
   })
 
   return (
-    <main className="wrapper min-h-dvh">
-      <ErrorLayout error={error} />
-    </main>
+    <>
+      <header className="sr-only">
+        <h1>Forbidden</h1>
+      </header>
+      <main className="wrapper min-h-dvh">
+        <ErrorLayout error={error} />
+      </main>
+    </>
   )
 }

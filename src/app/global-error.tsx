@@ -18,6 +18,9 @@ export default function GlobalError({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
+          <header className="sr-only">
+            <h1>Something went wrong!</h1>
+          </header>
           <main className="wrapper min-h-dvh">
             <ErrorLayout error={error} reset={reset} />
           </main>

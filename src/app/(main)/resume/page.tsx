@@ -16,9 +16,14 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <main className="wrapper resume-page">
-      <SectionInro data={sectionInros.resume} />
-      <ResumeViewer />
-    </main>
+    <>
+      <header className="sr-only">
+        <h1>Resume page</h1>
+      </header>
+      <main className="wrapper resume-page">
+        <SectionInro data={sectionInros.resume} />
+        <ResumeViewer />
+      </main>
+    </>
   )
 }

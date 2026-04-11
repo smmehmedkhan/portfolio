@@ -8,8 +8,13 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="wrapper min-h-[calc(100dvh-60px)]">
-      <NotFoundComponent />
-    </main>
+    <>
+      <header className="sr-only">
+        <h1>404 - Page Not Found</h1>
+      </header>
+      <main className="wrapper min-h-[calc(100dvh-60px)]">
+        <NotFoundComponent />
+      </main>
+    </>
   )
 }

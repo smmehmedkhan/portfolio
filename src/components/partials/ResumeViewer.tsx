@@ -1,6 +1,7 @@
 'use client'
 
 import { Download } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
@@ -37,10 +38,10 @@ export default function ResumeViewer() {
           size="lg"
           className="resume-download-btn"
           onClick={e => e.stopPropagation()}>
-          <a href={RESUME_PATH} download="Mehmed_Khan_Resume.pdf">
+          <Link href={RESUME_PATH} download="Mehmed_Khan_Resume.pdf">
             <Download />
             Download
-          </a>
+          </Link>
         </Button>
       </div>
     </div>

@@ -30,9 +30,14 @@ export const metadata: Metadata = {
 
 export default function ProjectPage() {
   return (
-    <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
-      <SectionInro data={sectionInros.project} />
-      <PaginatedProjects />
-    </main>
+    <>
+      <header className="sr-only">
+        <h1>Projects page</h1>
+      </header>
+      <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
+        <SectionInro data={sectionInros.project} />
+        <PaginatedProjects />
+      </main>
+    </>
   )
 }
