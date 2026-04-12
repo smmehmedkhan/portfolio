@@ -1,28 +1,43 @@
 name: Validation
+
 on:
   workflow_run:
     workflows: ["CI"]
     types: [completed]
-    branches: [main, develop]
 
 jobs:
-  integration-tests:
+  validation:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/setup
-        with: { node-version: "24" }
-      - run: pnpm run test:integration
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
 
-  api-security:
-    runs-on: ubuntu-latest
-    steps:
       - uses: ./.github/actions/setup
-      - run: pnpm test tests/api/security.test.ts -- --run
+        with:
+          node-version: "24"
 
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/actions/setup
-      - run: pnpm test -- --coverage --run
-      - uses: actions/upload-artifact@v6
-        with: { name: coverage-report, path: coverage/ }
+      # =========================
+      # Integration Tests
+      # =========================
+      - name: Run integration tests
+        run: pnpm run test:integration
+
+      # =========================
+      # API Security Tests
+      # =========================
+      - name: Run API security tests
+        run: pnpm test tests/api/security.test.ts -- --run
+
+      # =========================
+      # Coverage
+      # =========================
+      - name: Run coverage
+        run: pnpm test -- --coverage --run
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-report
+          path: coverage/

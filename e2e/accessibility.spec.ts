@@ -18,8 +18,8 @@ test.describe('P3: Accessibility Audit', () => {
       await page.goto(route)
 
       // Ensure the page is hydrated and visible before auditing
-      await expect(page.locator('header')).toHaveCount(1)
       await expect(page.locator('main')).toHaveCount(1)
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
 
       // Run the Axe accessibility audit
       const accessibilityScanResults = await new AxeBuilder({ page })

@@ -14,11 +14,15 @@ jobs:
         shardIndex: [1, 2]
         shardTotal: [2]
     steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 1 }
       - uses: ./.github/actions/setup
+        with: { node-version: "24" }
       - run: pnpm exec playwright install --with-deps
       - run: pnpm build
       - run: pnpm exec playwright test --project=${{matrix.project}} --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}}
       - uses: actions/upload-artifact@v6
+        if: ${{ !cancelled() }}
         with:
           name: nightly-report-${{matrix.project}}-${{matrix.shardIndex}}
           path: playwright-report/
@@ -26,23 +30,32 @@ jobs:
   performance:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 1 }
       - uses: ./.github/actions/setup
+        with: { node-version: "24" }
       - run: pnpm build
       - run: du -sh .next/static/ # Check bundle size
 
   security-audit:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 1 }
       - uses: ./.github/actions/setup
-      - run: pnpm audit --production || true
+        with: { node-version: "24" }
+      - run: pnpm audit --production
 
   code-quality:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 1 }
       - uses: ./.github/actions/setup
-      - run: pnpm lint --max-warnings=0 || true
-      - run: pnpm type-check || true
-      - run: pnpm check || true
+        with: { node-version: "24" }
+      - run: pnpm lint --max-warnings=0
+      - run: pnpm type-check
+      - run: pnpm check
 
   nightly-summary:
     runs-on: ubuntu-latest
