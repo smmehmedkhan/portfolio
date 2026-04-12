@@ -1,12 +1,14 @@
 name: "Setup Environment"
 description: "Checkout & install dependencies"
+
+inputs:
+  node-version:
+    description: 'Node.js version'
+    required: true
+    default: '24'
+
 runs:
   using: composite
-  inputs:
-    node-version:
-      description: 'Node.js version'
-      required: true
-      default: '24'
   steps:
     - uses: pnpm/action-setup@v4
       with: { version: 10 }
@@ -16,5 +18,11 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: "pnpm"
 
-    - run: pnpm install --frozen-lockfile --prefer-offline
+    - run: corepack enable
+      shell: bash
+
+    - run: corepack prepare pnpm@latest --activate
+      shell: bash
+
+    - run: pnpm install
       shell: bash
