@@ -1,0 +1,30 @@
+name: E2E Tests
+on:
+  workflow_run:
+    workflows: ["Validation"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
+    steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 1 }
+      - uses: ./.github/actions/setup
+        with: { node-version: "24" }
+      - run: pnpm exec playwright install --with-deps
+      - run: pnpm build
+      - run: pnpm exec playwright test --project=${{matrix.browser}} --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}}
+      - uses: actions/upload-artifact@v6
+        if: ${{ !cancelled() }}
+        with:
+          name: report-${{matrix.browser}}-${{matrix.shardIndex}}
+          path: playwright-report/
