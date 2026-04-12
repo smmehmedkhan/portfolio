@@ -5,6 +5,10 @@ on:
     types: [completed]
     branches: [main]
 
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
 jobs:
   playwright:
     runs-on: ubuntu-latest
