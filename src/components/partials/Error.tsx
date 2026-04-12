@@ -13,7 +13,7 @@ import { env } from '@/lib/env'
 import { resolveErrorInfo } from '@/lib/errors'
 import type { ErrorProps } from '@/types'
 
-const Wrapper = motion.create('div')
+const Wrapper = motion.create('header')
 
 export default function ErrorLayout({ error, reset }: ErrorProps) {
   const [mounted, setMounted] = useState(false)
@@ -24,19 +24,23 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
   const fade = getAnimationPreset('fade')
   const { code, title, message } = resolveErrorInfo(error)
 
+  // Return a stable shell if not mounted to prevent hydration mismatch from animations
+  const animationProps = mounted ? fade : {}
+  const transitionProps = mounted ? { ...fade.transition, delay: 0.5 } : {}
+
   return (
     <div className="container flex-box gap-5 sm:gap-7.5 md:gap-10">
       <Wrapper
         className="wrapper"
-        {...fade}
-        transition={{ ...fade.transition, delay: 0.5 }}>
+        {...animationProps}
+        transition={transitionProps}>
         <Image
           src="/icons/server-error.svg"
           alt="Server error illustration"
           width={860}
           height={571}
           priority
-          className="w-full max-w-xs sm:max-w-sm"
+          className="w-full h-auto max-w-xs sm:max-w-sm"
         />
       </Wrapper>
       <div className="wrapper gap-3 sm:gap-4 md:gap-5">

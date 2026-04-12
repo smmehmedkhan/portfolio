@@ -1,55 +1,37 @@
-name: Continuous Integration
-
+name: CI
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
-
-env:
-  NODE_VERSION: "24.x"
+  push: { branches: [main, develop] }
+  pull_request: { branches: [main, develop] }
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 jobs:
-  ci:
+  lint:
+    name: Lint & Typecheck
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+      - uses: ./.github/actions/setup
+        with: { node-version: "24" }
+      - run: pnpm lint
+      - run: pnpm type-check
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+        with: { node-version: "24" }
+      - run: pnpm test -- --run --ci
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Check code quality
-        run: pnpm check
-
-      - name: Type check
-        run: pnpm type-check
-
-      - name: Test
-        run: pnpm test
-
-      - name: Security audit
-        run: pnpm audit --audit-level moderate || true
-
-      - name: Build
-        run: pnpm build
-        env:
-          ARCJET_KEY: ${{ secrets.ARCJET_KEY }}
-
-      - name: Generate version
-        id: version
-        run: echo "version=$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+  build:
+    name: Build
+    needs: [lint, unit-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+        with: { node-version: "24" }
+      - run: pnpm build
+      - id: version
+        run: |
+          echo "version=$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT

@@ -21,14 +21,9 @@ export default async function BlockedPage({
       statusCode: 429,
     })
     return (
-      <>
-        <header className="sr-only">
-          <h1>Access Blocked</h1>
-        </header>
-        <main className="wrapper min-h-dvh">
-          <ErrorLayout error={error} />
-        </main>
-      </>
+      <main className="wrapper min-h-dvh">
+        <ErrorLayout error={error} />
+      </main>
     )
   }
 
@@ -41,14 +36,9 @@ export default async function BlockedPage({
       }
     )
     return (
-      <>
-        <header className="sr-only">
-          <h1>Service Unavailable</h1>
-        </header>
-        <main className="wrapper min-h-dvh">
-          <ErrorLayout error={error} />
-        </main>
-      </>
+      <main className="wrapper min-h-dvh">
+        <ErrorLayout error={error} />
+      </main>
     )
   }
 
@@ -58,13 +48,8 @@ export default async function BlockedPage({
   })
 
   return (
-    <>
-      <header className="sr-only">
-        <h1>Forbidden</h1>
-      </header>
-      <main className="wrapper min-h-dvh">
-        <ErrorLayout error={error} />
-      </main>
-    </>
+    <main className="wrapper min-h-dvh">
+      <ErrorLayout error={error} />
+    </main>
   )
 }
