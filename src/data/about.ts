@@ -13,7 +13,7 @@ export const aboutImages: AboutImage[] = [
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&dpr=2&q=80',
+    url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&dpr=2&q=80',
     alt: 'Photo by Christina @ wocintechchat.com',
   },
 ]

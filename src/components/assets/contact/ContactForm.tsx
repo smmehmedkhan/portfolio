@@ -6,12 +6,20 @@ import { motion } from 'motion/react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldLabel } from '@/components/ui/field'
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+} from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { getAnimationPreset } from '@/lib/animations/registry'
 import { type ContactFormData, contactSchema } from '@/schemas/contactSchema'
 
+const Wrapper = motion.create('div')
 const MForm = motion.create('form')
 
 export default function ContactForm() {
@@ -63,62 +71,65 @@ export default function ContactForm() {
     }
   }
 
-  const Wrapper = motion.create('div')
-
   return (
     <MForm
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-6"
       {...fade}
       transition={{ ...fade.transition, delay: 0.5 }}>
-      <Field data-invalid={!!errors.name}>
-        <FieldLabel htmlFor="name">Name</FieldLabel>
-        <Input
-          id="name"
-          placeholder="Your name"
-          aria-label="Your name"
-          required
-          {...register('name')}
-        />
-        <FieldError errors={[errors.name]} />
-      </Field>
+      <Field orientation="responsive">
+        <FieldLegend className="sr-only">Contact Form</FieldLegend>
+        <FieldContent className="gap-4">
+          <FieldGroup className="gap-2" data-invalid={!!errors.name}>
+            <FieldLabel htmlFor="name">Name</FieldLabel>
+            <Input
+              id="name"
+              placeholder="Your name"
+              aria-label="Your name"
+              required
+              {...register('name')}
+            />
+            <FieldError errors={[errors.name]} />
+          </FieldGroup>
 
-      <Field data-invalid={!!errors.email}>
-        <FieldLabel htmlFor="email">Email</FieldLabel>
-        <Input
-          id="email"
-          type="email"
-          placeholder="your.email@example.com"
-          aria-label="Your email address"
-          required
-          {...register('email')}
-        />
-        <FieldError errors={[errors.email]} />
-      </Field>
+          <FieldGroup className="gap-2" data-invalid={!!errors.email}>
+            <FieldLabel htmlFor="contactMail">Email</FieldLabel>
+            <Input
+              id="contactMail"
+              type="email"
+              placeholder="your.email@example.com"
+              aria-label="Contact email address"
+              required
+              {...register('email')}
+            />
+            <FieldError errors={[errors.email]} />
+          </FieldGroup>
 
-      <Field data-invalid={!!errors.subject}>
-        <FieldLabel htmlFor="subject">Subject</FieldLabel>
-        <Input
-          id="subject"
-          placeholder="What's this about?"
-          aria-label="Subject of your message"
-          required
-          {...register('subject')}
-        />
-        <FieldError errors={[errors.subject]} />
-      </Field>
+          <FieldGroup className="gap-2" data-invalid={!!errors.subject}>
+            <FieldLabel htmlFor="subject">Subject</FieldLabel>
+            <Input
+              id="subject"
+              placeholder="What's this about?"
+              aria-label="Subject of your message"
+              required
+              {...register('subject')}
+            />
+            <FieldError errors={[errors.subject]} />
+          </FieldGroup>
 
-      <Field data-invalid={!!errors.message}>
-        <FieldLabel htmlFor="message">Message</FieldLabel>
-        <Textarea
-          id="message"
-          rows={6}
-          placeholder="Your message here..."
-          aria-label="Your message"
-          required
-          {...register('message')}
-        />
-        <FieldError errors={[errors.message]} />
+          <FieldGroup className="gap-2" data-invalid={!!errors.message}>
+            <FieldLabel htmlFor="message">Message</FieldLabel>
+            <Textarea
+              id="message"
+              rows={6}
+              placeholder="Your message here..."
+              aria-label="Your message"
+              required
+              {...register('message')}
+            />
+            <FieldError errors={[errors.message]} />
+          </FieldGroup>
+        </FieldContent>
       </Field>
       <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
         <Button className="w-full" type="submit" disabled={isSubmitting}>

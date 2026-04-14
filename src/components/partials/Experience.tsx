@@ -1,12 +1,12 @@
 import ExperienceCard from '@/components/assets/experience/ExperienceCard'
-import ExperienceIntro from '@/components/assets/experience/ExperienceIntro'
+import ExperienceHeader from '@/components/assets/experience/ExperienceHeader'
 import { experiences } from '@/data/experiences'
 
 export default function Experience() {
   return (
     <section className="experience flex-center flip">
       {/* left: Experience Introduction */}
-      <ExperienceIntro />
+      <ExperienceHeader />
 
       {/* Right: About Cards */}
       <div className="wrapper exp-layout">

@@ -1,15 +1,15 @@
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 
-export default function ExperienceIntro() {
+export default function ExperienceHeader() {
   return (
-    <div className="exp-intro">
+    <header className="exp-intro">
       <Heading
         className="size-full text-center lg:text-start leading-tight"
         animated>
         Experience
         <br />
-        <span className="text-amber-500 dark:text-accent">&</span>{' '}
+        <span className="text-amber-600 dark:text-accent">&</span>{' '}
         <span className="text-primary">Evolution</span>
       </Heading>
       <Paragraph
@@ -20,6 +20,6 @@ export default function ExperienceIntro() {
         I specialize in building performant, accessible applications that solve
         real-world problems.
       </Paragraph>
-    </div>
+    </header>
   )
 }

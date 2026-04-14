@@ -14,14 +14,15 @@ export default function HeroImage() {
   return (
     <div className="wrapper max-w-2xl">
       <Box className="hero-images" {...fadeUp}>
-        {/* Hero Image */}
+        {/* Hero Image - Art Direction */}
         <MImage
           className="hero-image"
           src="/images/Mehmed_Khan.webp"
-          alt="Mehmed Khan - Full Stack Developer"
-          width={1024}
-          height={1365}
+          alt="Mehmed Khan - Frontend Developer"
+          width={675}
+          height={675}
           priority
+          fetchPriority="high"
           {...fade}
           transition={{ ...fade.transition, delay: 0.5 }}
         />

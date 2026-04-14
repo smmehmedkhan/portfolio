@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import SectionInro from '@/components/assets/SectionInro'
+import SectionHeader from '@/components/assets/SectionHeader'
 import PaginatedProjects from '@/components/partials/PaginatedProjects'
 import { CONFIG } from '@/constants/config'
 import { sectionInros } from '@/data/sectionInros'
@@ -30,14 +30,9 @@ export const metadata: Metadata = {
 
 export default function ProjectPage() {
   return (
-    <>
-      <header className="sr-only">
-        <h1>Projects page</h1>
-      </header>
-      <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
-        <SectionInro data={sectionInros.project} />
-        <PaginatedProjects />
-      </main>
-    </>
+    <main className="wrapper pt-10 sm:pt-15 md:pt-20 lg:pt-25">
+      <SectionHeader data={sectionInros.project} />
+      <PaginatedProjects />
+    </main>
   )
 }

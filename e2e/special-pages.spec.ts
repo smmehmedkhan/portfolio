@@ -3,7 +3,6 @@ import { expect, test } from '@playwright/test'
 // ============================================================================
 // PRIORITY 0: SPECIAL PAGES (RESUME, BLOCKED, 404)
 // ============================================================================
-
 test.describe('P0: Resume Page', () => {
   test('should load resume page successfully', async ({ page }) => {
     await page.goto('/resume')
@@ -87,7 +86,7 @@ test.describe('P0: Blocked Page', () => {
   test('should display blocked page content', async ({ page }) => {
     await page.goto('/blocked')
 
-    const content = page.locator('main, section, div').first()
+    const content = page.locator('main, header, div').first()
     await expect(content).toBeVisible()
   })
 
@@ -111,9 +110,9 @@ test.describe('P0: Blocked Page', () => {
     await page.goto('/blocked')
 
     // Should have navigation to other pages
-    const navLink = page.getByRole('link', { name: /home|portfolio/i }).first()
-    if (await navLink.isVisible({ timeout: 1000 }).catch(() => false)) {
-      await navLink.click()
+    const backBtn = page.getByRole('link', { name: /go back|home/i }).first()
+    if (await backBtn.isVisible({ timeout: 1000 }).catch(() => false)) {
+      await backBtn.click()
       // Should navigate away from blocked page
       const currentURL = page.url()
       expect(currentURL).not.toContain('/blocked')

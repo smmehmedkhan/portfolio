@@ -11,7 +11,7 @@ export default function HeroAbout() {
         <Heading className="leading-tight" animated>
           Who am I
           <br />
-          <span className="text-amber-500 dark:text-accent">behind</span>{' '}
+          <span className="text-amber-600 dark:text-accent">behind</span>{' '}
           <span className="text-primary">the code?</span>
         </Heading>
         <Paragraph

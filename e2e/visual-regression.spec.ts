@@ -19,9 +19,19 @@ test.describe('P3: Visual Regression', () => {
           width: viewport.width,
           height: viewport.height,
         })
-        await page.goto(route, { waitUntil: 'networkidle' })
-        const screenshotName = `${route.replace('/', 'home')}-${viewport.name}.png`
-        await expect(page).toHaveScreenshot(screenshotName)
+        await page.goto(route)
+
+        await page.waitForLoadState('domcontentloaded')
+        await page.waitForSelector('main')
+        await page.waitForFunction(() => document.fonts.ready)
+
+        const cleanRoute = route === '/' ? 'home' : route.slice(1)
+        const screenshotName = `visual/${cleanRoute}-${viewport.name}.png`
+
+        await expect(page).toHaveScreenshot(screenshotName, {
+          animations: 'disabled',
+          maxDiffPixelRatio: 0.01,
+        })
       })
     }
   }

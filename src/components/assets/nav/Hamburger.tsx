@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/drawer'
 import { Heading } from '@/components/ui/heading'
 import ThemeSwitcher from '@/components/ui/theme-switcher'
-import { navLinks } from '@/data/nav-links'
+import { hamburgerLinks } from '@/data/nav-links'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
 const MenuItem = motion.create('li')
@@ -44,7 +44,9 @@ export default function Hamburger() {
         <Button
           className="flex md:hidden px-0!"
           variant="ghost"
-          onClick={() => setMobileMenuOpen(true)}>
+          onClick={() => setMobileMenuOpen(true)}
+          name="Hamburger menu"
+          aria-label="Hamburger menu">
           <Menu className="size-6" size={20} />
         </Button>
       </DrawerTrigger>
@@ -57,7 +59,9 @@ export default function Hamburger() {
             <Button
               className="size-fit"
               variant="ghost"
-              onClick={() => setMobileMenuOpen(false)}>
+              onClick={() => setMobileMenuOpen(false)}
+              name="Close menu"
+              aria-label="Close menu">
               <X className="size-6" size={24} />
             </Button>
           </DrawerClose>
@@ -69,7 +73,7 @@ export default function Hamburger() {
 
         {/* Mobile Navigation Links */}
         <menu className="links-menu">
-          {navLinks.map(({ id, href, label }, index) => (
+          {hamburgerLinks.map(({ id, href, label }, index) => (
             <MenuItem
               key={id}
               className="link-item"
