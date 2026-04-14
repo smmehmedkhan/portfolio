@@ -32,7 +32,7 @@ const iconMap = {
   FileText,
 }
 
-export default function SectionInro({
+export default function SectionHeader({
   badgeStyles,
   headingStyles,
   paragraphStyles,
@@ -43,7 +43,7 @@ export default function SectionInro({
   const IconComponent = iconMap[icon as keyof typeof iconMap] ?? HelpCircle
 
   return (
-    <div className="section-intro flex-box" data-slot={label} data-id={id}>
+    <header className="section-intro flex-box" data-id={id} data-slot={label}>
       <MotionBadge
         className={cn(
           'flex-inline',
@@ -72,6 +72,6 @@ export default function SectionInro({
         transition={{ delay: 0.4 }}>
         {description}
       </Paragraph>
-    </div>
+    </header>
   )
 }

@@ -8,7 +8,7 @@ import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const Wrapper = motion.create('div')
+const Wrapper = motion.create('header')
 
 export default function NotFound() {
   const fade = getAnimationPreset('fade')

@@ -27,6 +27,7 @@ export default function ReviewCarousel() {
   return (
     <Wrapper
       className="wrapper review-caro"
+      aria-roledescription="Review carousel"
       {...fade}
       transition={{ ...fade.transition, delay: 0.4 }}>
       <Carousel

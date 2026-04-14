@@ -98,16 +98,16 @@ export default function EducationCard({ index, data }: EducationCardProps) {
             </CardDescription>
           </CardContent>
           <CardFooter className="w-full flex-inline gap-2">
-            <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+            <Badge className="bg-gray-500 dark:bg-gray-700 text-white">
               Board: {board}
             </Badge>
             {field && (
-              <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+              <Badge className="bg-gray-500 dark:bg-gray-700 text-white">
                 Group: {field}
               </Badge>
             )}
             {gpa && (
-              <Badge className="bg-gray-500 dark:bg-gray-700 text-foreground">
+              <Badge className="bg-gray-500 dark:bg-gray-700 text-white">
                 GPA: {gpa}
               </Badge>
             )}

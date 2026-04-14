@@ -1,5 +1,6 @@
 'use client'
 
+import { FilesIcon } from 'lucide-react'
 import { useMotionValueEvent, useScroll } from 'motion/react'
 import * as motion from 'motion/react-client'
 import Link from 'next/link'
@@ -7,8 +8,10 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Hamburger from '@/components/assets/nav/Hamburger'
 import Logo from '@/components/assets/nav/Logo'
+import { Button } from '@/components/ui/button'
 import ThemeToggler from '@/components/ui/theme-toggler'
 import { navLinks } from '@/data/nav-links'
+import { cn } from '@/lib/utils'
 
 /**
  * Navigation bar component
@@ -36,6 +39,10 @@ export default function Navbar() {
 
   useMotionValueEvent(scrollY, 'change', handleScrollChange)
 
+  const getClasses = (item: { href: string }) => {
+    return `hover:text-accent-foreground ${pathname === item.href ? 'text-amber-700 dark:text-accent' : ''}`
+  }
+
   return (
     <motion.nav
       className="site-navigation flex-center"
@@ -50,12 +57,12 @@ export default function Navbar() {
         <Logo />
 
         {/* Desktop Navigation */}
-        <motion.ul className="nav-links">
+        <motion.ul className="nav-link-lists">
           {navLinks.map(({ id, href, label }) => (
             <motion.li key={id}>
               <Link
                 href={href}
-                className={`nav-link nav-link-dark ${pathname === href ? 'text-amber-500 dark:text-accent' : ''}`}>
+                className={cn('nav-link nav-link-dark', getClasses({ href }))}>
                 {label}
               </Link>
             </motion.li>
@@ -64,8 +71,14 @@ export default function Navbar() {
 
         {/* Right: Theme Toggle + Mobile Menu */}
 
-        <motion.div className="hidden md:flex w-max items-center">
+        <motion.div className="hidden md:flex w-max items-center gap-4">
           <ThemeToggler />
+          <Button variant="outline" asChild>
+            <Link href="/resume">
+              <FilesIcon />
+              <span>Resume</span>
+            </Link>
+          </Button>
         </motion.div>
 
         {/* Mobile Menu Button */}

@@ -75,14 +75,15 @@ export default function NewsletterForm() {
       transition={{ ...fade.transition, delay: 0.5 }}
       noValidate>
       <Field className="wrapper" data-invalid={!!errors.email}>
-        <Label htmlFor="subscribe-email" className="sr-only">
-          Email Address
+        <Label htmlFor="subscribeMail" className="sr-only">
+          Subscribe Email Address
         </Label>
         <Input
           className="input"
           type="email"
-          id="subscribe-email"
+          id="subscribeMail"
           placeholder="your.email@example.com"
+          aria-label="Subscribe email address"
           required
           {...register('email')}
         />

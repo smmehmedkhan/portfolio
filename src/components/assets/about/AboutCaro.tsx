@@ -23,7 +23,10 @@ export default function AboutCaro() {
   const fade = getAnimationPreset('fade')
 
   return (
-    <Wrapper className="wrapper about-caro" {...fade}>
+    <Wrapper
+      className="wrapper about-caro"
+      aria-roledescription="About carousel"
+      {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}

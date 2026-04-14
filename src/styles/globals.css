@@ -90,9 +90,9 @@
 }
 
 :root {
-  --primary: oklch(69.6% 0.17 162.48deg);
+  --primary: oklch(59.6% 0.145 163.225deg);
   --primary-foreground: oklch(12.9% 0.042 264.695deg);
-  --secondary: oklch(84.5% 0.143 164.978deg);
+  --secondary: oklch(76.5% 0.177 163.223deg);
   --secondary-foreground: oklch(12.9% 0.042 264.695deg);
   --accent: oklch(82.8% 0.189 84.429deg);
   --accent-foreground: oklch(12.9% 0.042 264.695deg);
@@ -112,6 +112,8 @@
 }
 
 .dark {
+  --primary: oklch(69.6% 0.17 162.48deg);
+  --secondary: oklch(84.5% 0.143 164.978deg);
   --background: oklch(14.7% 0.004 49.25deg);
   --foreground: oklch(98.5% 0.001 106.423deg);
   --card: oklch(21.6% 0.006 56.043deg / 40%);

@@ -1,6 +1,6 @@
 import AboutCaro from '@/components/assets/about/AboutCaro'
 import AboutTypo from '@/components/assets/about/AboutTypo'
-import SectionInro from '@/components/assets/SectionInro'
+import SectionHeader from '@/components/assets/SectionHeader'
 import { sectionInros } from '@/data/sectionInros'
 
 /**
@@ -19,7 +19,7 @@ import { sectionInros } from '@/data/sectionInros'
 export default function About() {
   return (
     <section className="container about-container flex-box">
-      <SectionInro data={sectionInros.about} />
+      <SectionHeader data={sectionInros.about} />
 
       {/* About content layout */}
       <div className="about-layout flex-center flip">

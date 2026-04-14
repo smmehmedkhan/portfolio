@@ -3,11 +3,11 @@
   .navigation {
     @apply justify-between;
 
-    & .nav-links {
+    & .nav-link-lists {
       @apply hidden md:flex w-full ml-5 items-center;
 
       & li .nav-link {
-        @apply px-3 py-2 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300;
+        @apply px-3 lg:px-4 py-2 lg:py-2.5 h-9 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300 ease-in-out;
       }
     }
   }
@@ -24,7 +24,7 @@
       @apply w-full px-2.5 flex flex-col items-center;
 
       & .link-item {
-        @apply w-full border-b border-border;
+        @apply w-full not-last:border-b border-border;
 
         & .link {
           @apply block w-full py-2 text-center text-md font-medium hover:bg-accent hover:text-accent-foreground dark:hover:text-accent dark:hover:bg-accent/30 border border-transparent rounded-md dark:hover:border-accent transition-colors duration-300;
@@ -294,7 +294,7 @@
     @apply size-fit flex md:flex-col items-center gap-2;
 
     & li .rs-link {
-      @apply hover:text-accent transition-colors duration-300 ease-in-out;
+      @apply px-3 lg:px-4 py-2 lg:py-2.5 h-9 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300 ease-in-out;
     }
   }
 

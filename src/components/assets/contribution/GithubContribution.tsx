@@ -32,6 +32,7 @@ export default function GithubContribution({ username }: { username: string }) {
         labels={{
           totalCount: '{{count}} contributions in the last year',
         }}
+        aria-label={`GitHub contributions calendar for ${username}`}
       />
     </Wrapper>
   )

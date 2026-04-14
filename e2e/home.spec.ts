@@ -13,29 +13,38 @@ test.describe('P0: Core User Journeys', () => {
 
   test('should navigate to About page', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: /about/i }).click()
+    await page.getByRole('link', { name: /about/i }).first().click()
     await expect(page).toHaveURL(/\/about/)
     await page.waitForLoadState('networkidle')
   })
 
   test('should navigate to Projects page', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: /projects/i }).click()
+    await page
+      .getByRole('link', { name: /projects/i })
+      .first()
+      .click()
     await expect(page).toHaveURL(/\/projects/)
-    await page.waitForLoadState('networkidle')
-  })
-
-  test('should navigate to Resume page', async ({ page }) => {
-    await page.goto('/')
-    await page.getByRole('link', { name: /resume/i }).click()
-    await expect(page).toHaveURL(/\/resume/)
     await page.waitForLoadState('networkidle')
   })
 
   test('should navigate to Contact page', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: /contact/i }).click()
+    await page
+      .getByRole('link', { name: /contact/i })
+      .first()
+      .click()
     await expect(page).toHaveURL(/\/contact/)
+    await page.waitForLoadState('networkidle')
+  })
+
+  test('should navigate to Resume page', async ({ page }) => {
+    await page.goto('/')
+    await page
+      .getByRole('link', { name: /resume/i })
+      .first()
+      .click()
+    await expect(page).toHaveURL(/\/resume/)
     await page.waitForLoadState('networkidle')
   })
 
@@ -43,10 +52,10 @@ test.describe('P0: Core User Journeys', () => {
     page,
   }) => {
     await page.goto('/')
-    const aboutLink = page.getByRole('link', { name: /about/i })
-    const projectsLink = page.getByRole('link', { name: /projects/i })
-    const resumeLink = page.getByRole('link', { name: /resume/i })
-    const contactLink = page.getByRole('link', { name: /contact/i })
+    const aboutLink = page.getByRole('link', { name: /about/i }).first()
+    const projectsLink = page.getByRole('link', { name: /projects/i }).first()
+    const resumeLink = page.getByRole('link', { name: /resume/i }).first()
+    const contactLink = page.getByRole('link', { name: /contact/i }).first()
 
     await expect(aboutLink).toBeVisible()
     await expect(projectsLink).toBeVisible()
@@ -73,18 +82,18 @@ test.describe('P0: Core User Journeys', () => {
     await page.goto('/')
 
     // About
-    await page.getByRole('link', { name: /about/i }).click()
+    await page.getByRole('link', { name: /about/i }).first().click()
     await expect(page).toHaveURL(/\/about/)
 
     // Projects
-    await page.getByRole('link', { name: /projects/i }).click()
+    await page
+      .getByRole('link', { name: /projects/i })
+      .first()
+      .click()
     await expect(page).toHaveURL(/\/projects/)
 
     // Back to home
-    await page
-      .getByRole('link', { name: /home|portfolio/i })
-      .first()
-      .click()
+    await page.getByRole('link', { name: /mk/i }).first().click()
     await expect(page).toHaveURL(/\/$/)
   })
 })
@@ -92,7 +101,6 @@ test.describe('P0: Core User Journeys', () => {
 // ============================================================================
 // PRIORITY 0: MOBILE NAVIGATION
 // ============================================================================
-
 test.describe('P0: Mobile Navigation', () => {
   test.beforeEach(async ({ page }) => {
     // Set mobile viewport
@@ -101,9 +109,11 @@ test.describe('P0: Mobile Navigation', () => {
 
   test('should display mobile navigation menu', async ({ page }) => {
     await page.goto('/')
-    const menuButton = page.getByRole('button', {
-      name: /menu|toggle|hamburger/i,
-    })
+    const menuButton = page
+      .getByRole('button', {
+        name: /menu|toggle|hamburger/i,
+      })
+      .first()
     await expect(menuButton).toBeVisible()
   })
 
@@ -115,18 +125,24 @@ test.describe('P0: Mobile Navigation', () => {
 
     // Open menu
     await menuButton.click()
-    const navMenu = page.locator('nav').first()
+    const navMenu = page.locator('menu').first()
     await expect(navMenu).toBeVisible()
 
     // Close menu
-    await menuButton.click()
+    const closeButton = page.getByRole('button', {
+      name: /close menu/i,
+    })
+    await closeButton.click()
+    await expect(navMenu).not.toBeVisible()
   })
 
   test('should navigate via mobile menu', async ({ page }) => {
     await page.goto('/')
-    const menuButton = page.getByRole('button', {
-      name: /menu|toggle|hamburger/i,
-    })
+    const menuButton = page
+      .getByRole('button', {
+        name: /menu|toggle|hamburger/i,
+      })
+      .first()
 
     // Open menu
     await menuButton.click()
@@ -140,7 +156,6 @@ test.describe('P0: Mobile Navigation', () => {
 // ============================================================================
 // PRIORITY 0: CONTACT FORM SUBMISSION
 // ============================================================================
-
 test.describe('P0: Contact Form Submission', () => {
   test('should display contact form', async ({ page }) => {
     await page.goto('/contact')
@@ -164,7 +179,10 @@ test.describe('P0: Contact Form Submission', () => {
 
     // Fill in contact form
     await page.getByLabel(/name|full name/i).fill('Test User')
-    await page.getByLabel(/email/i).fill('test@example.com')
+    await page
+      .getByLabel(/contact email/i)
+      .first()
+      .fill('test@example.com')
     await page.getByLabel(/message|subject/i).fill('Test message content')
 
     const submitButton = page.getByRole('button', { name: /submit|send/i })
@@ -175,7 +193,10 @@ test.describe('P0: Contact Form Submission', () => {
     await page.goto('/contact')
 
     await page.getByLabel(/name|full name/i).fill('Test User')
-    await page.getByLabel(/email/i).fill('invalid-email')
+    await page
+      .getByLabel(/contact email/i)
+      .first()
+      .fill('invalid-email')
     await page.getByLabel(/message|subject/i).fill('Test message')
 
     const submitButton = page.getByRole('button', { name: /submit|send/i })
@@ -189,7 +210,6 @@ test.describe('P0: Contact Form Submission', () => {
 // ============================================================================
 // PRIORITY 0: NEWSLETTER SIGNUP
 // ============================================================================
-
 test.describe('P0: Newsletter Signup', () => {
   test('should display newsletter signup section', async ({ page }) => {
     await page.goto('/')
@@ -225,7 +245,6 @@ test.describe('P0: Newsletter Signup', () => {
 // ============================================================================
 // PRIORITY 0: PROJECTS AND PAGINATION
 // ============================================================================
-
 test.describe('P0: Projects Listing and Pagination', () => {
   test('should display projects on projects page', async ({ page }) => {
     await page.goto('/projects')
@@ -266,7 +285,6 @@ test.describe('P0: Projects Listing and Pagination', () => {
 // ============================================================================
 // PRIORITY 0: PAGE-SPECIFIC FEATURES
 // ============================================================================
-
 test.describe('P0: Resume and Special Pages', () => {
   test('should load resume page', async ({ page }) => {
     await page.goto('/resume')
@@ -296,7 +314,6 @@ test.describe('P0: Resume and Special Pages', () => {
 // ============================================================================
 // PRIORITY 0: THEME TOGGLE
 // ============================================================================
-
 test.describe('P0: Theme Toggle and Persistence', () => {
   test('should display theme toggle button', async ({ page }) => {
     await page.goto('/')
@@ -317,7 +334,7 @@ test.describe('P0: Theme Toggle and Persistence', () => {
     await page.waitForTimeout(200)
     const _changedClass = await page.locator('html').getAttribute('class')
 
-    // Classes should differ after toggle (implementation-dependent)
+    expect(_initialClass).not.toBe(_changedClass)
   })
 
   test('should persist theme preference across page reloads', async ({
@@ -331,11 +348,14 @@ test.describe('P0: Theme Toggle and Persistence', () => {
     // Toggle theme
     await themeToggle.click()
     await page.waitForTimeout(200)
+    const _changedClass = await page.locator('html').getAttribute('class')
 
     // Reload page
     await page.reload()
     await page.waitForLoadState('networkidle')
 
     // Theme preference should be maintained
+    const _finalClass = await page.locator('html').getAttribute('class')
+    expect(_finalClass).toBe(_changedClass)
   })
 })
