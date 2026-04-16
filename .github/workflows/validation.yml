@@ -1,5 +1,4 @@
 name: Validation
-
 on:
   workflow_run:
     workflows: ["CI"]
@@ -14,31 +13,24 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
-      - uses: ./.github/actions/setup
+      - name: Setup Node.js
+        uses: ./.github/actions/setup
         with:
           node-version: "24"
 
-      # =========================
-      # Integration Tests
-      # =========================
       - name: Run integration tests
         run: pnpm run test:integration
 
-      # =========================
-      # API Security Tests
-      # =========================
       - name: Run API security tests
-        run: pnpm test tests/api/security.test.ts -- --run
+        run: pnpm run test:api
 
-      # =========================
-      # Coverage
-      # =========================
       - name: Run coverage
-        run: pnpm test -- --coverage --run
+        run: pnpm run test:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v7
