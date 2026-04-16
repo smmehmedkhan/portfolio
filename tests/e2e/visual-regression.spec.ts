@@ -19,7 +19,10 @@ test.describe('P3: Visual Regression', () => {
           width: viewport.width,
           height: viewport.height,
         })
-        await page.goto(route)
+
+        // Ensure the page loaded successfully before snapshotting
+        const response = await page.goto(route)
+        expect(response?.ok()).toBeTruthy()
 
         await page.waitForLoadState('domcontentloaded')
         await page.waitForSelector('main')

@@ -1,6 +1,13 @@
 import { expect, test } from '@playwright/test'
 
-const auditPaths = ['/', '/contact', '/projects']
+const auditPaths = [
+  '/',
+  '/about',
+  '/projects',
+  '/contact',
+  '/resume',
+  '/blocked',
+]
 
 function _formatMetric(value: number | undefined): string {
   return typeof value === 'number' ? `${value.toFixed(0)}ms` : 'unknown'
@@ -62,7 +69,7 @@ test.describe('P3: Performance Audit', () => {
       ).toBeLessThan(2000)
 
       await expect(page.locator('main')).toBeVisible()
-      await expect(page.locator('header')).toBeVisible()
+      await expect(page.locator('header')).toBeInViewport()
     })
   }
 })

@@ -16,6 +16,7 @@ export default function HeroIntro() {
           className="text-lg sm:text-xl"
           variant="sub"
           size="xl"
+          as="h2"
           animated>
           {greeting}
         </Heading>

@@ -27,14 +27,14 @@ export default function ReviewCarousel() {
   return (
     <Wrapper
       className="wrapper review-caro"
-      aria-roledescription="Review carousel"
       {...fade}
       transition={{ ...fade.transition, delay: 0.4 }}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}>
+        onMouseLeave={plugin.current.reset}
+        aria-roledescription="Review Carousel">
         <CarouselContent>
           {testimonials.map(testimonial => (
             <CarouselItem key={testimonial.id} className="lg:basis-1/2">
@@ -63,10 +63,14 @@ export default function ReviewCarousel() {
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className="size-full">
-                      <Heading className="text-md" variant="title">
+                      <Heading as="h5" className="text-md" variant="title">
                         {testimonial.name}
                       </Heading>
-                      <Heading className="text-sm" variant="role" size="sm">
+                      <Heading
+                        as="h6"
+                        className="text-sm"
+                        variant="role"
+                        size="sm">
                         {testimonial.position}
                       </Heading>
                     </div>

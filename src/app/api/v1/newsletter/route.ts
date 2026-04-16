@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
         listIds: [], // Add your Brevo list ID(s) here, e.g. [5]
         updateEnabled: true,
       })
-      brevoContactId = contact.id?.toString()
+      brevoContactId = contact?.id?.toString()
     } catch (contactError) {
       // Non-fatal: log but continue
       log.warn(
