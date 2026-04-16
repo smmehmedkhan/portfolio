@@ -19,12 +19,12 @@ export default function Resources() {
   const pathname = usePathname()
   const fade = getAnimationPreset('fade')
   const getClasses = (item: { href: string }) => {
-    return `text-md hover:text-accent-foreground ${pathname === item.href ? 'text-amber-700 dark:text-accent' : 'text-muted-foreground'}`
+    return pathname === item.href && 'text-amber-700 dark:text-accent'
   }
 
   return (
     <div className="wrapper gap-5">
-      <Heading variant="title" size="lg" animated>
+      <Heading variant="title" size="lg" as="h5" animated>
         Resources
       </Heading>
 

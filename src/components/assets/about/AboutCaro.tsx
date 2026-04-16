@@ -23,15 +23,13 @@ export default function AboutCaro() {
   const fade = getAnimationPreset('fade')
 
   return (
-    <Wrapper
-      className="wrapper about-caro"
-      aria-roledescription="About carousel"
-      {...fade}>
+    <Wrapper className="wrapper about-caro" {...fade}>
       <Carousel
         className="size-full"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}>
+        onMouseLeave={plugin.current.reset}
+        aria-roledescription="About Carousel">
         <CarouselContent>
           {aboutImages.map((image, index) => (
             <CarouselItem key={image.id} tabIndex={index}>

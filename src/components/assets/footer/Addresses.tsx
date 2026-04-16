@@ -30,12 +30,12 @@ export default function Addresses() {
   return (
     <address className="addresses">
       {/* Top: Logo + Location */}
-      <div className="flex-box">
+      <div className="location-group flex-box">
         <Logo />
-        <Paragraph className="flex-inline gap-1" size="nm" animated>
+        <Paragraph className="location" size="nm" animated>
           <span>Based in</span>
           <Link
-            className="underline underline-offset-2 hover:text-accent transition-all duration-200 ease-in"
+            className="location-link"
             href="https://maps.app.goo.gl/b4ZUW2if3LEAmmZo9"
             target="_blank"
             rel="noopener noreferrer">
@@ -45,9 +45,9 @@ export default function Addresses() {
       </div>
 
       {/* Middle: Message */}
-      <div className="w-full flex flex-col items-center 2xl:items-start gap-2">
+      <div className="messages">
         <Paragraph
-          className="text-md lg:text-lg leading-normal"
+          className="message"
           variant="large"
           size="lg"
           animated
@@ -55,7 +55,7 @@ export default function Addresses() {
           Always ready to bring your ideas to life.
         </Paragraph>
         <Paragraph
-          className="text-md lg:text-lg leading-normal"
+          className="message"
           variant="large"
           size="lg"
           animated
@@ -65,14 +65,14 @@ export default function Addresses() {
       </div>
 
       {/* Bottom: Links */}
-      <ul className="w-full inline-flex justify-center 2xl:justify-start gap-2.5 lg:gap-5">
+      <ul className="address-cta">
         {btnItems.map((item, index) => (
           <MotionItem
             key={item.id}
             {...fade}
             transition={{ ...fade.transition, delay: 0.4 + 0.2 * index }}>
             <Link
-              className="text-sm md:text-nm text-muted-foreground inline-flex items-center gap-1 lg:gap-2 hover:text-accent underline-offset-3 transition-all duration-300"
+              className="address-link"
               href={item.href}
               target={item.target}>
               <span>{item.label}</span>

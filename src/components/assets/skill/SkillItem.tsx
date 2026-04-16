@@ -102,7 +102,10 @@ export default function SkillItem({ index, data }: SkillItemProps) {
           <Button
             className="size-10 md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
             variant="outline"
-            onClick={() => setModalOpen(true)}>
+            onClick={e => {
+              e.preventDefault()
+              setModalOpen(true)
+            }}>
             <Container {...pulse}>
               <Image
                 src={image}
@@ -122,7 +125,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
       <Dialog open={modalOpen} onOpenChange={handleModalChange}>
         <DialogOverlay className="size-full bg-background/10 backdrop-blur-[2px]" />
         <DialogContent
-          className="w-full xs:max-w-75 sm:max-w-sm lg:max-w-lg border border-border bg-popover flex flex-col gap-2"
+          className="w-full xs:max-w-75 sm:max-w-md lg:max-w-lg border border-border bg-popover flex flex-col gap-2"
           aria-describedby={undefined}>
           <DialogTitle className="sr-only">{title}</DialogTitle>
           {cardContent}

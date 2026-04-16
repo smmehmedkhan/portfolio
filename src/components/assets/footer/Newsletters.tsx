@@ -6,7 +6,7 @@ export default function Newsletters() {
   return (
     <div className="wrapper newsletters">
       <div className="newsletters-intro">
-        <Heading className="text-foreground capitalize" animated>
+        <Heading className="text-foreground capitalize" as="h3" animated>
           Subscribe to my newsletter
         </Heading>
         <Paragraph

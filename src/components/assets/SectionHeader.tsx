@@ -62,7 +62,11 @@ export default function SectionHeader({
           {label}
         </Paragraph>
       </MotionBadge>
-      <Heading className={headingStyles} animated transition={{ delay: 0.2 }}>
+      <Heading
+        as="h3"
+        className={headingStyles}
+        animated
+        transition={{ delay: 0.2 }}>
         {title}
       </Heading>
       <Paragraph

@@ -7,7 +7,7 @@
       @apply hidden md:flex w-full ml-5 items-center;
 
       & li .nav-link {
-        @apply px-3 lg:px-4 py-2 lg:py-2.5 h-9 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300 ease-in-out;
+        @apply px-3 py-2 h-9 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300 ease-in-out;
       }
     }
   }
@@ -267,8 +267,32 @@
   .addresses {
     @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
 
-    & .flex-box {
+    & .location-group {
       @apply 2xl:justify-start;
+
+      & .location {
+        @apply inline-flex gap-1;
+
+        & .location-link {
+          @apply underline underline-offset-2 hover:text-amber-700 dark:hover:text-accent transition-all duration-200 ease-in-out;
+        }
+      }
+    }
+
+    & .messages {
+      @apply w-full flex flex-col items-center 2xl:items-start gap-2;
+
+      & .message {
+        @apply text-md lg:text-lg leading-normal;
+      }
+    }
+
+    & .address-cta {
+      @apply w-full inline-flex justify-center 2xl:justify-start gap-2.5 lg:gap-5;
+
+      & li .address-link {
+        @apply inline-flex items-center gap-1 lg:gap-2 text-sm md:text-nm text-muted-foreground hover:text-amber-700 dark:hover:text-accent underline-offset-3 transition-colors duration-300 ease-in-out;
+      }
     }
   }
 
@@ -294,7 +318,7 @@
     @apply size-fit flex md:flex-col items-center gap-2;
 
     & li .rs-link {
-      @apply px-3 lg:px-4 py-2 lg:py-2.5 h-9 border border-transparent rounded-sm hover:bg-accent hover:border-accent transition-colors duration-300 ease-in-out;
+      @apply text-md text-muted-foreground hover:text-amber-700 dark:hover:text-accent transition-colors duration-300 ease-in-out;
     }
   }
 
