@@ -17,6 +17,8 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:integration": "vitest run tests/integration",
+    "test:api": "vitest run tests/integration/api",
+    "test:coverage": "vitest run --coverage",
     "test:a11y": "pnpm exec playwright test tests/e2e/accessibility.spec.ts",
     "test:perf": "pnpm exec playwright test tests/e2e/performance.spec.ts",
     "test:visual": "pnpm exec playwright test tests/e2e/visual-regression.spec.ts",

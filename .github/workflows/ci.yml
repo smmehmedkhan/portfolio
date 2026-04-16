@@ -1,8 +1,8 @@
-name: CI
+name: Continuous Integration
 on:
   push: { branches: [main, develop] }
   pull_request: { branches: [main, develop] }
-  
+
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
   cancel-in-progress: true
@@ -12,33 +12,52 @@ jobs:
     name: Lint & Typecheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
         with: { fetch-depth: 1 }
-      - uses: ./.github/actions/setup
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup
         with: { node-version: "24" }
-      - run: pnpm lint
-      - run: pnpm type-check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm type-check
 
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
         with: { fetch-depth: 1 }
-      - uses: ./.github/actions/setup
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup
         with: { node-version: "24" }
-      - run: pnpm test
+
+      - name: Run Unit Tests
+        run: pnpm test
 
   build:
     name: Build
     needs: [lint, unit-tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
         with: { fetch-depth: 1 }
-      - uses: ./.github/actions/setup
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup
         with: { node-version: "24" }
-      - run: pnpm build
-      - id: version
+
+      - name: Build
+        run: pnpm build
+
+      - name: Get Version
+        id: version
         run: |
           echo "version=$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
