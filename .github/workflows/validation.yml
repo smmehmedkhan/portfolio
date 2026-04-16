@@ -1,7 +1,7 @@
 name: Validation
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["Continuous Integration"]
     types: [completed]
 
 concurrency:
