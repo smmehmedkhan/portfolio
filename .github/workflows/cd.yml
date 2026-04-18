@@ -13,6 +13,7 @@ concurrency:
 
 permissions:
   contents: write
+  deployments: write
 
 jobs:
   deploy:
@@ -32,18 +33,18 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.event.workflow_run.head_sha }}
 
-      - name: Setup Environment
-        uses: ./.github/actions/setup
-        with: { node-version: "24" }
-
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
       - name: Deploy to Vercel
-        id: deploy
-        run: |
-          DEPLOYMENT_URL=$(vercel deploy --prod --yes --token=$VERCEL_TOKEN)
-          echo "DEPLOYMENT_URL=$DEPLOYMENT_URL" >> $GITHUB_ENV
+        id: vercel
+        uses: amondnet/vercel-action@v42
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: false
+          github-deployment: true
+          github-deployment-environment: production
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          target: production
 
       - name: Setup BuildX
         uses: docker/setup-buildx-action@v4
