@@ -1,16 +1,20 @@
 name: Continuous Integration
 on:
-  push: { branches: [main, develop] }
-  pull_request: { branches: [main, develop] }
+  push: { branches: [ main, develop ] }
+  pull_request: { branches: [ main, develop ] }
 
 concurrency:
-  group: ${{github.workflow}}-${{github.ref}}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   lint:
     name: Lint & Typecheck
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -29,6 +33,7 @@ jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -43,8 +48,9 @@ jobs:
 
   build:
     name: Build
-    needs: [lint, unit-tests]
+    needs: [ lint, unit-tests ]
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -56,8 +62,3 @@ jobs:
 
       - name: Build
         run: pnpm build
-
-      - name: Get Version
-        id: version
-        run: |
-          echo "version=$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
