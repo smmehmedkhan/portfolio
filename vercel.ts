@@ -3,6 +3,9 @@ interface VercelConfig {
   devCommand?: string
   installCommand?: string
   framework?: string
+  git?: {
+    deploymentEnabled?: boolean
+  }
   regions?: string[]
   functions?: Record<string, { runtime: string }>
   headers?: Array<{
@@ -23,6 +26,9 @@ function generateVercelConfig(): VercelConfig {
     devCommand: 'pnpm dev',
     installCommand: 'pnpm install --frozen-lockfile',
     framework: 'nextjs',
+    git: {
+      deploymentEnabled: false,
+    },
     regions: isProduction ? ['iad1', 'sfo1'] : ['iad1'],
 
     functions: {
