@@ -26,6 +26,7 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      VERCEL_TELEMETRY_DISABLED: "1"
 
     steps:
       - name: Checkout code
@@ -34,17 +35,22 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.event.workflow_run.head_sha }}
 
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+        with:
+          node-version: "24"
+
+      - name: Pull Vercel Environment
+        run: pnpm dlx vercel@latest pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: Build Project Artifacts
+        run: pnpm dlx vercel@latest build --prod --token=$VERCEL_TOKEN
+
       - name: Deploy to Vercel
         id: vercel
-        uses: amondnet/vercel-action@v41.1.4
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-comment: false
-          github-deployment: true
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: "--prod"
+        run: |
+          DEPLOYMENT_URL=$(pnpm dlx vercel@latest deploy --prebuilt --archive=tgz --prod --token=$VERCEL_TOKEN)
+          echo "deployment_url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
 
       - name: Setup BuildX
         uses: docker/setup-buildx-action@v4
