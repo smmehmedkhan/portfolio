@@ -1,27 +1,26 @@
 name: "Setup Environment"
-description: "Checkout & install dependencies"
+description: "Setup environment & install dependencies"
 
 inputs:
   node-version:
-    description: 'Node.js version'
+    description: "Node.js version"
     required: true
-    default: '24'
+    default: "24"
 
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v6
-
-    - uses: actions/setup-node@v6
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: "pnpm"
+        cache-dependency-path: pnpm-lock.yaml
 
-    - run: corepack enable
+    - name: Enable Corepack (pnpm from packageManager)
+      run: corepack enable
       shell: bash
 
-    - run: corepack prepare pnpm@latest --activate
-      shell: bash
-
-    - run: pnpm install
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
       shell: bash

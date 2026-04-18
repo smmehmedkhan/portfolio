@@ -1,28 +1,35 @@
 name: E2E Tests
 on:
   workflow_run:
-    workflows: ["Validation"]
-    types: [completed]
-    branches: [main]
+    workflows: [ "Validation" ]
+    types: [ completed ]
+    branches: [ main ]
 
 concurrency:
-  group: ${{github.workflow}}-${{github.ref}}
+  group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch ||
+    github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   playwright:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        browser: [chromium, firefox, webkit]
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        browser: [ chromium, firefox, webkit ]
+        shardIndex: [ 1, 2, 3, 4 ]
+        shardTotal: [ 4 ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-        with: { fetch-depth: 1 }
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup Node.js
         uses: ./.github/actions/setup
@@ -31,11 +38,9 @@ jobs:
       - name: Install Playwright
         run: pnpm exec playwright install --with-deps
 
-      - name: Build
-        run: pnpm build
-
       - name: Run E2E Tests
-        run: pnpm exec playwright test --project=${{matrix.browser}} --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}}
+        run: pnpm exec playwright test --project=${{matrix.browser}}
+          --shard=${{matrix.shardIndex}}/${{matrix.shardTotal}} --reporter=html
 
       - name: Upload Report
         uses: actions/upload-artifact@v7
@@ -43,3 +48,4 @@ jobs:
         with:
           name: report-${{matrix.browser}}-${{matrix.shardIndex}}
           path: playwright-report/
+          if-no-files-found: warn
