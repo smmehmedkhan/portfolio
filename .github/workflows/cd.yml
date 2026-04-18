@@ -19,6 +19,7 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    environment: production
     timeout-minutes: 30
 
     env:
@@ -35,16 +36,15 @@ jobs:
 
       - name: Deploy to Vercel
         id: vercel
-        uses: amondnet/vercel-action@v42
+        uses: amondnet/vercel-action@v41.1.4
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
           github-deployment: true
-          github-deployment-environment: production
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
-          target: production
+          vercel-args: "--prod"
 
       - name: Setup BuildX
         uses: docker/setup-buildx-action@v4
