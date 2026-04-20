@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 30
 
     env:
-      PNPM_CONFIG_RESOLUTION_MODE: highest
+      PNPM_RESOLUTION_MODE: highest
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -43,16 +43,17 @@ jobs:
           node-version: "24"
 
       - name: Pull Vercel Environment
-        run: pnpm dlx vercel@${VERCEL_CLI_VERSION} pull --yes --environment=production
-          --token=$VERCEL_TOKEN
+        run: pnpm --resolution-mode=highest dlx vercel@${VERCEL_CLI_VERSION} pull --yes
+          --environment=production --token=$VERCEL_TOKEN
 
       - name: Build Project Artifacts
-        run: pnpm dlx vercel@${VERCEL_CLI_VERSION} build --prod --token=$VERCEL_TOKEN
+        run: pnpm --resolution-mode=highest dlx vercel@${VERCEL_CLI_VERSION} build
+          --prod --token=$VERCEL_TOKEN
 
       - name: Deploy to Vercel
         id: vercel
         run: |
-          DEPLOYMENT_URL=$(pnpm dlx vercel@${VERCEL_CLI_VERSION} deploy --prebuilt --archive=tgz --prod --token=$VERCEL_TOKEN)
+          DEPLOYMENT_URL=$(pnpm --resolution-mode=highest dlx vercel@${VERCEL_CLI_VERSION} deploy --prebuilt --archive=tgz --prod --token=$VERCEL_TOKEN)
           echo "deployment_url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
 
       - name: Setup BuildX
