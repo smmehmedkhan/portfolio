@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function ResumePage() {
   return (
     <main className="wrapper resume-page">
-      <SectionHeader data={sectionInros.resume} />
+      <SectionHeader data={sectionInros.resume} headingAs="h1" />
       <ResumeViewer />
     </main>
   )

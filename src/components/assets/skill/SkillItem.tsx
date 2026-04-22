@@ -65,7 +65,8 @@ export default function SkillItem({ index, data }: SkillItemProps) {
           <Heading
             variant="title"
             className="text-md text-primary font-semibold"
-            size="md">
+            size="md"
+            as="h3">
             {title}
           </Heading>
         </CardTitle>

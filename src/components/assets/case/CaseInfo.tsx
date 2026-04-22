@@ -20,7 +20,7 @@ export default function CaseInfo({ isEven, page, data }: CaseInfoProps) {
       <div className={getInfoClasses(isEven)}>
         <Heading
           className="text-primary dark:text-secondary"
-          as="h3"
+          as={page ? 'h2' : 'h3'}
           variant="secondary"
           animated>
           {name}

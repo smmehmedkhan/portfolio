@@ -78,13 +78,15 @@ export default function EducationCard({ index, data }: EducationCardProps) {
               <Heading
                 className="text-md md:text-lg leading-relaxed"
                 variant="title"
-                size="lg">
+                size="lg"
+                as="h3">
                 {degree}
               </Heading>
               <Heading
-                className="text-nm md:text-md leading-relaxed text-gray-500"
+                className="text-nm md:text-md leading-relaxed text-gray-600 dark:text-gray-400"
                 variant="title"
-                size="md">
+                size="md"
+                as="h4">
                 {institute}
               </Heading>
             </CardTitle>
