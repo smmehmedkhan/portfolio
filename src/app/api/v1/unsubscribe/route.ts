@@ -52,7 +52,10 @@ export async function GET(req: NextRequest) {
     const emailResult = z.email().safeParse(rawEmail)
     const safeEmail = emailResult.success ? emailResult.data : ''
 
-    const baseUrl = env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? ''
+    let baseUrl = env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+    if (!baseUrl) {
+      baseUrl = new URL(req.url).origin
+    }
     return NextResponse.redirect(
       new URL(`/unsubscribe?email=${encodeURIComponent(safeEmail)}`, baseUrl)
     )
