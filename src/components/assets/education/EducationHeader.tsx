@@ -4,7 +4,7 @@ import { Paragraph } from '@/components/ui/paragraph'
 export default function EducationHeader() {
   return (
     <header className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5">
-      <Heading className="size-full text-center leading-tight" animated>
+      <Heading className="size-full text-center leading-tight" as="h2" animated>
         Education
         <br />
         <span className="text-amber-600 dark:text-accent">&</span>{' '}

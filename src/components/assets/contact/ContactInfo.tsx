@@ -11,7 +11,8 @@ export default function ContactInfo() {
           className="text-foreground text-center md:text-start"
           variant="secondary"
           size="lg"
-          animated>
+          animated
+          as="h2">
           Let's Connect🤝
         </Heading>
         <Paragraph
@@ -30,6 +31,7 @@ export default function ContactInfo() {
             className="text-foreground lg:text-start"
             variant="secondary"
             size="lg"
+            as="h3"
             animated
             transition={{ delay: 0.4 }}>
             Email
@@ -46,6 +48,7 @@ export default function ContactInfo() {
             className="text-foreground lg:text-start"
             variant="secondary"
             size="lg"
+            as="h3"
             animated
             transition={{ delay: 0.6 }}>
             Location
@@ -64,6 +67,7 @@ export default function ContactInfo() {
             className="text-foreground lg:text-start"
             variant="secondary"
             size="lg"
+            as="h3"
             animated
             transition={{ delay: 0.8 }}>
             Social Media

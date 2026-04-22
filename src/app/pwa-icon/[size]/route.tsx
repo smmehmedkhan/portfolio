@@ -1,7 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
+import profileImg from '../../../../public/images/mehmed-khan.png'
 
 export const runtime = 'nodejs'
 
@@ -22,11 +21,6 @@ export async function GET(
   if (!isValidSize(size)) {
     return new Response('Invalid size. Use 192 or 512.', { status: 400 })
   }
-
-  const imgBuffer = fs.readFileSync(
-    path.join(process.cwd(), 'public/images/mehmed-khan.png')
-  )
-  const imageUrl = `data:image/png;base64,${imgBuffer.toString('base64')}`
 
   return new ImageResponse(
     <div
@@ -52,7 +46,7 @@ export async function GET(
       />
       {/** biome-ignore lint/performance/noImgElement: Can't use next Image here */}
       <img
-        src={imageUrl}
+        src={profileImg.src}
         alt="Mehmed Khan"
         width={size}
         height={size}

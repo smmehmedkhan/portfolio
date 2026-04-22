@@ -44,12 +44,12 @@ export function createArcjet({
   return arcjet({
     key: env.ARCJET_KEY || 'development_placeholder_key',
     rules: [
-      shield({ mode: 'LIVE' }),
+      shield({ mode: isDev ? 'DRY_RUN' : 'LIVE' }),
       detectBot({
         mode: isDev ? 'DRY_RUN' : 'LIVE',
         allow: [],
       }),
-      fixedWindow({ mode: 'LIVE', window: '1h', max }),
+      fixedWindow({ mode: isDev ? 'DRY_RUN' : 'LIVE', window: '1h', max }),
     ],
   })
 }

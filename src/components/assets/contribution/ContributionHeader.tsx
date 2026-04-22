@@ -4,7 +4,7 @@ import { Paragraph } from '@/components/ui/paragraph'
 export default function ContributionHeader() {
   return (
     <header className="wrapper gap-3">
-      <Heading className="leading-tight" animated>
+      <Heading className="leading-tight" as="h2" animated>
         Contributions
         <br />
         <span className="text-amber-600 dark:text-accent">&</span>{' '}

@@ -79,7 +79,8 @@ export default function ExperienceCard({ index, data }: ExperienceCardProps) {
               <Heading
                 className="text-nm md:text-md leading-relaxed"
                 variant="title"
-                size="md">
+                size="md"
+                as="h3">
                 {title}
               </Heading>
             </CardTitle>

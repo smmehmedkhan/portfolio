@@ -8,7 +8,7 @@ export default function HeroAbout() {
     <header className="container flex-box hero-about">
       {/* Top: Page Introduction */}
       <div className="wrapper xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5">
-        <Heading className="leading-tight" animated>
+        <Heading className="leading-tight" as="h1" animated>
           Who am I
           <br />
           <span className="text-amber-600 dark:text-accent">behind</span>{' '}
@@ -26,7 +26,7 @@ export default function HeroAbout() {
       {/* Bottom: About Avatar & Typography */}
       <div className="illustration flex-center flip">
         <AboutAvater />
-        <AboutTypo page={true} />
+        <AboutTypo page={true} asOverride={'h2'} />
       </div>
     </header>
   )

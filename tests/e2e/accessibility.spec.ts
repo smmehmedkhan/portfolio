@@ -15,7 +15,17 @@ test.describe('P3: Accessibility Audit', () => {
     test(`should surface accessible landmarks and meaningful content on ${route}`, async ({
       page,
     }) => {
+      // Force all Motion-animated elements to their final state before axe runs.
+      // emulateMedia alone is insufficient — Motion reduces duration but still
+      // starts from initial (opacity: 0), so elements can still be mid-animation
+      // when axe scans. The addStyleTag override ensures every element is fully
+      // visible regardless of animation progress.
+      await page.emulateMedia({ reducedMotion: 'reduce' })
       await page.goto(route)
+      await page.addStyleTag({
+        content:
+          '*, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; opacity: 1 !important; transform: none !important; filter: none !important; }',
+      })
 
       // Ensure the page is hydrated and visible before auditing
       await expect(page.locator('main')).toHaveCount(1)

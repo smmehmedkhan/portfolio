@@ -6,6 +6,7 @@ export default function ExperienceHeader() {
     <header className="exp-intro">
       <Heading
         className="size-full text-center lg:text-start leading-tight"
+        as="h2"
         animated>
         Experience
         <br />
