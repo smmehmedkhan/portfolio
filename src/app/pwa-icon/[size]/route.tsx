@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
-import profileImg from '../../../../public/images/mehmed-khan.png'
 
 export const runtime = 'nodejs'
 
@@ -46,7 +45,7 @@ export async function GET(
       />
       {/** biome-ignore lint/performance/noImgElement: Can't use next Image here */}
       <img
-        src={profileImg.src}
+        src="/images/mehmed-khan.png"
         alt="Mehmed Khan"
         width={size}
         height={size}
