@@ -31,8 +31,8 @@ export default function AboutCaro() {
         onMouseLeave={plugin.current.reset}
         aria-roledescription="About Carousel">
         <CarouselContent>
-          {aboutImages.map((image, index) => (
-            <CarouselItem key={image.id} tabIndex={index}>
+          {aboutImages.map(image => (
+            <CarouselItem key={image.id}>
               <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
                 <Image
                   className="size-full rounded-lg object-cover"

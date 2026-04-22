@@ -4,7 +4,7 @@ import { sectionInros } from '@/data/sectionInros'
 
 export default function GetInTouch() {
   return (
-    <section className="wrapper get-in-touch">
+    <section className="wrapper get-in-touch" aria-label="Get in touch">
       <div className="container git-container flex-box">
         <SectionHeader
           data={sectionInros.getInTouch}

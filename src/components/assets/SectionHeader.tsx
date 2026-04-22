@@ -36,6 +36,7 @@ export default function SectionHeader({
   badgeStyles,
   headingStyles,
   paragraphStyles,
+  headingAs = 'h2',
   data,
 }: SectionIntroProps) {
   const { id, icon, label, title, description } = data
@@ -63,7 +64,7 @@ export default function SectionHeader({
         </Paragraph>
       </MotionBadge>
       <Heading
-        as="h3"
+        as={headingAs}
         className={headingStyles}
         animated
         transition={{ delay: 0.2 }}>

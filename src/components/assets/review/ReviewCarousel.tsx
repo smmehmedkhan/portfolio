@@ -63,11 +63,11 @@ export default function ReviewCarousel() {
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div className="size-full">
-                      <Heading as="h5" className="text-md" variant="title">
+                      <Heading as="h3" className="text-md" variant="title">
                         {testimonial.name}
                       </Heading>
                       <Heading
-                        as="h6"
+                        as="h4"
                         className="text-sm"
                         variant="role"
                         size="sm">

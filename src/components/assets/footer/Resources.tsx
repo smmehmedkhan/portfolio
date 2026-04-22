@@ -24,7 +24,7 @@ export default function Resources() {
 
   return (
     <div className="wrapper gap-5">
-      <Heading variant="title" size="lg" as="h5" animated>
+      <Heading variant="title" size="lg" as="h3" animated>
         Resources
       </Heading>
 

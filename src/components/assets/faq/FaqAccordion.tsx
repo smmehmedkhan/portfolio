@@ -39,9 +39,7 @@ export default function FaqAccordion() {
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               {faq.answer.map((paragraph, pIndex) => (
-                <Paragraph
-                  key={paragraph.slice(0, 10) + pIndex.toString()}
-                  tabIndex={pIndex}>
+                <Paragraph key={paragraph.slice(0, 10) + pIndex.toString()}>
                   {paragraph}
                 </Paragraph>
               ))}

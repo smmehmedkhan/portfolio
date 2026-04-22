@@ -34,6 +34,7 @@ export default function SkillGroup({
         className="flex-inline gap-1"
         variant="secondary"
         size="lg"
+        as="h3"
         animated
         transition={{ delay: 0.2 * id }}>
         <span className="flex-box size-4 sm:size-6 md:size-8 text-secondary">

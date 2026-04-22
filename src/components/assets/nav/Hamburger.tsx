@@ -99,7 +99,6 @@ export default function Hamburger() {
           <SocialLinks
             className="items-center flex-wrap gap-2 sm:gap-2.5 md:gap-3"
             buttonClassName="size-8"
-            iconClassName="size-6"
             animated
             delay={0.2}
           />

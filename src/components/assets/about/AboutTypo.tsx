@@ -33,7 +33,7 @@ function AboutTypoBlock({ index, data }: AboutTypoBlockProps) {
       <Heading
         className="size-full text-center lg:text-left tracking-normal lg:tracking-wide"
         variant="title"
-        as="h5"
+        as="h3"
         size="md"
         animated
         transition={{ delay: 0.2 * index }}>

@@ -125,6 +125,7 @@ export type SectionIntroProps = {
   badgeStyles?: string
   headingStyles?: string
   paragraphStyles?: string
+  headingAs?: 'h1' | 'h2' | 'h3'
   data: SectionIntro
 }
 
