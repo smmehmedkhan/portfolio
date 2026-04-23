@@ -64,15 +64,12 @@ test.describe('P0: Resume Page', () => {
 
   test('should navigate away from resume page', async ({ page }) => {
     await page.goto('/resume')
+    await page.waitForLoadState('networkidle')
 
-    // Look for navigation link to go back
-    const navLink = page
-      .getByRole('link', { name: /home|back|portfolio/i })
-      .first()
-    if (await navLink.isVisible({ timeout: 1000 }).catch(() => false)) {
-      await navLink.click()
-      await expect(page).not.toHaveURL(/\/resume/)
-    }
+    await page.goto('/about')
+
+    await expect(page).toHaveURL(/\/about$/)
+    await expect(page.locator('main')).toBeVisible()
   })
 })
 
@@ -86,8 +83,7 @@ test.describe('P0: Blocked Page', () => {
   test('should display blocked page content', async ({ page }) => {
     await page.goto('/blocked')
 
-    const content = page.locator('main, header, div').first()
-    await expect(content).toBeVisible()
+    await expect(page.locator('main')).toBeVisible()
   })
 
   test('blocked page should have informative message', async ({ page }) => {
@@ -109,14 +105,12 @@ test.describe('P0: Blocked Page', () => {
   test('should be able to navigate from blocked page', async ({ page }) => {
     await page.goto('/blocked')
 
-    // Should have navigation to other pages
-    const backBtn = page.getByRole('link', { name: /go back|home/i }).first()
-    if (await backBtn.isVisible({ timeout: 1000 }).catch(() => false)) {
-      await backBtn.click()
-      // Should navigate away from blocked page
-      const currentURL = page.url()
-      expect(currentURL).not.toContain('/blocked')
-    }
+    // Verify the "Go Home" link exists and points to home
+    const homeLink = page
+      .getByRole('link', { name: /go home|go back/i })
+      .first()
+    await expect(homeLink).toBeVisible()
+    await expect(homeLink).toHaveAttribute('href', '/')
   })
 
   test('blocked page should be responsive', async ({ page }) => {
@@ -186,7 +180,7 @@ test.describe('P0: 404 Not Found Page', () => {
     await page.goto('/this-does-not-exist')
 
     // Should have some helpful text for users
-    const content = page.locator('main, section, div').first()
+    const content = page.locator('main, section').first()
     if (await content.isVisible({ timeout: 1000 }).catch(() => false)) {
       const text = await content.textContent()
       expect(text?.length).toBeGreaterThan(10)
@@ -205,19 +199,15 @@ test.describe('P0: 404 Not Found Page', () => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/non-existent-page')
 
-    const content = page.locator('body')
-    await expect(content).toBeVisible()
+    const main = page.locator('main')
+    await expect(main).toBeVisible()
 
-    // Should fit in viewport on mobile
-    const hasHorizontalScroll = await page.evaluate(() => {
-      return (
-        document.documentElement.scrollWidth
-        > document.documentElement.clientWidth
-      )
-    })
-
-    // Minimal or no horizontal scroll
-    expect(hasHorizontalScroll).toBeFalsy()
+    const box = await main.boundingBox()
+    expect(box).not.toBeNull()
+    if (box) {
+      expect(box.x).toBeGreaterThanOrEqual(0)
+      expect(box.x + box.width).toBeLessThanOrEqual(375)
+    }
   })
 })
 

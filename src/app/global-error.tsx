@@ -10,6 +10,12 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const serialized = {
+    message: error.message,
+    name: error.name,
+    stack: error.stack,
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -22,7 +28,7 @@ export default function GlobalError({
             <h1>Something went wrong!</h1>
           </header>
           <main className="wrapper min-h-dvh">
-            <ErrorLayout error={error} reset={reset} />
+            <ErrorLayout error={serialized} reset={reset} />
           </main>
         </ThemeProvider>
       </body>
