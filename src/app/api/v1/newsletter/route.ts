@@ -31,6 +31,44 @@ const ajNewsletter = arcjet({
   ],
 })
 
+function getArcjetDeniedResponse(
+  decision: Awaited<ReturnType<typeof ajNewsletter.protect>>
+) {
+  if (decision.reason.isBot())
+    return NextResponse.json(
+      { error: 'Automated requests not permitted' },
+      { status: 403 }
+    )
+  if (decision.reason.isRateLimit())
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 }
+    )
+  if (decision.reason.isShield())
+    return NextResponse.json(
+      { error: 'Request blocked for security reasons' },
+      { status: 403 }
+    )
+  return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+}
+
+async function addBrevoContact(
+  brevo: ReturnType<typeof getBrevoClient>,
+  email: string
+) {
+  try {
+    const contact = await brevo.contacts.createContact({
+      email,
+      listIds: [],
+      updateEnabled: true,
+    })
+    return contact?.id?.toString()
+  } catch (err) {
+    log.warn({ err }, 'Failed to add contact to Brevo list — continuing')
+    return undefined
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const origin = normalizeOrigin(req.headers.get('origin'))
@@ -49,27 +87,7 @@ export async function POST(req: NextRequest) {
 
     const decision = await ajNewsletter.protect(req)
 
-    if (decision.isDenied()) {
-      if (decision.reason.isBot()) {
-        return NextResponse.json(
-          { error: 'Automated requests not permitted' },
-          { status: 403 }
-        )
-      }
-      if (decision.reason.isRateLimit()) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please try again later.' },
-          { status: 429 }
-        )
-      }
-      if (decision.reason.isShield()) {
-        return NextResponse.json(
-          { error: 'Request blocked for security reasons' },
-          { status: 403 }
-        )
-      }
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    if (decision.isDenied()) return getArcjetDeniedResponse(decision)
 
     const body = await req.json().catch(() => null)
     if (!body) {
@@ -95,24 +113,9 @@ export async function POST(req: NextRequest) {
     let brevo: ReturnType<typeof getBrevoClient> | null = null
     try {
       brevo = getBrevoClient()
+      brevoContactId = await addBrevoContact(brevo, email)
     } catch (clientError) {
       log.warn({ err: clientError }, 'Brevo client unavailable')
-    }
-
-    try {
-      if (!brevo) throw new Error('Brevo client unavailable')
-      const contact = await brevo.contacts.createContact({
-        email,
-        listIds: [], // Add your Brevo list ID(s) here, e.g. [5]
-        updateEnabled: true,
-      })
-      brevoContactId = contact?.id?.toString()
-    } catch (contactError) {
-      // Non-fatal: log but continue
-      log.warn(
-        { err: contactError },
-        'Failed to add contact to Brevo list — continuing'
-      )
     }
 
     // 4. Upsert subscriber in MongoDB

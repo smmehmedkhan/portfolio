@@ -25,6 +25,31 @@ function normalizeOrigin(value: string | null | undefined) {
 
 const ajContact = createArcjet({ max: 10 })
 
+function getArcjetDeniedResponse(
+  decision: Awaited<ReturnType<typeof ajContact.protect>>
+) {
+  if (decision.reason.isBot())
+    return NextResponse.json(
+      { error: 'Automated requests not permitted' },
+      { status: 403 }
+    )
+  if (decision.reason.isRateLimit())
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 }
+    )
+  if (decision.reason.isShield())
+    return NextResponse.json(
+      { error: 'Request blocked for security reasons' },
+      { status: 403 }
+    )
+  return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+}
+
+function hasEmailFailure(results: PromiseSettledResult<unknown>[]) {
+  return results.some(r => r.status === 'rejected')
+}
+
 export async function POST(req: NextRequest) {
   try {
     const origin = normalizeOrigin(req.headers.get('origin'))
@@ -43,27 +68,7 @@ export async function POST(req: NextRequest) {
 
     const decision = await ajContact.protect(req)
 
-    if (decision.isDenied()) {
-      if (decision.reason.isBot()) {
-        return NextResponse.json(
-          { error: 'Automated requests not permitted' },
-          { status: 403 }
-        )
-      }
-      if (decision.reason.isRateLimit()) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please try again later.' },
-          { status: 429 }
-        )
-      }
-      if (decision.reason.isShield()) {
-        return NextResponse.json(
-          { error: 'Request blocked for security reasons' },
-          { status: 403 }
-        )
-      }
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
+    if (decision.isDenied()) return getArcjetDeniedResponse(decision)
 
     const body = await req.json().catch(() => null)
     if (!body) {
@@ -115,27 +120,9 @@ export async function POST(req: NextRequest) {
       }),
     ])
 
-    const emailResultDetails = emailResults.map((result, index) => ({
-      status: result.status,
-      recipient: index === 0 ? 'adminNotification' : 'userAutoReply',
-      ...(result.status === 'rejected'
-        ? {
-            reason:
-              result.reason instanceof Error
-                ? result.reason.message
-                : String(result.reason),
-          }
-        : {
-            info:
-              (result.value as { messageId?: string } | undefined)?.messageId
-              ?? 'fulfilled',
-          }),
-    }))
-
-    const emailFailed = emailResults.some(r => r.status === 'rejected')
-    if (emailFailed) {
+    if (hasEmailFailure(emailResults)) {
       log.warn(
-        { results: emailResultDetails },
+        { results: emailResults },
         'One or more contact emails failed to send'
       )
       return NextResponse.json(
