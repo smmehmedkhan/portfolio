@@ -16,7 +16,7 @@ export default function NotFound() {
   return (
     <div className="container flex-box gap-5 sm:gap-7.5 md:gap-10 overflow-hidden">
       <Wrapper
-        className="wrapper w-full overflow-hidden"
+        className="wrapper w-full max-w-full overflow-hidden"
         {...fade}
         transition={{ ...fade.transition, delay: 0.5 }}>
         <Image
@@ -25,7 +25,7 @@ export default function NotFound() {
           width={860}
           height={571}
           priority
-          className="w-full max-w-xs sm:max-w-sm"
+          className="w-full max-w-full xs:max-w-xs sm:max-w-sm"
         />
       </Wrapper>
       <div className="wrapper gap-3 sm:gap-4 md:gap-5">
