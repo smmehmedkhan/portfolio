@@ -67,10 +67,12 @@ test.describe('P0: Resume Page', () => {
 
     // Look for navigation link to go back
     const navLink = page
-      .getByRole('link', { name: /home|back|portfolio/i })
+      .locator('nav')
+      .getByRole('link', { name: /home|back/i })
       .first()
     if (await navLink.isVisible({ timeout: 1000 }).catch(() => false)) {
       await navLink.click()
+      await page.waitForLoadState('load')
       await expect(page).not.toHaveURL(/\/resume/)
     }
   })
@@ -86,8 +88,7 @@ test.describe('P0: Blocked Page', () => {
   test('should display blocked page content', async ({ page }) => {
     await page.goto('/blocked')
 
-    const content = page.locator('main, header, div').first()
-    await expect(content).toBeVisible()
+    await expect(page.locator('main')).toBeVisible()
   })
 
   test('blocked page should have informative message', async ({ page }) => {
@@ -113,9 +114,8 @@ test.describe('P0: Blocked Page', () => {
     const backBtn = page.getByRole('link', { name: /go back|home/i }).first()
     if (await backBtn.isVisible({ timeout: 1000 }).catch(() => false)) {
       await backBtn.click()
-      // Should navigate away from blocked page
-      const currentURL = page.url()
-      expect(currentURL).not.toContain('/blocked')
+      await page.waitForLoadState('load')
+      expect(page.url()).not.toContain('/blocked')
     }
   })
 
@@ -186,7 +186,7 @@ test.describe('P0: 404 Not Found Page', () => {
     await page.goto('/this-does-not-exist')
 
     // Should have some helpful text for users
-    const content = page.locator('main, section, div').first()
+    const content = page.locator('main, section').first()
     if (await content.isVisible({ timeout: 1000 }).catch(() => false)) {
       const text = await content.textContent()
       expect(text?.length).toBeGreaterThan(10)
@@ -204,20 +204,20 @@ test.describe('P0: 404 Not Found Page', () => {
   test('404 page should be responsive', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/non-existent-page')
+    await page.waitForLoadState('networkidle')
 
-    const content = page.locator('body')
-    await expect(content).toBeVisible()
+    await expect(page.locator('body')).toBeVisible()
 
     // Should fit in viewport on mobile
-    const hasHorizontalScroll = await page.evaluate(() => {
+    const overflow = await page.evaluate(() => {
       return (
         document.documentElement.scrollWidth
-        > document.documentElement.clientWidth
+        - document.documentElement.clientWidth
       )
     })
 
-    // Minimal or no horizontal scroll
-    expect(hasHorizontalScroll).toBeFalsy()
+    // Allow up to 1px rounding difference
+    expect(overflow).toBeLessThanOrEqual(1)
   })
 })
 

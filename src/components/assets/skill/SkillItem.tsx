@@ -50,13 +50,16 @@ export default function SkillItem({ index, data }: SkillItemProps) {
   const cardContent = (
     <>
       <CardHeader className="flex items-center justify-between">
-        <div className="size-12 p-2 rounded-lg bg-primary dark:bg-card flex-center">
+        <div className="size-11 md:size-12 lg:size-14 p-2 rounded-lg bg-primary dark:bg-card flex-center">
           <Image
+            className="size-9 md:size-10 lg:size-12 object-contain"
+            style={{ width: 'auto', height: 40 }}
             src={image}
             alt={title}
             width={40}
             height={40}
-            className="size-10 sm:size-10 lg:size-12 object-contain"
+            loading="eager"
+            priority
           />
         </div>
       </CardHeader>
@@ -101,7 +104,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         onOpenChange={setHoverOpen}>
         <HoverCardTrigger asChild>
           <Button
-            className="size-10 md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
+            className="size-11 md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
             variant="outline"
             onClick={e => {
               e.preventDefault()
@@ -109,11 +112,14 @@ export default function SkillItem({ index, data }: SkillItemProps) {
             }}>
             <Container {...pulse}>
               <Image
+                className="size-9 md:size-10 lg:size-12 object-contain"
+                style={{ width: 'auto', height: 40 }}
                 src={image}
                 alt={title}
                 width={40}
                 height={40}
-                className="size-8 md:size-10 lg:size-12 object-contain"
+                loading="eager"
+                priority
               />
             </Container>
           </Button>

@@ -3,7 +3,6 @@ import { expect, test } from '@playwright/test'
 // ============================================================================
 // PRIORITY 0: PWA AND OFFLINE BEHAVIOR
 // ============================================================================
-
 test.describe('P0: PWA Manifest Validation', () => {
   test('should have valid web app manifest', async ({ page }) => {
     await page.goto('/')
@@ -258,7 +257,7 @@ test.describe('P0: Asset Caching', () => {
     const responses: string[] = []
 
     page.on('response', resp => {
-      if (resp.url().match(/\.(css|js)$/)) {
+      if (resp.url().match(/\.(css|js)(\?.*)?$/)) {
         responses.push(resp.url())
       }
     })

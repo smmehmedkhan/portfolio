@@ -14,9 +14,9 @@ export default function NotFound() {
   const fade = getAnimationPreset('fade')
 
   return (
-    <div className="container flex-box gap-5 sm:gap-7.5 md:gap-10">
+    <div className="container flex-box gap-5 sm:gap-7.5 md:gap-10 overflow-hidden">
       <Wrapper
-        className="wrapper"
+        className="wrapper w-full overflow-hidden"
         {...fade}
         transition={{ ...fade.transition, delay: 0.5 }}>
         <Image

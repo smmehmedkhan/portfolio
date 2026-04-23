@@ -1,4 +1,4 @@
-import type { AppError, ErrorInfo } from '@/types'
+import type { ErrorInfo, SerializedError } from '@/types'
 
 const STATUS_MAP: Record<number, ErrorInfo> = {
   400: {
@@ -81,7 +81,7 @@ const FALLBACK: ErrorInfo = {
   message: 'An unexpected error occurred. Please try again or go back home.',
 }
 
-export function resolveErrorInfo(error?: AppError | null): ErrorInfo {
+export function resolveErrorInfo(error?: SerializedError | null): ErrorInfo {
   if (error?.statusCode && STATUS_MAP[error.statusCode]) {
     return STATUS_MAP[error.statusCode]
   }

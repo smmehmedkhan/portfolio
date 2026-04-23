@@ -85,8 +85,15 @@ export interface ErrorInfo {
   message: string
 }
 
+export interface SerializedError {
+  statusCode?: number
+  message?: string
+  name?: string
+  stack?: string
+}
+
 export interface ErrorProps {
-  error?: AppError | null
+  error?: SerializedError | null
   reset?: () => void
 }
 

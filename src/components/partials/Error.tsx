@@ -68,7 +68,7 @@ export default function ErrorLayout({ error, reset }: ErrorProps) {
               Error Details (Development Only)
             </summary>
             <pre className="text-xs bg-muted p-4 rounded overflow-auto max-h-48">
-              {error.toString()}
+              {error.message}
               {error.stack}
             </pre>
           </details>

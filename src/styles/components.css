@@ -61,7 +61,7 @@
       @apply gap-10 lg:gap-0 xl:gap-10 2xl:gap-25 z-10;
 
       & .hero-intro {
-        @apply xs:max-w-md sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-7.5;
+        @apply xs:max-w-full sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-7.5;
 
         & .headings {
           @apply size-full flex flex-col xs:gap-2 sm:gap-3 md:gap-4 gap-5;
@@ -90,7 +90,7 @@
 
   /* ========== Section intro ========== */
   .section-intro {
-    @apply w-full xs:max-w-md sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5;
+    @apply w-full xs:max-w-full sm:max-w-lg md:max-w-2xl gap-3 sm:gap-4 md:gap-5;
 
     & .badge {
       @apply size-max py-1 md:py-1.5 px-3 md:px-4 gap-1;
