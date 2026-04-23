@@ -8,7 +8,6 @@ import {
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
-  constructor() {}
   observe() {}
   unobserve() {}
   disconnect() {}

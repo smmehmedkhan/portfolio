@@ -67,6 +67,8 @@ export default function CaseCard({ image, name }: CaseCardProps) {
             alt={name}
             width={300}
             height={300}
+            loading="eager"
+            priority
             {...fade}
             transition={{ ...fade.transition, delay: 0.4 }}
           />
