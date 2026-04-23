@@ -23,7 +23,10 @@ export default function SocialLinks({
 
   return (
     <Container
-      className={cn('flex-inline gap-5 md:gap-7.5 lg:gap-10', className)}
+      className={cn(
+        'flex flex-wrap items-center gap-5 md:gap-7.5 lg:gap-10',
+        className
+      )}
       {...(animated && fadeDown)}
       transition={{ ...fadeDown.transition, delay }}>
       {socialLinks.map(({ id, name, href, icon: Icon }) => (

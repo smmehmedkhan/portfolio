@@ -103,7 +103,9 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         onOpenChange={setHoverOpen}>
         <HoverCardTrigger asChild>
           <Button
-            className="size-11 md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
+            data-slot="hover-card-trigger"
+            className="md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
+            size="icon-xl"
             variant="outline"
             onClick={e => {
               e.preventDefault()

@@ -155,16 +155,28 @@ test.describe('P0: Responsive Touch Targets', () => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
 
-    const buttons = page.locator('button')
-    const count = Math.min(await buttons.count(), 5)
+    const socialSection = page.getByRole('region', { name: /get in touch/i })
 
-    for (let i = 0; i < count; i++) {
-      const button = buttons.nth(i)
-      const box = await button.boundingBox()
+    const targets = [
+      // Hero CTA links
+      page.getByRole('link', { name: /contact me/i }).first(),
+      page.getByRole('link', { name: /get resume/i }),
+      page.getByRole('link', { name: /read more/i }),
+      page.getByRole('link', { name: /view project/i }),
+      // SkillItem trigger buttons (HoverCardTrigger)
+      ...(await page.locator('[data-slot="hover-card-trigger"]').all()),
+      // SocialLinks — scoped to contact section to avoid SkillItem button conflicts
+      socialSection.getByRole('link', { name: /github/i }),
+      socialSection.getByRole('link', { name: /discord/i }),
+      socialSection.getByRole('link', { name: /linkedin/i }),
+      socialSection.getByRole('link', { name: /facebook/i }),
+      socialSection.getByRole('link', { name: /instagram/i }),
+      socialSection.getByRole('link', { name: /twitter/i }),
+    ]
 
+    for (const target of targets) {
+      const box = await target.boundingBox()
       if (box) {
-        // Touch targets should be at least 48x48 pixels (WCAG recommendation)
-        // Allow slight margin
         expect(box.height).toBeGreaterThanOrEqual(36)
         expect(box.width).toBeGreaterThanOrEqual(36)
       }
