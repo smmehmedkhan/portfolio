@@ -8,7 +8,7 @@
   }
 
   .combo-layout {
-    @apply size-full lg:h-screen flex flex-col;
+    @apply w-full min-h-screen flex flex-col;
 
     & > * {
       @apply flex-1;
@@ -24,6 +24,6 @@
   }
 
   footer {
-    @apply size-full 2xl:flex-1;
+    @apply w-full flex flex-col;
   }
 }

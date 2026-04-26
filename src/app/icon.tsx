@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { ImageResponse } from 'next/og'
 
+export const runtime = 'nodejs'
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 

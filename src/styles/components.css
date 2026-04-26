@@ -64,7 +64,7 @@
         @apply xs:max-w-full sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-7.5;
 
         & .headings {
-          @apply size-full flex flex-col xs:gap-2 sm:gap-3 md:gap-4 gap-5;
+          @apply size-full flex flex-col items-center md:items-start gap-2 sm:gap-3 md:gap-4 lg:gap-5;
         }
 
         & .buttons {
@@ -186,7 +186,7 @@
 
   /* ========== Get in touch section ========== */
   .get-in-touch {
-    @apply 2xl:flex-1 py-10 2xl:py-0 relative overflow-hidden;
+    @apply py-10 relative overflow-hidden;
 
     background: linear-gradient(135deg, oklch(84.5% 0.143 164.978deg) 0%,oklch(76.5% 0.177 163.223deg) 25%,oklch(69.6% 0.17 162.48deg) 50%,oklch(59.6% 0.145 163.225deg) 75%, oklch(50.8% 0.118 165.612deg) 100%);
 
@@ -261,7 +261,7 @@
 
   /* ========== Footer ========== */
   .footer-grid {
-    @apply py-10 2xl:py-0 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
+    @apply w-full flex-1 py-10 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
   }
 
   .addresses {
@@ -308,7 +308,7 @@
 
       & .wrapper {
         & .input {
-          @apply w-full max-w-full mx-auto;
+          @apply w-full max-w-sm mx-auto;
         }
       }
     }

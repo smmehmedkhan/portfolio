@@ -81,7 +81,7 @@ export default function Hamburger() {
               transition={{ ...fade.transition, delay: 0.2 * index }}>
               <Link
                 href={href}
-                className={`link ${pathname === href ? 'text-amber-500 dark:text-accent' : ''}`}>
+                className={`link ${pathname === href ? 'text-amber-700 dark:text-accent' : ''}`}>
                 {label}
               </Link>
             </MenuItem>
