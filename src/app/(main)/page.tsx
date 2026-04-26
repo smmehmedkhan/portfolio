@@ -15,20 +15,11 @@ export const metadata: Metadata = {
     title: CONFIG.SITE.TITLE,
     description: CONFIG.SITE.DESCRIPTION,
     url: CONFIG.SITE.URL,
-    images: [
-      {
-        url: '/images/Mehmed_Khan.webp',
-        width: 1200,
-        height: 630,
-        alt: CONFIG.SITE.AUTHOR,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: CONFIG.SITE.TITLE,
     description: CONFIG.SITE.DESCRIPTION,
-    images: ['/images/Mehmed_Khan.webp'],
   },
 }
 

@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE}.`,
     url: `${CONFIG.SITE.URL}/resume`,
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Resume | ${CONFIG.SITE.NAME}`,
+    description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE}.`,
+  },
 }
 
 export default function ResumePage() {

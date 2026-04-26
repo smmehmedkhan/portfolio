@@ -51,20 +51,11 @@ export const metadata: Metadata = {
     siteName: CONFIG.SITE.NAME,
     title: CONFIG.SITE.TITLE,
     description: CONFIG.SITE.DESCRIPTION,
-    images: [
-      {
-        url: '/images/Mehmed_Khan.webp',
-        width: 1200,
-        height: 630,
-        alt: CONFIG.SITE.AUTHOR,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: CONFIG.SITE.TITLE,
     description: CONFIG.SITE.DESCRIPTION,
-    images: ['/images/mehmed-khan.png'],
     creator: CONFIG.SOCIAL.TWITTER,
   },
   robots: {

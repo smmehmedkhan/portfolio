@@ -11,20 +11,11 @@ export const metadata: Metadata = {
     title: `Projects | ${CONFIG.SITE.NAME}`,
     description: `Explore projects by ${CONFIG.PERSONAL.NAME} - ${CONFIG.PERSONAL.ROLE}. Showcase of web applications and modern web technologies.`,
     url: `${CONFIG.SITE.URL}/projects`,
-    images: [
-      {
-        url: '/images/mehmed-khan.png',
-        width: 1200,
-        height: 630,
-        alt: `Projects by ${CONFIG.PERSONAL.NAME}`,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Projects | ${CONFIG.SITE.NAME}`,
     description: `Explore projects by ${CONFIG.PERSONAL.NAME} - ${CONFIG.PERSONAL.ROLE}.`,
-    images: ['/images/mehmed-khan.png'],
   },
 }
 

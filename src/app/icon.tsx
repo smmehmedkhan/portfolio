@@ -1,16 +1,12 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import { ImageResponse } from 'next/og'
+import { getLocalImageAsDataUrl } from '@/lib/og-image'
 
 export const runtime = 'nodejs'
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
 export default function Icon() {
-  const imgBuffer = fs.readFileSync(
-    path.join(process.cwd(), 'public/images/mehmed-khan.png')
-  )
-  const imageUrl = `data:image/png;base64,${imgBuffer.toString('base64')}`
+  const imageUrl = getLocalImageAsDataUrl('public/images/mehmed-khan.png')
 
   return new ImageResponse(
     <div

@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
+import { getLocalImageAsDataUrl } from '@/lib/og-image'
 
 export const runtime = 'nodejs'
 
@@ -20,6 +21,8 @@ export async function GET(
   if (!isValidSize(size)) {
     return new Response('Invalid size. Use 192 or 512.', { status: 400 })
   }
+
+  const imageUrl = getLocalImageAsDataUrl('public/images/mehmed-khan.png')
 
   return new ImageResponse(
     <div
@@ -45,7 +48,7 @@ export async function GET(
       />
       {/** biome-ignore lint/performance/noImgElement: Can't use next Image here */}
       <img
-        src="/images/mehmed-khan.png"
+        src={imageUrl}
         alt="Mehmed Khan"
         width={size}
         height={size}
