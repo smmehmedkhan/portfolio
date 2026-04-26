@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: `${CONFIG.SITE.URL}/contact`,
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: `Contact | ${CONFIG.SITE.NAME}`,
     description: `Get in touch with ${CONFIG.PERSONAL.NAME}.`,
   },
