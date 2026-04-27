@@ -22,8 +22,11 @@ const API_ROUTES = /^\/api\//
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip Arcjet on the /blocked page itself to prevent infinite redirect loop
-  if (pathname.startsWith('/blocked')) {
+  // Skip Arcjet on blocked page (prevent redirect loop) and OG image
+  if (
+    pathname.startsWith('/blocked')
+    || pathname.startsWith('/opengraph-image')
+  ) {
     return NextResponse.next()
   }
 
