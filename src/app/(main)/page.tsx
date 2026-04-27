@@ -11,16 +11,6 @@ import { CONFIG } from '@/constants/config'
 export const metadata: Metadata = {
   title: 'Home',
   description: CONFIG.SITE.DESCRIPTION,
-  openGraph: {
-    title: CONFIG.SITE.TITLE,
-    description: CONFIG.SITE.DESCRIPTION,
-    url: CONFIG.SITE.URL,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: CONFIG.SITE.TITLE,
-    description: CONFIG.SITE.DESCRIPTION,
-  },
 }
 
 export default function Home(): JSX.Element {
