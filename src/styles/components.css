@@ -39,7 +39,7 @@
 
   /* ========== Hero banner ========== */
   .hero {
-    @apply w-full min-h-[calc(100dvh-60px)] overflow-hidden relative;
+    @apply w-full min-h-[calc(100dvh-60px)] mt-10 sm:mt-11 md:mt-12 lg:mt-15 overflow-hidden relative;
 
     &::before {
       content: '';
@@ -213,7 +213,7 @@
 
   /* ========== Hero About section ========== */
   .hero-about {
-    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25 mt-5 sm:mt-7.5 md:mt-10 lg:mt-12.5;
+    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25 mt-15 sm:mt-17.5 md:mt-20 lg:mt-25;
 
     & .illustration {
       @apply size-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-12.5 md:gap-15 lg:gap-5 xl:gap-25;
@@ -328,7 +328,7 @@
 
   /* ========== Resume Page ========== */
   .resume-page {
-    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
+    @apply mt-5 sm:mt-2.5 md:mt-0;
 
     & .resume-viewer-wrapper {
       @apply relative w-full xs:max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto;

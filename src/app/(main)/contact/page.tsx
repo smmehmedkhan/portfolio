@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="wrapper">
+    <main className="wrapper mt-5 sm:mt-2.5 md:mt-0">
       <SectionHeader data={sectionInros.contact} headingAs="h1" />
 
       <div className="wrapper max-w-xl md:max-w-4xl lg:max-w-5xl mx-auto px-4 lg:px-0">

@@ -1,17 +1,25 @@
 'use client'
 
 import { FilesIcon } from 'lucide-react'
-import { useMotionValueEvent, useScroll } from 'motion/react'
-import * as motion from 'motion/react-client'
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Hamburger from '@/components/assets/nav/Hamburger'
 import Logo from '@/components/assets/nav/Logo'
 import { Button } from '@/components/ui/button'
 import ThemeToggler from '@/components/ui/theme-toggler'
 import { navLinks } from '@/data/nav-links'
 import { cn } from '@/lib/utils'
+
+const NAVBAR_TOGGLE_OFFSET = 12
+type ScrollDirection = 'up' | 'down' | null
 
 /**
  * Navigation bar component
@@ -29,15 +37,68 @@ import { cn } from '@/lib/utils'
 export default function Navbar() {
   const pathname = usePathname()
   const { scrollY } = useScroll()
-  const [scrollDirection, setScrollDirection] = useState('down')
+  const hidden = useMotionValue(0)
+  const lastScrollY = useRef(0)
+  const directionStartY = useRef(0)
+  const lastDirection = useRef<ScrollDirection>(null)
+  const isHidden = useRef(false)
 
-  const handleScrollChange = (current: number) => {
-    const previous = scrollY.getPrevious() ?? current
-    const diff = current - previous
-    if (diff !== 0) setScrollDirection(diff > 0 ? 'up' : 'down')
-  }
+  useEffect(() => {
+    const initialScrollY =
+      typeof window === 'undefined'
+        ? scrollY.get()
+        : (document.scrollingElement?.scrollTop ?? window.scrollY)
 
-  useMotionValueEvent(scrollY, 'change', handleScrollChange)
+    lastScrollY.current = initialScrollY
+    directionStartY.current = initialScrollY
+    lastDirection.current = null
+    isHidden.current = hidden.get() === 1
+
+    return scrollY.on('change', current => {
+      const previousScrollY = lastScrollY.current
+      const diff = current - previousScrollY
+      lastScrollY.current = current
+
+      // Always show navbar at top
+      if (current <= 0) {
+        directionStartY.current = 0
+        lastDirection.current = null
+
+        if (isHidden.current) {
+          isHidden.current = false
+          animate(hidden, 0, {
+            duration: 0.3,
+            ease: 'easeInOut',
+          })
+        }
+        return
+      }
+
+      if (diff === 0) return
+
+      const direction: ScrollDirection = diff > 0 ? 'down' : 'up'
+
+      if (direction !== lastDirection.current) {
+        lastDirection.current = direction
+        directionStartY.current = previousScrollY
+      }
+
+      const distanceInDirection = Math.abs(current - directionStartY.current)
+      if (distanceInDirection < NAVBAR_TOGGLE_OFFSET) return
+
+      const shouldHide = direction === 'down'
+      if (shouldHide !== isHidden.current) {
+        isHidden.current = shouldHide
+        animate(hidden, shouldHide ? 1 : 0, {
+          duration: 0.3,
+          ease: 'easeInOut',
+        })
+      }
+    })
+  }, [scrollY, hidden])
+
+  const navY = useTransform(hidden, [0, 1], ['0%', '-110%'])
+  const navOpacity = useTransform(hidden, [0, 1], [1, 0])
 
   const getClasses = (item: { href: string }) => {
     return `hover:text-accent-foreground ${pathname === item.href ? 'text-amber-700 dark:text-accent' : ''}`
@@ -46,12 +107,7 @@ export default function Navbar() {
   return (
     <motion.nav
       className="site-navigation flex-center"
-      initial={{ opacity: 1, y: 0 }}
-      animate={{
-        opacity: scrollDirection === 'down' ? 1 : 0,
-        y: scrollDirection === 'down' ? 0 : -100,
-      }}
-      transition={{ type: 'tween', duration: 0.6 }}>
+      style={{ y: navY, opacity: navOpacity }}>
       <motion.div className="container flex-inline navigation">
         {/* Left: Logo */}
         <Logo />
@@ -70,7 +126,6 @@ export default function Navbar() {
         </motion.ul>
 
         {/* Right: Theme Toggle + Mobile Menu */}
-
         <motion.div className="hidden md:flex w-max items-center gap-4">
           <ThemeToggler />
           <Button variant="outline" asChild>
