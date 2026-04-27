@@ -7,16 +7,6 @@ import { sectionInros } from '@/data/sectionInros'
 export const metadata: Metadata = {
   title: 'Resume',
   description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE} based in ${CONFIG.PERSONAL.LOCATION}.`,
-  openGraph: {
-    title: `Resume | ${CONFIG.SITE.NAME}`,
-    description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE}.`,
-    url: `${CONFIG.SITE.URL}/resume`,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `Resume | ${CONFIG.SITE.NAME}`,
-    description: `View and download the resume of ${CONFIG.PERSONAL.NAME} — ${CONFIG.PERSONAL.ROLE}.`,
-  },
 }
 
 export default function ResumePage() {
