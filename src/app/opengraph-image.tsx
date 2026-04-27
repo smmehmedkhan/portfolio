@@ -9,7 +9,12 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 function readFile(relativePath: string): Buffer {
-  return fs.readFileSync(path.join(process.cwd(), relativePath))
+  const safePath = path.join(process.cwd(), path.normalize(relativePath))
+  if (!safePath.startsWith(process.cwd())) {
+    throw new Error(`Invalid path: ${relativePath}`)
+  }
+
+  return fs.readFileSync(safePath)
 }
 
 export default function OpenGraphImage(): ImageResponse {
@@ -83,8 +88,9 @@ export default function OpenGraphImage(): ImageResponse {
       {/* Right — avatar */}
       <div
         style={{
-          width: '400px',
-          height: '630px',
+          width: '100%',
+          height: '100%',
+          flex: 1,
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
