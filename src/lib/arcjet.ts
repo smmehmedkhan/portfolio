@@ -47,7 +47,7 @@ export function createArcjet({
       shield({ mode: isDev ? 'DRY_RUN' : 'LIVE' }),
       detectBot({
         mode: isDev ? 'DRY_RUN' : 'LIVE',
-        allow: [],
+        allow: ['CATEGORY:SOCIAL', 'CATEGORY:PREVIEW', 'CATEGORY:MONITOR'],
       }),
       fixedWindow({ mode: isDev ? 'DRY_RUN' : 'LIVE', window: '1h', max }),
     ],
