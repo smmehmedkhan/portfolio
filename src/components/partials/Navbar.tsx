@@ -1,25 +1,16 @@
 'use client'
 
 import { FilesIcon } from 'lucide-react'
-import {
-  animate,
-  motion,
-  useMotionValue,
-  useScroll,
-  useTransform,
-} from 'motion/react'
+import { motion, useTransform } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
 import Hamburger from '@/components/assets/nav/Hamburger'
 import Logo from '@/components/assets/nav/Logo'
 import { Button } from '@/components/ui/button'
 import ThemeToggler from '@/components/ui/theme-toggler'
 import { navLinks } from '@/data/nav-links'
+import { useNavbarVisibility } from '@/hooks/useNavbarVisibility'
 import { cn } from '@/lib/utils'
-
-const NAVBAR_TOGGLE_OFFSET = 12
-type ScrollDirection = 'up' | 'down' | null
 
 /**
  * Navigation bar component
@@ -36,67 +27,7 @@ type ScrollDirection = 'up' | 'down' | null
  */
 export default function Navbar() {
   const pathname = usePathname()
-  const { scrollY } = useScroll()
-  const hidden = useMotionValue(0)
-  const lastScrollY = useRef(0)
-  const directionStartY = useRef(0)
-  const lastDirection = useRef<ScrollDirection>(null)
-  const isHidden = useRef(false)
-
-  useEffect(() => {
-    const initialScrollY =
-      typeof window === 'undefined'
-        ? scrollY.get()
-        : (document.scrollingElement?.scrollTop ?? window.scrollY)
-
-    lastScrollY.current = initialScrollY
-    directionStartY.current = initialScrollY
-    lastDirection.current = null
-    isHidden.current = hidden.get() === 1
-
-    return scrollY.on('change', current => {
-      const previousScrollY = lastScrollY.current
-      const diff = current - previousScrollY
-      lastScrollY.current = current
-
-      // Always show navbar at top
-      if (current <= 0) {
-        directionStartY.current = 0
-        lastDirection.current = null
-
-        if (isHidden.current) {
-          isHidden.current = false
-          animate(hidden, 0, {
-            duration: 0.3,
-            ease: 'easeInOut',
-          })
-        }
-        return
-      }
-
-      if (diff === 0) return
-
-      const direction: ScrollDirection = diff > 0 ? 'down' : 'up'
-
-      if (direction !== lastDirection.current) {
-        lastDirection.current = direction
-        directionStartY.current = previousScrollY
-      }
-
-      const distanceInDirection = Math.abs(current - directionStartY.current)
-      if (distanceInDirection < NAVBAR_TOGGLE_OFFSET) return
-
-      const shouldHide = direction === 'down'
-      if (shouldHide !== isHidden.current) {
-        isHidden.current = shouldHide
-        animate(hidden, shouldHide ? 1 : 0, {
-          duration: 0.3,
-          ease: 'easeInOut',
-        })
-      }
-    })
-  }, [scrollY, hidden])
-
+  const hidden = useNavbarVisibility()
   const navY = useTransform(hidden, [0, 1], ['0%', '-110%'])
   const navOpacity = useTransform(hidden, [0, 1], [1, 0])
 
