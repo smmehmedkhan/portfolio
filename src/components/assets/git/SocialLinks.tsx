@@ -24,7 +24,7 @@ export default function SocialLinks({
   return (
     <Container
       className={cn(
-        'flex flex-wrap items-center gap-2 sm:gap-5 md:gap-7.5 lg:gap-10',
+        'flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5',
         className
       )}
       {...(animated && fadeDown)}

@@ -39,7 +39,7 @@
 
   /* ========== Hero banner ========== */
   .hero {
-    @apply w-full min-h-[calc(100dvh-60px)] mt-10 sm:mt-11 md:mt-12 lg:mt-15 overflow-hidden relative;
+    @apply w-full min-h-[calc(100dvh-60px)] mt-10 sm:mt-11 md:mt-12.5 lg:mt-15 overflow-hidden relative;
 
     &::before {
       content: '';
@@ -206,6 +206,73 @@
     }
   }
 
+  /* ========== Footer ========== */
+  .footer-grid {
+    @apply w-full flex-1 py-10 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
+  }
+
+  .addresses {
+    @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
+
+    & .location-group {
+      @apply 2xl:justify-start;
+
+      & .location {
+        @apply inline-flex gap-1;
+
+        & .location-link {
+          @apply underline underline-offset-2 hover:text-amber-700 dark:hover:text-accent transition-all duration-200 ease-in-out;
+        }
+      }
+    }
+
+    & .messages {
+      @apply w-full flex flex-col items-center 2xl:items-start gap-3;
+
+      & .message {
+        @apply text-md lg:text-lg text-center text-pretty leading-normal;
+      }
+    }
+
+    & .address-cta {
+      @apply w-full flex flex-wrap justify-center 2xl:justify-start gap-2.5 lg:gap-5;
+
+      & li .address-link {
+        @apply inline-flex items-center min-h-9 gap-1 lg:gap-2 text-sm md:text-nm text-muted-foreground hover:text-amber-700 dark:hover:text-accent underline-offset-3 transition-colors duration-300 ease-in-out;
+      }
+    }
+  }
+
+  .newsletters {
+    @apply max-w-2xl mx-auto gap-5 md:gap-7.5 lg:gap-10;
+
+    & .newsletters-intro {
+      @apply size-fit flex flex-col items-center gap-3;
+    }
+
+    & .newsletter-form {
+      @apply w-full gap-5;
+
+      & .wrapper {
+        & .input {
+          @apply w-full max-w-sm mx-auto;
+        }
+      }
+    }
+  }
+
+  .resources {
+    @apply size-fit flex md:flex-col items-center gap-2;
+
+    & li .rs-link {
+      @apply text-md text-muted-foreground hover:text-amber-700 dark:hover:text-accent transition-colors duration-300 ease-in-out;
+    }
+  }
+
+  .copyrights {
+    @apply w-full h-fit py-2 text-center;
+  }
+
   /* ========== About Page ========== */
   .about-page {
     @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
@@ -213,7 +280,7 @@
 
   /* ========== Hero About section ========== */
   .hero-about {
-    @apply gap-10 sm:gap-15 md:gap-20 lg:gap-25 mt-15 sm:mt-17.5 md:mt-20 lg:mt-25;
+    @apply pt-10 sm:pt-15 md:pt-20 lg:pt-25 mt-10 sm:mt-11 md:mt-12.5 lg:mt-15 gap-10 sm:gap-15 md:gap-20 lg:gap-25;
 
     & .illustration {
       @apply size-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-full gap-10 sm:gap-12.5 md:gap-15 lg:gap-5 xl:gap-25;
@@ -259,76 +326,27 @@
     @apply size-full gap-10 sm:gap-15 md:gap-20 lg:gap-25;
   }
 
-  /* ========== Footer ========== */
-  .footer-grid {
-    @apply w-full flex-1 py-10 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5;
+  /* ========== Projects Page ========== */
+  .projects-page {
+    @apply mt-10 sm:mt-11 md:mt-12.5 lg:mt-15;
   }
 
-  .addresses {
-    @apply size-full flex flex-col justify-center 2xl:items-start gap-3;
+  /* ========== Contact Page ========== */
+  .contact-page {
+    @apply mt-10 sm:mt-11 md:mt-12.5 lg:mt-15;
 
-    & .location-group {
-      @apply 2xl:justify-start;
+    & .contact-layout {
+      @apply max-w-xl md:max-w-4xl lg:max-w-5xl mx-auto px-4 lg:px-0;
 
-      & .location {
-        @apply inline-flex gap-1;
-
-        & .location-link {
-          @apply underline underline-offset-2 hover:text-amber-700 dark:hover:text-accent transition-all duration-200 ease-in-out;
-        }
+      & .contact-grid {
+        @apply size-full grid md:grid-cols-2 gap-10 lg:gap-5 xl:gap-25;
       }
     }
-
-    & .messages {
-      @apply w-full flex flex-col items-center 2xl:items-start gap-2;
-
-      & .message {
-        @apply text-md lg:text-lg leading-normal;
-      }
-    }
-
-    & .address-cta {
-      @apply w-full flex flex-wrap justify-center 2xl:justify-start gap-2.5 lg:gap-5;
-
-      & li .address-link {
-        @apply inline-flex items-center min-h-9 gap-1 lg:gap-2 text-sm md:text-nm text-muted-foreground hover:text-amber-700 dark:hover:text-accent underline-offset-3 transition-colors duration-300 ease-in-out;
-      }
-    }
-  }
-
-  .newsletters {
-    @apply max-w-2xl mx-auto gap-5 md:gap-7.5 lg:gap-10;
-
-    & .newsletters-intro {
-      @apply size-fit flex flex-col items-center gap-3;
-    }
-
-    & .newsletter-form {
-      @apply w-full gap-5;
-
-      & .wrapper {
-        & .input {
-          @apply w-full max-w-sm mx-auto;
-        }
-      }
-    }
-  }
-
-  .resources {
-    @apply size-fit flex md:flex-col items-center gap-2;
-
-    & li .rs-link {
-      @apply text-md text-muted-foreground hover:text-amber-700 dark:hover:text-accent transition-colors duration-300 ease-in-out;
-    }
-  }
-
-  .copyrights {
-    @apply w-full h-fit py-2 text-center;
   }
 
   /* ========== Resume Page ========== */
   .resume-page {
-    @apply mt-5 sm:mt-2.5 md:mt-0;
+    @apply mt-10 sm:mt-11 md:mt-12.5 lg:mt-15;
 
     & .resume-viewer-wrapper {
       @apply relative w-full xs:max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto;

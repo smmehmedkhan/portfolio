@@ -16,7 +16,7 @@
   }
 
   .site-navigation {
-    @apply w-full h-10 sm:h-11 md:h-12 lg:h-15 bg-background text-nm border-b border-border fixed top-0 z-50;
+    @apply w-full h-10 sm:h-11 md:h-12.5 lg:h-15 bg-background text-nm border-b border-border fixed top-0 z-50;
   }
 
   main {
