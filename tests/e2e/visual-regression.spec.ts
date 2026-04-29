@@ -24,9 +24,15 @@ test.describe('P3: Visual Regression', () => {
         const response = await page.goto(route)
         expect(response?.ok()).toBeTruthy()
 
-        await page.waitForLoadState('domcontentloaded')
+        await page.waitForLoadState('networkidle')
         await page.waitForSelector('main')
         await page.waitForFunction(() => document.fonts.ready)
+        // Hide Next.js dev tools overlay injected in dev mode
+        await page.addStyleTag({
+          content: 'nextjs-portal { display: none !important; }',
+        })
+        // Allow JS-driven animations (e.g. Motion) to complete
+        await page.waitForTimeout(1000)
 
         const cleanRoute = route === '/' ? 'home' : route.slice(1)
         const screenshotName = `visual/${cleanRoute}-${viewport.name}.png`

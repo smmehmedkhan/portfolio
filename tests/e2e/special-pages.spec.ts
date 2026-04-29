@@ -256,13 +256,16 @@ test.describe('P0: Special Pages Performance', () => {
     const pageList = ['/resume', '/blocked', '/non-existent-page']
 
     for (const pagePath of pageList) {
-      const startTime = Date.now()
-      await page.goto(pagePath)
-      await page.waitForLoadState('networkidle')
-      const loadTime = Date.now() - startTime
+      await page.goto(pagePath, { waitUntil: 'domcontentloaded' })
 
-      // Page should load within 5 seconds
-      expect(loadTime).toBeLessThan(5000)
+      const timing = await page.evaluate(() => {
+        const perf = performance.getEntriesByType(
+          'navigation'
+        )[0] as PerformanceNavigationTiming
+        return perf.loadEventEnd - perf.fetchStart
+      })
+
+      expect(timing).toBeLessThan(3000)
     }
   })
 

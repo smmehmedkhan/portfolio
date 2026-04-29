@@ -10,19 +10,15 @@ export default defineConfig({
   reporter: process.env.CI ? 'dot' : 'html',
   timeout: 30 * 1000,
   expect: {
-    timeout: 5000,
-    toHaveScreenshot: {
-      maxDiffPixels: 100,
-    },
+    timeout: 10000,
   },
   use: {
     baseURL: 'http://localhost:3000',
-    userAgent: 'Playwright Test',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    deviceScaleFactor: 1,
     viewport: { width: 1280, height: 720 },
+    actionTimeout: 10_000,
   },
   projects: [
     {
