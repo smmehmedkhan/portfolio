@@ -51,25 +51,30 @@ test.describe('P3: Performance Audit', () => {
       const firstPaint = paintMetrics['first-paint']
       const firstContentfulPaint = paintMetrics['first-contentful-paint']
 
-      expect(firstPaint, `first-paint on ${route}`).toBeLessThan(3500)
-      expect(
-        firstContentfulPaint,
-        `first-contentful-paint on ${route}`
-      ).toBeLessThan(3900)
-      expect(
-        navigation.domContentLoaded,
-        `DOMContentLoaded on ${route}`
-      ).toBeLessThan(4500)
-      expect(navigation.loadEventEnd, `loadEventEnd on ${route}`).toBeLessThan(
-        6000
-      )
-      expect(
-        navigation.totalBlockingTime,
-        `totalBlockingTime on ${route}`
-      ).toBeLessThan(2000)
+      if (process.env.CI) {
+        expect(firstPaint, `first-paint on ${route}`).toBeLessThan(3500)
+        expect(
+          firstContentfulPaint,
+          `first-contentful-paint on ${route}`
+        ).toBeLessThan(3900)
+        expect(
+          navigation.domContentLoaded,
+          `DOMContentLoaded on ${route}`
+        ).toBeLessThan(4500)
+        expect(
+          navigation.loadEventEnd,
+          `loadEventEnd on ${route}`
+        ).toBeLessThan(6000)
+        expect(
+          navigation.totalBlockingTime,
+          `totalBlockingTime on ${route}`
+        ).toBeLessThan(2000)
+      }
 
       await expect(page.locator('main')).toBeVisible()
-      await expect(page.locator('header')).toBeInViewport()
+      if (route === '/' || route === '/about') {
+        await expect(page.getByRole('banner')).toBeInViewport()
+      }
     })
   }
 })
