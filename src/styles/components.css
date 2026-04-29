@@ -40,6 +40,12 @@
   /* ========== Hero banner ========== */
   .hero {
     @apply w-full min-h-[calc(100dvh-60px)] mt-10 sm:mt-11 md:mt-12.5 lg:mt-15 overflow-hidden relative;
+    
+    pointer-events: none;
+
+    & > * {
+      pointer-events: auto;
+    }
 
     &::before {
       content: '';
