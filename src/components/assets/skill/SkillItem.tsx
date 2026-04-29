@@ -52,8 +52,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
       <CardHeader className="flex items-center justify-between">
         <div className="size-11 md:size-12 lg:size-14 p-2 rounded-lg bg-primary dark:bg-card flex-center">
           <Image
-            className="h-9 md:h-10 lg:h-12 object-contain"
-            style={{ width: 'auto' }}
+            className="w-auto h-9 md:h-10 lg:h-12 object-contain"
             src={image}
             alt={title}
             width={40}
@@ -104,21 +103,20 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         <HoverCardTrigger asChild>
           <Button
             data-slot="hover-card-trigger"
-            className="md:size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
-            size="icon-xl"
+            className="size-11 md:size-12 lg:size-14 min-h-9 p-2 rounded-lg lg:rounded-xl"
             variant="outline"
+            size="icon-xl"
             onClick={e => {
               e.preventDefault()
               setModalOpen(true)
             }}>
             <Container {...pulse}>
               <Image
-                className="h-9 md:h-10 lg:h-12 object-contain"
-                style={{ width: 'auto' }}
-                src={image}
-                alt={title}
+                className="w-auto h-9 md:h-10 lg:h-12 object-contain"
                 width={40}
                 height={40}
+                src={image}
+                alt={title}
                 loading="eager"
               />
             </Container>

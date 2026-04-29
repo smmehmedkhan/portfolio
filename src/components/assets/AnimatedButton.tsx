@@ -25,7 +25,7 @@ export default function AnimatedButton({
 
   return (
     <Container
-      className={cn('size-full', className)}
+      className={cn('w-full', className)}
       {...fadeDown}
       transition={{ ...fadeDown.transition, delay }}>
       <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
