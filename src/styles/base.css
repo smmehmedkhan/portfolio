@@ -12,7 +12,7 @@
   }
 
   img, picture, video, canvas {
-    @apply max-w-full block; /* responsive media */
+    @apply size-auto max-w-full block; /* responsive media */
   }
 
   h1, h2, h3, h4, h5, h6 {

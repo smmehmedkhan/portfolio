@@ -25,7 +25,7 @@ export default function NotFound() {
           width={860}
           height={571}
           priority
-          className="w-full max-w-full xs:max-w-xs sm:max-w-sm"
+          className="size-full max-w-xs sm:max-w-sm md:max-w-lg"
         />
       </Wrapper>
       <div className="wrapper gap-3 sm:gap-4 md:gap-5">
