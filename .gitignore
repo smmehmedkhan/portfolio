@@ -59,3 +59,9 @@ Thumbs.db
 
 # AI
 .codex
+
+# Playwright
+node_modules/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

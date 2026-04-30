@@ -38,7 +38,12 @@ export default function Navbar() {
   return (
     <motion.nav
       className="site-navigation flex-center"
-      style={{ y: navY, opacity: navOpacity }}>
+      style={{
+        y: navY,
+        opacity: navOpacity,
+        willChange: 'transform, opacity',
+        zIndex: 50,
+      }}>
       <motion.div className="container flex-inline navigation">
         {/* Left: Logo */}
         <Logo />

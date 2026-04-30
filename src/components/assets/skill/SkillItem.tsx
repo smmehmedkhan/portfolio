@@ -103,7 +103,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         <HoverCardTrigger asChild>
           <Button
             data-slot="hover-card-trigger"
-            className="size-11 md:size-12 lg:size-14 min-h-9 p-2 rounded-lg lg:rounded-xl"
+            className="size-11 md:size-12 lg:size-14 min-h-11 p-2 rounded-lg lg:rounded-xl"
             variant="outline"
             size="icon-xl"
             onClick={e => {
