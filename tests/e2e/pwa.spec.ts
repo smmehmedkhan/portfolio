@@ -257,8 +257,9 @@ test.describe('P0: Asset Caching', () => {
     const responses: string[] = []
 
     page.on('response', resp => {
-      if (resp.url().match(/\.(css|js)(\?.*)?$/)) {
-        responses.push(resp.url())
+      const url = resp.url()
+      if (url.match(/\.(css|js)(\?.*)?$/) || url.includes('/_next/static/')) {
+        responses.push(url)
       }
     })
 

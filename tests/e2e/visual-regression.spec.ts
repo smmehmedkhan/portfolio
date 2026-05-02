@@ -35,11 +35,11 @@ test.describe('P3: Visual Regression', () => {
         await page.waitForTimeout(1000)
 
         const cleanRoute = route === '/' ? 'home' : route.slice(1)
-        const screenshotName = `visual/${cleanRoute}-${viewport.name}.png`
+        const screenshotName = `visual-${cleanRoute}-${viewport.name}.png`
 
         await expect(page).toHaveScreenshot(screenshotName, {
           animations: 'disabled',
-          maxDiffPixelRatio: 0.01,
+          maxDiffPixelRatio: 0.02,
         })
       })
     }

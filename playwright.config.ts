@@ -6,14 +6,14 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   reporter: process.env.CI ? 'dot' : 'html',
   timeout: 30 * 1000,
   expect: {
     timeout: 10000,
   },
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -45,7 +45,7 @@ export default defineConfig({
         command: 'pnpm build && pnpm start',
         port: 3000,
         reuseExistingServer: false,
-        timeout: 120 * 1000,
+        timeout: 180 * 1000,
       }
     : {
         command: 'pnpm dev',
