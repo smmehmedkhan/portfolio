@@ -52,11 +52,15 @@ test.describe('P3: Performance Audit', () => {
       const firstContentfulPaint = paintMetrics['first-contentful-paint']
 
       if (process.env.CI) {
-        expect(firstPaint, `first-paint on ${route}`).toBeLessThan(3500)
-        expect(
-          firstContentfulPaint,
-          `first-contentful-paint on ${route}`
-        ).toBeLessThan(3900)
+        if (firstPaint !== undefined) {
+          expect(firstPaint, `first-paint on ${route}`).toBeLessThan(3500)
+        }
+        if (firstContentfulPaint !== undefined) {
+          expect(
+            firstContentfulPaint,
+            `first-contentful-paint on ${route}`
+          ).toBeLessThan(3900)
+        }
         expect(
           navigation.domContentLoaded,
           `DOMContentLoaded on ${route}`

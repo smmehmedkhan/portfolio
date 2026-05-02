@@ -155,8 +155,8 @@ test.describe('P0: Responsive Touch Targets', () => {
     await page.waitForLoadState('networkidle')
 
     const targets = [
-      page.locator('header').getByRole('link', { name: /contact me/i }),
-      page.locator('header').getByRole('link', { name: /get resume/i }),
+      page.locator('.hero').getByRole('link', { name: /contact me/i }),
+      page.locator('.hero').getByRole('link', { name: /get resume/i }),
       page.locator('main').getByRole('link', { name: /read more/i }),
       page.locator('main').getByRole('link', { name: /view project/i }),
       ...(await page.locator('button[data-slot="hover-card-trigger"]').all()),

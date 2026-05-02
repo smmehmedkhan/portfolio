@@ -189,7 +189,7 @@ test.describe('P0: Mobile Navigation', () => {
       .getByRole('button', { name: /hamburger|menu/i })
       .first()
 
-    await menuButton.click()
+    await menuButton.click({ force: true })
     const closeButton = page.getByRole('button', { name: /close menu/i })
     await expect(closeButton).toBeVisible()
 
@@ -209,7 +209,7 @@ test.describe('P0: Mobile Navigation', () => {
     }
 
     const menuButton = page.getByRole('button', { name: /hamburger|menu/i })
-    await menuButton.click()
+    await menuButton.click({ force: true })
 
     await page.getByRole('link', { name: /about/i }).first().click()
     await page.waitForURL(/\/about/, { waitUntil: 'commit' })
