@@ -84,7 +84,9 @@ const envSchema = z.object({
 
   // Arcjet security
   ARCJET_KEY: z.string().optional(),
-  ARCJET_ENV: z.enum(['development', 'production']).default('development'),
+  ARCJET_ENV: z
+    .enum(['development', 'test', 'production'])
+    .default('development'),
   ARCJET_LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('warn'),
 
   // Logging

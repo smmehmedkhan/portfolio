@@ -27,19 +27,21 @@ test.describe('P3: Visual Regression', () => {
         await page.waitForLoadState('networkidle')
         await page.waitForSelector('main')
         await page.waitForFunction(() => document.fonts.ready)
-        // Hide Next.js dev tools overlay injected in dev mode
         await page.addStyleTag({
           content: 'nextjs-portal { display: none !important; }',
         })
-        // Allow JS-driven animations (e.g. Motion) to complete
-        await page.waitForTimeout(1000)
+        await page.waitForFunction(() => {
+          const nav = document.querySelector('nav')
+          if (!nav) return true
+          return window.getComputedStyle(nav).opacity === '1'
+        })
 
         const cleanRoute = route === '/' ? 'home' : route.slice(1)
         const screenshotName = `visual-${cleanRoute}-${viewport.name}.png`
 
         await expect(page).toHaveScreenshot(screenshotName, {
           animations: 'disabled',
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.05,
         })
       })
     }

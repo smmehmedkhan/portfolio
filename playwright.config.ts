@@ -7,7 +7,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
-  reporter: process.env.CI ? 'dot' : 'html',
+  reporter: 'html',
   timeout: 30 * 1000,
   expect: {
     timeout: 10000,
@@ -46,6 +46,7 @@ export default defineConfig({
         port: 3000,
         reuseExistingServer: false,
         timeout: 180 * 1000,
+        env: { ARCJET_ENV: 'test' },
       }
     : {
         command: 'pnpm dev',
