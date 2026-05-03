@@ -254,20 +254,17 @@ test.describe('P0: Web App Metadata', () => {
 
 test.describe('P0: Asset Caching', () => {
   test('should cache CSS and JS assets', async ({ page }) => {
-    const responses: string[] = []
-
-    page.on('response', resp => {
-      const url = resp.url()
-      if (url.match(/\.(css|js)(\?.*)?$/) || url.includes('/_next/static/')) {
-        responses.push(url)
-      }
-    })
-
     await page.goto('/')
     await page.waitForLoadState('networkidle')
 
-    // Should have loaded some assets
-    expect(responses.length).toBeGreaterThan(0)
+    const scriptCount = await page
+      .locator('script[src*="/_next/static/"]')
+      .count()
+    const styleCount = await page
+      .locator('link[rel="stylesheet"][href*="/_next/static/"]')
+      .count()
+
+    expect(scriptCount + styleCount).toBeGreaterThan(0)
   })
 
   test('should serve images efficiently', async ({ page }) => {

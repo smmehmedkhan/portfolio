@@ -13,9 +13,9 @@ export function createArcjet({
   max?: number
   devMode?: boolean
 } = {}) {
-  const isDev = env.NODE_ENV === 'development'
+  const isDryRun = env.ARCJET_ENV !== 'production'
 
-  if (devMode && env.NODE_ENV !== 'development') {
+  if (devMode && env.ARCJET_ENV === 'production') {
     arcjetLogger.warn(
       'createArcjet devMode option is ignored outside development environment.'
     )
@@ -31,9 +31,9 @@ export function createArcjet({
     )
   }
 
-  // In development, allow undefined but warn
+  // In non-production, allow undefined but warn
   if (
-    env.ARCJET_ENV === 'development'
+    env.ARCJET_ENV !== 'production'
     && (!env.ARCJET_KEY || env.ARCJET_KEY.trim() === '')
   ) {
     arcjetLogger.warn(
@@ -44,12 +44,12 @@ export function createArcjet({
   return arcjet({
     key: env.ARCJET_KEY || 'development_placeholder_key',
     rules: [
-      shield({ mode: isDev ? 'DRY_RUN' : 'LIVE' }),
+      shield({ mode: isDryRun ? 'DRY_RUN' : 'LIVE' }),
       detectBot({
-        mode: isDev ? 'DRY_RUN' : 'LIVE',
+        mode: isDryRun ? 'DRY_RUN' : 'LIVE',
         allow: ['CATEGORY:SOCIAL', 'CATEGORY:PREVIEW', 'CATEGORY:MONITOR'],
       }),
-      fixedWindow({ mode: isDev ? 'DRY_RUN' : 'LIVE', window: '1h', max }),
+      fixedWindow({ mode: isDryRun ? 'DRY_RUN' : 'LIVE', window: '1h', max }),
     ],
   })
 }
