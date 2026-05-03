@@ -20,7 +20,11 @@ test.describe('P3: Visual Regression', () => {
           height: viewport.height,
         })
 
-        // Ensure the page loaded successfully before snapshotting
+        // Freeze all Motion (Framer Motion) JS-driven animations at their
+        // final state. Motion respects prefers-reduced-motion when
+        // MotionConfig reducedMotion="user" is set in the app root.
+        await page.emulateMedia({ reducedMotion: 'reduce' })
+
         const response = await page.goto(route)
         expect(response?.ok()).toBeTruthy()
 
@@ -29,11 +33,6 @@ test.describe('P3: Visual Regression', () => {
         await page.waitForFunction(() => document.fonts.ready)
         await page.addStyleTag({
           content: 'nextjs-portal { display: none !important; }',
-        })
-        await page.waitForFunction(() => {
-          const nav = document.querySelector('nav')
-          if (!nav) return true
-          return window.getComputedStyle(nav).opacity === '1'
         })
 
         const cleanRoute = route === '/' ? 'home' : route.slice(1)

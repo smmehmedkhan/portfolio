@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
+import { MotionConfig } from 'motion/react'
 import type { Metadata } from 'next'
 import { Balthazar, Noto_Serif, Public_Sans } from 'next/font/google'
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary'
@@ -90,7 +91,7 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            {children}
+            <MotionConfig reducedMotion="user">{children}</MotionConfig>
             <Toaster />
           </ThemeProvider>
         </ErrorBoundary>
