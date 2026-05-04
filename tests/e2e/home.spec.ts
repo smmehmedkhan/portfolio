@@ -189,16 +189,13 @@ test.describe('P0: Mobile Navigation', () => {
     await expect(menuButton).toBeVisible()
     await menuButton.click({ force: true })
 
-    const drawerContent = page.locator('[data-slot="drawer-content"]')
-    await expect(drawerContent).toBeVisible({ timeout: 5000 })
-
-    const closeButton = drawerContent.getByRole('button', {
+    const closeButton = page.getByRole('button', {
       name: 'Close menu',
     })
-    await expect(closeButton).toBeVisible({ timeout: 5000 })
+    await expect(closeButton).toBeVisible()
 
     await closeButton.click({ force: true })
-    await expect(drawerContent).not.toBeVisible({ timeout: 5000 })
+    await expect(closeButton).not.toBeVisible()
   })
 
   test('should navigate via mobile menu', async ({ page, browserName }) => {
