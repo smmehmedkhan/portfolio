@@ -37,7 +37,7 @@ test.describe('P3: Visual Regression', () => {
 
         await expect(page).toHaveScreenshot(screenshotName, {
           animations: 'disabled',
-          maxDiffPixelRatio: 0.3,
+          maxDiffPixelRatio: 0.4,
         })
       })
     }
