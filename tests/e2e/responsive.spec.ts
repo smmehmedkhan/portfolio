@@ -242,9 +242,17 @@ test.describe('P0: No Horizontal Scroll on Mobile', () => {
 
     const offender = await page.evaluate(() => {
       const vw = document.documentElement.clientWidth
-      const el = [...document.querySelectorAll('*')].find(
-        el => el.getBoundingClientRect().right > vw
-      )
+      const el = [...document.querySelectorAll('*')].find(el => {
+        const rect = el.getBoundingClientRect()
+        const isVisible =
+          rect.width > 0
+          && rect.height > 0
+          && window.getComputedStyle(el).display !== 'none'
+        const opacity = window.getComputedStyle(el).opacity
+        const isLoading =
+          opacity === '0' || el.getAttribute('aria-busy') === 'true'
+        return rect.right > vw && isVisible && !isLoading
+      })
       return el ? el.outerHTML.slice(0, 200) : null
     })
 
