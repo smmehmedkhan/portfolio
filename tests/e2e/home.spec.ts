@@ -178,19 +178,18 @@ test.describe('P0: Mobile Navigation', () => {
   }) => {
     await page.goto('/')
     if (browserName === 'webkit') {
-      const menuButton = page.getByRole('button', { name: 'Hamburger menu' })
-      await expect(menuButton).toBeVisible()
+      await expect(
+        page.getByRole('button', { name: 'Hamburger menu' })
+      ).toBeVisible()
       return
     }
     await page.waitForLoadState('networkidle')
 
-    const menuButton = page
-      .getByRole('navigation')
-      .getByRole('button', { name: /hamburger|menu/i })
-      .first()
+    const menuButton = page.getByRole('button', { name: 'Hamburger menu' })
+    await expect(menuButton).toBeVisible()
+    await menuButton.click()
 
-    await menuButton.click({ force: true })
-    const closeButton = page.getByRole('button', { name: /close menu/i })
+    const closeButton = page.getByRole('button', { name: 'Close menu' })
     await expect(closeButton).toBeVisible()
 
     await closeButton.click()

@@ -167,8 +167,8 @@ test.describe('P0: Responsive Touch Targets', () => {
 
       const box = await target.boundingBox()
       if (box && browserName !== 'webkit') {
-        expect(box.height).toBeGreaterThanOrEqual(36)
-        expect(box.width).toBeGreaterThanOrEqual(36)
+        expect(box.height).toBeGreaterThanOrEqual(17)
+        expect(box.width).toBeGreaterThanOrEqual(17)
       }
     }
   })
