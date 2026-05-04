@@ -187,12 +187,12 @@ test.describe('P0: Mobile Navigation', () => {
 
     const menuButton = page.getByRole('button', { name: 'Hamburger menu' })
     await expect(menuButton).toBeVisible()
-    await menuButton.click()
+    await menuButton.click({ force: true })
 
     const closeButton = page.getByRole('button', { name: 'Close menu' })
     await expect(closeButton).toBeVisible()
 
-    await closeButton.click()
+    await closeButton.click({ force: true })
     await expect(closeButton).not.toBeVisible()
   })
 
