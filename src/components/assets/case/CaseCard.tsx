@@ -37,8 +37,6 @@ export default function CaseCard({ image, name }: CaseCardProps) {
         <svg
           className="splash"
           viewBox="0 0 500 450"
-          width="500"
-          height="450"
           preserveAspectRatio="xMidYMid meet">
           <title>Splash canvas</title>
           <defs>
