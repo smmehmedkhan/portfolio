@@ -190,9 +190,6 @@ test.describe('P0: Mobile Navigation', () => {
       .first()
 
     await menuButton.click({ force: true })
-    await page.waitForSelector(
-      '[data-slot="drawer-content"][data-state="open"]'
-    )
     const closeButton = page.getByRole('button', { name: /close menu/i })
     await expect(closeButton).toBeVisible()
 

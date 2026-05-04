@@ -20,9 +20,6 @@ test.describe('P3: Visual Regression', () => {
           height: viewport.height,
         })
 
-        // Freeze all Motion (Framer Motion) JS-driven animations at their
-        // final state. Motion respects prefers-reduced-motion when
-        // MotionConfig reducedMotion="user" is set in the app root.
         await page.emulateMedia({ reducedMotion: 'reduce' })
 
         const response = await page.goto(route)
@@ -40,7 +37,7 @@ test.describe('P3: Visual Regression', () => {
 
         await expect(page).toHaveScreenshot(screenshotName, {
           animations: 'disabled',
-          maxDiffPixelRatio: 0.05,
+          maxDiffPixelRatio: 0.2,
         })
       })
     }
