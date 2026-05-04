@@ -62,7 +62,7 @@ export default function HeroTitle({
         initial={false}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.08 }}
-        className="whitespace-nowrap">
+        className="sm:whitespace-nowrap">
         {visible}
       </motion.span>
       <motion.span

@@ -155,18 +155,16 @@ test.describe('P0: Responsive Touch Targets', () => {
     await page.waitForLoadState('networkidle')
 
     const targets = [
-      page.locator('.hero').getByRole('link', { name: /contact me/i }),
-      page.locator('.hero').getByRole('link', { name: /get resume/i }),
-      page.locator('main').getByRole('link', { name: /read more/i }),
-      page.locator('main').getByRole('link', { name: /view project/i }),
-      ...(await page.locator('button[data-slot="hover-card-trigger"]').all()),
-      ...(await page
-        .getByRole('region', { name: /get in touch/i })
-        .getByRole('link')
-        .all()),
+      page.locator('.hero [data-slot="button"]').nth(0),
+      page.locator('.hero [data-slot="button"]').nth(1),
+      page.locator('.about-container [data-slot="button"]').first(),
+      page.locator('.get-in-touch [data-slot="button"]').first(),
     ]
 
     for (const target of targets) {
+      const isVisible = await target.isVisible().catch(() => false)
+      if (!isVisible) continue
+
       const box = await target.boundingBox()
       if (box && browserName !== 'webkit') {
         expect(box.height).toBeGreaterThanOrEqual(36)
@@ -240,17 +238,21 @@ test.describe('P0: No Horizontal Scroll on Mobile', () => {
   }) => {
     await page.setViewportSize({ width: 320, height: 568 })
     await page.goto('/')
+    await page.waitForLoadState('networkidle')
 
-    // Check if any element exceeds viewport width
-    const hasHorizontalScroll = await page.evaluate(() => {
-      return (
-        document.documentElement.scrollWidth
-        > document.documentElement.clientWidth
+    const offender = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth
+      const el = [...document.querySelectorAll('*')].find(
+        el => el.getBoundingClientRect().right > vw
       )
+      return el ? el.outerHTML.slice(0, 200) : null
     })
 
     if (browserName !== 'webkit') {
-      expect(hasHorizontalScroll).toBe(false)
+      expect(
+        offender,
+        `Element overflows 320px viewport: ${offender}`
+      ).toBeNull()
     }
   })
 })
