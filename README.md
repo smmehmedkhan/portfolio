@@ -86,14 +86,14 @@ Jump to: [Quick Start](#quick-start) · [Architecture Snapshot](#architecture-sn
 | E2E/A11y/Visual | Playwright 1.59 + axe-core |
 | Lint/Format | Biome 2 + Stylelint 17 |
 | Tooling | Husky + lint-staged + Commitlint |
-| Package Manager | pnpm 10.33.2 |
+| Package Manager | pnpm 10.x |
 
 ## Quick Start
 
 ### Prerequisites
 
 - `Node.js` `24.x`
-- `pnpm` `10.33.2`
+- `pnpm` `10.x`
 
 ### 1. Clone
 
