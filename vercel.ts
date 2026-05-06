@@ -42,7 +42,7 @@ function generateVercelConfig(): VercelConfig {
         source: '/(.*)',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           ...(isProduction
             ? [
@@ -52,6 +52,13 @@ function generateVercelConfig(): VercelConfig {
                 },
               ]
             : []),
+        ],
+      },
+      {
+        source: '/docs/(.*).pdf',
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Content-Disposition', value: 'inline' },
         ],
       },
       {
