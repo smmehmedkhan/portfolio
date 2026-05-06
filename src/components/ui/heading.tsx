@@ -36,7 +36,7 @@ type HeadingVariant =
 const headingVariants = cva('scroll-m-20 text-pretty', {
   variants: {
     variant: {
-      main: 'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-300 via-amber-500 to-amber-700 box-border',
+      main: 'font-special font-black tracking-wide uppercase bg-clip-text text-transparent bg-linear-to-b from-amber-500 via-amber-600 to-amber-700 dark:from-amber-300 dark:via-amber-500 dark:to-amber-700 box-border',
       sub: 'text-muted-foreground font-semibold tracking-tight',
       primary:
         'font-bold tracking-tight md:tracking-normal lg:tracking-wide text-center',

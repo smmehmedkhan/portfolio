@@ -57,12 +57,12 @@ export default function HeroTitle({
   const visible = fullText.slice(0, displayLength)
 
   return (
-    <div className="flex-inline" aria-live="polite">
+    <span className="flex-inline" aria-live="polite">
       <motion.span
         initial={false}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.08 }}
-        className="sm:whitespace-nowrap">
+        className="whitespace-nowrap">
         {visible}
       </motion.span>
       <motion.span
@@ -72,6 +72,6 @@ export default function HeroTitle({
         transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1 }}>
         <span className="hero-caret" />
       </motion.span>
-    </div>
+    </span>
   )
 }
