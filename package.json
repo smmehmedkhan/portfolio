@@ -115,5 +115,11 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "uuid": ">=14.0.0",
+      "postcss": ">=8.5.10"
+    }
+  }
 }
