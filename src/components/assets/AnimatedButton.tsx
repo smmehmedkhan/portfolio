@@ -28,7 +28,10 @@ export default function AnimatedButton({
       className={cn('w-full', className)}
       {...fadeDown}
       transition={{ ...fadeDown.transition, delay }}>
-      <Wrapper whileHover={bounce.animate} transition={bounce.transition}>
+      <Wrapper
+        className="flex justify-center lg:block"
+        whileHover={bounce.animate}
+        transition={bounce.transition}>
         <Button className="w-full max-w-lg lg:w-fit" variant={variant} asChild>
           <Link href={href} target={target}>
             {swap ? (

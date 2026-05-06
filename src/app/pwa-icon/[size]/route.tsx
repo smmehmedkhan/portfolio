@@ -22,7 +22,9 @@ export async function GET(
     return new Response('Invalid size. Use 192 or 512.', { status: 400 })
   }
 
-  const imageUrl = getLocalImageAsDataUrl('public/images/mehmed-khan.png')
+  const imageUrl = getLocalImageAsDataUrl(
+    'public/images/mehmed-khan-square.png'
+  )
 
   return new ImageResponse(
     <div

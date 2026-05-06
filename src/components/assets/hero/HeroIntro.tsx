@@ -46,7 +46,7 @@ export default function HeroIntro() {
       </Paragraph>
 
       {/* Call to Action Buttons */}
-      <div className="buttons box-border">
+      <div className="buttons">
         <AnimatedButton
           className="lg:size-fit"
           variant="default"

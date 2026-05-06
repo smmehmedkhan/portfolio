@@ -78,14 +78,14 @@
 
       & .wrapper {
         & .hero-images {
-          @apply size-full md:min-h-fit relative overflow-hidden flex justify-center items-end xs:size-76 sm:size-138 md:size-120 lg:size-full max-w-full;
+          @apply size-75 sm:size-100 md:size-120 lg:size-full max-w-full md:min-h-fit relative flex justify-center items-end overflow-hidden;
 
           & .hero-image {
-            @apply w-auto max-w-full h-60 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute z-10;
+            @apply w-auto max-w-fit h-65 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute z-10;
           }
 
           & .hero-canvas {
-            @apply size-full sm:size-110 md:size-120 lg:size-120 xl:size-full mx-auto translate-y-4 sm:translate-y-6.5 md:translate-y-6.5 xl:translate-y-9 z-0;
+            @apply size-full sm:size-100 md:size-120 xl:size-full mx-auto translate-y-4 sm:translate-y-5.5 md:translate-y-6.5 xl:translate-y-9 z-0;
           }
         }
       }

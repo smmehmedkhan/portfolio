@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
 const MImage = motion.create(Image)
@@ -10,6 +11,14 @@ const Box = motion.create('div')
 export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
   const fade = getAnimationPreset('fade')
+  const [heroImageUrl, setHeroImageUrl] = useState(
+    '/images/mehmed-khan-portrait.webp'
+  )
+
+  useEffect(() => {
+    if (window.innerWidth < 768)
+      setHeroImageUrl('/images/mehmed-khan-square.webp')
+  }, [])
 
   return (
     <div className="wrapper max-w-2xl">
@@ -17,7 +26,7 @@ export default function HeroImage() {
         {/* Hero Image - Art Direction */}
         <MImage
           className="hero-image"
-          src="/images/Mehmed_Khan.webp"
+          src={heroImageUrl}
           alt="Mehmed Khan - Frontend Developer"
           width={675}
           height={675}
