@@ -22,6 +22,7 @@ export default function HeroImage() {
             srcSet="/images/mehmed-khan-portrait.webp"
           />
           <img
+            className="w-full h-auto object-contain"
             src="/images/mehmed-khan-square.webp"
             alt="Mehmed Khan - Full-Stack Developer"
             width={675}
