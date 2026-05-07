@@ -283,17 +283,40 @@ test.describe('P0: No Horizontal Scroll on Mobile', () => {
 
     const offender = await page.evaluate(() => {
       const vw = document.documentElement.clientWidth
+
+      const isClippedByAncestor = (el: Element) => {
+        let parent = el.parentElement
+
+        while (parent) {
+          const style = window.getComputedStyle(parent)
+          if (
+            /(hidden|clip)/.test(style.overflowX)
+            || /(hidden|clip)/.test(style.overflowY)
+          ) {
+            return true
+          }
+          parent = parent.parentElement
+        }
+
+        return false
+      }
+
       const el = [...document.querySelectorAll('*')].find(el => {
         const rect = el.getBoundingClientRect()
+        const style = window.getComputedStyle(el)
         const isVisible =
           rect.width > 0
           && rect.height > 0
-          && window.getComputedStyle(el).display !== 'none'
-        const opacity = window.getComputedStyle(el).opacity
-        const isLoading =
-          opacity === '0' || el.getAttribute('aria-busy') === 'true'
-        return rect.right > vw && isVisible && !isLoading
+          && style.display !== 'none'
+          && style.visibility !== 'hidden'
+          && style.opacity !== '0'
+        const isLoading = el.getAttribute('aria-busy') === 'true'
+
+        return (
+          rect.right > vw && isVisible && !isLoading && !isClippedByAncestor(el)
+        )
       })
+
       return el ? el.outerHTML.slice(0, 200) : null
     })
 
