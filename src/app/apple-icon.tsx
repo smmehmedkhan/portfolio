@@ -6,9 +6,7 @@ export const size = { width: 180, height: 180 }
 export const contentType = 'image/png'
 
 export default function AppleIcon() {
-  const imageUrl = getLocalImageAsDataUrl(
-    'public/images/mehmed-khan-square.png'
-  )
+  const imageUrl = getLocalImageAsDataUrl('public/images/mehmed-khan-small.png')
 
   return new ImageResponse(
     <div

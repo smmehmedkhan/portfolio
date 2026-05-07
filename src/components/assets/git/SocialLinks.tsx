@@ -40,7 +40,7 @@ export default function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              'inline-flex items-center justify-center min-h-10 min-w-10 size-10 md:size-12 p-1 md:p-1.25 rounded-md border border-input bg-popover text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-popover/90 dark:hover:text-accent dark:hover:border-accent',
+              'inline-flex items-center justify-center size-10 md:size-12 p-1 md:p-1.25 rounded-md border border-input bg-popover text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-popover/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
             <Icon className={cn('size-9', iconClassName)} aria-hidden="true" />

@@ -121,6 +121,47 @@ test.describe('P0: Responsive Image Scaling', () => {
       }
     }
   })
+
+  test('hero image picture element serves correct source per viewport', async ({
+    page,
+  }) => {
+    // Mobile — below 768px breakpoint, img fallback (square) is active
+    await page.setViewportSize({ width: 375, height: 667 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const mobileSrc = await page
+      .locator('picture.hero-image img')
+      .getAttribute('src')
+    expect(mobileSrc).toBe('/images/mehmed-khan-square.webp')
+
+    // Desktop — above 768px, browser selects the portrait source
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const desktopCurrentSrc = await page
+      .locator('picture.hero-image img')
+      .evaluate((img: HTMLImageElement) => img.currentSrc)
+    expect(desktopCurrentSrc).toContain('mehmed-khan-portrait.webp')
+  })
+
+  test('hero picture element has correct art direction source attributes', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const sourceMedia = await page
+      .locator('picture.hero-image source')
+      .getAttribute('media')
+    const sourceSrcset = await page
+      .locator('picture.hero-image source')
+      .getAttribute('srcset')
+
+    expect(sourceMedia).toBe('(min-width: 768px)')
+    expect(sourceSrcset).toContain('mehmed-khan-portrait.webp')
+  })
 })
 
 test.describe('P0: Responsive Typography', () => {
@@ -242,17 +283,40 @@ test.describe('P0: No Horizontal Scroll on Mobile', () => {
 
     const offender = await page.evaluate(() => {
       const vw = document.documentElement.clientWidth
+
+      const isClippedByAncestor = (el: Element) => {
+        let parent = el.parentElement
+
+        while (parent) {
+          const style = window.getComputedStyle(parent)
+          if (
+            /(hidden|clip)/.test(style.overflowX)
+            || /(hidden|clip)/.test(style.overflowY)
+          ) {
+            return true
+          }
+          parent = parent.parentElement
+        }
+
+        return false
+      }
+
       const el = [...document.querySelectorAll('*')].find(el => {
         const rect = el.getBoundingClientRect()
+        const style = window.getComputedStyle(el)
         const isVisible =
           rect.width > 0
           && rect.height > 0
-          && window.getComputedStyle(el).display !== 'none'
-        const opacity = window.getComputedStyle(el).opacity
-        const isLoading =
-          opacity === '0' || el.getAttribute('aria-busy') === 'true'
-        return rect.right > vw && isVisible && !isLoading
+          && style.display !== 'none'
+          && style.visibility !== 'hidden'
+          && style.opacity !== '0'
+        const isLoading = el.getAttribute('aria-busy') === 'true'
+
+        return (
+          rect.right > vw && isVisible && !isLoading && !isClippedByAncestor(el)
+        )
       })
+
       return el ? el.outerHTML.slice(0, 200) : null
     })
 
