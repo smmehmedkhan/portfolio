@@ -81,7 +81,7 @@
           @apply size-75 sm:size-100 md:size-120 lg:size-full max-w-full md:min-h-fit relative flex justify-center items-end overflow-hidden;
 
           & .hero-image {
-            @apply w-auto max-w-fit h-65 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute z-10;
+            @apply w-auto max-w-full h-65 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute z-10;
 
             & img {
               @apply size-full object-contain;
