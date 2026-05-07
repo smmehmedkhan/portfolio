@@ -121,6 +121,47 @@ test.describe('P0: Responsive Image Scaling', () => {
       }
     }
   })
+
+  test('hero image picture element serves correct source per viewport', async ({
+    page,
+  }) => {
+    // Mobile — below 768px breakpoint, img fallback (square) is active
+    await page.setViewportSize({ width: 375, height: 667 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const mobileSrc = await page
+      .locator('picture.hero-image img')
+      .getAttribute('src')
+    expect(mobileSrc).toBe('/images/mehmed-khan-square.webp')
+
+    // Desktop — above 768px, browser selects the portrait source
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const desktopCurrentSrc = await page
+      .locator('picture.hero-image img')
+      .evaluate((img: HTMLImageElement) => img.currentSrc)
+    expect(desktopCurrentSrc).toContain('mehmed-khan-portrait.webp')
+  })
+
+  test('hero picture element has correct art direction source attributes', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    const sourceMedia = await page
+      .locator('picture.hero-image source')
+      .getAttribute('media')
+    const sourceSrcset = await page
+      .locator('picture.hero-image source')
+      .getAttribute('srcset')
+
+    expect(sourceMedia).toBe('(min-width: 768px)')
+    expect(sourceSrcset).toContain('mehmed-khan-portrait.webp')
+  })
 })
 
 test.describe('P0: Responsive Typography', () => {
