@@ -1,40 +1,34 @@
 'use client'
 
 import { motion } from 'motion/react'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const MImage = motion.create(Image)
 const Box = motion.create('div')
 
 export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
   const fade = getAnimationPreset('fade')
-  const [heroImageUrl, setHeroImageUrl] = useState(
-    '/images/mehmed-khan-portrait.webp'
-  )
-
-  useEffect(() => {
-    if (window.innerWidth < 768)
-      setHeroImageUrl('/images/mehmed-khan-square.webp')
-  }, [])
 
   return (
     <div className="wrapper max-w-2xl">
       <Box className="hero-images" {...fadeUp}>
         {/* Hero Image - Art Direction */}
-        <MImage
+        <motion.picture
           className="hero-image"
-          src={heroImageUrl}
-          alt="Mehmed Khan - Frontend Developer"
-          width={675}
-          height={675}
-          priority
-          fetchPriority="high"
           {...fade}
-          transition={{ ...fade.transition, delay: 0.5 }}
-        />
+          transition={{ ...fade.transition, delay: 0.5 }}>
+          <source
+            media="(min-width: 768px)"
+            srcSet="/images/mehmed-khan-portrait.webp"
+          />
+          <img
+            src="/images/mehmed-khan-square.webp"
+            alt="Mehmed Khan - Full-Stack Developer"
+            width={675}
+            height={675}
+            fetchPriority="high"
+          />
+        </motion.picture>
 
         {/* Hero Canvas */}
         <svg

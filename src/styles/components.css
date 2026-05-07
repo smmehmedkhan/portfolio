@@ -82,10 +82,14 @@
 
           & .hero-image {
             @apply w-auto max-w-fit h-65 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute z-10;
+
+            & img {
+              @apply size-full object-contain;
+            }
           }
 
           & .hero-canvas {
-            @apply size-full sm:size-100 md:size-120 xl:size-full mx-auto translate-y-4 sm:translate-y-5.5 md:translate-y-6.5 xl:translate-y-9 z-0;
+            @apply size-full sm:size-100 md:size-120 xl:size-full mx-auto translate-y-5 sm:translate-y-5.5 md:translate-y-6.5 xl:translate-y-9 z-0;
           }
         }
       }
