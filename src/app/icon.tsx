@@ -6,9 +6,7 @@ export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
 export default function Icon() {
-  const imageUrl = getLocalImageAsDataUrl(
-    'public/images/mehmed-khan-square.png'
-  )
+  const imageUrl = getLocalImageAsDataUrl('public/images/mehmed-khan-small.png')
 
   return new ImageResponse(
     <div

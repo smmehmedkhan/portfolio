@@ -1,30 +1,21 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import { ImageResponse } from 'next/og'
 import { CONFIG } from '@/constants/config'
+import { getLocalImageAsDataUrl, readFile } from '@/lib/og-image'
 
 export const runtime = 'nodejs'
 export const alt = CONFIG.SITE.TITLE
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-function readFile(relativePath: string): Buffer {
-  const safePath = path.join(process.cwd(), path.normalize(relativePath))
-  if (!safePath.startsWith(process.cwd())) {
-    throw new Error(`Invalid path: ${relativePath}`)
-  }
-
-  return fs.readFileSync(safePath)
-}
-
 export default function OpenGraphImage(): ImageResponse {
   const fontData = readFile('public/fonts/PublicSans-Bold.ttf')
-  const avatarData = readFile('public/images/mehmed-khan-portrait.png')
 
   const fontArrayBuffer = new ArrayBuffer(fontData.length)
   new Uint8Array(fontArrayBuffer).set(fontData)
 
-  const avatarSrc = `data:image/png;base64,${avatarData.toString('base64')}`
+  const avatarSrc = getLocalImageAsDataUrl(
+    'public/images/mehmed-khan-portrait.png'
+  )
 
   const name = CONFIG.PERSONAL.NAME
   const role = CONFIG.PERSONAL.ROLE

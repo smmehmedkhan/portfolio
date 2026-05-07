@@ -11,6 +11,15 @@ const MIME_MAP: Record<string, ImageMimeType> = {
   '.gif': 'image/gif',
 }
 
+export function readFile(relativePath: string): Buffer {
+  const safePath = path.join(process.cwd(), path.normalize(relativePath))
+  if (!safePath.startsWith(process.cwd())) {
+    throw new Error(`Invalid path: ${relativePath}`)
+  }
+
+  return fs.readFileSync(safePath)
+}
+
 export function getLocalImageAsDataUrl(relativePath: string): string {
   const ext = path.extname(relativePath).toLowerCase()
   const mime: ImageMimeType = MIME_MAP[ext] ?? 'image/png'
