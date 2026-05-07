@@ -35,7 +35,7 @@
     "start": "node .next/standalone/server.js"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md}": [
+    "*.{js,jsx,ts,tsx,json,md}": [
       "biome format --write",
       "biome check --write"
     ],
