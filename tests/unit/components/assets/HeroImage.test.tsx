@@ -28,14 +28,16 @@ describe('HeroImage', () => {
   })
 
   describe('DOM structure', () => {
-    it('renders a picture element with hero-image class', () => {
+    it('renders a picture element with hero-pictures class', () => {
       render(<HeroImage />)
-      expect(document.querySelector('picture.hero-image')).toBeInTheDocument()
+      expect(
+        document.querySelector('picture.hero-pictures')
+      ).toBeInTheDocument()
     })
 
-    it('renders the hero-images wrapper', () => {
+    it('renders the hero-pictures wrapper', () => {
       render(<HeroImage />)
-      expect(document.querySelector('.hero-images')).toBeInTheDocument()
+      expect(document.querySelector('.hero-pictures')).toBeInTheDocument()
     })
 
     it('renders the hero-canvas svg', () => {
@@ -92,8 +94,8 @@ describe('HeroImage', () => {
       const img = screen.getByRole('img', {
         name: /mehmed khan - full-stack developer/i,
       })
-      expect(img).toHaveAttribute('width', '675')
-      expect(img).toHaveAttribute('height', '675')
+      expect(img).toHaveAttribute('width', '300')
+      expect(img).toHaveAttribute('height', '300')
     })
   })
 })
