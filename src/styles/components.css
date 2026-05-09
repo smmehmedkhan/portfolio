@@ -83,7 +83,7 @@
           @apply size-75 sm:size-100 md:size-125 xl:size-140 2xl:size-160 relative flex justify-center items-end overflow-hidden lg:-translate-y-12;
 
           & .hero-pictures {
-            @apply absolute bottom-0 left-1/2 -translate-x-1/2 z-10;
+            @apply absolute bottom-0 inset-x-0 mx-auto w-fit z-10;
 
             & .hero-image {
               @apply block w-auto min-w-fit h-65 sm:h-85 md:h-96 xl:h-112.5 2xl:h-125;
