@@ -131,7 +131,7 @@ test.describe('P0: Responsive Image Scaling', () => {
     await page.waitForLoadState('networkidle')
 
     const mobileSrc = await page
-      .locator('picture.hero-image img')
+      .locator('picture.hero-pictures img')
       .getAttribute('src')
     expect(mobileSrc).toBe('/images/mehmed-khan-square.webp')
 
@@ -141,7 +141,7 @@ test.describe('P0: Responsive Image Scaling', () => {
     await page.waitForLoadState('networkidle')
 
     const desktopCurrentSrc = await page
-      .locator('picture.hero-image img')
+      .locator('picture.hero-pictures img')
       .evaluate((img: HTMLImageElement) => img.currentSrc)
     expect(desktopCurrentSrc).toContain('mehmed-khan-portrait.webp')
   })
@@ -153,10 +153,10 @@ test.describe('P0: Responsive Image Scaling', () => {
     await page.waitForLoadState('networkidle')
 
     const sourceMedia = await page
-      .locator('picture.hero-image source')
+      .locator('picture.hero-pictures source')
       .getAttribute('media')
     const sourceSrcset = await page
-      .locator('picture.hero-image source')
+      .locator('picture.hero-pictures source')
       .getAttribute('srcset')
 
     expect(sourceMedia).toBe('(min-width: 768px)')

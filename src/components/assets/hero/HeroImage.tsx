@@ -3,18 +3,18 @@
 import { motion } from 'motion/react'
 import { getAnimationPreset } from '@/lib/animations/registry'
 
-const Box = motion.create('div')
+const BoundingBox = motion.create('div')
 
 export default function HeroImage() {
   const fadeUp = getAnimationPreset('fade-up')
   const fade = getAnimationPreset('fade')
 
   return (
-    <div className="wrapper max-w-2xl">
-      <Box className="hero-images" {...fadeUp}>
+    <div className="wrapper">
+      <BoundingBox className="bounding-box" {...fadeUp}>
         {/* Hero Image - Art Direction */}
         <motion.picture
-          className="hero-image"
+          className="hero-pictures"
           {...fade}
           transition={{ ...fade.transition, delay: 0.5 }}>
           <source
@@ -22,11 +22,11 @@ export default function HeroImage() {
             srcSet="/images/mehmed-khan-portrait.webp"
           />
           <img
-            className="w-full h-auto object-contain"
+            className="hero-image"
             src="/images/mehmed-khan-square.webp"
             alt="Mehmed Khan - Full-Stack Developer"
-            width={675}
-            height={675}
+            width={300}
+            height={300}
             fetchPriority="high"
           />
         </motion.picture>
@@ -35,11 +35,11 @@ export default function HeroImage() {
         <svg
           className="hero-canvas"
           viewBox="0 0 675 675"
-          preserveAspectRatio="xMidYMid meet"
+          preserveAspectRatio="xMidYMax slice"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           version="1.1">
-          <title>Chewing gum shape</title>
+          <title>Chewing gum blob</title>
           <defs>
             <linearGradient
               id="gumGradient"
@@ -68,7 +68,7 @@ export default function HeroImage() {
             />
           </g>
         </svg>
-      </Box>
+      </BoundingBox>
     </div>
   )
 }
