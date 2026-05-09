@@ -103,7 +103,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
         <HoverCardTrigger asChild>
           <Button
             data-slot="hover-card-trigger"
-            className="size-11 md:size-12 lg:size-14 min-h-11 p-2 rounded-lg lg:rounded-xl"
+            className="size-12 lg:size-14 p-2 rounded-lg lg:rounded-xl"
             variant="outline"
             size="icon-xl"
             onClick={e => {
@@ -112,7 +112,7 @@ export default function SkillItem({ index, data }: SkillItemProps) {
             }}>
             <Container {...pulse}>
               <Image
-                className="w-auto h-9 md:h-10 lg:h-12 object-contain"
+                className="w-auto h-10 lg:h-12 object-contain"
                 width={40}
                 height={40}
                 src={image}
