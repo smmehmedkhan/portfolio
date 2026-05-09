@@ -65,7 +65,7 @@
       @apply gap-10 lg:gap-0 xl:gap-10 2xl:gap-25 z-10;
 
       & .hero-intro {
-        @apply max-w-full sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-7.5;
+        @apply max-w-full sm:max-w-lg md:max-w-2xl gap-5 sm:gap-7.5 lg:gap-10 xl:gap-7.5 lg:flex-1;
 
         & .headings {
           @apply size-full flex flex-col items-center md:items-start gap-2 sm:gap-3 md:gap-4 lg:gap-5;
@@ -77,17 +77,21 @@
       }
 
       & .wrapper {
-        & .hero-images {
-          @apply size-75 sm:size-100 md:size-120 lg:size-full max-w-full md:min-h-fit relative flex justify-center items-end overflow-hidden;
+        @apply lg:flex-1;
 
-          & .hero-image {
-            @apply w-auto max-w-full h-65 sm:h-85 md:h-92 xl:h-120 2xl:h-130 absolute left-1/2 -translate-x-1/2 z-10;
-            
-            max-inline-size: 100%;
+        & .bounding-box {
+          @apply size-75 sm:size-100 md:size-125 xl:size-140 2xl:size-160 relative flex justify-center items-end overflow-hidden lg:-translate-y-12;
+
+          & .hero-pictures {
+            @apply absolute bottom-0 left-1/2 -translate-x-1/2 z-10;
+
+            & .hero-image {
+              @apply block w-auto min-w-fit h-65 sm:h-85 md:h-96 xl:h-112.5 2xl:h-125;
+            }
           }
-
+          
           & .hero-canvas {
-            @apply size-full sm:size-100 md:size-120 xl:size-full mx-auto translate-y-5 sm:translate-y-5.5 md:translate-y-6.5 xl:translate-y-9 z-0;
+            @apply size-full mx-auto translate-y-5 sm:translate-y-5.5 md:translate-y-7.5 xl:translate-y-9 z-0;
           }
         }
       }
