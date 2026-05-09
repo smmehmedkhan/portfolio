@@ -28,12 +28,12 @@ export function ScrollToTop({ className }: { className?: string }) {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
           className={cn(
-            'fixed bottom-6 right-6 z-50 flex-center size-10 rounded-full',
+            'fixed bottom-6 right-6 z-50 flex-center size-11 md:size-9 rounded-full',
             'bg-primary text-primary-foreground shadow-lg',
             'hover:bg-primary/90 transition-colors duration-200 cursor-pointer',
             className
           )}>
-          <ArrowUp className="size-5" />
+          <ArrowUp className="size-7 md:size-5" />
         </motion.button>
       )}
     </AnimatePresence>

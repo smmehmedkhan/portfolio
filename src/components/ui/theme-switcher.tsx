@@ -14,11 +14,12 @@ const themes = [
   { value: 'system', label: 'System', icon: Monitor },
 ] as const
 
+const MotionField = motion.create(Field)
+
 export default function ThemeSwitcher() {
   const fade = getAnimationPreset('fade')
   const { theme, setTheme } = useTheme()
 
-  const MotionField = motion.create(Field)
   return (
     <FieldSet className="w-full flex items-center justify-center gap-3">
       <FieldLegend className="w-full text-center">Theme</FieldLegend>
@@ -32,8 +33,8 @@ export default function ThemeSwitcher() {
             transition={{ ...fade.transition, delay: 0.2 * index }}>
             <RadioGroupItem value={value} />
             <FieldLabel>
-              <Icon className={cn('size-4')} />
-              <FieldTitle>{label}</FieldTitle>
+              <Icon className={cn('size-5')} />
+              <FieldTitle className="text-md">{label}</FieldTitle>
             </FieldLabel>
           </MotionField>
         ))}

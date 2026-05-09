@@ -42,12 +42,12 @@ export default function Hamburger() {
       direction="right">
       <DrawerTrigger asChild>
         <Button
-          className="size-9 flex md:hidden px-0!"
+          className="flex md:hidden p-0!"
           variant="ghost"
           onClick={() => setMobileMenuOpen(true)}
           name="Hamburger menu"
           aria-label="Hamburger menu">
-          <Menu className="size-7" size={28} />
+          <Menu className="size-9" size={28} />
         </Button>
       </DrawerTrigger>
       <DrawerContent
@@ -57,12 +57,12 @@ export default function Hamburger() {
         <DrawerHeader className="drawer-header">
           <DrawerClose asChild>
             <Button
-              className="size-9"
+              className="size-fit bg-transparent p-0!"
               variant="ghost"
               onClick={() => setMobileMenuOpen(false)}
               name="Close menu"
               aria-label="Close menu">
-              <X className="size-7" size={28} />
+              <X className="size-9" size={28} />
             </Button>
           </DrawerClose>
           <DrawerTitle className="sr-only">Hamburger Menu</DrawerTitle>
