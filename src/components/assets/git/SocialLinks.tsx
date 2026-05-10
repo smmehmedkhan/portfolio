@@ -40,11 +40,11 @@ export default function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              'inline-flex items-center justify-center size-11 md:size-9 p-2 rounded-md border border-input bg-popover text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-popover/90 dark:hover:text-accent dark:hover:border-accent',
+              'inline-flex items-center justify-center size-11 md:size-12 lg:size-14 p-2 rounded-md border border-input bg-popover text-foreground hover:bg-accent hover:text-accent-foreground dark:hover:bg-popover/90 dark:hover:text-accent dark:hover:border-accent',
               buttonClassName
             )}>
             <Icon
-              className={cn('size-9 md:size-7', iconClassName)}
+              className={cn('size-9 md:size-10 lg:size-12', iconClassName)}
               aria-hidden="true"
             />
           </Link>
