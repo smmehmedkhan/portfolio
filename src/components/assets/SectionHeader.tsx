@@ -9,9 +9,9 @@ import {
   Mailbox,
   MessageCircleQuestionMark,
   ScrollText,
+  Zap,
 } from 'lucide-react'
 import { motion } from 'motion/react'
-import { FaBolt } from 'react-icons/fa'
 import { Badge } from '@/components/ui/badge'
 import { Heading } from '@/components/ui/heading'
 import { Paragraph } from '@/components/ui/paragraph'
@@ -27,7 +27,7 @@ const iconMap = {
   FolderKanban,
   BadgeCheck,
   MessageCircleQuestionMark,
-  FaBolt,
+  Zap,
   Mailbox,
   FileText,
 }
@@ -46,19 +46,15 @@ export default function SectionHeader({
   return (
     <header className="section-intro flex-box" data-id={id} data-slot={label}>
       <MotionBadge
-        className={cn(
-          'flex-inline',
-          'size-max py-1 md:py-1.5 px-3 md:px-4 gap-1',
-          badgeStyles
-        )}
+        className={cn('flex-inline', 'size-max py-2 px-4 gap-1', badgeStyles)}
         {...fadeDown}>
-        <span className="flex-box size-4 lg:size-5" aria-hidden="true">
+        <span className="flex-box size-5" aria-hidden="true">
           <IconComponent />
         </span>
         <Paragraph
           className="text-primary-foreground"
           variant="small"
-          size="sm"
+          size="md"
           as="span">
           {label}
         </Paragraph>

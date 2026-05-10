@@ -40,7 +40,7 @@ export const sectionInros: Record<string, SectionIntro> = {
   },
   getInTouch: {
     id: 6,
-    icon: 'FaBolt',
+    icon: 'Zap',
     label: 'Get In Touch',
     title: 'How can I help you?',
     description:
