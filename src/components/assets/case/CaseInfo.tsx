@@ -32,7 +32,7 @@ export default function CaseInfo({ isEven, page, data }: CaseInfoProps) {
           transition={{ delay: 0.2 }}>
           {title}
         </Paragraph>
-        <ProjectFeatures page={page} features={features} />
+        <ProjectFeatures page={page} features={features} isEven={isEven} />
         <CaseBadges isEven={isEven} technologies={technologies} />
         {page && <ProjectButtons isEven={isEven} {...data} />}
       </div>

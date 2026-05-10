@@ -195,6 +195,7 @@ export type ProjectFeatures = {
 export type ProjectFeaturesProps = {
   page?: boolean
   features: ProjectFeatures[]
+  isEven: boolean
 }
 
 export type ProjectProps = {
