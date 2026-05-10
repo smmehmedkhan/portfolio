@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
               "base-uri 'self'",
               "form-action 'self'",
               "frame-src 'self' https://www.googletagmanager.com",
-              "object-src 'self'",
+              "object-src 'none'",
               'upgrade-insecure-requests',
             ].join('; '),
           },
@@ -76,6 +76,34 @@ const nextConfig: NextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      // PDF files: allow same-origin framing for Firefox's built-in PDF viewer
+      {
+        source: '/docs/:file*.pdf',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/pdf',
+          },
+          {
+            key: 'Content-Disposition',
+            value: 'inline',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "frame-ancestors 'self'",
+              "script-src 'self' 'unsafe-inline' blob: resource:",
+              "style-src 'self' 'unsafe-inline' resource:",
+              "object-src 'none'",
+            ].join('; '),
           },
         ],
       },

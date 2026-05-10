@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 
 const RESUME_PATH = '/docs/resume.pdf'
-const RESUME_EMBED_SRC = `${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`
+const RESUME_EMBED_SRC = `${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=0&view=FitH&zoom=page-fit`
 
 export default function ResumeViewer() {
   const [tapped, setTapped] = useState(false)
@@ -40,13 +40,14 @@ export default function ResumeViewer() {
           timeoutRef.current = setTimeout(() => setTapped(false), 100)
         }}
         aria-label="Toggle resume preview">
-        <embed
+        <iframe
           src={RESUME_EMBED_SRC}
-          type="application/pdf"
+          title="Resume document preview"
           className={`resume-doc transition-[filter] duration-300 group-hover:blur-sm ${
             tapped ? 'blur-sm' : ''
           }`}
           aria-label="Resume document preview"
+          loading="lazy"
         />
         <div
           className="resume-overlay group-hover:opacity-100"
