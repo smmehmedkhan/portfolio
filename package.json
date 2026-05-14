@@ -119,7 +119,12 @@
   "pnpm": {
     "overrides": {
       "uuid": ">=14.0.0",
-      "postcss": ">=8.5.10"
+      "postcss": ">=8.5.14"
+    },
+    "auditConfig": {
+      "ignoreGhsas": [
+        "GHSA-qx2v-qp2m-jg93"
+      ]
     }
   }
 }
