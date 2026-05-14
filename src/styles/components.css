@@ -365,9 +365,9 @@
         @apply relative w-full rounded-md sm:rounded-lg overflow-hidden shadow-xl sm:shadow-2xl border border-border;
 
         & .resume-doc {
-          @apply w-full pointer-events-none select-none;
+          @apply w-full h-auto pointer-events-none select-none;
 
-          aspect-ratio: 1 / 1.414;
+          aspect-ratio: 9.66 / 12.5;
         }
 
         & .resume-overlay {
