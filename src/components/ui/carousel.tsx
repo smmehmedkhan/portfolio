@@ -148,8 +148,6 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
-  const { orientation } = useCarousel()
-
   return (
     // biome-ignore lint/a11y/useSemanticElements: Component by default
     <div

@@ -121,9 +121,10 @@ export default function ContactForm() {
             <FieldLabel htmlFor="message">Message</FieldLabel>
             <Textarea
               id="message"
-              rows={6}
+              className="h-40"
               placeholder="Your message here..."
               aria-label="Your message"
+              rows={6}
               required
               {...register('message')}
             />
